@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Login Preview</title>
+    <link rel="stylesheet" href="styleV030.css">
+    <style>
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .preview-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .login-form {
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.2s ease;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #0077ff;
+        }
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background: #0077ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .login-button:hover {
+            background: #0066dd;
+        }
+        .divider {
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .divider span {
+            padding: 0 10px;
+            color: #666;
+            font-size: 14px;
+        }
+        .social-login-container {
+            text-align: center;
+        }
+        .social-login-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .social-login-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            gap: 12px;
+            width: 100%;
+        }
+        .social-login-button:hover {
+            background: #f5f5f5;
+            border-color: #d0d0d0;
+        }
+        .social-login-button img {
+            width: 24px;
+            height: 24px;
+        }
+        .social-login-button span {
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-container">
+        <form class="login-form" onsubmit="event.preventDefault(); handleLogin();">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+            </div>
+            <button type="submit" class="login-button">Log in</button>
+        </form>
+
+        <div class="divider">
+            <span>Or continue with</span>
+        </div>
+
+        <div class="social-login-container">
+            <div class="social-login-buttons">
+                <button class="social-login-button google" onclick="initiateSocialLogin('google')">
+                    <img src="img/google-icon.svg" alt="Google" />
+                    <span>Google</span>
+                </button>
+                <button class="social-login-button linkedin" onclick="initiateSocialLogin('linkedin')">
+                    <img src="img/linkedin-icon.svg" alt="LinkedIn" />
+                    <span>LinkedIn</span>
+                </button>
+                <button class="social-login-button x" onclick="initiateSocialLogin('x')">
+                    <img src="img/x-icon.svg" alt="X" />
+                    <span>X</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // OAuth configuration
+        const oauthConfig = {
+            google: {
+                clientId: 'YOUR_GOOGLE_CLIENT_ID',
+                redirectUri: 'http://localhost:8000/auth/google/callback',
+                scope: 'email profile',
+                authEndpoint: 'https://accounts.google.com/o/oauth2/v2/auth'
+            },
+            linkedin: {
+                clientId: 'YOUR_LINKEDIN_CLIENT_ID',
+                redirectUri: 'http://localhost:8000/auth/linkedin/callback',
+                scope: 'r_liteprofile r_emailaddress',
+                authEndpoint: 'https://www.linkedin.com/oauth/v2/authorization'
+            },
+            x: {
+                clientId: 'YOUR_X_CLIENT_ID',
+                redirectUri: 'http://localhost:8000/auth/x/callback',
+                scope: 'tweet.read users.read',
+                authEndpoint: 'https://twitter.com/i/oauth2/authorize'
+            }
+        };
+
+        function handleLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            console.log('Login attempt:', { email, password });
+            // Add your login logic here
+        }
+
+        function initiateSocialLogin(provider) {
+            const config = oauthConfig[provider];
+            if (!config) {
+                console.error('Invalid provider:', provider);
+                return;
+            }
+
+            // Construct the OAuth URL
+            const params = new URLSearchParams({
+                client_id: config.clientId,
+                redirect_uri: config.redirectUri,
+                response_type: 'code',
+                scope: config.scope,
+                state: generateRandomState(), // For security
+                prompt: 'consent'
+            });
+
+            // Redirect to the OAuth provider
+            window.location.href = `${config.authEndpoint}?${params.toString()}`;
+        }
+
+        function generateRandomState() {
+            return Math.random().toString(36).substring(2, 15);
+        }
+
+        // Handle OAuth callback
+        function handleOAuthCallback() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            const state = urlParams.get('state');
+            const provider = urlParams.get('provider');
+
+            if (code && state && provider) {
+                // Exchange code for access token
+                exchangeCodeForToken(code, provider)
+                    .then(response => {
+                        // Handle successful authentication
+                        console.log('Authentication successful:', response);
+                        // Store token and user info
+                        localStorage.setItem('authToken', response.access_token);
+                        localStorage.setItem('userInfo', JSON.stringify(response.user));
+                        // Redirect to dashboard or home page
+                        window.location.href = '/dashboard.html';
+                    })
+                    .catch(error => {
+                        console.error('Authentication failed:', error);
+                        // Show error message to user
+                        alert('Authentication failed. Please try again.');
+                    });
+            }
+        }
+
+        async function exchangeCodeForToken(code, provider) {
+            const response = await fetch(`/api/auth/${provider}/token`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ code })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to exchange code for token');
+            }
+
+            return response.json();
+        }
+
+        // Check if we're on the callback page
+        if (window.location.pathname.includes('/auth/') && window.location.pathname.includes('/callback')) {
+            handleOAuthCallback();
+        }
+    </script>
+</body>
+</html> 

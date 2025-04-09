@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>OCOSO MVP - Full Layout</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocoso - Content Minting Platform</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="styleV030.css">
     <style>
     </style>
@@ -138,12 +141,8 @@
     <div class="cta-section">
       <div class="button-group">
         <div class="button-wrapper">
-          <button class="action-button" aria-label="Login">
-            <span class="button-text">Login...</span>
-          </button>
-          <button class="action-button" aria-label="Register">
-            <span class="button-text">Register ...</span>
-          </button>
+          <button id="loginButton" class="hero-button">Login</button>
+          <button id="registerButton" class="hero-button">Register</button>
         </div>
         <p class="cta-text">... NOW</p>
       </div>
@@ -845,6 +844,7 @@
         });
 </script>
 
+<script src="js/auth.js"></script>
 </body>
 </html>
 
