@@ -1,0 +1,52 @@
+<div class="social-login-container">
+    <div class="social-login-title">Or continue with</div>
+    <div class="social-login-buttons">
+        <button class="social-login-button google" onclick="initiateSocialLogin('google')">
+            <img src="img/google-icon.png" alt="Google" />
+            <span>Google</span>
+        </button>
+        <button class="social-login-button linkedin" onclick="initiateSocialLogin('linkedin')">
+            <img src="img/linkedin-icon.png" alt="LinkedIn" />
+            <span>LinkedIn</span>
+        </button>
+        <button class="social-login-button x" onclick="initiateSocialLogin('x')">
+            <img src="img/x-icon.png" alt="X" />
+            <span>X</span>
+        </button>
+    </div>
+</div>
+
+<script>
+function initiateSocialLogin(provider) {
+    const config = {
+        google: {
+            client_id: 'YOUR_GOOGLE_CLIENT_ID',
+            redirect_uri: 'YOUR_REDIRECT_URI',
+            scope: 'email profile'
+        },
+        linkedin: {
+            client_id: 'YOUR_LINKEDIN_CLIENT_ID',
+            redirect_uri: 'YOUR_REDIRECT_URI',
+            scope: 'r_liteprofile r_emailaddress'
+        },
+        x: {
+            client_id: 'YOUR_X_CLIENT_ID',
+            redirect_uri: 'YOUR_REDIRECT_URI',
+            scope: 'tweet.read users.read'
+        }
+    };
+
+    const authUrl = new URL(config[provider].auth_uri);
+    authUrl.searchParams.append('client_id', config[provider].client_id);
+    authUrl.searchParams.append('redirect_uri', config[provider].redirect_uri);
+    authUrl.searchParams.append('response_type', 'code');
+    authUrl.searchParams.append('scope', config[provider].scope);
+    authUrl.searchParams.append('state', generateRandomState());
+
+    window.location.href = authUrl.toString();
+}
+
+function generateRandomState() {
+    return Math.random().toString(36).substring(2, 15);
+}
+</script> 
