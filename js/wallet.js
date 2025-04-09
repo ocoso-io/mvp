@@ -7,7 +7,7 @@ const isMetaMaskInstalled = () => {
 const connectWallet = async () => {
     try {
         if (!isMetaMaskInstalled()) {
-            alert('Please install MetaMask to use this feature!');
+            alert('Please install MetaMask to connect your wallet!');
             window.open('https://metamask.io/download/', '_blank');
             return;
         }
