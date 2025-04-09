@@ -33,7 +33,7 @@
             <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
         </button>
         <button class="hamburger-nav-button">
-            <span class="nav-text">For ADVERTISER</span>
+            <span class="nav-text">For ADVERTISERS</span>
             <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
         </button>
         <button class="hamburger-nav-button">
@@ -240,7 +240,7 @@
       </section>
       <section>
         <p>
-          Mint your content and make it untouchable.This isn’t a post. It’s a proof of authorship. This isn’t a file. It’s a fingerprint on-chain. You’re not just creating — you’re claiming what’s yours. Mint it. Protect it. Own it forever.
+          Mint your content and make it untouchable.This isn't a post. It's a proof of authorship. This isn't a file. It's a fingerprint on-chain. You're not just creating — you're claiming what's yours. Mint it. Protect it. Own it forever.
         </p>
       </section>
     </div>
@@ -258,7 +258,7 @@
 <section class="content-submission">
   <h1 class="submission-title">Why mint?</h1>
   <h5 class="submission-subtitle">
-    Because screenshots aren’t ownership. Because cloud folders aren’t protection. Because your content deserves your chain.
+    Because screenshots aren't ownership. Because cloud folders aren't protection. Because your content deserves your chain.
   </h5>
 </section>	
 	
@@ -532,7 +532,7 @@
         <div style="height: 10px">&nbsp;</div>
 
         <section class="content-submission">
-          <h3 class="submission-title">What’s it called? Give it a name that sticks</h3>
+          <h3 class="submission-title">What's it called? Give it a name that sticks</h3>
           <div style="height: 25px">&nbsp;</div>
           <textarea class="url-input-container" rows="1" placeholder="Say what it is, and let it speak for itself."></textarea>
         </section>	
@@ -572,6 +572,7 @@
       <h2>Drop it! it's hot!!</h2>
       <p><br><br><br></p>
       <p>JPEG, PNG, MP4 ... Just drag it in or click to download.</p>
+      <input type="file" id="content-file" accept="image/*,video/*" style="display: none;">
     </div>
     
   
@@ -663,11 +664,11 @@
         <div style="height: 40px">&nbsp;</div>	
 
           <section class="content-submission" style="display: flex; flex-direction: row;">
-            <button class="content-button" aria-label="Content navigation button" style="width:100%">
-              <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon" />
-              <span class="content-button-text">
-                  <br><h2 style="color: black">NOW Mint It. <br>Create a Legend.</h2><br><br>
-              </span>
+            <button class="action-button" aria-label="Mint Content" id="finalMintButton">
+                <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon" />
+                <span class="content-button-text">
+                    <br><h2 style="color: black">NOW Mint It. <br>Create a Legend.</h2><br><br>
+                </span>
             </button>	
           </section>		  
 		  
@@ -834,3 +835,7 @@
 		
 </body>
 </html>
+
+<!-- Add these scripts before closing body tag -->
+<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+<script src="js/mint.js"></script>
