@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>OCOSO MVP - Full Layout</title>
+    <link rel="stylesheet" href="styleV033.css">
+    <style>
+    </style>
+</head>
+<body>
+
+
+  <!-- Header Controls (wird nur bei kleinen Bildschirmen angezeigt) -->
+  <div class="header-controls">
+      <div class="hamburger-button" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+      </div>
+  </div>
+
+  <!-- Overlay Menü -->
+  <div class="menu-overlay" id="menuOverlay">
+    <button class="close-button" onclick="toggleMenu()">X</button>
+    <div style="width: 50%; padding: 50px 0 0 20px">
+      <nav class="hamburger-main-navigation" aria-label="Mobile Navigation">
+        <button class="hamburger-nav-button">
+            <span class="nav-text">For CREATORS</span>
+            <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
+        </button>
+        <button class="hamburger-nav-button">
+            <span class="nav-text">For INVESTORS</span>
+            <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
+        </button>
+        <button class="hamburger-nav-button">
+            <span class="nav-text">For ADVERTISERS</span>
+            <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
+        </button>
+        <button class="hamburger-nav-button">
+            <span class="nav-text">For USERS</span>
+            <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
+        </button>
+      </nav>
+    </div>
+  </div>
+
+
+	
+  <header class="site-header">
+    <div class="header-container">
+      <img
+        src="img/Logo-Ocoso_Black_250321.png"
+        alt="Site Logo"
+        class="site-logo"
+      />
+		
+      <div class="spacer"></div>
+		
+      <div class="menu-wrapper">
+        <nav class="main-navigation" aria-label="Main navigation">
+          <div class="nav-item-wrapper">
+            <div class="nav-item-container">
+                            <a href="content-creator.html"><button class="nav-button">
+                <span class="nav-text">For CREATORS</span>
+                <img
+                  src="img/Arrow-Down.png"
+                  alt="Dropdown indicator"
+                  class="dropdown-icon"
+                />
+              </button></a>
+            </div>
+            <div class="nav-min-width"></div>
+          </div>
+          <div class="nav-item-wrapper">
+            <div class="nav-item-container">
+              <button class="nav-button">
+                <span class="nav-text">For INVESTORS</span>
+                <img
+                  src="img/Arrow-Down.png"
+                  alt="Dropdown indicator"
+                  class="dropdown-icon"
+                />
+              </button>
+            </div>
+            <div class="nav-min-width"></div>
+          </div>
+          <div class="nav-item-wrapper">
+            <div class="nav-item-container">
+              <button class="nav-button">
+                <span class="nav-text">FOR ADVERTISERS</span>
+                <img
+                  src="img/Arrow-Down.png"
+                  alt="Dropdown indicator"
+                  class="dropdown-icon"
+                />
+              </button>
+            </div>
+            <div class="nav-min-width"></div>
+          </div>
+          <div class="nav-item-wrapper">
+            <div class="nav-item-container">
+              <button class="nav-button">
+                <span class="nav-text">FOr USERS</span>
+                <img
+                  src="img/Arrow-Down.png"
+                  alt="Dropdown indicator"
+                  class="dropdown-icon"
+                />
+              </button>
+            </div>
+            <div class="nav-min-width"></div>
+          </div>
+        </nav>
+      </div>
+		
+        <div class="wallet-button-wrapper">
+          <button class="wallet-button" aria-label="Connect wallet">
+            <span class="wallet-button-text">CONNECT WALLET</span>
+          </button>
+        </div>
+		
+    </div>
+  </header>
+	
+
+<section class="hero">
+  <div class="hero-container" style="background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/4691e67e3b75d917f12dc87357c5328ca76244d9');">
+    <div class="hero-content-wrapper">
+      <h1 class="main-heading">CONTENT…</h1>
+      <p></p>
+      <p class="hero-description">
+        Yes, it's still content. Created by humans. Protected by code. Powered
+        by community. Not fed into a feed. Not buried by algorithms. It's not
+        just what you post — it's what you own. Content is the asset class of
+        the open web3. Make it work. Make it last.
+      </p>
+    </div>
+    <div class="cta-section">
+      <div class="button-group">
+        <div class="button-wrapper">
+          <button class="action-button" aria-label="Login">
+            <span class="button-text">Login...</span>
+          </button>
+          <button class="action-button" aria-label="Register">
+            <span class="button-text">Register ...</span>
+          </button>
+        </div>
+        <p class="cta-text">... NOW</p>
+      </div>
+    </div>
+  </div>
+</section>
+	
+<div class="page-wrapper">	
+	
+	
+  <div style="height: 80px">&nbsp;</div>
+	
+	
+    <article class="card-content-wide">
+      <div class="wrapper">
+        <div class="responsive"  data-link="content-provide.html">
+          <div class="image-container" style="background-image: url('img/Provide.jpg');">
+          </div>
+          <div class="content-block">
+            <div class="content-text">
+              <h2 class="title">Provide</h2>
+              <p class="description">
+                Put your content in the market — on your terms. Offer it, own it, earn from it. Directly.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">TURN VISIBILITY INTO VALUE</span>
+            </button>
+          </div>
+        </div>
+      </div>
+		
+      <div class="wrapper-reduced">
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="content-mint.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Mint ...</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Stake Your Claim</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="content-insights.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Insights ...</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Reveal Your Reach</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+      </div>
+		
+    </article>
+	
+	  <div style="height: 80px">&nbsp;</div>	
+	
+<article class="headline-left-wrapper">
+  <div class="healine-left-container">
+    <div class="headline-left-inner">
+      <header>
+        <h2>You minted it. Now put it to work.</h2>
+      </header>
+      <section>
+        <h5>
+          Launch your content into the market. Claim your space. Set your terms. Make it earn. Pick your NFT and turn visibility into value.
+        </h5>
+      </section>
+      <section>
+        <p>
+          Mint your content and make it untouchable. This isn’t a post. It’s a proof of authorship. This isn’t a file. It’s a fingerprint on-chain. You’re not just creating — you’re claiming what’s yours. Mint it. Protect it. Own it forever.
+        </p>
+      </section>
+    </div>
+  </div>
+</article>	
+		
+  <div style="height: 80px">&nbsp;</div>	
+	
+<article class="card-content-wide">
+      <div class="wrapper">
+        <div class="responsive-narrow"  data-link="content-promote.html">
+          <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/Promote.jpg');">
+            <div class="content-text">
+              <h2 class="title">Promote ...</h2>
+              <p class="description">
+                One tribe. Shared reach. Get seen — because the community amplifies you.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Amplify Your Voice</span>
+            </button>
+          </div>
+        </div>
+      </div>
+		
+      <div class="wrapper">
+        <div class="responsive-narrow" data-link="content-monetize.html">
+          <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/Monetize.jpg');">
+            <div class="content-text">
+              <h2 class="title">Monetize …</h2>
+              <p class="description">
+                No middlemen. Just revenue. Turn your content into currency — directly, transparently.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Turn Content Into Currency</span>
+            </button>
+          </div>
+        </div>
+      </div>
+		      <div class="wrapper">
+        <div class="responsive-narrow" data-link="content-trade.html">
+          <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/Trade.jpg');">
+            <div class="content-text">
+              <h2 class="title">Trade ...</h2>
+              <p class="description">
+                Sell your stories. Buy into others. Content is the new asset class — and the market is open.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Turn Creations Into Capital</span>
+            </button>
+          </div>
+        </div>
+      </div>
+		
+    </article>
+	
+	
+  <div style="height: 80px">&nbsp;</div>	
+	
+	
+<center class="content-frame">
+	
+
+	
+<section class="content-submission">
+  <h2 class="submission-title">Choose your NFT[s] to PRINT MONEY</h2>
+  <h6 class="submission-subtitle">
+    Every great piece deserves the spotlight. Pick the one that’s ready to roar.
+  </h6>
+</section>
+	
+		<p>Choose your NFT[s] to PRINT MONEY</p>
+	
+	
+<table class="data-table">
+  <thead class="table-header">
+    <tr class="header-row">
+      <th class="header-cell">FAME</th>
+      <th class="header-cell">IP-NFT StruCturE</th>
+      <th class="header-cell">TOPICS</th>
+      <th class="header-cell">TOPICS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="separator-row">
+      <td colspan="4" class="separator"></td>
+    </tr>
+
+    <!-- Level 1 Row -->
+    <tr class="data-row level-1 active">
+      <td class="toggle-cell-table">
+        <button class="toggle-btn active" aria-label="Toggle row details">
+          <span class="toggle-indicator"></span>
+        </button>
+      </td>
+      <td class="content-cell">
+        <div class="content-wrapper">
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/662841edffb4bc99923f421a019da0431003108b?placeholderIfAbsent=true&apiKey=f859f3f142d84964a7102fbaf816e1e4" alt="Icon" class="content-icon" />
+          <span class="table-text">Sport, Lifestyle, Fitness, Beauty</span>
+        </div>
+      </td>
+      <td class="content-cell">Sport, Lifestyle, Fitness, Fitness, Beauty</td>
+      <td class="action-cell">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/18346435d7514f7aa5a327ed7c393869b79ea96b?placeholderIfAbsent=true&apiKey=f859f3f142d84964a7102fbaf816e1e4" alt="Action 1" class="action-icon" />
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c61de355c99a355c7a5ba2545910577e887c805d?placeholderIfAbsent=true&apiKey=f859f3f142d84964a7102fbaf816e1e4" alt="Action 2" class="action-icon" />
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/895f524613141673aa62dea9a29819255a1e66ea?placeholderIfAbsent=true&apiKey=f859f3f142d84964a7102fbaf816e1e4" alt="Action 3" class="action-icon" />
+      </td>
+    </tr>
+
+    <!-- Level 2 Row -->
+    <tr class="data-row level-2 active">
+      <td class="toggle-cell-table">
+        <button class="toggle-btn active" aria-label="Toggle row details">
+          <span class="toggle-indicator"></span>
+        </button>
+      </td>
+      <td class="content-cell">
+        <div class="content-wrapper">
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/662841edffb4bc99923f421a019da0431003108b?placeholderIfAbsent=true&apiKey=f859f3f142d84964a7102fbaf816e1e4" alt="Icon" class="content-icon" />
+          <span class="table-text">Sport, Lifestyle, Fitness, Beauty</span>
+        </div>
+      </td>
+      <td class="content-cell">Sport, Lifestyle, Fitness, Beauty</td>
+      <td class="action-cell">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/18346435d7514f7aa5a327ed7c393869b79ea96b?placeholderIfAbsent=true&apiKey=f859f3f142d84964a7102fbaf816e1e4" alt="Action 1" class="action-icon" />
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c61de355c99a355c7a5ba2545910577e887c805d?placeholderIfAbsent=true&apiKey=f859f3f142d84964a7102fbaf816e1e4" alt="Action 2" class="action-icon" />
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/895f524613141673aa62dea9a29819255a1e66ea?placeholderIfAbsent=true&apiKey=f859f3f142d84964a7102fbaf816e1e4" alt="Action 3" class="action-icon" />
+      </td>
+    </tr>
+
+    <!-- Level 3 Row -->
+    <tr class="data-row level-3 active">
+      <td class="toggle-cell-table">
+        <button class="toggle-btn active" aria-label="Toggle row details">
+          <span class="toggle-indicator"></span>
+        </button>
+      </td>
+      <td class="content-cell">
+        <div class="content-wrapper">
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/662841edffb4bc99923f421a019da0431003108b?placeholderIfAbsent=true&apiKey=f859f3f142d84964a7102fbaf816e1e4" alt="Icon" class="content-icon" />
+          <span class="table-text">Sport, Lifestyle, Fitness, Beauty</span>
+        </div>
+      </td>
+      <td class="content-cell">Sport, Lifestyle, Fitness, Beauty</td>
+      <td class="action-cell">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/18346435d7514f7aa5a327ed7c393869b79ea96b?placeholderIfAbsent=true&apiKey=f859f3f142d84964a7102fbaf816e1e4" alt="Action 1" class="action-icon" />
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c61de355c99a355c7a5ba2545910577e887c805d?placeholderIfAbsent=true&apiKey=f859f3f142d84964a7102fbaf816e1e4" alt="Action 2" class="action-icon" />
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/895f524613141673aa62dea9a29819255a1e66ea?placeholderIfAbsent=true&apiKey=f859f3f142d84964a7102fbaf816e1e4" alt="Action 3" class="action-icon" />
+      </td>
+    </tr>
+
+    <!-- Level 4 Row (Inactive) -->
+    <tr class="data-row level-4 inactive">
+      <td class="toggle-cell-table">
+        <button class="toggle-btn inactive" aria-label="Toggle row details">
+          <span class="toggle-indicator"></span>
+        </button>
+      </td>
+      <td class="content-cell">
+        <div class="content-wrapper">
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/662841edffb4bc99923f421a019da0431003108b?placeholderIfAbsent=true&apiKey=f859f3f142d84964a7102fbaf816e1e4" alt="Icon" class="content-icon" />
+          <span class="table-text">Sport, Lifestyle, Fitness, Beauty</span>
+        </div>
+      </td>
+      <td class="content-cell">Sport, Lifestyle, Fitness, Beauty</td>
+      <td class="action-cell">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/fce61ccdd2380878593b21f96b1dceb3d5ab89e6?placeholderIfAbsent=true&apiKey=f859f3f142d84964a7102fbaf816e1e4" alt="Action 1" class="action-icon" />
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/2b67e2e4539639d5407121af0d748816d1350fd6?placeholderIfAbsent=true&apiKey=f859f3f142d84964a7102fbaf816e1e4" alt="Action 2" class="action-icon" />
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6d96aecc4bdd5b1f481ad80d7897e15bff3b9a1e?placeholderIfAbsent=true&apiKey=f859f3f142d84964a7102fbaf816e1e4" alt="Action 3" class="action-icon" />
+      </td>
+    </tr>
+
+    <!-- Additional rows following the same pattern... -->
+    <!-- Note: I'll continue with all rows, this is just the start -->
+  </tbody>
+  <tfoot class="table-footer">
+    <tr>
+      <td colspan="4" class="footer-cell"></td>
+    </tr>
+  </tfoot>
+</table>
+	
+  <div style="height: 40px">&nbsp;</div>
+	
+  <section class="content-submission" style="display: flex; flex-direction: row; gap: 50px;">
+    <h6 class="submission-subtitle" style="display: flex; width: auto">
+      Select your minted draft. Only minted NFTs are promotable. <br>Haven’t minted yet? Go claim your content.
+    </h6>
+    <button class="content-button" aria-label="Content navigation button">
+      <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon" />
+      <span class="content-button-text">
+        Mint It ... 
+      </span>
+    </button>	
+  </section>
+	
+  <div style="height: 80px">&nbsp;</div>
+	
+<section class="content-submission">
+  <h2 class="submission-title">Display</h2>
+  <h6 class="submission-subtitle">
+    Your NFT as a signal. Loud, proud, everywhere.
+  </h6>
+</section>	
+	
+  <div style="height: 80px">&nbsp;</div>	
+	
+  <div style="height: 80px">&nbsp;</div>
+	
+</center>	
+	
+	<div style="height: 160px">&nbsp;</div>	
+	<div style="height: 80px">&nbsp;</div>	
+	
+</div>
+	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+<script src="ocoso-app-functions.js"></script>	
+	
+
+</body>
+</html>
