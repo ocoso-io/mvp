@@ -2,20 +2,125 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <title>OCOSO MVP - Full Layout</title>
-    <link rel="stylesheet" href="styleV033.css?v=20240321">
-    <style>
-    </style>
+    <link rel="stylesheet" href="styleV033.css">
+  <style>
+  </style>
 </head>
 <body>
 
-<div id="navigation-placeholder"></div>
-<div id="overlay-menu-placeholder"></div>
+
+  <!-- Header Controls (wird nur bei kleinen Bildschirmen angezeigt) -->
+  <div class="header-controls">
+      <div class="hamburger-button" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+      </div>
+  </div>
+
+  <!-- Overlay Menü -->
+  <div class="menu-overlay" id="menuOverlay">
+    <button class="close-button" onclick="toggleMenu()">X</button>
+    <div style="width: 50%; padding: 50px 0 0 20px">
+      <nav class="hamburger-main-navigation" aria-label="Mobile Navigation">
+        <button class="hamburger-nav-button">
+            <span class="nav-text">For CREATORS</span>
+            <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
+        </button>
+        <button class="hamburger-nav-button">
+            <span class="nav-text">For INVESTORS</span>
+            <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
+        </button>
+        <button class="hamburger-nav-button">
+            <span class="nav-text">For ADVERTISERS</span>
+            <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
+        </button>
+        <button class="hamburger-nav-button">
+            <span class="nav-text">For USERS</span>
+            <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
+        </button>
+      </nav>
+    </div>
+  </div>
 
 
+	
+  <header class="site-header">
+    <div class="header-container">
+      <img
+        src="img/Logo-Ocoso_Black_250321.png"
+        alt="Site Logo"
+        class="site-logo"
+      />
+		
+      <div class="spacer"></div>
+		
+      <div class="menu-wrapper">
+        <nav class="main-navigation" aria-label="Main navigation">
+          <div class="nav-item-wrapper">
+            <div class="nav-item-container">
+              <a href="content-creator.html">              <a href="content-creator.html"><button class="nav-button">
+                <span class="nav-text">For CREATORS</span>
+                <img
+                  src="img/Arrow-Down.png"
+                  alt="Dropdown indicator"
+                  class="dropdown-icon"
+                />
+              </button></a></a>
+            </div>
+            <div class="nav-min-width"></div>
+          </div>
+          <div class="nav-item-wrapper">
+            <div class="nav-item-container">
+              <button class="nav-button">
+                <span class="nav-text">For INVESTORS</span>
+                <img
+                  src="img/Arrow-Down.png"
+                  alt="Dropdown indicator"
+                  class="dropdown-icon"
+                />
+              </button>
+            </div>
+            <div class="nav-min-width"></div>
+          </div>
+          <div class="nav-item-wrapper">
+            <div class="nav-item-container">
+              <button class="nav-button">
+                <span class="nav-text">FOR ADVERTISERS</span>
+                <img
+                  src="img/Arrow-Down.png"
+                  alt="Dropdown indicator"
+                  class="dropdown-icon"
+                />
+              </button>
+            </div>
+            <div class="nav-min-width"></div>
+          </div>
+          <div class="nav-item-wrapper">
+            <div class="nav-item-container">
+              <button class="nav-button">
+                <span class="nav-text">FOr USERS</span>
+                <img
+                  src="img/Arrow-Down.png"
+                  alt="Dropdown indicator"
+                  class="dropdown-icon"
+                />
+              </button>
+            </div>
+            <div class="nav-min-width"></div>
+          </div>
+        </nav>
+      </div>
+		
+        <div class="wallet-button-wrapper">
+          <button class="wallet-button" aria-label="Connect wallet">
+            <span class="wallet-button-text">CONNECT WALLET</span>
+          </button>
+        </div>
+		
+    </div>
+  </header>
 	
 
 <section class="hero">
@@ -135,7 +240,7 @@
       </section>
       <section>
         <p>
-          Mint your content and make it untouchable.This isn't a post. It's a proof of authorship. This isn't a file. It's a fingerprint on-chain. You're not just creating — you're claiming what's yours. Mint it. Protect it. Own it forever.
+          Mint your content and make it untouchable.This isn’t a post. It’s a proof of authorship. This isn’t a file. It’s a fingerprint on-chain. You’re not just creating — you’re claiming what’s yours. Mint it. Protect it. Own it forever.
         </p>
       </section>
     </div>
@@ -153,21 +258,21 @@
 <section class="content-submission">
   <h2 class="submission-title">Why mint?</h2>
   <h6 class="submission-subtitle">
-    Because screenshots aren't ownership. Because cloud folders aren't protection. Because your content deserves your chain.
+    Because screenshots aren’t ownership. Because cloud folders aren’t protection. Because your content deserves your chain.
   </h6>
   <p class="insight-description">
-    Minting isn't just tech — it's a statement.
-It says: "This is mine. And no one touches it unless I say so."
+    Minting isn’t just tech — it’s a statement.
+It says: “This is mine. And no one touches it unless I say so.”
 In Web3, your content becomes code — signed, sealed, and timestamped on-chain.
 No more blurry copyright notices. No more hidden folders or empty threats.
 <br><br>
 Minting means proof.
-It means your work can't be copied, claimed, or stolen without a fight they'll lose.
-It's your creation, your name, your rules — recorded forever in the blocks.
+It means your work can’t be copied, claimed, or stolen without a fight they’ll lose.
+It’s your creation, your name, your rules — recorded forever in the blocks.
 <br><br>
-If you post without minting, you're handing it out unguarded.
+If you post without minting, you’re handing it out unguarded.
 If you mint, you anchor it to the future.
-You don't just share.
+You don’t just share.
 You show up — with proof of authorship, proof of existence, proof of intent.
   </p>
 </section>	
@@ -440,7 +545,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
         <div style="height: 10px">&nbsp;</div>
 
         <section class="content-submission">
-          <h3 class="submission-title">What's it called? Give it a name that sticks</h3>
+          <h3 class="submission-title">What’s it called? Give it a name that sticks</h3>
           <div style="height: 25px">&nbsp;</div>
           <textarea class="url-input-container" rows="1" placeholder="Say what it is, and let it speak for itself."></textarea>
         </section>	

@@ -2,20 +2,125 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <title>OCOSO MVP - Full Layout</title>
-    <link rel="stylesheet" href="styleV033.css?v=20240321">
+    <link rel="stylesheet" href="styleV033.css">
     <style>
     </style>
 </head>
 <body>
 
-<div id="navigation-placeholder"></div>
-<div id="overlay-menu-placeholder"></div>
+
+  <!-- Header Controls (wird nur bei kleinen Bildschirmen angezeigt) -->
+  <div class="header-controls">
+      <div class="hamburger-button" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+      </div>
+  </div>
+
+  <!-- Overlay Menü -->
+  <div class="menu-overlay" id="menuOverlay">
+    <button class="close-button" onclick="toggleMenu()">X</button>
+    <div style="width: 50%; padding: 50px 0 0 20px">
+      <nav class="hamburger-main-navigation" aria-label="Mobile Navigation">
+        <button class="hamburger-nav-button">
+            <span class="nav-text">For CREATORS</span>
+            <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
+        </button>
+        <button class="hamburger-nav-button">
+            <span class="nav-text">For INVESTORS</span>
+            <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
+        </button>
+        <button class="hamburger-nav-button">
+            <span class="nav-text">For ADVERTISER</span>
+            <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
+        </button>
+        <button class="hamburger-nav-button">
+            <span class="nav-text">For USERS</span>
+            <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
+        </button>
+      </nav>
+    </div>
+  </div>
 
 
+	
+  <header class="site-header">
+    <div class="header-container">
+      <img
+        src="img/Logo-Ocoso_Black_250321.png"
+        alt="Site Logo"
+        class="site-logo"
+      />
+		
+      <div class="spacer"></div>
+		
+      <div class="menu-wrapper">
+        <nav class="main-navigation" aria-label="Main navigation">
+          <div class="nav-item-wrapper">
+            <div class="nav-item-container">
+                            <a href="content-creator.html"><button class="nav-button">
+                <span class="nav-text">For CREATORS</span>
+                <img
+                  src="img/Arrow-Down.png"
+                  alt="Dropdown indicator"
+                  class="dropdown-icon"
+                />
+              </button></a>
+            </div>
+            <div class="nav-min-width"></div>
+          </div>
+          <div class="nav-item-wrapper">
+            <div class="nav-item-container">
+              <button class="nav-button">
+                <span class="nav-text">For INVESTORS</span>
+                <img
+                  src="img/Arrow-Down.png"
+                  alt="Dropdown indicator"
+                  class="dropdown-icon"
+                />
+              </button>
+            </div>
+            <div class="nav-min-width"></div>
+          </div>
+          <div class="nav-item-wrapper">
+            <div class="nav-item-container">
+              <button class="nav-button">
+                <span class="nav-text">FOR ADVERTISER</span>
+                <img
+                  src="img/Arrow-Down.png"
+                  alt="Dropdown indicator"
+                  class="dropdown-icon"
+                />
+              </button>
+            </div>
+            <div class="nav-min-width"></div>
+          </div>
+          <div class="nav-item-wrapper">
+            <div class="nav-item-container">
+              <button class="nav-button">
+                <span class="nav-text">FOr USERS</span>
+                <img
+                  src="img/Arrow-Down.png"
+                  alt="Dropdown indicator"
+                  class="dropdown-icon"
+                />
+              </button>
+            </div>
+            <div class="nav-min-width"></div>
+          </div>
+        </nav>
+      </div>
+		
+        <div class="wallet-button-wrapper">
+          <button class="wallet-button" aria-label="Connect wallet">
+            <span class="wallet-button-text">CONNECT WALLET</span>
+          </button>
+        </div>
+		
+    </div>
+  </header>
 	
 
 <section class="hero">
@@ -53,7 +158,7 @@
 	
     <article class="card-content-wide">
       <div class="wrapper">
-        <div class="responsive"  data-link="content-mint.html">
+        <div class="responsive">
           <div class="image-container" style="background-image: url('img/Minten.jpg');">
           </div>
           <div class="content-block">
@@ -79,7 +184,7 @@
       <div class="wrapper-reduced">
 		  
         <div class="wrapper">
-          <div class="responsive-reduced"  data-link="content-provide.html">
+          <div class="responsive-reduced">
             <div class="content-block-reduced">
               <div class="content-text-reduced">
                 <h2 class="title">Provide …</h2>
@@ -98,7 +203,7 @@
         </div>
 		  
         <div class="wrapper">
-          <div class="responsive-reduced"  data-link="content-insights.html">
+          <div class="responsive-reduced">
             <div class="content-block-reduced">
               <div class="content-text-reduced">
                 <h2 class="title">Insights ...</h2>
@@ -135,7 +240,7 @@
       </section>
       <section>
         <p>
-          Mint your content and make it untouchable.This isn't a post. It's a proof of authorship. This isn't a file. It's a fingerprint on-chain. You're not just creating — you're claiming what's yours. Mint it. Protect it. Own it forever.
+          Mint your content and make it untouchable.This isn’t a post. It’s a proof of authorship. This isn’t a file. It’s a fingerprint on-chain. You’re not just creating — you’re claiming what’s yours. Mint it. Protect it. Own it forever.
         </p>
       </section>
     </div>
@@ -151,34 +256,19 @@
 <center class="content-frame">
 	
 <section class="content-submission">
-  <h2 class="submission-title">Why mint?</h2>
-  <h6 class="submission-subtitle">
-    Because screenshots aren't ownership. Because cloud folders aren't protection. Because your content deserves your chain.
-  </h6>
-  <p class="insight-description">
-    Minting isn't just tech — it's a statement.
-It says: "This is mine. And no one touches it unless I say so."
-In Web3, your content becomes code — signed, sealed, and timestamped on-chain.
-No more blurry copyright notices. No more hidden folders or empty threats.
-<br><br>
-Minting means proof.
-It means your work can't be copied, claimed, or stolen without a fight they'll lose.
-It's your creation, your name, your rules — recorded forever in the blocks.
-<br><br>
-If you post without minting, you're handing it out unguarded.
-If you mint, you anchor it to the future.
-You don't just share.
-You show up — with proof of authorship, proof of existence, proof of intent.
-  </p>
+  <h1 class="submission-title">Why mint?</h1>
+  <h5 class="submission-subtitle">
+    Because screenshots aren’t ownership. Because cloud folders aren’t protection. Because your content deserves your chain.
+  </h5>
 </section>	
 	
- <div style="height: 80px">&nbsp;</div>	
+ <div style="height: 40px">&nbsp;</div>	
 	
 <section class="content-submission">
   <h2 class="submission-title">Upload your Masterpiece</h2>
-  <h6 class="submission-subtitle">
+  <h4 class="submission-subtitle">
     Make sure it's public — we'll snapshot it for the chain.
-  </h6>
+  </h4>
 </section>	
 	
 <section class="insight-content-section">
@@ -205,27 +295,29 @@ You show up — with proof of authorship, proof of existence, proof of intent.
         <div class="steps-container">
           <button class="step-item active" aria-current="step">
             <span class="step-indicator" aria-hidden="true"></span>
-            <h3  class="step-label">TYPE</h3>
+            <span class="step-label">TYPE</span>
           </button>
           <button class="step-item">
             <span class="step-indicator" aria-hidden="true"></span>
-            <h3  class="step-label">DATA</h3>
+            <span class="step-label">DATA</span>
           </button>
           <button class="step-item">
             <span class="step-indicator" aria-hidden="true"></span>
-            <h3  class="step-label">MINT IT</h3>
+            <span class="step-label">MINT IT</span>
           </button>
         </div>
       </div>
     </div>
   </div>
-</nav>	
+</nav>		
 	
-	 <div style="height: 2px">&nbsp;</div>	
+<div style="height: 40px">&nbsp;</div>		
+	
 	
 <section class="caroussel-container">
+	
   <section class="caroussel-back">
-    <img src="img/Arrow-big-left-white.png" alt="Navigation icon" class="caroussel-button-icon" />
+	  <h2>B</h2>
   </section>
 	
   <section class="caroussel-charts" style="flex-direction: column">
@@ -234,9 +326,9 @@ You show up — with proof of authorship, proof of existence, proof of intent.
 		  
       <section class="content-submission">
         <h2 class="submission-title">What is it?</h2>
-        <h5 class="submission-subtitle">
+        <h4 class="submission-subtitle">
           Tell us about the type that'll change the world
-        </h5>
+        </h4>
       </section>		
 		  
       <section class="caroussel-inner" aria-label="Type Gallery Inner">
@@ -260,7 +352,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
             </div>
 
             <div style="height: 20px">&nbsp;</div>
-            <h4 style="width: fit-content">Webpage</h4>
+            <h5 style="width: fit-content">Webpage</h5>
           </article>
 			
           <article class="gallery-item-caroussel">
@@ -281,7 +373,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
             </div>
 
             <div style="height: 20px">&nbsp;</div>
-            <h4 style="width: fit-content">Picture</h4>
+            <h5 style="width: fit-content">Picture</h5>
           </article>		
         </div>
 
@@ -304,7 +396,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
             </div>
 
             <div style="height: 20px">&nbsp;</div>
-            <h4 style="width: fit-content">Text</h4>
+            <h5 style="width: fit-content">Text</h5>
           </article>
 			
           <article class="gallery-item-caroussel">
@@ -325,7 +417,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
             </div>
 
             <div style="height: 20px">&nbsp;</div>
-            <h4 style="width: fit-content">Video</h4>
+            <h5 style="width: fit-content">Video</h5>
           </article>
         </div>
 		  
@@ -348,7 +440,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
             </div>
 
             <div style="height: 20px">&nbsp;</div>
-            <h4 style="width: fit-content">App</h4>
+            <h5 style="width: fit-content">App</h5>
           </article>
 			
           <article class="gallery-item-caroussel">
@@ -369,7 +461,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
             </div>
 
             <div style="height: 20px">&nbsp;</div>
-            <h4 style="width: fit-content">Game</h4>
+            <h5 style="width: fit-content">Game</h5>
           </article>
         </div>
 
@@ -392,7 +484,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
             </div>
 
               <div style="height: 20px">&nbsp;</div>
-              <h4 style="width: fit-content">Meme</h4>
+              <h5 style="width: fit-content">Meme</h5>
           </article>
 
           <article class="gallery-item-caroussel">
@@ -413,7 +505,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
             </div>
 
             <div style="height: 20px">&nbsp;</div>
-            <h4 style="width: fit-content">Data + AI</h4>
+            <h5 style="width: fit-content">Data + AI</h5>
           </article>
         </div>
 	  </section>  
@@ -422,14 +514,12 @@ You show up — with proof of authorship, proof of existence, proof of intent.
     <section class="caroussel-gallery" aria-label="Data Gallery" id="chart-02">
       <section class="content-submission">
         <h2 class="submission-title">More Data?</h2>
-        <h5 class="submission-subtitle">
+        <h4 class="submission-subtitle">
           We need the most valuable information about your masterpiece
-        </h5>
+        </h4>
       </section>		
-		
-     <div style="height: 20px">&nbsp;</div>
-		
-      <section class="caroussel-inner" aria-label="Type Gallery Inner">
+		  
+      <section class="caroussel-inner" style="padding: 0px 60px 0px 60px" aria-label="Type Gallery Inner">
 		  
         <section class="content-submission">
           <h3 class="submission-title">Link to your content</h3>
@@ -440,7 +530,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
         <div style="height: 10px">&nbsp;</div>
 
         <section class="content-submission">
-          <h3 class="submission-title">What's it called? Give it a name that sticks</h3>
+          <h3 class="submission-title">What’s it called? Give it a name that sticks</h3>
           <div style="height: 25px">&nbsp;</div>
           <textarea class="url-input-container" rows="1" placeholder="Say what it is, and let it speak for itself."></textarea>
         </section>	
@@ -460,54 +550,37 @@ You show up — with proof of authorship, proof of existence, proof of intent.
     <section class="caroussel-gallery" aria-label="Data Gallery" id="chart-03">
       <section class="content-submission">
         <h2 class="submission-title">SEAL THE DEAL!</h2>
-        <h5 class="submission-subtitle">
+        <h4 class="submission-subtitle">
           Give it a face. Set the rules. Make it yours.
-        </h5>
+        </h4>
       </section>		
 		  
-      <section class="caroussel-inner" style="content-align: left" aria-label="Type Gallery Inner">
+      <section class="caroussel-inner" style="padding: 0px 40px 0px 40px; content-align: left" aria-label="Type Gallery Inner">
 		  
         <article class="upload-section" style="width: 100%; height: auto; flex-direction: row">
           <section class="content-submission">
-            <h3 class="submission-title" style="text-align: right">Claim your Icon</h3>
-            <h6 class="submission-subtitle" style="text-align: right">
+            <h2 class="submission-title" style="text-align: right">Claim your Icon</h2>
+            <h5 class="submission-subtitle" style="text-align: right">
               What you create deserves a face. <br>Give it one.
-            </h6>
+            </h5>
           </section>	
 			
-  <div class="upload-area" id="uploadArea">
-    <div class="upload-content">
-      <h2>Drop it! it's hot!!</h2>
-      <p><br><br><br></p>
-      <p>JPEG, PNG, MP4 ... Just drag it in or click to download.</p>
-    </div>
-    
-  
-            <div class="tooltip">
-              <!-- Die Sprechblase -->	
-              <div class="speech-container">
-                <div class="speech-bubble-warning">
-                  <h6 style="color: black;" >Upload your media by dragging it here or clicking to select.</h6>
-                </div>
-                <div class="speech-icon">  
-                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: 80px; height: 80px"/>
-                </div>
-              </div>	
-            </div>	  
-	  
-    
-    <button class="content-button" aria-label="Content navigation button" style="width: 300px; margin: 0px 40px 0px -23px; border-radius: 0 0 20px 20px">
-		      <img src="img/Arrow-black.png"
-		   
-           alt="Navigation icon" class="content-button-icon" />
-		
-      <span class="content-button-text">Take it ...</span>
-    </button>  
-  </div>	
-	
+          <div class="upload-area">
+            <div class="upload-content">
+              <h2>Drop it! it's hot!!</h2>
+                <p><br><br><br></p>
+              <p>JPEG, PNG, MP4 – anything you own.</p>
+            </div>
+			  
+            <button class="content-button" aria-label="Content navigation button" style="width: 300px; margin: 0px 40px 0px -23px; border-radius: 0 0 20px 20px">
+                <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon" />
+                <span class="content-button-text">
+                Take it ...
+                </span>
+              </button>	
+          </div>
 
         </article>	
-		  
         <div style="height: 20px">&nbsp;</div>
         <section class="content-submission">
           <h2 class="submission-title">Some Options</h2>
@@ -587,7 +660,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
 
 	
   <section class="caroussel-next">
-    <img src="img/Arrow-big-right-white.png" alt="Navigation icon" class="caroussel-button-icon" />
+    <h2>N</h2>
   </section>
 	
 </section>
@@ -602,13 +675,121 @@ You show up — with proof of authorship, proof of existence, proof of intent.
 <div style="height: 240px">&nbsp;</div>
 	
     
-</div>
+
 	
 	
 	
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-<script src="ocoso-app-functions.js"></script>	
 	
+	
+	<script>
+		
+		
+		
+      function toggleMenu() {
+          const menuOverlay = document.getElementById('menuOverlay');
+          const hamburgerButton = document.querySelector('.hamburger-button');
+          const mainNavigation = document.querySelector('.main-navigation');
+          const isMobile = window.matchMedia("(max-width: 991px)").matches;
+
+          menuOverlay.classList.toggle('show');
+
+          if (menuOverlay.classList.contains('show')) {
+              document.body.style.overflow = 'hidden';
+
+              if (isMobile) {
+                  hamburgerButton.style.display = 'none'; /* Verstecke Hamburger-Button */
+                  mainNavigation.style.display = 'none'; /* Verstecke Main-Navigation */
+              }
+          } else {
+              document.body.style.overflow = 'auto';
+
+              if (isMobile) {
+                  hamburgerButton.style.display = 'block'; /* Zeige Hamburger-Button */
+                  mainNavigation.style.display = 'none'; /* Verstecke Main-Navigation */
+              }
+          }
+      }
+
+      /* Überwachung der Bildschirmgröße */
+      function handleResize() {
+          const hamburgerButton = document.querySelector('.hamburger-button');
+          const mainNavigation = document.querySelector('.main-navigation');
+          const isMobile = window.matchMedia("(max-width: 991px)").matches;
+
+          if (isMobile) {
+              hamburgerButton.style.display = 'block';
+              mainNavigation.style.display = 'none';
+          } else {
+              hamburgerButton.style.display = 'none';
+              mainNavigation.style.display = 'flex';
+          }
+      }
+
+      /* Initiale Überprüfung der Bildschirmgröße */
+      handleResize();
+
+      /* Bildschirmgröße wird überwacht */
+      window.addEventListener('resize', handleResize);
+		
+      document.querySelectorAll('.gallery-item-caroussel').forEach(item => {
+        item.addEventListener('click', () => {
+          // Entferne aktive Klasse von allen
+          document.querySelectorAll('.gallery-item-caroussel.active')
+            .forEach(activeItem => activeItem.classList.remove('active'));
+          // Füge aktive Klasse zum geklickten Element hinzu
+          item.classList.add('active');
+        });
+      });		
+		
+		
+// Erfasse alle Gallery-Elemente und den Stepper
+const galleries = document.querySelectorAll('.caroussel-gallery');
+const backBtn = document.querySelector('.caroussel-back');
+const nextBtn = document.querySelector('.caroussel-next');
+const steps = document.querySelectorAll('.step-item');
+
+let currentIndex = 0;
+
+// Funktion zum Aktualisieren der Anzeige
+function updateCarousel() {
+  // Alle Galerien verbergen
+  galleries.forEach((gallery, idx) => {
+    gallery.style.display = (idx === currentIndex) ? 'flex' : 'none';
+  });
+  // Stepper updaten
+  steps.forEach((step, idx) => {
+    if (idx === currentIndex) {
+      step.classList.add('active');
+      step.setAttribute('aria-current', 'step');
+    } else {
+      step.classList.remove('active');
+      step.removeAttribute('aria-current');
+    }
+  });
+}
+
+// Initiale Anzeige
+updateCarousel();
+
+// Zurück-Button: gehe einen Schritt zurück
+backBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + galleries.length) % galleries.length;
+  updateCarousel();
+});
+
+// Next-Button: gehe einen Schritt vorwärts
+nextBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % galleries.length;
+  updateCarousel();
+});
+
+// Klick auf Stepper-Elemente
+steps.forEach((step, idx) => {
+  step.addEventListener('click', () => {
+    currentIndex = idx;
+    updateCarousel();
+  });
+});		
+	</script>
 </body>
 </html>
