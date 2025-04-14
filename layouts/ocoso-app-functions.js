@@ -1,7 +1,7 @@
 console.log('ocoso-app-functions.js loaded');
 
 // Prevent caching
-console.log('Adding cache control meta tags...');
+console.log('Adding cache control meta tags');
 const metaTags = `
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
@@ -11,7 +11,7 @@ document.querySelector('head').insertAdjacentHTML('beforeend', metaTags);
 console.log('Meta tags added');
 
 // Force CSS reload
-console.log('Checking for CSS links...');
+console.log('Checking for CSS links');
 const links = document.getElementsByTagName('link');
 console.log('Found links:', links.length);
 for (let i = 0; i < links.length; i++) {
@@ -24,18 +24,6 @@ for (let i = 0; i < links.length; i++) {
         link.href = newHref;
     }
 }
-
-// Navigation functionality for responsive blocks
-const allResponsiveBlocks = document.querySelectorAll('.responsive, .responsive-reduced, .responsive-narrow');
-
-allResponsiveBlocks.forEach(element => {
-  element.addEventListener('click', () => {
-    const url = element.getAttribute('data-link');
-    if (url) {
-      window.location.href = url;
-    }
-  });
-});
 
 // Menu toggle functionality
 function toggleMenu() {
@@ -161,7 +149,7 @@ if (uploadArea) {
 
 // Function to prevent CSS caching
 function preventCSSCaching() {
-    console.log('Running preventCSSCaching...');
+    console.log('Running preventCSSCaching');
     const links = document.getElementsByTagName('link');
     console.log('Found links:', links.length);
     
@@ -182,6 +170,48 @@ function preventCSSCaching() {
 // Call the function when the page loads
 document.addEventListener('DOMContentLoaded', preventCSSCaching);
 
+// NEW: Make parent wrapper clickable based on data-link
+function setupWrapperLinks() {
+    console.log('Setting up wrapper links');
+    const linkedElements = document.querySelectorAll('[data-link]');
+    console.log(`Found ${linkedElements.length} elements with data-link.`);
+
+    linkedElements.forEach(element => {
+        const url = element.getAttribute('data-link');
+        // Find the closest ancestor element with the class 'wrapper'
+        const parentWrapper = element.closest('.wrapper'); 
+
+        if (parentWrapper && url) {
+            console.log(`Attaching link ${url} to wrapper:`, parentWrapper);
+            // Prevent duplicate listeners if this runs multiple times
+            if (!parentWrapper.dataset.hasLinkListener) { 
+                parentWrapper.addEventListener('click', (event) => {
+                    // Optional: Prevent clicks on interactive elements inside the wrapper from navigating
+                    // if (event.target.closest('button, a, input, textarea')) {
+                    //     return; 
+                    // }
+                    console.log(`Wrapper clicked, navigating to: ${url}`);
+                    window.location.href = url;
+                });
+                parentWrapper.dataset.hasLinkListener = 'true'; // Mark as having a listener
+            }
+        } else {
+            if (!parentWrapper) console.warn('Could not find parent .wrapper for element:', element);
+            if (!url) console.warn('Element has data-link attribute but no value:', element);
+        }
+    });
+}
+
+// Call setupWrapperLinks after components are loaded 
+// We need to ensure this runs *after* loadNavigation and loadOverlayMenu
+// A simple way is to call it inside those functions, but let's try a slightly delayed call
+// or potentially call it within the .then() block of the fetch calls.
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Initial setup for elements present on page load
+    setupWrapperLinks();
+});
+
 // Function to load navigation component
 function loadNavigation() {
     const navPlaceholder = document.getElementById('navigation-placeholder');
@@ -196,12 +226,8 @@ function loadNavigation() {
             .then(html => {
                 navPlaceholder.innerHTML = html;
                 console.log('Navigation loaded successfully.');
-                // Re-initialize event listeners or functions that depend on the nav
-                // (e.g., toggleMenu, handleResize might need to be called or re-bound 
-                // if elements were inside the loaded HTML)
-                // Since toggleMenu and handleResize are global, they should still work,
-                // but we might need to re-run handleResize to set the initial state.
                 handleResize(); 
+                setupWrapperLinks(); // Re-run link setup for newly added content
             })
             .catch(error => {
                 console.error('Error loading navigation:', error);
@@ -224,7 +250,7 @@ function loadOverlayMenu() {
             .then(html => {
                 overlayPlaceholder.innerHTML = html;
                 console.log('Overlay menu loaded successfully.');
-                // Potentially re-initialize event listeners if needed
+                setupWrapperLinks(); // Re-run link setup for newly added content
             })
             .catch(error => {
                 console.error('Error loading overlay menu:', error);
@@ -233,6 +259,47 @@ function loadOverlayMenu() {
     }
 }
 
+// Function to load overlay menu component
+function loadFooter() {
+	console.log("Running loadFooter()");
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    console.log("Found footerPlaceholder:", footerPlaceholder);
+	
+    if (footerPlaceholder) {
+        fetch('components/footer.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok for footer.html');
+                return response.text();
+            })
+            .then(html => {
+                footerPlaceholder.innerHTML = html;
+                console.log('Footer loaded successfully.');
+                setupWrapperLinks?.();
+            })
+            .catch(error => {
+                console.error('Error loading footer:', error);
+                footerPlaceholder.innerHTML = '<p>Error loading footer.</p>';
+            });
+    }
+}
+
+// Fetch-API zum Laden der Daten
+fetch('/data/ipnft_dashboard_data.json')
+  .then(response => response.json())
+  .then(data => {
+    console.log('Geladene Daten:', data);
+
+    // Zugriff auf Datenblöcke
+    const kategorien = data.kategorien;
+    const monetarisierung = data.monetarisierung;
+    const anteile = data.anteile_monetarisierung;
+
+    // Beispiel: Erste Kategorie ausgeben
+    console.log('Erste Kategorie:', kategorien[0]);
+  });
+
+
 // Call loadNavigation and loadOverlayMenu when the page loads
 document.addEventListener('DOMContentLoaded', loadNavigation);
 document.addEventListener('DOMContentLoaded', loadOverlayMenu);
+document.addEventListener('DOMContentLoaded', loadFooter);

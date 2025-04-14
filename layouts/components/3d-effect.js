@@ -197,10 +197,10 @@ function createTextureFromContent(container) {
 // Debounce function
 function debounce(func, wait) {
     let timeout;
-    return function executedFunction(...args) {
+    return function executedFunction(args) {
         const later = () => {
             clearTimeout(timeout);
-            func(...args);
+            func(args);
         };
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);

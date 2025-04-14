@@ -2,145 +2,20 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>OCOSO MVP - Full Layout</title>
-    <link rel="stylesheet" href="styleV033.css">
-  <style>
-    /* Damit das Layout des Wrappers erhalten bleibt, muss sein Elterncontainer relative Position haben. */
-    .card-content-wide {
-      position: relative;
-    }
-    
-    /* Der neue Container für Three.js – dieser wird als Nachfolger (überlagert den Wrapper) angehängt */
-    .three-container {
-      position: absolute;
-      overflow: visible; /* Damit beim Drehen nichts abgeschnitten wird */
-      z-index: 9999;
-      /* left, top, width, height werden per Script gesetzt (relativ zum .outer) */
-    }
-    canvas.three-canvas {
-      display: block;
-      pointer-events: none;
-    }
-    /* Der Wrapper bleibt im Layout, wird nur unsichtbar geschaltet */
-    .invisible {
-      visibility: hidden;
-    }
-  </style>
+    <link rel="stylesheet" href="styleV033.css?v=20240321">
+    <style>
+    </style>
 </head>
 <body>
 
-
-  <!-- Header Controls (wird nur bei kleinen Bildschirmen angezeigt) -->
-  <div class="header-controls">
-      <div class="hamburger-button" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-      </div>
-  </div>
-
-  <!-- Overlay Menü -->
-  <div class="menu-overlay" id="menuOverlay">
-    <button class="close-button" onclick="toggleMenu()">X</button>
-    <div style="width: 50%; padding: 50px 0 0 20px">
-      <nav class="hamburger-main-navigation" aria-label="Mobile Navigation">
-        <button class="hamburger-nav-button">
-            <span class="nav-text">For CREATORS</span>
-            <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
-        </button>
-        <button class="hamburger-nav-button">
-            <span class="nav-text">For INVESTORS</span>
-            <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
-        </button>
-        <button class="hamburger-nav-button">
-            <span class="nav-text">For ADVERTISER</span>
-            <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
-        </button>
-        <button class="hamburger-nav-button">
-            <span class="nav-text">For USERS</span>
-            <img src="img/Arrow-Down.png" alt="Dropdown indicator" class="dropdown-icon"/>
-        </button>
-      </nav>
-    </div>
-  </div>
+<div id="navigation-placeholder"></div>
+<div id="overlay-menu-placeholder"></div>
 
 
-	
-  <header class="site-header">
-    <div class="header-container">
-      <img
-        src="img/Logo-Ocoso_Black_250321.png"
-        alt="Site Logo"
-        class="site-logo"
-      />
-		
-      <div class="spacer"></div>
-		
-      <div class="menu-wrapper">
-        <nav class="main-navigation" aria-label="Main navigation">
-          <div class="nav-item-wrapper">
-            <div class="nav-item-container">
-                            <a href="content-creator.html"><button class="nav-button">
-                <span class="nav-text">For CREATORS</span>
-                <img
-                  src="img/Arrow-Down.png"
-                  alt="Dropdown indicator"
-                  class="dropdown-icon"
-                />
-              </button></a>
-            </div>
-            <div class="nav-min-width"></div>
-          </div>
-          <div class="nav-item-wrapper">
-            <div class="nav-item-container">
-              <button class="nav-button">
-                <span class="nav-text">For INVESTORS</span>
-                <img
-                  src="img/Arrow-Down.png"
-                  alt="Dropdown indicator"
-                  class="dropdown-icon"
-                />
-              </button>
-            </div>
-            <div class="nav-min-width"></div>
-          </div>
-          <div class="nav-item-wrapper">
-            <div class="nav-item-container">
-              <button class="nav-button">
-                <span class="nav-text">FOR ADVERTISER</span>
-                <img
-                  src="img/Arrow-Down.png"
-                  alt="Dropdown indicator"
-                  class="dropdown-icon"
-                />
-              </button>
-            </div>
-            <div class="nav-min-width"></div>
-          </div>
-          <div class="nav-item-wrapper">
-            <div class="nav-item-container">
-              <button class="nav-button">
-                <span class="nav-text">FOr USERS</span>
-                <img
-                  src="img/Arrow-Down.png"
-                  alt="Dropdown indicator"
-                  class="dropdown-icon"
-                />
-              </button>
-            </div>
-            <div class="nav-min-width"></div>
-          </div>
-        </nav>
-      </div>
-		
-        <div class="wallet-button-wrapper">
-          <button class="wallet-button" aria-label="Connect wallet">
-            <span class="wallet-button-text">CONNECT WALLET</span>
-          </button>
-        </div>
-		
-    </div>
-  </header>
 	
 
 <section class="hero">
@@ -178,7 +53,7 @@
 	
     <article class="card-content-wide">
       <div class="wrapper">
-        <div class="responsive">
+        <div class="responsive"  data-link="content-mint.html">
           <div class="image-container" style="background-image: url('img/Minten.jpg');">
           </div>
           <div class="content-block">
@@ -204,7 +79,7 @@
       <div class="wrapper-reduced">
 		  
         <div class="wrapper">
-          <div class="responsive-reduced">
+          <div class="responsive-reduced"  data-link="content-provide.html">
             <div class="content-block-reduced">
               <div class="content-text-reduced">
                 <h2 class="title">Provide …</h2>
@@ -223,7 +98,7 @@
         </div>
 		  
         <div class="wrapper">
-          <div class="responsive-reduced">
+          <div class="responsive-reduced"  data-link="content-insights.html">
             <div class="content-block-reduced">
               <div class="content-text-reduced">
                 <h2 class="title">Insights ...</h2>
@@ -260,7 +135,7 @@
       </section>
       <section>
         <p>
-          Mint your content and make it untouchable.This isn’t a post. It’s a proof of authorship. This isn’t a file. It’s a fingerprint on-chain. You’re not just creating — you’re claiming what’s yours. Mint it. Protect it. Own it forever.
+          Mint your content and make it untouchable.This isn't a post. It's a proof of authorship. This isn't a file. It's a fingerprint on-chain. You're not just creating — you're claiming what's yours. Mint it. Protect it. Own it forever.
         </p>
       </section>
     </div>
@@ -276,19 +151,34 @@
 <center class="content-frame">
 	
 <section class="content-submission">
-  <h1 class="submission-title">Why mint?</h1>
-  <h5 class="submission-subtitle">
-    Because screenshots aren’t ownership. Because cloud folders aren’t protection. Because your content deserves your chain.
-  </h5>
+  <h2 class="submission-title">Why mint?</h2>
+  <h6 class="submission-subtitle">
+    Because screenshots aren't ownership. Because cloud folders aren't protection. Because your content deserves your chain.
+  </h6>
+  <p class="insight-description">
+    Minting isn't just tech — it's a statement.
+It says: "This is mine. And no one touches it unless I say so."
+In Web3, your content becomes code — signed, sealed, and timestamped on-chain.
+No more blurry copyright notices. No more hidden folders or empty threats.
+<br><br>
+Minting means proof.
+It means your work can't be copied, claimed, or stolen without a fight they'll lose.
+It's your creation, your name, your rules — recorded forever in the blocks.
+<br><br>
+If you post without minting, you're handing it out unguarded.
+If you mint, you anchor it to the future.
+You don't just share.
+You show up — with proof of authorship, proof of existence, proof of intent.
+  </p>
 </section>	
 	
- <div style="height: 40px">&nbsp;</div>	
+ <div style="height: 80px">&nbsp;</div>	
 	
 <section class="content-submission">
   <h2 class="submission-title">Upload your Masterpiece</h2>
-  <h4 class="submission-subtitle">
+  <h6 class="submission-subtitle">
     Make sure it's public — we'll snapshot it for the chain.
-  </h4>
+  </h6>
 </section>	
 	
 <section class="insight-content-section">
@@ -329,13 +219,11 @@
       </div>
     </div>
   </div>
-</nav>		
+</nav>	
 	
-<div style="height: 40px">&nbsp;</div>		
-	
+	 <div style="height: 2px">&nbsp;</div>	
 	
 <section class="caroussel-container">
-	
   <section class="caroussel-back">
     <img src="img/Arrow-big-left-white.png" alt="Navigation icon" class="caroussel-button-icon" />
   </section>
@@ -346,9 +234,9 @@
 		  
       <section class="content-submission">
         <h2 class="submission-title">What is it?</h2>
-        <h4 class="submission-subtitle">
+        <h5 class="submission-subtitle">
           Tell us about the type that'll change the world
-        </h4>
+        </h5>
       </section>		
 		  
       <section class="caroussel-inner" aria-label="Type Gallery Inner">
@@ -372,7 +260,7 @@
             </div>
 
             <div style="height: 20px">&nbsp;</div>
-            <h3 style="width: fit-content">Webpage</h3>
+            <h4 style="width: fit-content">Webpage</h4>
           </article>
 			
           <article class="gallery-item-caroussel">
@@ -393,7 +281,7 @@
             </div>
 
             <div style="height: 20px">&nbsp;</div>
-            <h3 style="width: fit-content">Picture</h3>
+            <h4 style="width: fit-content">Picture</h4>
           </article>		
         </div>
 
@@ -416,7 +304,7 @@
             </div>
 
             <div style="height: 20px">&nbsp;</div>
-            <h3 style="width: fit-content">Text</h3>
+            <h4 style="width: fit-content">Text</h4>
           </article>
 			
           <article class="gallery-item-caroussel">
@@ -437,7 +325,7 @@
             </div>
 
             <div style="height: 20px">&nbsp;</div>
-            <h3 style="width: fit-content">Video</h3>
+            <h4 style="width: fit-content">Video</h4>
           </article>
         </div>
 		  
@@ -460,7 +348,7 @@
             </div>
 
             <div style="height: 20px">&nbsp;</div>
-            <h3 style="width: fit-content">App</h3>
+            <h4 style="width: fit-content">App</h4>
           </article>
 			
           <article class="gallery-item-caroussel">
@@ -481,7 +369,7 @@
             </div>
 
             <div style="height: 20px">&nbsp;</div>
-            <h3 style="width: fit-content">Game</h3>
+            <h4 style="width: fit-content">Game</h4>
           </article>
         </div>
 
@@ -504,7 +392,7 @@
             </div>
 
               <div style="height: 20px">&nbsp;</div>
-              <h3 style="width: fit-content">Meme</h3>
+              <h4 style="width: fit-content">Meme</h4>
           </article>
 
           <article class="gallery-item-caroussel">
@@ -525,7 +413,7 @@
             </div>
 
             <div style="height: 20px">&nbsp;</div>
-            <h3 style="width: fit-content">Data + AI</h3>
+            <h4 style="width: fit-content">Data + AI</h4>
           </article>
         </div>
 	  </section>  
@@ -534,14 +422,14 @@
     <section class="caroussel-gallery" aria-label="Data Gallery" id="chart-02">
       <section class="content-submission">
         <h2 class="submission-title">More Data?</h2>
-        <h4 class="submission-subtitle">
+        <h5 class="submission-subtitle">
           We need the most valuable information about your masterpiece
-        </h4>
+        </h5>
       </section>		
 		
      <div style="height: 20px">&nbsp;</div>
 		
-      <section class="caroussel-inner" style="padding: 0px 60px 0px 80px" aria-label="Type Gallery Inner">
+      <section class="caroussel-inner" aria-label="Type Gallery Inner">
 		  
         <section class="content-submission">
           <h3 class="submission-title">Link to your content</h3>
@@ -552,7 +440,7 @@
         <div style="height: 10px">&nbsp;</div>
 
         <section class="content-submission">
-          <h3 class="submission-title">What’s it called? Give it a name that sticks</h3>
+          <h3 class="submission-title">What's it called? Give it a name that sticks</h3>
           <div style="height: 25px">&nbsp;</div>
           <textarea class="url-input-container" rows="1" placeholder="Say what it is, and let it speak for itself."></textarea>
         </section>	
@@ -572,19 +460,19 @@
     <section class="caroussel-gallery" aria-label="Data Gallery" id="chart-03">
       <section class="content-submission">
         <h2 class="submission-title">SEAL THE DEAL!</h2>
-        <h4 class="submission-subtitle">
+        <h5 class="submission-subtitle">
           Give it a face. Set the rules. Make it yours.
-        </h4>
+        </h5>
       </section>		
 		  
-      <section class="caroussel-inner" style="padding: 0px 80px 0px 80px; content-align: left" aria-label="Type Gallery Inner">
+      <section class="caroussel-inner" style="content-align: left" aria-label="Type Gallery Inner">
 		  
         <article class="upload-section" style="width: 100%; height: auto; flex-direction: row">
           <section class="content-submission">
-            <h2 class="submission-title" style="text-align: right">Claim your Icon</h2>
-            <h5 class="submission-subtitle" style="text-align: right">
+            <h3 class="submission-title" style="text-align: right">Claim your Icon</h3>
+            <h6 class="submission-subtitle" style="text-align: right">
               What you create deserves a face. <br>Give it one.
-            </h5>
+            </h6>
           </section>	
 			
   <div class="upload-area" id="uploadArea">
@@ -714,238 +602,14 @@
 <div style="height: 240px">&nbsp;</div>
 	
     
-
+</div>
 	
 	
 	
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-  
-  <script>
-   // Für alle Wrapper – hier gehen wir davon aus, dass sie in einem .outer liegen.
-    const wrappers = document.querySelectorAll('.wrapper');
-
-    wrappers.forEach(wrapper => {
-      // Bestimme das Eltern-Element (outer), das bereits relative Position hat.
-      const outer = wrapper.parentElement;
-      if(getComputedStyle(outer).position === 'static'){
-        outer.style.position = 'relative';
-      }
-      // Ermittel die Position des Wrappers relativ zum outer-Container:
-      const wrapperRect = wrapper.getBoundingClientRect();
-      const outerRect = outer.getBoundingClientRect();
-      const relX = wrapperRect.left - outerRect.left;
-      const relY = wrapperRect.top  - outerRect.top;
-      const w = wrapperRect.width;
-      const h = wrapperRect.height;
-
-      // Screenshot des Wrappers erstellen (damit werden auch die runden Ecken erfasst, wenn overflow: hidden gesetzt ist)
-      html2canvas(wrapper, { backgroundColor: null }).then(canvasScreenshot => {
-
-        // Erstelle einen neuen Container, der als Kind von outer angehängt wird
-        const container3D = document.createElement('div');
-        container3D.classList.add('three-container');
-        container3D.style.width = w + 'px';
-        container3D.style.height = h + 'px';
-        container3D.style.left = relX + 'px';
-        container3D.style.top = relY + 'px';
-        outer.appendChild(container3D);
-
-        // Schalte den Original-Wrapper unsichtbar, damit der Platz erhalten bleibt, aber nur der 3D-Canvas sichtbar ist.
-        wrapper.classList.add('invisible');
-
-        // Three.js Setup:
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(w, h);
-        renderer.domElement.classList.add('three-canvas');
-        container3D.appendChild(renderer.domElement);
-
-        const scene = new THREE.Scene();
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-        scene.add(ambientLight);
-        const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
-        dirLight.position.set(0, 0, 10);
-        scene.add(dirLight);
-
-        // Orthographic Camera: 1px = 1 Einheit
-        const camera = new THREE.OrthographicCamera(0, w, h, 0, -100, 100);
-		//  const camera = new THREE.PerspectiveCamera(
-      //45, 
-      //container3D.clientWidth / container3D.clientHeight, 
-      //0.1, 
-      //1000
-    //);
-        camera.position.z = 10;
-
-        // Plane in Originalgröße
-        const geometry = new THREE.PlaneGeometry(w, h);
-        const texture = new THREE.CanvasTexture(canvasScreenshot);
-        const material = new THREE.MeshPhongMaterial({ map: texture, side: THREE.DoubleSide });
-        const plane = new THREE.Mesh(geometry, material);
-        // Positioniere die Plane in der Mitte des Containers (in Pixelkoordinaten)
-        plane.position.set(w / 2, h / 2, 0);
-        scene.add(plane);
-
-        // Renderloop
-        function animate() {
-          requestAnimationFrame(animate);
-          renderer.render(scene, camera);
-        }
-        animate();
-
-        // Maus-Interaktivität: einfache Rotation bei Mausbewegung über container3D
-        container3D.addEventListener('mousemove', evt => {
-          const offsetX = evt.offsetX;
-          const offsetY = evt.offsetY;
-          const normX = (offsetX / w) * 2 - 1;
-          const normY = (offsetY / h) * 2 - 1;
-          const maxAngle = THREE.MathUtils.degToRad(10);
-          plane.rotation.y =  normX * maxAngle;
-          plane.rotation.x = -normY * maxAngle;
-        });
-        container3D.addEventListener('mouseleave', () => {
-          plane.rotation.x = 0;
-          plane.rotation.y = 0;
-        });
-      });
-    });
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-		
-		
-		
-  function toggleMenu() {
-      const menuOverlay = document.getElementById('menuOverlay');
-      const hamburgerButton = document.querySelector('.hamburger-button');
-      const mainNavigation = document.querySelector('.main-navigation');
-      const isMobile = window.matchMedia("(max-width: 991px)").matches;
-
-      menuOverlay.classList.toggle('show');
-
-      if (menuOverlay.classList.contains('show')) {
-          document.body.style.overflow = 'hidden';
-
-          if (isMobile) {
-              hamburgerButton.style.display = 'none'; /* Verstecke Hamburger-Button */
-              mainNavigation.style.display = 'none'; /* Verstecke Main-Navigation */
-          }
-      } else {
-          document.body.style.overflow = 'auto';
-
-          if (isMobile) {
-              hamburgerButton.style.display = 'block'; /* Zeige Hamburger-Button */
-              mainNavigation.style.display = 'none'; /* Verstecke Main-Navigation */
-          }
-      }
-  }
-
-  /* Überwachung der Bildschirmgröße */
-  function handleResize() {
-      const hamburgerButton = document.querySelector('.hamburger-button');
-      const mainNavigation = document.querySelector('.main-navigation');
-      const isMobile = window.matchMedia("(max-width: 991px)").matches;
-
-      if (isMobile) {
-          hamburgerButton.style.display = 'block';
-          mainNavigation.style.display = 'none';
-      } else {
-          hamburgerButton.style.display = 'none';
-          mainNavigation.style.display = 'flex';
-      }
-  }
-
-  /* Initiale Überprüfung der Bildschirmgröße */
-  handleResize();
-
-  /* Bildschirmgröße wird überwacht */
-  window.addEventListener('resize', handleResize);
-
-  document.querySelectorAll('.gallery-item-caroussel').forEach(item => {
-    item.addEventListener('click', () => {
-      // Entferne aktive Klasse von allen
-      document.querySelectorAll('.gallery-item-caroussel.active')
-        .forEach(activeItem => activeItem.classList.remove('active'));
-      // Füge aktive Klasse zum geklickten Element hinzu
-      item.classList.add('active');
-    });
-  });		
-		
-		
-  // Erfasse alle Gallery-Elemente und den Stepper
-  const galleries = document.querySelectorAll('.caroussel-gallery');
-  const backBtn = document.querySelector('.caroussel-back');
-  const nextBtn = document.querySelector('.caroussel-next');
-  const steps = document.querySelectorAll('.step-item');
-
-  let currentIndex = 0;
-
-  // Funktion zum Aktualisieren der Anzeige
-  function updateCarousel() {
-    // Alle Galerien verbergen
-    galleries.forEach((gallery, idx) => {
-      gallery.style.display = (idx === currentIndex) ? 'flex' : 'none';
-    });
-    // Stepper updaten
-    steps.forEach((step, idx) => {
-      if (idx === currentIndex) {
-        step.classList.add('active');
-        step.setAttribute('aria-current', 'step');
-      } else {
-        step.classList.remove('active');
-        step.removeAttribute('aria-current');
-      }
-    });
-  }
-
-  // Initiale Anzeige
-  updateCarousel();
-
-  // Zurück-Button: gehe einen Schritt zurück
-  backBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + galleries.length) % galleries.length;
-    updateCarousel();
-  });
-
-  // Next-Button: gehe einen Schritt vorwärts
-  nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % galleries.length;
-    updateCarousel();
-  });
-
-  // Klick auf Stepper-Elemente
-  steps.forEach((step, idx) => {
-    step.addEventListener('click', () => {
-      currentIndex = idx;
-      updateCarousel();
-    });
-  });		
-		
+<div id="footer-placeholder"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+<script src="ocoso-app-functions.js"></script>	
 	
-	
-	
-	
-	
-  // JavaScript: Beim Mouse-Enter wird der Zustand "hovered" gesetzt, sodass der Tooltip erscheint.
-  const uploadArea = document.getElementById('uploadArea');
-
-  uploadArea.addEventListener('mouseenter', () => {
-    uploadArea.classList.add('hovered');
-  });
-
-  uploadArea.addEventListener('mouseleave', () => {
-    uploadArea.classList.remove('hovered');
-  });
-
-  // Optionaler Klick-Handler für den Upload-Bereich
-  uploadArea.addEventListener('click', () => {
-    alert("Upload area clicked!");
-  });
-</script>		
-		
 </body>
 </html>

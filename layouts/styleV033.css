@@ -19,6 +19,22 @@
 /* Globale Schriftfamilie als Variable definieren */
 :root {
   --main-font-family: "Avenir Next", -apple-system, Roboto, Helvetica, sans-serif;
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-s: 12px;
+  --space-m: 16px;
+  --space-l: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+  --border-radius-small: 5px;
+  --border-radius-medium: 10px;
+  --border-radius-large: 20px;
+  --border-radius-xlarge: 30px;
+  --border-radius-xxlarge: 40px;
+  --border-radius-xxxlarge: 50px;
+  --border-radius-full: 9999px;
+
+
 }
 
 
@@ -287,7 +303,115 @@ p {
 body {
 	background-color: black;
 	margin: 0;
+    color: #fff; /* Set default text color to white */
 }
+
+
+
+
+.site-footer {
+  background-color: #000000;
+  color: #fff;
+  padding: 2rem 1rem;
+  border-top: 1px solid #333;
+  font-size: 0.9rem;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  border-left: 1px solid #333;
+  border-right: 1px solid #333;
+	height: 200px;
+}
+
+.footer-column {
+  flex: 1;
+  padding: 0 1rem;
+  border-right: 1px solid #333;
+}
+
+		
+.footer-logo {
+  display: flex;
+  justify-content: center;
+}
+		
+.footer-column:last-child {
+  border-right: none;
+}
+
+.footer-logo img {
+  max-width: 240px;
+  height: 200px;
+}
+
+.footer-links,
+.auth-links,
+.legal-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+	
+}
+
+.footer-links li,
+.auth-links a,
+.legal-links a {
+  display: block;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  color: #aaa;
+		text-align: left;align-content: flex-start; align-items: flex-start;
+	
+}
+
+.footer-links li a:hover,
+.auth-links a:hover,
+.legal-links a:hover {
+  color: #fff;
+}
+
+.auth-links {
+  margin-bottom: 1rem;
+}
+
+.footer-nav ul {
+  text-align: center;
+  height: 200px;
+}
+
+a {
+    text-decoration: none;
+}
+		
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-column {
+    border-right: none;
+    border-bottom: 1px solid #333;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+  }
+
+  .footer-column:last-child {
+    border-bottom: none;
+  }
+}	
+
+
+
+
 
 .page-wrapper {
 	display: flex;
@@ -402,7 +526,7 @@ body {
   border: none;
   cursor: pointer;
   padding: 0;
-  color: inherit;
+  color: #000; /* Ensure nav button text is black */
   font: inherit;
 }
 
@@ -577,6 +701,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   text-transform: uppercase;
+  color: #000; /* Ensure hamburger menu button text is black */
 }
 
 
@@ -648,6 +773,11 @@ body {
 	width: auto;
   /* REMOVED width: 100%; Let flexbox control width */
   box-sizing: border-box;
+}
+
+/* Make wrapper clickable if it contains a data-link */
+.wrapper:has([data-link]) {
+  cursor: pointer;
 }
 
 .wrapper-reduced {
@@ -2242,4 +2372,796 @@ canvas.three-canvas {
 	.card-content-wide > .wrapper > .responsive > .content-block {
 		width: 350px;
 	}
+}
+
+/* --- Market Overview Dashboard Styles --- */
+
+.dashboard-market-overview {
+    /* Inherits content-frame styles, add specifics if needed */
+    text-align: left; /* Override center alignment from parent */
+}
+
+.dashboard-header {
+    margin-bottom: var(--space-l);
+    padding-bottom: var(--space-m);
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.dashboard-header .submission-title {
+    margin-bottom: var(--space-xs);
+}
+
+.dashboard-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px 20px 10px 20px;
+    background-color: none;
+    border-radius: 20px;
+    align-items: center;
+}
+
+.filter-search-input {
+    flex-grow: 1;
+    min-width: 250px;
+    padding: var(--space-s) var(--space-m);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-small);
+    font-size: var(--font-size-body);
+}
+
+.filter-controls h6 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    align-items: center;
+    width: 100%;
+    min-width: 300px;
+    background-color: none;
+    margin: 0 0 0 10px;
+}
+
+
+
+
+.fund-card.filter-ui {
+  background: rgb(144, 144, 144);
+  border: 2px solid #ddd;
+  padding: 10px;
+}
+
+.filter-controls {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  background-color: none;
+}
+
+.filter-controls label {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+select:hover {
+  border-color: White;
+}
+
+select:focus {
+  outline: none;
+  border-color: white;
+}
+
+
+
+
+
+.filter-controls select {
+    border: 1px solid white;
+    border-radius: 10px;
+    color: white;
+    width: 100%;
+    max-width: 400px;
+    min-width: 150px;
+
+    appearance: none; /* Entfernt Standard-Styling (Safari, Firefox) */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  
+    background-color: black;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 20px auto;
+}
+
+
+.dashboard-main-content {
+    display: grid;
+    grid-template-columns: 1fr; /* Default mobile: stack */
+    gap: var(--space-xl);
+}
+
+
+.dashboard-highlights {
+    background-color: var(--color-background-subtle);
+    padding: var(--space-m) var(--space-l); /* Restored original padding */
+    border-radius: var(--border-radius-medium);
+    border: 1px solid var(--color-border-light);
+}
+
+.dashboard-highlights h3 {
+    margin-top: 0;
+    margin-bottom: var(--space-m);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-s);
+    color: var(--color-primary);
+}
+
+.highlight-section {
+    margin-bottom: var(--space-l);
+}
+
+.highlight-section h4 {
+    margin-bottom: var(--space-s);
+    font-size: var(--font-size-body-bold);
+    color: var(--color-text-strong);
+}
+
+.highlight-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.highlight-section li {
+    margin-bottom: var(--space-xs);
+    font-family: var(--main-font-family); /* Match p */
+    font-size: 18px; /* Match p */
+    font-weight: 400; /* Match p */
+    line-height: 1.4; /* Match p */
+    color: #fff; /* Match p base color */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-s);
+}
+
+.highlight-section li a {
+    color: var(--color-link);
+    text-decoration: none;
+    flex-grow: 1; /* Allow link text to take available space */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.highlight-section li a:hover {
+    text-decoration: underline;
+}
+
+.yield-positive {
+    color: var(--color-success);
+    font-weight: var(--font-weight-bold);
+    white-space: nowrap;
+}
+
+.yield-negative {
+    color: var(--color-error);
+    font-weight: var(--font-weight-bold);
+    white-space: nowrap;
+}
+
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+
+.tag {
+    background-color: var(--color-background-alt);
+    color: var(--color-text-secondary);
+    padding: var(--space-xxs) var(--space-s);
+    border-radius: var(--border-radius-small);
+    font-size: var(--font-size-small);
+    border: 1px solid var(--color-border-light);
+}
+
+
+.vertical-funds-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Set explicit 20px gap */
+}
+
+.vertical-funds-grid > .fund-card:first-child {
+    margin-top: 0; /* Ensure the very first card has no top margin */
+}
+
+.fund-card {
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-large);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: default; /* Remove pointer cursor from wrapper */
+}
+
+.fund-card:hover {
+   transform: translateY(-3px);
+}
+
+.fund-card-thumbnail {
+    height: 10x;
+    background-color: var(--color-background-alt);
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid var(--color-border-light);
+    /* The background-image will be set via inline style */
+}
+
+.fund-card-content {
+    padding: var(--space-m); /* Restored original padding */
+    display: flex;
+    flex-direction: column;
+  	border-radius: 20px;
+    flex-grow: 1; /* Ensure content area does not takes remaining space */
+	background-color: #000;
+}
+
+.fund-category {
+    font-family: var(--main-font-family);
+    color: #fff; /* Match h5 color */
+    font-size: 20px; /* Match h5 font-size */
+    font-weight: 800; /* Match h5 font-weight */
+    line-height: 1.4; /* Match h5 line-height */
+    margin-bottom: var(--space-xs); /* Keep existing bottom margin */
+    text-transform: uppercase; /* Match h5 text-transform */
+    letter-spacing: 0.72px; /* Match h5 letter-spacing */
+}
+
+.fund-name {
+    font-family: var(--main-font-family);
+    color: #fff; /* Match h3 color */
+    font-size: 30px; /* Match h3 font-size */
+    font-weight: 800; /* Match h3 font-weight */
+    line-height: 1.1; /* Match h3 line-height */
+    text-transform: uppercase; /* Match h3 text-transform */
+    letter-spacing: 0.72px; /* Match h3 letter-spacing */
+    margin-top: 0; /* Keep existing top margin */
+    margin-bottom: var(--space-m); /* Keep existing bottom margin */
+}
+.fund-name a {
+    color: #fff; /* Ensure link inherits the h3 color */
+    text-decoration: none;
+}
+.fund-name a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.fund-description {
+    font-size: var(--font-size-body);
+    color: var(--color-text);
+    margin-bottom: var(--space-m);
+    flex-grow: 1; /* Push stats and actions down */
+    line-height: 1.5;
+}
+
+.fund-stats {
+    display: grid;
+    grid-template-columns: 1fr; /* Changed to single column */
+    gap: var(--space-xs) var(--space-m);
+    margin-bottom: 20px; /* Set explicit 20px bottom margin */
+    font-size: var(--font-size-small);
+    border-top: 1px dashed var(--color-border-light);
+    padding-top: var(--space-m);
+}
+
+.fund-stats div {
+    display: flex;
+    flex-direction: row; /* Changed to row */
+    align-items: baseline; /* Align text baseline */
+    justify-content: space-between; /* Push value to the right */
+}
+
+.fund-stats dt {
+    color: var(--color-text-secondary);
+    font-weight: 400; /* Match p weight */
+    margin-bottom: 2px;
+    font-size: 18px;   /* Match p font-size */
+    line-height: 1.4;/* Match p line-height */
+    font-family: var(--main-font-family); /* Match p font-family */
+}
+
+.fund-stats dd {
+    margin-left: 0;
+    font-weight: 400; /* Match p weight */
+    color: var(--color-text-strong);
+    font-size: 18px; /* Match p font-size */
+    line-height: 1.4; /* Match p line-height */
+    font-family: var(--main-font-family); /* Match p font-family */
+}
+
+
+.fund-card-actions {
+    display: flex;
+    gap: 20px; /* Set explicit 20px gap */
+    margin-top: 0px; /* Push actions to the bottom */
+}
+
+.fund-card-actions .action-button {
+    flex-grow: 1; /* Make buttons equal width */
+    padding: var(--space-s) var(--space-m); /* Slightly smaller padding */
+    font-size: var(--font-size-small-bold);
+    display: inline-flex; /* Use flex for icon + text */
+    align-items: center; /* Vertically align icon and text */
+    justify-content: center; /* Center content horizontally */
+}
+
+.fund-card-actions .watchlist-btn {
+    background-color: var(--color-background-alt);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}
+.fund-card-actions .watchlist-btn:hover {
+     background-color: var(--color-primary-light);
+     border-color: var(--color-primary-dark);
+     color: var(--color-primary-dark);
+}
+
+.watchlist-toggle-icon {
+    margin-right: 6px; /* Space between icon and text */
+    font-size: 1.2em; /* Slightly larger icon */
+    line-height: 1; /* Prevent extra line height */
+    display: inline-block; /* Needed for proper alignment */
+}
+
+
+/* --- Responsive Adjustments --- */
+
+@media (min-width: 992px) { /* Desktop layout */
+    .dashboard-main-content {
+        display: flex; /* Changed to flex */
+        align-items: flex-start; /* Align items to the top (flex) */
+        gap: 60px; /* Use gap for spacing */
+        /* Removed grid-template-columns and column-gap */
+    }
+    .dashboard-highlights {
+        order: -1; /* Move highlights to the left */
+        margin-top: 0; /* Ensure no top margin */
+        flex-basis: 300px; /* Set fixed width for highlights */
+        flex-shrink: 0; /* Prevent shrinking */
+    }
+    .vertical-funds-grid {
+      margin-top: 0; /* Ensure no top margin */
+      flex-grow: 1; /* Allow grid to take remaining space */
+      /* min-width: 0; Optional: prevent content overflow issues in flex */
+    }
+}
+
+
+@media (max-width: 991px) {
+    .dashboard-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filter-controls {
+        justify-content: space-between;
+    }
+    .filter-controls select, .filter-controls .filter-button {
+       flex-grow: 1;
+       min-width: 120px;
+    }
+
+}
+
+@media (max-width: 640px) {
+    .vertical-funds-grid {
+        grid-template-columns: 1fr; /* Stack cards */
+    }
+    .filter-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+     .filter-controls select, .filter-controls .filter-button {
+       width: 100%;
+    }
+    .fund-stats {
+       grid-template-columns: 1fr; /* Stack stats */
+    }
+    .fund-card-actions {
+        flex-direction: column;
+    }
+}
+
+/* --- Category Summary Styles --- */
+
+.category-summary-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default: 1 column */
+    gap: 20px; 
+    margin-top: 40px; 
+    width: 100%; 
+}
+
+/* Apply 2-column layout on larger screens */
+@media (min-width: 768px) { /* Adjust breakpoint as needed - Tablets */
+    .category-summary-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    }
+}
+
+/* Apply 3-column layout on even larger screens */
+@media (min-width: 1100px) { /* Adjust breakpoint as needed - Desktops */
+    .category-summary-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    }
+}
+
+.category-summary-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-background-alt);
+    padding: var(--space-m);
+    border-radius: var(--border-radius-medium);
+    border: 1px solid var(--color-border-light);
+}
+
+.category-summary-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    margin-right: var(--space-m);
+    background-color: var(--color-background-subtle); /* Placeholder background */
+    background-size: contain; /* Changed from cover */
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%; /* Make icon circular */
+}
+
+.category-summary-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space out info and actions */
+    flex-grow: 1; /* Allow content to take available height */
+    overflow: hidden; /* Prevent text overflow */
+}
+
+.category-summary-info {
+    /* Holds name, value, percentage */
+    margin-bottom: var(--space-m); /* Increased space below info before deltas */
+}
+
+.category-summary-name {
+    /* Inherits h5 styles, adjust if needed */
+    font-size: 16px; /* Slightly smaller than card h5 */
+    font-weight: 700; /* Bold */
+    color: #fff; /* Ensure white text */
+    margin: 0 0 4px 0; /* Adjust margin */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.category-summary-value {
+    /* Inherits p styles, adjust if needed */
+    font-size: 18px; /* Match p */
+    font-weight: 700; /* Bold */
+    color: var(--color-primary); /* Use primary color for value */
+    margin: 0;
+    display: inline; /* Keep on same line as percentage */
+}
+
+.category-summary-percentage {
+    font-size: 14px; 
+    font-weight: 400;
+    color: var(--color-text-secondary); 
+    margin: 0 0 0 6px; 
+    display: inline; 
+}
+
+.category-summary-delta {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-text); /* Default color */
+    margin: 2px 0 0 0; /* Small top margin */
+    line-height: 1.3;
+}
+
+/* Styling for positive/negative delta spans */
+.delta-positive {
+    color: var(--color-success); /* Use success color */
+    font-weight: 600;
+}
+
+.delta-negative {
+    color: var(--color-error); /* Use error color */
+    font-weight: 600;
+}
+
+.delta-neutral {
+     color: var(--color-text-secondary); /* Subtler color for N/A or zero */
+     font-weight: 400;
+}
+
+.category-summary-actions {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 8px; /* Adjust gap for vertical stacking */
+    margin-top: auto;
+}
+
+/* Style summary buttons similar to fund card buttons, but maybe smaller */
+.category-summary-actions .action-button {
+    /* flex-grow: 1; */ /* Remove flex-grow */
+    padding: var(--space-xs) var(--space-s);
+    font-size: 12px;
+    font-weight: 600;
+    min-height: 36px;
+    width: 100%; /* Ensure buttons take full width in column */
+}
+
+/* Specific styles for summary watchlist button if needed */
+.category-summary-actions .summary-watchlist-btn {
+    /* Inherits watchlist-btn styles, override if needed */
+}
+.category-summary-actions .summary-watchlist-btn .watchlist-toggle-icon {
+    font-size: 1em; /* Adjust icon size */
+    margin-right: 4px; /* Adjust icon spacing */
+}
+
+
+/* --- End Category Summary Styles --- */
+
+/* --- Timeframe Filter Button Styles --- */
+
+.timeframe-filter-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px; /* Space below buttons, above chart */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    justify-content: center; /* Center buttons */
+}
+
+.timeframe-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-secondary); /* Default color */
+    background-color: var(--color-background-alt);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-medium);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.timeframe-button:hover {
+    background-color: var(--color-background-subtle);
+    color: #fff;
+}
+
+.timeframe-button.active {
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+    border-color: var(--color-primary);
+    font-weight: 700;
+}
+
+/* --- Monetization Summary Styles (Similar to Category Summary) --- */
+
+.monetization-summary-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default: 1 column */
+    gap: 20px; 
+    margin-top: 40px; /* Space above this summary grid */
+    width: 100%; 
+}
+
+/* Apply 2-column layout on larger screens */
+@media (min-width: 768px) { /* Adjust breakpoint as needed - Tablets */
+    .monetization-summary-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    }
+}
+
+/* Apply 3-column layout on even larger screens */
+@media (min-width: 1100px) { /* Adjust breakpoint as needed - Desktops */
+    .monetization-summary-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    }
+}
+
+.monetization-summary-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-background-alt);
+    padding: var(--space-m);
+    border-radius: var(--border-radius-medium);
+    border: 1px solid var(--color-border-light);
+}
+
+.monetization-summary-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    margin-right: var(--space-m);
+    background-color: var(--color-background-subtle); /* Placeholder background */
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
+
+.monetization-summary-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.monetization-summary-info {
+    margin-bottom: var(--space-m);
+}
+
+.monetization-summary-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 4px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.monetization-summary-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 0;
+    display: inline;
+}
+
+.monetization-summary-percentage {
+    font-size: 14px; 
+    font-weight: 400;
+    color: var(--color-text-secondary);
+    margin: 0 0 0 6px;
+    display: inline;
+}
+
+.monetization-summary-delta {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-text);
+    margin: 2px 0 0 0;
+    line-height: 1.3;
+}
+
+/* Use same delta-positive/negative/neutral classes */
+
+.monetization-summary-actions {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 8px; /* Adjust gap for vertical stacking */
+    margin-top: auto;
+}
+
+/* Use same summary button styles */
+.monetization-summary-actions .action-button {
+    /* flex-grow: 1; */ /* Remove flex-grow */
+    padding: var(--space-xs) var(--space-s);
+    font-size: 12px;
+    font-weight: 600;
+    min-height: 36px;
+    width: 100%; /* Ensure buttons take full width in column */
+}
+
+.monetization-summary-actions .summary-watchlist-btn .watchlist-toggle-icon {
+    font-size: 1em;
+    margin-right: 4px;
+}
+
+/* --- End Monetization Summary Styles --- */
+
+/* --- Styling for Monetization Chart Title/Canvas --- */
+.section-title-divider {
+    /* Style like a standard h3 or customize */
+    margin-top: 60px; /* More space above this new section */
+    margin-bottom: 20px; /* Space below title, above chart */
+    padding-bottom: 10px; /* Optional: line below title */
+    border-bottom: 1px solid var(--color-border-light); /* Optional: line below title */
+    text-align: center; /* Center the title */
+}
+
+#monetization-chart {
+    max-width: 100%; /* Ensure canvas is responsive */
+    margin-bottom: 40px; /* Space below chart, above summary cards */
+}
+
+#participant-chart {
+    max-width: 100%; /* Ensure canvas is responsive */
+    margin-bottom: 40px; /* Space below chart */
+}
+
+/* Dashboard Chart Styles */
+.dashboard-charts {
+  display: grid;
+  grid-template-columns: 1fr; /* Default to single column */
+  gap: var(--space-l); /* Use existing variable for consistency */
+  margin-top: var(--space-xl); /* Add space above the charts */
+}
+
+.chart-container {
+  background-color: var(--color-surface-secondary, #f8f9fa); /* Use a light background */
+  padding: var(--space-m);
+  border-radius: var(--border-radius-m);
+  box-shadow: var(--shadow-sm);
+  height: 400px; /* Set a fixed height for the chart container */
+  position: relative; /* Needed for Chart.js responsiveness */
+}
+
+.chart-container h3 {
+  margin-bottom: var(--space-m);
+  text-align: center;
+}
+
+/* Make charts side-by-side on larger screens */
+@media (min-width: 992px) { 
+  .dashboard-charts {
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+  }
+}
+
+/* Styling for Timeframe Filter Buttons */
+.timeframe-filter-buttons .timeframe-button {
+  /* Define base style for inactive buttons if needed, 
+     assuming they inherit styles or have existing ones. 
+     Ensure sufficient contrast for inactive state. */
+  background-color: var(--button-bg-color, transparent); /* Beispiel: Standard-Hintergrund */
+  color: var(--button-text-color, #fff); /* Beispiel: Standard-Textfarbe */
+  border: 1px solid var(--button-border-color, #fff); /* Beispiel: Standard-Rand */
+  padding: var(--space-xs) var(--space-m);
+  margin: 0 var(--space-xxs);
+  cursor: pointer;
+  border-radius: var(--border-radius-small);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.timeframe-filter-buttons .timeframe-button:hover {
+  background-color: var(--button-hover-bg-color, #555); /* Beispiel: Hover-Hintergrund */
+  color: var(--button-hover-text-color, #fff); /* Beispiel: Hover-Textfarbe */
+}
+
+/* Style for the ACTIVE timeframe button */
+.timeframe-filter-buttons .timeframe-button.active {
+  background-color: #ffffff; /* White background */
+  color: #000000; /* Black text */
+  border-color: #ffffff; /* Ensure border matches background or is distinct */
+  font-weight: bold; /* Optional: make active button text bold */
+}
+
+/* Ensure specificity for the monetization buttons if they exist separately */
+.monetization-timeframe-buttons .timeframe-button {
+  /* Inherit base styles or define similarly */
+}
+
+.monetization-timeframe-buttons .timeframe-button:hover {
+ /* Inherit hover styles or define similarly */
+}
+
+.monetization-timeframe-buttons .timeframe-button.active {
+  background-color: #ffffff; /* White background */
+  color: #000000; /* Black text */
+  border-color: #ffffff; 
+  font-weight: bold;
 }

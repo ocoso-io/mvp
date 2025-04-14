@@ -21,7 +21,7 @@ const UploadArea = () => {
     >
       <div className="upload-content" style={{ textAlign: 'center', marginBottom: '20px' }}>
         <h2>Drop it! it's hot!!</h2>
-        <p>JPEG, PNG, MP4 ... Just drag it in or click to download.</p>
+        <p>JPEG, PNG, MP4 Just drag it in or click to download.</p>
       </div>
 
       <Card
@@ -71,7 +71,7 @@ const UploadArea = () => {
           style={{ width: '40px', height: '40px' }}
         />
         <span className="content-button-text" style={{ marginLeft: '10px' }}>
-          Take it ...
+          Take it
         </span>
       </button>
     </div>

@@ -41,7 +41,7 @@ allResponsiveBlocks.forEach(element => {
     // Unsichtbar
     element.style.visibility = 'hidden'; 
 
-    // Three.js Setup ...
+    // Three.js Setup
     const fov = 45;
     const aspect = wCanvas / hCanvas;
     const near = 0.1, far = 1000;
