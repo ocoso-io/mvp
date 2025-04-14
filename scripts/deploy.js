@@ -1,33 +1,46 @@
 const hre = require("hardhat");
 
 async function main() {
-  console.log("Deploying contracts...");
+  console.log("🚀 Starting OcosoToken deployment to Sepolia...");
 
-  // Deploy OCOSO Token
-  const OCOSOToken = await hre.ethers.getContractFactory("OCOSOToken");
-  const ocosoToken = await OCOSOToken.deploy();
+  const [deployer] = await hre.ethers.getSigners();
+  console.log("👤 Deploying contracts with the account:", deployer.address);
+  console.log("💰 Account balance:", (await deployer.provider.getBalance(deployer.address)).toString());
+
+  console.log("📦 Deploying OcosoToken contract...");
+  const OcosoToken = await hre.ethers.getContractFactory("OcosoToken");
+  const ocosoToken = await OcosoToken.deploy();
+
+  console.log("⏳ Waiting for deployment confirmation...");
   await ocosoToken.waitForDeployment();
-  console.log("OCOSO Token deployed to:", await ocosoToken.getAddress());
 
-  // Deploy OcosoNFTStaking
-  const OcosoNFTStaking = await hre.ethers.getContractFactory("OcosoNFTStaking");
-  const nftContractAddress = "YOUR_NFT_CONTRACT_ADDRESS"; // Replace with your NFT contract address
-  const ocosoNFTStaking = await OcosoNFTStaking.deploy(
-    nftContractAddress,
-    await ocosoToken.getAddress()
-  );
-  await ocosoNFTStaking.waitForDeployment();
-  console.log("OcosoNFTStaking deployed to:", await ocosoNFTStaking.getAddress());
+  const tokenAddress = await ocosoToken.getAddress();
+  console.log("✅ OcosoToken deployed to:", tokenAddress);
+  console.log("👑 Owner set to:", deployer.address);
 
-  // Transfer some tokens to the staking contract for rewards
-  const amount = hre.ethers.parseEther("100000"); // 100,000 tokens
-  await ocosoToken.transfer(await ocosoNFTStaking.getAddress(), amount);
-  console.log("Transferred 100,000 OCOSO tokens to staking contract");
+  // Verify contract on Etherscan
+  if (hre.network.name === "sepolia") {
+    console.log("⏳ Waiting for 5 block confirmations...");
+    await ocosoToken.deploymentTransaction().wait(5);
+    
+    console.log("🔍 Verifying contract on Etherscan...");
+    try {
+      await hre.run("verify:verify", {
+        address: tokenAddress,
+        constructorArguments: []
+      });
+      console.log("✅ Contract verified successfully on Etherscan!");
+    } catch (error) {
+      console.error("❌ Verification failed:", error);
+    }
+  }
+
+  console.log("🎉 Deployment completed!");
 }
 
 main()
   .then(() => process.exit(0))
   .catch((error) => {
-    console.error(error);
+    console.error("❌ Deployment failed:", error);
     process.exit(1);
   }); 
