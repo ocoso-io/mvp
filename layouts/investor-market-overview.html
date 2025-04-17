@@ -674,467 +674,468 @@
 
     <canvas id="chart" width="600" height="300"></canvas>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		
     <script>
-    // Globale Variablen für Daten und Chart-Instanzen
-    let chartInstance = null;
-    let monetizationChartInstance = null;
-    let participantChartInstance = null;
-    let originalCategoriesData = [];
-    let fullLabels = [];
-    let dashboardData = null; 
-    let detailedData = null;  
-    const colors = [
-        '#3498db', '#e74c3c', '#2ecc71', '#f1c40f', '#9b59b6',
-        '#1abc9c', '#e67e22', '#34495e', '#f39c12', '#d35400'
-    ];
+      // Globale Variablen für Daten und Chart-Instanzen
+      let chartInstance = null;
+      let monetizationChartInstance = null;
+      let participantChartInstance = null;
+      let originalCategoriesData = [];
+      let fullLabels = [];
+      let dashboardData = null; 
+      let detailedData = null;  
+      const colors = [
+          '#3498db', '#e74c3c', '#2ecc71', '#f1c40f', '#9b59b6',
+          '#1abc9c', '#e67e22', '#34495e', '#f39c12', '#d35400'
+      ];
 
-    // --- Helper function to format delta values --- (Global)
-    function formatDelta(delta) {
-        if (isNaN(delta) || delta === null) {
-            return '<span class="delta-neutral">N/A</span>';
-        }
-        const sign = delta >= 0 ? '+' : '-';
-        const absDelta = Math.abs(delta);
-        const formattedDelta = absDelta; 
-        const className = delta > 0 ? 'delta-positive' : delta < 0 ? 'delta-negative' : 'delta-neutral';
-        return `<span class="${className}">${sign}${formattedDelta}</span>`;
-    }
+      // --- Helper function to format delta values --- (Global)
+      function formatDelta(delta) {
+          if (isNaN(delta) || delta === null) {
+              return '<span class="delta-neutral">N/A</span>';
+          }
+          const sign = delta >= 0 ? '+' : '-';
+          const absDelta = Math.abs(delta);
+          const formattedDelta = absDelta; 
+          const className = delta > 0 ? 'delta-positive' : delta < 0 ? 'delta-negative' : 'delta-neutral';
+          return `<span class="${className}">${sign}${formattedDelta}</span>`;
+      }
 
-    // --- Function to Update Chart and Summary --- (Global)
-    // Liest globale Variablen dashboardData, fullLabels, detailedData
-    // Aktualisiert globale Chart-Instanzen chartInstance, monetizationChartInstance
-    function updateDisplay(timeframe = 'all') {
-        console.log(`Updating display for timeframe: ${timeframe}`);
+      // --- Function to Update Chart and Summary --- (Global)
+      // Liest globale Variablen dashboardData, fullLabels, detailedData
+      // Aktualisiert globale Chart-Instanzen chartInstance, monetizationChartInstance
+      function updateDisplay(timeframe = 'all') {
+          console.log(`Updating display for timeframe: ${timeframe}`);
 
-        if (!dashboardData || !Array.isArray(originalCategoriesData) || originalCategoriesData.length === 0 || fullLabels.length === 0) {
-            console.error('Cannot update display, essential dashboard data or labels not available.');
-            return;
-        }
+          if (!dashboardData || !Array.isArray(originalCategoriesData) || originalCategoriesData.length === 0 || fullLabels.length === 0) {
+              console.error('Cannot update display, essential dashboard data or labels not available.');
+              return;
+          }
 
-        // --- Zeitfilterung ---
-        let startIndex = 0;
-        const totalPoints = fullLabels.length;
-        if (timeframe === '30d') {
-            startIndex = Math.max(0, totalPoints - 30);
-        } else if (timeframe === '7d') {
-            startIndex = Math.max(0, totalPoints - 7);
-        } else if (timeframe === '1d') {
-            startIndex = Math.max(0, totalPoints - 2);
-            if (totalPoints === 1) startIndex = 0;
-        }
-        const displayLabels = fullLabels.slice(startIndex);
-        const lastDisplayLabel = displayLabels.length > 0 ? displayLabels[displayLabels.length - 1] : null;
-        console.log('Last label for CURRENT display period:', lastDisplayLabel);
+          // --- Zeitfilterung ---
+          let startIndex = 0;
+          const totalPoints = fullLabels.length;
+          if (timeframe === '30d') {
+              startIndex = Math.max(0, totalPoints - 30);
+          } else if (timeframe === '7d') {
+              startIndex = Math.max(0, totalPoints - 7);
+          } else if (timeframe === '1d') {
+              startIndex = Math.max(0, totalPoints - 2);
+              if (totalPoints === 1) startIndex = 0;
+          }
+          const displayLabels = fullLabels.slice(startIndex);
+          const lastDisplayLabel = displayLabels.length > 0 ? displayLabels[displayLabels.length - 1] : null;
+          console.log('Last label for CURRENT display period:', lastDisplayLabel);
 
-        // --- Vorbereitung der Daten für beide Sektionen ---
-        const categoriesForSummary = dashboardData.kategorien || [];
-        const monetizationDataArray = dashboardData.monetarisierung || [];
-        const requestedMonetizationTypes = ["Subscriptions", "Licensing", "Advertising", "Staking"];
-        const filteredMonetizationData = monetizationDataArray.filter(item => 
-            item.Kategorie && requestedMonetizationTypes.includes(item.Kategorie)
-        );
+          // --- Vorbereitung der Daten für beide Sektionen ---
+          const categoriesForSummary = dashboardData.kategorien || [];
+          const monetizationDataArray = dashboardData.monetarisierung || [];
+          const requestedMonetizationTypes = ["Subscriptions", "Licensing", "Advertising", "Staking"];
+          const filteredMonetizationData = monetizationDataArray.filter(item => 
+              item.Kategorie && requestedMonetizationTypes.includes(item.Kategorie)
+          );
 
-        // --- Update Main Chart ---
-        if (chartInstance) {
-            const displayDatasets = categoriesForSummary.map((kategorie, index) => {
-                const categoryName = kategorie.Kategorie;
-                if (!categoryName) return null;
-                const values = fullLabels.map(label => Number(kategorie[label]) || 0).slice(startIndex);
-                return {
-                    label: categoryName,
-                    data: values,
-                    fill: false,
-                    borderColor: colors[index % colors.length],
-                    tension: 0.1
-                };
-            }).filter(ds => ds !== null);
-            chartInstance.data.labels = displayLabels;
-            chartInstance.data.datasets = displayDatasets;
-            chartInstance.update();
-            console.log('Main chart updated.');
-        } else {
-            console.error('Main chart instance not available for update.');
-        }
+          // --- Update Main Chart ---
+          if (chartInstance) {
+              const displayDatasets = categoriesForSummary.map((kategorie, index) => {
+                  const categoryName = kategorie.Kategorie;
+                  if (!categoryName) return null;
+                  const values = fullLabels.map(label => Number(kategorie[label]) || 0).slice(startIndex);
+                  return {
+                      label: categoryName,
+                      data: values,
+                      fill: false,
+                      borderColor: colors[index % colors.length],
+                      tension: 0.1
+                  };
+              }).filter(ds => ds !== null);
+              chartInstance.data.labels = displayLabels;
+              chartInstance.data.datasets = displayDatasets;
+              chartInstance.update();
+              console.log('Main chart updated.');
+          } else {
+              console.error('Main chart instance not available for update.');
+          }
 
-        // --- Update Monetization Chart ---
-        if (monetizationChartInstance) {
-            const displayMonetizationDatasets = filteredMonetizationData.map((item, index) => {
-                 const typeName = item.Kategorie;
-                 if (!typeName) return null;
-                 const values = fullLabels.map(label => Number(item[label]) || 0).slice(startIndex);
-                 return {
-                     label: typeName,
-                     data: values,
-                     fill: false,
-                     borderColor: colors[index % colors.length],
-                     tension: 0.1
-                 };
-             }).filter(ds => ds !== null);
-            monetizationChartInstance.data.labels = displayLabels;
-            monetizationChartInstance.data.datasets = displayMonetizationDatasets;
-            monetizationChartInstance.update();
-            console.log('Monetization chart updated.');
-        } else {
-            console.error('Monetization chart instance not available for update.');
-        }
+          // --- Update Monetization Chart ---
+          if (monetizationChartInstance) {
+              const displayMonetizationDatasets = filteredMonetizationData.map((item, index) => {
+                   const typeName = item.Kategorie;
+                   if (!typeName) return null;
+                   const values = fullLabels.map(label => Number(item[label]) || 0).slice(startIndex);
+                   return {
+                       label: typeName,
+                       data: values,
+                       fill: false,
+                       borderColor: colors[index % colors.length],
+                       tension: 0.1
+                   };
+               }).filter(ds => ds !== null);
+              monetizationChartInstance.data.labels = displayLabels;
+              monetizationChartInstance.data.datasets = displayMonetizationDatasets;
+              monetizationChartInstance.update();
+              console.log('Monetization chart updated.');
+          } else {
+              console.error('Monetization chart instance not available for update.');
+          }
 
-        // --- Update Summary Cards (Categories) ---
-        const summaryContainer = document.getElementById('category-summary-container');
-        if (summaryContainer && categoriesForSummary.length > 0) {
-            summaryContainer.innerHTML = '';
-            let summaryHtml = '';
-            let totalLatestValueForPeriod = 0;
-            if (lastDisplayLabel) {
-                categoriesForSummary.forEach(kategorie => {
-                    totalLatestValueForPeriod += Number(kategorie[lastDisplayLabel]) || 0;
-                });
-            }
+          // --- Update Summary Cards (Categories) ---
+          const summaryContainer = document.getElementById('category-summary-container');
+          if (summaryContainer && categoriesForSummary.length > 0) {
+              summaryContainer.innerHTML = '';
+              let summaryHtml = '';
+              let totalLatestValueForPeriod = 0;
+              if (lastDisplayLabel) {
+                  categoriesForSummary.forEach(kategorie => {
+                      totalLatestValueForPeriod += Number(kategorie[lastDisplayLabel]) || 0;
+                  });
+              }
 
-            categoriesForSummary.forEach((kategorie, index) => {
-                const categoryName = kategorie.Kategorie;
-                let currentValueForPeriod = Number(kategorie[lastDisplayLabel]) || 0;
-                let currentValueDisplay = lastDisplayLabel ? currentValueForPeriod : 'N/A';
-                let percentageDisplay = '0.0%';
-                 if (totalLatestValueForPeriod > 0) {
-                     percentageDisplay = ((currentValueForPeriod / totalLatestValueForPeriod) * 100).toFixed(1) + '%';
-                 } else if (categoriesForSummary.length === 1) {
-                     percentageDisplay = '100.0%';
-                 }
+              categoriesForSummary.forEach((kategorie, index) => {
+                  const categoryName = kategorie.Kategorie;
+                  let currentValueForPeriod = Number(kategorie[lastDisplayLabel]) || 0;
+                  let currentValueDisplay = lastDisplayLabel ? currentValueForPeriod : 'N/A';
+                  let percentageDisplay = '0.0%';
+                   if (totalLatestValueForPeriod > 0) {
+                       percentageDisplay = ((currentValueForPeriod / totalLatestValueForPeriod) * 100).toFixed(1) + '%';
+                   } else if (categoriesForSummary.length === 1) {
+                       percentageDisplay = '100.0%';
+                   }
 
-                 const absoluteLatestValue = Number(kategorie[fullLabels[fullLabels.length - 1]]) || 0;
-                 let delta1d = NaN, delta7d = NaN, delta30d = NaN;
-                 if (fullLabels.length >= 2) delta1d = absoluteLatestValue - (Number(kategorie[fullLabels[fullLabels.length - 2]]) || 0);
-                 if (fullLabels.length >= 8) delta7d = absoluteLatestValue - (Number(kategorie[fullLabels[fullLabels.length - 8]]) || 0);
-                 if (fullLabels.length >= 31) delta30d = absoluteLatestValue - (Number(kategorie[fullLabels[fullLabels.length - 31]]) || 0);
+                   const absoluteLatestValue = Number(kategorie[fullLabels[fullLabels.length - 1]]) || 0;
+                   let delta1d = NaN, delta7d = NaN, delta30d = NaN;
+                   if (fullLabels.length >= 2) delta1d = absoluteLatestValue - (Number(kategorie[fullLabels[fullLabels.length - 2]]) || 0);
+                   if (fullLabels.length >= 8) delta7d = absoluteLatestValue - (Number(kategorie[fullLabels[fullLabels.length - 8]]) || 0);
+                   if (fullLabels.length >= 31) delta30d = absoluteLatestValue - (Number(kategorie[fullLabels[fullLabels.length - 31]]) || 0);
 
-                 const categoryIcon = '../img/placeholder-icon.png';
-                 summaryHtml += `
-                     <article class="category-summary-card">
-                         <div class="category-summary-icon" style="background-image: url('${categoryIcon}');"></div>
-                         <div class="category-summary-content">
-                             <div class="category-summary-info">
-                                 <h5 class="category-summary-name">${categoryName}</h5>
-                                 <p class="category-summary-value">Total: ${currentValueDisplay} <span class="category-summary-percentage">(${percentageDisplay})</span></p>
-                                 <p class="category-summary-delta">1d: ${formatDelta(delta1d)}</p>
-                                 <p class="category-summary-delta">7d: ${formatDelta(delta7d)}</p>
-                                 <p class="category-summary-delta">30d: ${formatDelta(delta30d)}</p>
-                             </div>
-                             <div class="category-summary-actions">
-                                  <button class="action-button view-details-btn summary-details-btn" aria-label="View Details for ${categoryName}">Details</button>
-                                  <button class="action-button watchlist-btn summary-watchlist-btn" aria-label="Add ${categoryName} to Watchlist">
-                                    <span class="watchlist-toggle-icon" aria-hidden="true">☆</span> Watchlist
-                                  </button>
-                             </div>
-                         </div>
-                     </article>
-                 `;
-            });
-            summaryContainer.innerHTML = summaryHtml;
-            console.log('Category summary elements updated.');
-        } else {
-            console.error('Could not update category summary.');
-        }
+                   const categoryIcon = '../img/placeholder-icon.png';
+                   summaryHtml += `
+                       <article class="category-summary-card">
+                           <div class="category-summary-icon" style="background-image: url('${categoryIcon}');"></div>
+                           <div class="category-summary-content">
+                               <div class="category-summary-info">
+                                   <h5 class="category-summary-name">${categoryName}</h5>
+                                   <p class="category-summary-value">Total: ${currentValueDisplay} <span class="category-summary-percentage">(${percentageDisplay})</span></p>
+                                   <p class="category-summary-delta">1d: ${formatDelta(delta1d)}</p>
+                                   <p class="category-summary-delta">7d: ${formatDelta(delta7d)}</p>
+                                   <p class="category-summary-delta">30d: ${formatDelta(delta30d)}</p>
+                               </div>
+                               <div class="category-summary-actions">
+                                    <button class="action-button view-details-btn summary-details-btn" aria-label="View Details for ${categoryName}">Details</button>
+                                    <button class="action-button watchlist-btn summary-watchlist-btn" aria-label="Add ${categoryName} to Watchlist">
+                                      <span class="watchlist-toggle-icon" aria-hidden="true">☆</span> Watchlist
+                                    </button>
+                               </div>
+                           </div>
+                       </article>
+                   `;
+              });
+              summaryContainer.innerHTML = summaryHtml;
+              console.log('Category summary elements updated.');
+          } else {
+              console.error('Could not update category summary.');
+          }
 
-        // --- Update Monetization Summary Cards ---
-        const monetizationContainer = document.getElementById('monetization-summary-container');
-        if (monetizationContainer && filteredMonetizationData.length > 0) {
-             monetizationContainer.innerHTML = '';
-             let monetizationHtml = '';
-             let totalMonetizationLatestValue = 0;
-             if (lastDisplayLabel) {
-                 filteredMonetizationData.forEach(item => {
-                     totalMonetizationLatestValue += Number(item[lastDisplayLabel]) || 0;
-                 });
-             }
+          // --- Update Monetization Summary Cards ---
+          const monetizationContainer = document.getElementById('monetization-summary-container');
+          if (monetizationContainer && filteredMonetizationData.length > 0) {
+               monetizationContainer.innerHTML = '';
+               let monetizationHtml = '';
+               let totalMonetizationLatestValue = 0;
+               if (lastDisplayLabel) {
+                   filteredMonetizationData.forEach(item => {
+                       totalMonetizationLatestValue += Number(item[lastDisplayLabel]) || 0;
+                   });
+               }
 
-             filteredMonetizationData.forEach((item, index) => {
-                 const typeName = item.Kategorie;
-                 let currentValueForPeriod = Number(item[lastDisplayLabel]) || 0;
-                 let currentValueDisplay = lastDisplayLabel ? currentValueForPeriod : 'N/A';
-                 let percentageDisplay = '0.0%';
-                 if (totalMonetizationLatestValue > 0) {
-                     percentageDisplay = ((currentValueForPeriod / totalMonetizationLatestValue) * 100).toFixed(1) + '%';
-                 } else if (filteredMonetizationData.length === 1) {
-                     percentageDisplay = '100.0%';
-                 }
+               filteredMonetizationData.forEach((item, index) => {
+                   const typeName = item.Kategorie;
+                   let currentValueForPeriod = Number(item[lastDisplayLabel]) || 0;
+                   let currentValueDisplay = lastDisplayLabel ? currentValueForPeriod : 'N/A';
+                   let percentageDisplay = '0.0%';
+                   if (totalMonetizationLatestValue > 0) {
+                       percentageDisplay = ((currentValueForPeriod / totalMonetizationLatestValue) * 100).toFixed(1) + '%';
+                   } else if (filteredMonetizationData.length === 1) {
+                       percentageDisplay = '100.0%';
+                   }
 
-                 const absoluteLatestValue = Number(item[fullLabels[fullLabels.length - 1]]) || 0;
-                 let delta1d = NaN, delta7d = NaN, delta30d = NaN;
-                 if (fullLabels.length >= 2) delta1d = absoluteLatestValue - (Number(item[fullLabels[fullLabels.length - 2]]) || 0);
-                 if (fullLabels.length >= 8) delta7d = absoluteLatestValue - (Number(item[fullLabels[fullLabels.length - 8]]) || 0);
-                 if (fullLabels.length >= 31) delta30d = absoluteLatestValue - (Number(item[fullLabels[fullLabels.length - 31]]) || 0);
+                   const absoluteLatestValue = Number(item[fullLabels[fullLabels.length - 1]]) || 0;
+                   let delta1d = NaN, delta7d = NaN, delta30d = NaN;
+                   if (fullLabels.length >= 2) delta1d = absoluteLatestValue - (Number(item[fullLabels[fullLabels.length - 2]]) || 0);
+                   if (fullLabels.length >= 8) delta7d = absoluteLatestValue - (Number(item[fullLabels[fullLabels.length - 8]]) || 0);
+                   if (fullLabels.length >= 31) delta30d = absoluteLatestValue - (Number(item[fullLabels[fullLabels.length - 31]]) || 0);
 
-                 const itemIcon = '../img/placeholder-icon.png';
-                 monetizationHtml += `
-                     <article class="monetization-summary-card">
-                         <div class="monetization-summary-icon" style="background-image: url('${itemIcon}');"></div>
-                         <div class="monetization-summary-content">
-                             <div class="monetization-summary-info">
-                                 <h5 class="monetization-summary-name">${typeName}</h5>
-                                 <p class="monetization-summary-value">Total: ${currentValueDisplay} <span class="monetization-summary-percentage">(${percentageDisplay})</span></p>
-                                 <p class="monetization-summary-delta">1d: ${formatDelta(delta1d)}</p>
-                                 <p class="monetization-summary-delta">7d: ${formatDelta(delta7d)}</p>
-                                 <p class="monetization-summary-delta">30d: ${formatDelta(delta30d)}</p>
-                             </div>
-                             <div class="monetization-summary-actions">
-                                  <button class="action-button view-details-btn summary-details-btn" aria-label="View Details for ${typeName}">Details</button>
-                                  <button class="action-button watchlist-btn summary-watchlist-btn" aria-label="Add ${typeName} to Watchlist">
-                                    <span class="watchlist-toggle-icon" aria-hidden="true">☆</span> Watchlist
-                                  </button>
-                             </div>
-                         </div>
-                     </article>
-                 `;
-             });
-             monetizationContainer.innerHTML = monetizationHtml;
-             console.log('Monetization summary elements updated.');
-        } else {
-             console.error('Could not update monetization summary.');
-             if (monetizationContainer) monetizationContainer.innerHTML = '<p style="color: var(--color-text-secondary);">Keine passenden Monetarisierungsdaten.</p>';
-        }
+                   const itemIcon = '../img/placeholder-icon.png';
+                   monetizationHtml += `
+                       <article class="monetization-summary-card">
+                           <div class="monetization-summary-icon" style="background-image: url('${itemIcon}');"></div>
+                           <div class="monetization-summary-content">
+                               <div class="monetization-summary-info">
+                                   <h5 class="monetization-summary-name">${typeName}</h5>
+                                   <p class="monetization-summary-value">Total: ${currentValueDisplay} <span class="monetization-summary-percentage">(${percentageDisplay})</span></p>
+                                   <p class="monetization-summary-delta">1d: ${formatDelta(delta1d)}</p>
+                                   <p class="monetization-summary-delta">7d: ${formatDelta(delta7d)}</p>
+                                   <p class="monetization-summary-delta">30d: ${formatDelta(delta30d)}</p>
+                               </div>
+                               <div class="monetization-summary-actions">
+                                    <button class="action-button view-details-btn summary-details-btn" aria-label="View Details for ${typeName}">Details</button>
+                                    <button class="action-button watchlist-btn summary-watchlist-btn" aria-label="Add ${typeName} to Watchlist">
+                                      <span class="watchlist-toggle-icon" aria-hidden="true">☆</span> Watchlist
+                                    </button>
+                               </div>
+                           </div>
+                       </article>
+                   `;
+               });
+               monetizationContainer.innerHTML = monetizationHtml;
+               console.log('Monetization summary elements updated.');
+          } else {
+               console.error('Could not update monetization summary.');
+               if (monetizationContainer) monetizationContainer.innerHTML = '<p style="color: var(--color-text-secondary);">Keine passenden Monetarisierungsdaten.</p>';
+          }
 
-        // --- Placeholder for processing detailedData ---
-        if (detailedData) {
-            console.log('Detailed data is available for potential use:', detailedData);
-        } else {
-            console.warn('Detailed data not available.');
-        }
-    } // End of updateDisplay function
+          // --- Placeholder for processing detailedData ---
+          if (detailedData) {
+              console.log('Detailed data is available for potential use:', detailedData);
+          } else {
+              console.warn('Detailed data not available.');
+          }
+      } // End of updateDisplay function
 
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log('Initializing investor dashboard');
+      document.addEventListener('DOMContentLoaded', () => {
+          console.log('Initializing investor dashboard');
 
-        // Select elements
-        const timeframeButtons = document.querySelectorAll('.timeframe-filter-buttons:not(.monetization-timeframe-buttons) .timeframe-button'); 
-        const monetizationTimeframeButtons = document.querySelectorAll('.monetization-timeframe-buttons .timeframe-button'); 
-        const chartCanvas = document.getElementById('chart');
-        const monetizationChartCanvas = document.getElementById('monetization-chart');
-        const participantChartCanvas = document.getElementById('participant-chart');
+          // Select elements
+          const timeframeButtons = document.querySelectorAll('.timeframe-filter-buttons:not(.monetization-timeframe-buttons) .timeframe-button'); 
+          const monetizationTimeframeButtons = document.querySelectorAll('.monetization-timeframe-buttons .timeframe-button'); 
+          const chartCanvas = document.getElementById('chart');
+          const monetizationChartCanvas = document.getElementById('monetization-chart');
+          const participantChartCanvas = document.getElementById('participant-chart');
 
-        // Basic checks
-        if (!chartCanvas || !monetizationChartCanvas || !participantChartCanvas) {
-            console.error('CRITICAL: Missing one or more canvas elements. Initialization stopped.');
-            return;
-        }
+          // Basic checks
+          if (!chartCanvas || !monetizationChartCanvas || !participantChartCanvas) {
+              console.error('CRITICAL: Missing one or more canvas elements. Initialization stopped.');
+              return;
+          }
 
-        // --- Fetch Data and Initial Render --- 
-        console.log('Attempting to fetch BOTH data sources');
-        Promise.all([
-            fetch('ipnft_dashboard_data_reduced.json').then(res => {
-                if (!res.ok) throw new Error(`Failed to fetch dashboard data: ${res.status}`);
-                return res.json();
-            }),
-            fetch('ipnft_einzelwerte_indexed.json').then(res => {
-                if (!res.ok) {
-                   console.warn(`Failed to fetch detailed data: ${res.status}`); 
-                   return null; 
-                }
-                return res.json();
-            }).catch(error => {
-                console.warn('Error fetching or parsing detailed data:', error);
-                return null; 
-            })
-        ])
-        .then(([dashboardResult, detailedResult]) => {
-            console.log('Data fetching complete.');
-            dashboardData = dashboardResult;
-            detailedData = detailedResult;
+          // --- Fetch Data and Initial Render --- 
+          console.log('Attempting to fetch BOTH data sources');
+          Promise.all([
+              fetch('ipnft_dashboard_data_reduced.json').then(res => {
+                  if (!res.ok) throw new Error(`Failed to fetch dashboard data: ${res.status}`);
+                  return res.json();
+              }),
+              fetch('ipnft_einzelwerte_indexed.json').then(res => {
+                  if (!res.ok) {
+                     console.warn(`Failed to fetch detailed data: ${res.status}`); 
+                     return null; 
+                  }
+                  return res.json();
+              }).catch(error => {
+                  console.warn('Error fetching or parsing detailed data:', error);
+                  return null; 
+              })
+          ])
+          .then(([dashboardResult, detailedResult]) => {
+              console.log('Data fetching complete.');
+              dashboardData = dashboardResult;
+              detailedData = detailedResult;
 
-            console.log('Dashboard Data:', dashboardData);
-            if(detailedData) {
-              console.log('Detailed Data:', detailedData);
-            } else {
-              console.log('Detailed Data: Failed to load or not found.');
-            }
+              console.log('Dashboard Data:', dashboardData);
+              if(detailedData) {
+                console.log('Detailed Data:', detailedData);
+              } else {
+                console.log('Detailed Data: Failed to load or not found.');
+              }
 
-            // --- Initial Setup using dashboardData ---
-            if (!dashboardData || !Array.isArray(dashboardData.kategorien) || dashboardData.kategorien.length === 0) {
-              console.error('CRITICAL Error: Dashboard data is missing or invalid. Cannot initialize.');
-              return; 
-            }
-            
-            originalCategoriesData = dashboardData.kategorien;
-            
-            if (originalCategoriesData.length > 0) {
-                const firstCategoryKeys = Object.keys(originalCategoriesData[0]);
-                fullLabels = firstCategoryKeys
-                                   .filter(key => !isNaN(parseInt(key)) && key !== "Kategorie") // Ensure keys are numbers and not the name
-                                   .sort((a, b) => Number(a) - Number(b));
-                console.log('Extracted Full Labels from Dashboard Data:', fullLabels);
-            } else {
-                console.error('No categories found in dashboard data to extract labels.');
-                return;
-            }
+              // --- Initial Setup using dashboardData ---
+              if (!dashboardData || !Array.isArray(dashboardData.kategorien) || dashboardData.kategorien.length === 0) {
+                console.error('CRITICAL Error: Dashboard data is missing or invalid. Cannot initialize.');
+                return; 
+              }
 
-            if (fullLabels.length === 0) {
-                console.error('No numeric time labels found in the dashboard data.');
-                return;
-            }
-            
-            // --- Create Initial Main Chart Instance ---
-            console.log('Creating initial main chart instance');
-            const initialDatasets = originalCategoriesData.map((kategorie, index) => {
-                 const categoryName = kategorie.Kategorie;
-                 if (!categoryName) return null;
-                 const values = fullLabels.map(label => Number(kategorie[label]) || 0);
-                 return {
-                     label: categoryName,
-                     data: values,
-                     fill: false,
-                     borderColor: colors[index % colors.length],
-                     tension: 0.1
-                 };
-             }).filter(ds => ds !== null);
+              originalCategoriesData = dashboardData.kategorien;
 
-            if (initialDatasets.length > 0) {
-                 chartInstance = new Chart(chartCanvas, {
-                    type: 'line',
-                    data: { labels: fullLabels, datasets: initialDatasets },
-                    options: { /* Chart options */ }
-                });
-                 console.log('Initial main chart created successfully.');
-            } else {
-                 console.error('Failed to generate initial datasets for main chart.');
-            }
+              if (originalCategoriesData.length > 0) {
+                  const firstCategoryKeys = Object.keys(originalCategoriesData[0]);
+                  fullLabels = firstCategoryKeys
+                                     .filter(key => !isNaN(parseInt(key)) && key !== "Kategorie") // Ensure keys are numbers and not the name
+                                     .sort((a, b) => Number(a) - Number(b));
+                  console.log('Extracted Full Labels from Dashboard Data:', fullLabels);
+              } else {
+                  console.error('No categories found in dashboard data to extract labels.');
+                  return;
+              }
 
-            // --- Create Initial Monetization Chart Instance ---
-            const monetizationDataArrayInit = dashboardData.monetarisierung || [];
-            const requestedMonetizationTypesInit = ["Subscriptions", "Licensing", "Advertising", "Staking"];
-            const initialMonetizationData = monetizationDataArrayInit.filter(item => 
-                item.Kategorie && requestedMonetizationTypesInit.includes(item.Kategorie)
-            );
+              if (fullLabels.length === 0) {
+                  console.error('No numeric time labels found in the dashboard data.');
+                  return;
+              }
 
-            if (initialMonetizationData.length > 0) {
-                console.log('Creating initial monetization chart instance');
-                const initialMonetizationDatasets = initialMonetizationData.map((item, index) => {
-                     const typeName = item.Kategorie;
-                     if (!typeName) return null;
-                     const values = fullLabels.map(label => Number(item[label]) || 0);
-                     return {
-                         label: typeName,
-                         data: values,
-                         fill: false,
-                         borderColor: colors[index % colors.length],
-                         tension: 0.1
-                     };
-                 }).filter(ds => ds !== null);
+              // --- Create Initial Main Chart Instance ---
+              console.log('Creating initial main chart instance');
+              const initialDatasets = originalCategoriesData.map((kategorie, index) => {
+                   const categoryName = kategorie.Kategorie;
+                   if (!categoryName) return null;
+                   const values = fullLabels.map(label => Number(kategorie[label]) || 0);
+                   return {
+                       label: categoryName,
+                       data: values,
+                       fill: false,
+                       borderColor: colors[index % colors.length],
+                       tension: 0.1
+                   };
+               }).filter(ds => ds !== null);
 
-                if (initialMonetizationDatasets.length > 0) {
-                     monetizationChartInstance = new Chart(monetizationChartCanvas, {
-                        type: 'line',
-                        data: { labels: fullLabels, datasets: initialMonetizationDatasets },
-                        options: { /* Chart options */ }
-                     });
-                     console.log('Initial monetization chart created successfully.');
-                } else {
-                     console.error('Failed to generate initial datasets for monetization chart.');
-                }
-            } else {
-                console.warn('No initial data found for monetization chart in dashboardData.');
-            }
+              if (initialDatasets.length > 0) {
+                   chartInstance = new Chart(chartCanvas, {
+                      type: 'line',
+                      data: { labels: fullLabels, datasets: initialDatasets },
+                      options: { /* Chart options */ }
+                  });
+                   console.log('Initial main chart created successfully.');
+              } else {
+                   console.error('Failed to generate initial datasets for main chart.');
+              }
 
-            // --- Calculate and Create Initial Participant Growth Chart ---
-            if (detailedData && Array.isArray(detailedData) && detailedData.length > 0 && fullLabels.length > 0) {
-                console.log('Calculating participant growth data');
-                const seenParticipantIds = new Set();
-                const participantCounts = fullLabels.map(label => {
-                    const currentLabelNum = Number(label);
-                    detailedData.forEach(asset => {
-                        const assetId = asset.Asset_ID;
-                        // Only check if not already seen
-                        if (assetId && !seenParticipantIds.has(assetId)) {
-                            // Check if asset appeared at or before this label
-                            for (let i = 1; i <= currentLabelNum; i++) {
-                                const stepLabel = String(i);
-                                if (fullLabels.includes(stepLabel) && asset[stepLabel] !== undefined && Number(asset[stepLabel]) > 0) {
-                                    seenParticipantIds.add(assetId);
-                                    break; // Found appearance, move to next asset
-                                }
-                            }
-                        }
-                    });
-                    return seenParticipantIds.size; // Return cumulative count for this label
-                });
-                console.log('Participant Growth Counts:', participantCounts);
+              // --- Create Initial Monetization Chart Instance ---
+              const monetizationDataArrayInit = dashboardData.monetarisierung || [];
+              const requestedMonetizationTypesInit = ["Subscriptions", "Licensing", "Advertising", "Staking"];
+              const initialMonetizationData = monetizationDataArrayInit.filter(item => 
+                  item.Kategorie && requestedMonetizationTypesInit.includes(item.Kategorie)
+              );
 
-                if (participantChartCanvas && participantCounts.length > 0) {
-                     console.log('Creating initial participant growth chart instance');
-                     participantChartInstance = new Chart(participantChartCanvas, {
-                         type: 'line',
-                         data: {
-                             labels: fullLabels,
-                             datasets: [{
-                                 label: 'Teilnehmerzahl', // Or "Asset Count"
-                                 data: participantCounts,
-                                 fill: false,
-                                 borderColor: '#ffffff', // White color for this chart
-                                 backgroundColor: 'rgba(255, 255, 255, 0.5)', // Semi-transparent white fill
-                                 tension: 0.1
-                             }]
-                         },
-                         options: { // Reuse similar options structure
-                             responsive: true,
-                             scales: {
-                                 x: {
-                                     title: { display: true, text: 'Zeitschritte', color: '#fff' }, 
-                                     ticks: { color: '#fff' },
-                                     grid: { color: 'rgba(255, 255, 255, 0.2)' }
-                                 },
-                                 y: {
-                                     title: { display: true, text: 'Anzahl IDs', color: '#fff' }, 
-                                     ticks: { color: '#fff' },
-                                     grid: { color: 'rgba(255, 255, 255, 0.2)' },
-                                     beginAtZero: true // Ensure Y axis starts at 0
-                                 }
-                             },
-                             plugins: {
-                                 legend: {
-                                     labels: {
-                                         color: '#fff'
-                                     }
-                                 }
-                             }
-                         }
-                     });
-                     console.log('Initial participant growth chart created successfully.');
-                 } else {
-                     console.error('Failed to generate data for participant growth chart or canvas missing.');
-                 }
+              if (initialMonetizationData.length > 0) {
+                  console.log('Creating initial monetization chart instance');
+                  const initialMonetizationDatasets = initialMonetizationData.map((item, index) => {
+                       const typeName = item.Kategorie;
+                       if (!typeName) return null;
+                       const values = fullLabels.map(label => Number(item[label]) || 0);
+                       return {
+                           label: typeName,
+                           data: values,
+                           fill: false,
+                           borderColor: colors[index % colors.length],
+                           tension: 0.1
+                       };
+                   }).filter(ds => ds !== null);
 
-            } else {
-                console.warn('Could not calculate participant growth: Detailed data or labels missing.');
-            }
+                  if (initialMonetizationDatasets.length > 0) {
+                       monetizationChartInstance = new Chart(monetizationChartCanvas, {
+                          type: 'line',
+                          data: { labels: fullLabels, datasets: initialMonetizationDatasets },
+                          options: { /* Chart options */ }
+                       });
+                       console.log('Initial monetization chart created successfully.');
+                  } else {
+                       console.error('Failed to generate initial datasets for monetization chart.');
+                  }
+              } else {
+                  console.warn('No initial data found for monetization chart in dashboardData.');
+              }
 
-            // Initial display 
-            updateDisplay('all'); 
+              // --- Calculate and Create Initial Participant Growth Chart ---
+              if (detailedData && Array.isArray(detailedData) && detailedData.length > 0 && fullLabels.length > 0) {
+                  console.log('Calculating participant growth data');
+                  const seenParticipantIds = new Set();
+                  const participantCounts = fullLabels.map(label => {
+                      const currentLabelNum = Number(label);
+                      detailedData.forEach(asset => {
+                          const assetId = asset.Asset_ID;
+                          // Only check if not already seen
+                          if (assetId && !seenParticipantIds.has(assetId)) {
+                              // Check if asset appeared at or before this label
+                              for (let i = 1; i <= currentLabelNum; i++) {
+                                  const stepLabel = String(i);
+                                  if (fullLabels.includes(stepLabel) && asset[stepLabel] !== undefined && Number(asset[stepLabel]) > 0) {
+                                      seenParticipantIds.add(assetId);
+                                      break; // Found appearance, move to next asset
+                                  }
+                              }
+                          }
+                      });
+                      return seenParticipantIds.size; // Return cumulative count for this label
+                  });
+                  console.log('Participant Growth Counts:', participantCounts);
 
-            // --- Add Event Listeners --- 
-            console.log('Adding event listeners');
-            // Main timeframe buttons
-            timeframeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    timeframeButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    const timeframe = button.getAttribute('data-timeframe');
-                    updateDisplay(timeframe); 
-                });
-            });
-            // Monetization timeframe buttons
-            monetizationTimeframeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    monetizationTimeframeButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    const timeframe = button.getAttribute('data-timeframe');
-                    updateDisplay(timeframe); 
-                });
-            });
-            console.log('Event listeners added.');
+                  if (participantChartCanvas && participantCounts.length > 0) {
+                       console.log('Creating initial participant growth chart instance');
+                       participantChartInstance = new Chart(participantChartCanvas, {
+                           type: 'line',
+                           data: {
+                               labels: fullLabels,
+                               datasets: [{
+                                   label: 'Teilnehmerzahl', // Or "Asset Count"
+                                   data: participantCounts,
+                                   fill: false,
+                                   borderColor: '#ffffff', // White color for this chart
+                                   backgroundColor: 'rgba(255, 255, 255, 0.5)', // Semi-transparent white fill
+                                   tension: 0.1
+                               }]
+                           },
+                           options: { // Reuse similar options structure
+                               responsive: true,
+                               scales: {
+                                   x: {
+                                       title: { display: true, text: 'Zeitschritte', color: '#fff' }, 
+                                       ticks: { color: '#fff' },
+                                       grid: { color: 'rgba(255, 255, 255, 0.2)' }
+                                   },
+                                   y: {
+                                       title: { display: true, text: 'Anzahl IDs', color: '#fff' }, 
+                                       ticks: { color: '#fff' },
+                                       grid: { color: 'rgba(255, 255, 255, 0.2)' },
+                                       beginAtZero: true // Ensure Y axis starts at 0
+                                   }
+                               },
+                               plugins: {
+                                   legend: {
+                                       labels: {
+                                           color: '#fff'
+                                       }
+                                   }
+                               }
+                           }
+                       });
+                       console.log('Initial participant growth chart created successfully.');
+                   } else {
+                       console.error('Failed to generate data for participant growth chart or canvas missing.');
+                   }
 
-        })
-        .catch(error => {
-            console.error('CRITICAL Error during data fetching or initial setup:', error);
-        });
-    }); // End DOMContentLoaded
+              } else {
+                  console.warn('Could not calculate participant growth: Detailed data or labels missing.');
+              }
+
+              // Initial display 
+              updateDisplay('all'); 
+
+              // --- Add Event Listeners --- 
+              console.log('Adding event listeners');
+              // Main timeframe buttons
+              timeframeButtons.forEach(button => {
+                  button.addEventListener('click', () => {
+                      timeframeButtons.forEach(btn => btn.classList.remove('active'));
+                      button.classList.add('active');
+                      const timeframe = button.getAttribute('data-timeframe');
+                      updateDisplay(timeframe); 
+                  });
+              });
+              // Monetization timeframe buttons
+              monetizationTimeframeButtons.forEach(button => {
+                  button.addEventListener('click', () => {
+                      monetizationTimeframeButtons.forEach(btn => btn.classList.remove('active'));
+                      button.classList.add('active');
+                      const timeframe = button.getAttribute('data-timeframe');
+                      updateDisplay(timeframe); 
+                  });
+              });
+              console.log('Event listeners added.');
+
+          })
+          .catch(error => {
+              console.error('CRITICAL Error during data fetching or initial setup:', error);
+          });
+      }); // End DOMContentLoaded
     </script>
 
       
@@ -1172,7 +1173,8 @@
 <div id="footer-placeholder"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-<script src="ocoso-app-functions.js"></script>
+<script src="ocoso-app-functions.js" defer></script>	
+<script src="js/wallet.js" defer></script>	
 	
 </body>
 </html>

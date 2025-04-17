@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Navigation</title>
+	    <link rel="stylesheet" href="../styleV033.css?v=20240321">
+	<style>
+		
+	</style>
+</head>
+
+<body>
+<!-- Header Controls (wird nur bei kleinen Bildschirmen angezeigt) -->
+<div class="header-controls">
+    <div class="hamburger-button" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+
+
+<header class="site-header">
+  <div class="header-container">
+    <img
+      src="../img/Logo-Ocoso_Black_250321.png"
+      alt="Site Logo"
+      class="site-logo"
+    />
+  
+    <div class="spacer"></div>
+  
+    <div class="menu-wrapper">
+      <nav class="main-navigation" aria-label="Main navigation">
+		  
+        <div class="nav-item-wrapper">
+          <div data-submenu="submenuCreators" class="nav-item-container">
+            <a href="content-creator.html"><button class="nav-button">
+              <span class="nav-text">For CREATORS</span>
+              <img
+                src="../img/Arrow-Down.png"
+                alt="Dropdown indicator"
+                class="dropdown-icon"
+              />
+            </button></a>
+          </div>
+			
+          <div class="nav-min-width"></div>
+			
+          <div class="hsub-menu" id="submenuCreators" >
+            <ul>
+              <li><a href="content-mint.html">Mint</a></li>
+              <li><a href="content-provide.html">Provide</a>
+				<ul>
+                <li><a href="content-promote.html">Promote</a></li>
+                <li><a href="content-monetize.html">Monetize</a></li>
+                <li><a href="content-trade.html">Trade</a></li>
+              </ul></li>
+              <li><a href="content-insights.html">Insights</a></li>
+            </ul>
+          </div>
+        </div>
+		  
+        <div class="nav-item-wrapper" >
+          <div class="nav-item-container" data-submenu="submenuInvestors">
+            <a href="investor.html"><button class="nav-button">
+              <span class="nav-text">For INVESTORS</span>
+              <img
+                src="../img/Arrow-Down.png"
+                alt="Dropdown indicator"
+                class="dropdown-icon"
+              />
+            </button></a>
+          </div>
+			
+          <div class="nav-min-width"></div>
+			
+          <div class="hsub-menu" id="submenuInvestors" >
+            <ul>
+              <li><a href="investor-market.html">Market</a>
+              <ul>
+                <li><a href="investor-market-overview.html">Overview</a></li>
+                <li><a href="investor-market-invest.html">Invest & Trade</a></li>
+                <li><a href="investor-market-results.html">Your Results</a></li>
+              </ul></li>
+              <li><a href="investor-trends.html">Trends</a></li>
+              <li><a href="investor-partizipate.html">Partizipate</a></li>
+            </ul>
+          </div>
+			
+        </div>
+        <div class="nav-item-wrapper">
+          <div data-submenu="submenuAdvertisers" class="nav-item-container">
+            <a href="advertiser.html"><button class="nav-button">
+              <span class="nav-text">FOR ADVERTISERS</span>
+              <img
+                src="../img/Arrow-Down.png"
+                alt="Dropdown indicator"
+                class="dropdown-icon"
+              />
+            </button></a>
+          </div>
+			
+          <div class="nav-min-width"></div>
+			
+          <div class="hsub-menu" id="submenuAdvertisers" >
+            <ul>
+              <li><a href="creator-option1.html">None</a></li>
+              <li><a href="creator-option2.html">None</a></li>
+              <li><a href="creator-option3.html">None</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="nav-item-wrapper">
+          <div data-submenu="submenuUsers" class="nav-item-container">
+            <a href="user.html"><button class="nav-button">
+              <span class="nav-text">FOr USERS</span>
+              <img
+                src="../img/Arrow-Down.png"
+                alt="Dropdown indicator"
+                class="dropdown-icon"
+              />
+            </button></a>
+          </div>
+          <div class="nav-min-width"></div>
+			
+          <div class="hsub-menu" id="submenuUsers" >
+            <ul>
+              <li><a href="creator-option1.html">none</a></li>
+              <li><a href="creator-option2.html">none</a></li>
+              <li><a href="creator-option3.html">none</a></li>
+            </ul>
+          </div>			
+			
+        </div>
+      </nav>
+    </div>
+	  
+    <div class="wallet-button-wrapper">
+      <button class="wallet-button" aria-label="Connect wallet">
+        <span class="wallet-button-text">CONNECT WALLET!</span>
+      </button>
+    </div>
+  </div>
+</header>
+  
+  
+  <!-- Overlay-Container, in dem das Submenü angezeigt wird -->
+  <div id="overlaySubMenu"></div>
+	  
+  <!-- Script -->
+  <script>
+
+  </script>	
+</body>
+</html>

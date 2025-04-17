@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Navigation</title>
+	    <link rel="stylesheet" href="../styleV033.css?v=20240321">
+	<style>
+		
+		
+    .nav-item-wrapper {
+        position: relative;
+		overflow: visible;
+    }	
+		
+		
+/* Die versteckten Submenüs */
+    .hsub-menu {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      position: absolute;
+      top: 0px;    /* 20px vom oberen Rand des Elternteils */
+      left: 0px;   /* 20px vom linken Rand des Elternteils */
+      margin: 30px 0 0 -20px;          /* Abstand */
+      background-color: #fff;
+      padding: 0px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      width: auto;
+      min-width: 200px;
+      padding: 10px;
+      z-index: 9999;
+    }
+		
+    .hsub-menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      /* Breite kann auto bleiben oder nach Bedarf definiert werden */
+    }
+
+    .hsub-menu ul li a {
+      display: flex;
+      align-items: left;    /* sorgt dafür, dass Icon und Text vertikal zentriert sind */
+      white-space: nowrap;    /* verhindert Zeilenumbruch */
+      padding: 2px 0px;      /* Innenabstand nach Bedarf */
+      margin: 5px 10px 5px 0;
+      /* Entferne ggf. die feste Breite (width: 200px), oder passe sie an */
+      width: auto; 
+      text-decoration: none;
+      color: #000;
+    }
+		
+	.hsub-menu ul ul {
+      margin-left: 15px; /* Größerer Abstand zur äußeren Liste */
+    }
+
+    .hsub-menu ul li a::before {
+      content: "";
+      display: inline-block; /* oder flex */
+      width: 15px;
+      height: 15px;
+      background-image: url('../img/Arrow-black.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 5px;
+		margin-top: 2px;
+    }	
+
+    .hsub-menu ul li a:hover {
+      background-color: #f2f2f2;
+    }
+
+    /* Sichtbar per aktiver Klasse */
+    .hsub-menu.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }	
+		
+	</style>
+</head>
+
+<body>
+<!-- Header Controls (wird nur bei kleinen Bildschirmen angezeigt) -->
+<div class="header-controls">
+    <div class="hamburger-button" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+
+
+<header class="site-header">
+  <div class="header-container">
+    <img
+      src="../img/Logo-Ocoso_Black_250321.png"
+      alt="Site Logo"
+      class="site-logo"
+    />
+  
+    <div class="spacer"></div>
+  
+    <div class="menu-wrapper">
+      <nav class="main-navigation" aria-label="Main navigation">
+		  
+        <div class="nav-item-wrapper">
+          <div data-submenu="submenuCreators" class="nav-item-container">
+            <a href="content-creator.html"><button class="nav-button">
+              <span class="nav-text">For CREATORS</span>
+              <img
+                src="../img/Arrow-Down.png"
+                alt="Dropdown indicator"
+                class="dropdown-icon"
+              />
+            </button></a>
+          </div>
+			
+          <div class="nav-min-width"></div>
+			
+          <div class="hsub-menu" id="submenuCreators" >
+            <ul>
+              <li><a href="content-mint.html">Mint</a></li>
+              <li><a href="content-provide.html">Provide</a>
+				<ul>
+                <li><a href="content-promote.html">Promote</a></li>
+                <li><a href="content-monetize.html">Monetize</a></li>
+                <li><a href="content-trade.html">Trade</a></li>
+              </ul></li>
+              <li><a href="content-insights.html">Insights</a></li>
+            </ul>
+          </div>
+        </div>
+		  
+        <div class="nav-item-wrapper" >
+          <div class="nav-item-container" data-submenu="submenuInvestors">
+            <a href="investor.html"><button class="nav-button">
+              <span class="nav-text">For INVESTORS</span>
+              <img
+                src="../img/Arrow-Down.png"
+                alt="Dropdown indicator"
+                class="dropdown-icon"
+              />
+            </button></a>
+          </div>
+			
+          <div class="nav-min-width"></div>
+			
+          <div class="hsub-menu" id="submenuInvestors" >
+            <ul>
+              <li><a href="investor-market.html">Market</a>
+              <ul>
+                <li><a href="investor-market-overview.html">Overview</a></li>
+                <li><a href="investor-market-invest.html">Invest & Trade</a></li>
+                <li><a href="investor-market-results.html">Your Results</a></li>
+              </ul></li>
+              <li><a href="investor-trends.html">Trends</a></li>
+              <li><a href="investor-partizipate.html">Partizipate</a></li>
+            </ul>
+          </div>
+			
+        </div>
+        <div class="nav-item-wrapper">
+          <div data-submenu="submenuAdvertisers" class="nav-item-container">
+            <a href="advertiser.html"><button class="nav-button">
+              <span class="nav-text">FOR ADVERTISERS</span>
+              <img
+                src="../img/Arrow-Down.png"
+                alt="Dropdown indicator"
+                class="dropdown-icon"
+              />
+            </button></a>
+          </div>
+			
+          <div class="nav-min-width"></div>
+			
+          <div class="hsub-menu" id="submenuAdvertisers" >
+            <ul>
+              <li><a href="creator-option1.html">None</a></li>
+              <li><a href="creator-option2.html">None</a></li>
+              <li><a href="creator-option3.html">None</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="nav-item-wrapper">
+          <div data-submenu="submenuUsers" class="nav-item-container">
+            <a href="user.html"><button class="nav-button">
+              <span class="nav-text">FOr USERS</span>
+              <img
+                src="../img/Arrow-Down.png"
+                alt="Dropdown indicator"
+                class="dropdown-icon"
+              />
+            </button></a>
+          </div>
+          <div class="nav-min-width"></div>
+			
+          <div class="hsub-menu" id="submenuUsers" >
+            <ul>
+              <li><a href="creator-option1.html">none</a></li>
+              <li><a href="creator-option2.html">none</a></li>
+              <li><a href="creator-option3.html">none</a></li>
+            </ul>
+          </div>			
+			
+        </div>
+      </nav>
+    </div>
+	  
+    <div class="wallet-button-wrapper">
+      <button class="wallet-button" aria-label="Connect wallet">
+        <span class="wallet-button-text">CONNECT WALLET!</span>
+      </button>
+    </div>
+  </div>
+</header>
+  
+  
+  <!-- Overlay-Container, in dem das Submenü angezeigt wird -->
+  <div id="overlaySubMenu"></div>
+	  
+  <!-- Script -->
+  <script>
+    document.querySelectorAll('.nav-item-wrapper').forEach(function(wrapper) {
+      let hideTimeout;
+      let submenu = wrapper.querySelector('.hsub-menu');
+      
+      wrapper.addEventListener('mouseenter', function() {
+        clearTimeout(hideTimeout);
+        if (submenu) {
+          submenu.classList.add('active');
+        }
+      });
+      
+      wrapper.addEventListener('mouseleave', function() {
+        hideTimeout = setTimeout(function() {
+          if (!wrapper.matches(':hover') && !submenu.matches(':hover')) {
+            submenu.classList.remove('active');
+          }
+        }, 300);
+      });
+      
+      if (submenu) {
+        submenu.addEventListener('mouseenter', function() {
+          clearTimeout(hideTimeout);
+        });
+        submenu.addEventListener('mouseleave', function() {
+          hideTimeout = setTimeout(function() {
+            if (!wrapper.matches(':hover')) {
+              submenu.classList.remove('active');
+            }
+          }, 300);
+        });
+      }
+    });
+  </script>	
+</body>
+</html>

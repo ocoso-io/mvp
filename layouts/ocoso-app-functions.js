@@ -67,14 +67,35 @@ function handleResize() {
 // Add resize event listener
 window.addEventListener('resize', handleResize);
 
-// Gallery item click handlers
-document.querySelectorAll('.gallery-item-caroussel').forEach(item => {
-  item.addEventListener('click', () => {
-    document.querySelectorAll('.gallery-item-caroussel.active')
-      .forEach(activeItem => activeItem.classList.remove('active'));
-    item.classList.add('active');
+
+
+
+// Typ-Kachel Auswählen und Auswerten
+
+let selectedType = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const galleryItems = document.querySelectorAll('.gallery-item-caroussel');
+
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      // Deaktiviere vorherige Auswahl
+      galleryItems.forEach(i => i.classList.remove('active'));
+
+      // Aktiviere geklicktes Element
+      item.classList.add('active');
+
+      // Hole den zugehörigen Typ
+      const typeLabel = item.querySelector('h4')?.textContent.trim();
+      selectedType = typeLabel;
+
+      console.log('Ausgewählter IP-Typ:', selectedType);
+    });
   });
 });
+
+
+
 
 // Carousel functionality
 const galleries = document.querySelectorAll('.caroussel-gallery');
@@ -138,14 +159,15 @@ if (uploadArea) {
     uploadArea.addEventListener('mouseleave', () => {
       uploadArea.classList.remove('hovered');
     });
-
-    // Optionaler Klick-Handler für den Upload-Bereich
-    uploadArea.addEventListener('click', () => {
-      alert("Upload area clicked!");
-    });
 } else {
     console.log("Upload area element not found on this page.");
 }
+
+
+
+	  
+	  
+
 
 // Function to prevent CSS caching
 function preventCSSCaching() {
@@ -227,7 +249,36 @@ function loadNavigation() {
                 navPlaceholder.innerHTML = html;
                 console.log('Navigation loaded successfully.');
                 handleResize(); 
-                setupWrapperLinks(); // Re-run link setup for newly added content
+                setupWrapperLinks();
+
+                // 1️⃣ wallet.js nachladen
+                const script = document.createElement('script');
+                script.src = 'js/wallet.js';
+                script.defer = true;
+                script.onload = () => {
+                    console.log('wallet.js geladen');
+
+                    // 2️⃣ initWallet() ausführen
+                    if (typeof initWallet === 'function') {
+                        initWallet();
+                        console.log('initWallet() aufgerufen');
+                    }
+
+                    // 3️⃣ Wallet-Zustand sofort prüfen
+                    if (typeof window.ethereum !== 'undefined') {
+                        window.ethereum.request({ method: 'eth_accounts' })
+                            .then(accounts => {
+                                if (accounts.length > 0 && typeof handleAccountsChanged === 'function') {
+                                    handleAccountsChanged(accounts); // 💡 aktualisiert Button
+                                    console.log('Wallet war bereits verbunden:', accounts[0]);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Fehler beim Abfragen von eth_accounts:', error);
+                            });
+                    }
+                };
+                document.body.appendChild(script);
             })
             .catch(error => {
                 console.error('Error loading navigation:', error);
@@ -298,8 +349,142 @@ fetch('/data/ipnft_dashboard_data.json')
     console.log('Erste Kategorie:', kategorien[0]);
   });
 
+			
+				
+// Upload-Funktionalitaet				
+				
+let selectedFile = null; // speichert die ausgewählte Datei für später
+
+document.addEventListener('DOMContentLoaded', () => {
+  const uploadArea = document.getElementById('uploadArea');
+  const uploadInput = document.getElementById('uploadInput');
+  const uploadContent = uploadArea.querySelector('.upload-content');
+  const uploadButton = uploadArea.querySelector('.content-button');
+
+  // Klick auf Upload-Bereich → Datei-Auswahl öffnen
+  uploadArea.addEventListener('click', (e) => {
+    // Nur auslösen, wenn NICHT auf den Button geklickt wurde
+    if (!e.target.closest('.content-button')) {
+      uploadInput.click();
+    }
+  });
+
+  // Datei wurde über Datei-Auswahl ausgewählt
+  uploadInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) handleFile(file);
+  });
+
+  // Datei per Drag & Drop
+  uploadArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    uploadArea.classList.add('dragover');
+  });
+
+  uploadArea.addEventListener('dragleave', () => {
+    uploadArea.classList.remove('dragover');
+  });
+
+  uploadArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadArea.classList.remove('dragover');
+
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      uploadInput.files = e.dataTransfer.files;
+      handleFile(file);
+    }
+  });
+
+  // Upload-Button klick (Demo)
+  uploadButton.addEventListener('click', () => {
+    if (selectedFile) {
+      console.log('Demo: Datei bereit zum Upload:', selectedFile);
+      alert(`Demo: "${selectedFile.name}" erkannt – Upload wäre jetzt möglich.`);
+    } else {
+      alert('Bitte zuerst eine Datei auswählen oder hineinziehen.');
+    }
+  });
+
+  // Datei verarbeiten (für Anzeige + Speicherung)
+  function handleFile(file) {
+    selectedFile = file;
+
+    uploadContent.innerHTML = `
+      <h2>${file.name}</h2>
+      <p>${(file.size / 1024 / 1024).toFixed(2)} MB</p>
+      <p>${file.type}</p>
+    `;
+  }
+});				
+
+
 
 // Call loadNavigation and loadOverlayMenu when the page loads
 document.addEventListener('DOMContentLoaded', loadNavigation);
 document.addEventListener('DOMContentLoaded', loadOverlayMenu);
 document.addEventListener('DOMContentLoaded', loadFooter);
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+
+  // Initialisiert das Navigationsverhalten.
+  function initNavigation() {
+    const wrappers = document.querySelectorAll('.nav-item-wrapper');
+    if (wrappers.length === 0) {
+      return false;
+    }
+    wrappers.forEach(function(wrapper) {
+      let hideTimeout;
+      let submenu = wrapper.querySelector('.hsub-menu');
+
+      wrapper.addEventListener('mouseenter', function() {
+        clearTimeout(hideTimeout);
+        if (submenu) {
+          submenu.classList.add('active');
+          submenu.classList.remove('inactive');
+        }
+      });
+
+      wrapper.addEventListener('mouseleave', function() {
+        hideTimeout = setTimeout(function() {
+          if (!wrapper.matches(':hover') && !submenu.matches(':hover')) {
+            submenu.classList.remove('active');
+            submenu.classList.add('inactive');
+          }
+        }, 300);
+      });
+
+      if (submenu) {
+        submenu.addEventListener('mouseenter', function() {
+          clearTimeout(hideTimeout);
+        });
+        submenu.addEventListener('mouseleave', function() {
+          hideTimeout = setTimeout(function() {
+            if (!wrapper.matches(':hover')) {
+              submenu.classList.remove('active');
+              submenu.classList.add('inactive');
+            }
+          }, 300);
+        });
+      }
+    });
+    return true;
+  }
+
+  // MutationObserver wird gestartet.
+  const observer = new MutationObserver(function(mutations, obs) {
+    if (initNavigation()) {
+      console.log('Navigationselemente sind geladen.');
+      obs.disconnect();
+    }
+  });
+  
+  // Beobachtet Änderungen im ganzen Dokument.
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+  
+});

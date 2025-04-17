@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>OCOSO MVP - Full Layout</title>
+    <link rel="stylesheet" href="styleV033.css?v=20240321">
+    <style>
+		
+    .sort-icons {
+      margin-left: 5px;
+    }
+    .arrow {
+      width: 10px;
+      height: 10px;
+    }
+    .arrow.inactive {
+      display: none;
+    }
+    .arrow.active {
+      display: block;
+    }		
+	
+		
+    .sort-icon-container img {
+        margin: -2px 0px;
+        height: 15px;
+        width: 15px;
+    }	
+		
+    /* Overlay-Box für Diagramm */
+    #chartOverlay {
+      display: none;
+      position: fixed;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      z-index: 9999;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      border-radius: 4px;
+    }	
+		
+    .tr-data {
+        background-color: #424242;
+    }
+
+    .td-data {
+        margin: 5px;
+        padding: 3px 0px 3px 15px;
+		font-size: 15px;
+		border-bottom: 2px solid #222;
+    }
+			
+    </style>
+</head>
+<body>
+	
+  <!-- Overlay-Box für das Diagramm -->
+  <div id="chartOverlay">
+    <canvas id="chartCanvas" width="450" height="300"></canvas>
+  </div>	
+
+  <div id="navigation-placeholder"></div>
+  <div id="overlay-menu-placeholder"></div>
+
+	
+
+  <section class="hero">
+    <div class="hero-container" style="background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/4691e67e3b75d917f12dc87357c5328ca76244d9');">
+      <div class="hero-content-wrapper">
+        <h1 class="main-heading">INVEST</h1>
+        <p></p>
+        <p class="hero-description">
+          It’s not just capital. It’s conviction. You’re not buying ads — you’re backing ideas. No brokers. No bias. Just code, ownership, and upside. This isn’t Wall Street in disguise — it’s a network where your stake shapes the story. Invest in attention. Invest in impact. And hold the proof in your wallet.
+        </p>
+      </div>
+      <div class="cta-section">
+        <div class="button-group">
+          <div class="button-wrapper">
+            <button class="action-button" aria-label="Login">
+              <span class="button-text">Login</span>
+            </button>
+            <button class="action-button" aria-label="Register">
+              <span class="button-text">Register</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-wrapper">	
+	
+	
+  <div style="height: 80px">&nbsp;</div>
+	
+	
+    <article class="card-content-wide">
+      <div class="wrapper">
+        <div class="responsive"  data-link="investor-trends.html">
+          <div class="image-container" style="background-image: url('img/invest-trends.jpg');">
+          </div>
+          <div class="content-block">
+            <div class="content-text">
+              <h2 class="title">TRENDS</h2>
+              <p class="description">
+                From creator tokens to content DAOs — discover where capital meets culture
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">FOLLOW THE SIGNAL</span>
+            </button>
+          </div>
+        </div>
+      </div>
+		
+      <div class="wrapper-reduced">
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="investor-market.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Market</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">ENTER THE MARKET</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="investor-partizipation.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">PARTICIPATE</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">JOIN THE TABLE</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+      </div>
+		
+    </article>
+	
+	  <div style="height: 80px">&nbsp;</div>	
+	
+<article class="headline-left-wrapper">
+  <div class="healine-left-container">
+    <div class="headline-left-inner">
+      <header>
+        <h2>Watch What’s Moving — Before It Moves the Market</h2>
+      </header>
+      <section>
+        <h5>
+          Web3 moves fast. Stay ahead of narratives, verticals, and asset-class evolution.
+        </h5>
+      </section>
+      <section>
+        <p>
+          This is where intuition meets intelligence. New asset classes emerge. Protocols shift. Token models evolve. Trends reveal where belief turns into demand — and where early entries pay off. Stay sharp. Read the signs. And position before the herd moves.
+        </p>
+      </section>
+    </div>
+  </div>
+</article>	
+		
+  <div style="height: 80px">&nbsp;</div>	
+	
+	
+<center class="content-frame">
+	
+
+	
+<section class="content-submission">
+  <h2 class="submission-title">Choose your NFT[s] to PRINT MONEY</h2>
+  <h6 class="submission-subtitle">
+    Every great piece deserves the spotlight. Pick the one that's ready to roar.
+  </h6>
+</section>
+	
+		<p>Choose your NFT[s] to print money</p>
+	
+	
+	
+  <div style="height: 40px">&nbsp;</div>
+	
+	
+<table class="data-table">
+  <thead class="table-header">
+    <tr class="header-row">
+      <th class="header-cell" data-sort-key="Asset_ID">
+        <span style="white-space: nowrap;"><span class="sort-icon-container">
+          <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral" />
+          <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none" />
+          <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none" />
+        </span>
+        IP-NFT</span>
+      </th>
+      <th class="header-cell" data-sort-key="Type">
+        <span class="sort-icon-container">
+          <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral" />
+          <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none" />
+          <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none" />
+        </span>
+        <label for="filterType"><span style="white-space: nowrap;">Type<br></span></label>
+        <select id="filterType">
+          <option value="">Alle</option>
+        </select>
+      </th>
+      <th class="header-cell" data-sort-key="Topics">
+        <span class="sort-icon-container">
+          <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral" />
+          <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none" />
+          <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none" />
+        </span>
+        <label for="filterTopic"><span style="white-space: nowrap;">Topics<br></span></label>
+        <select id="filterTopic">
+          <option value="">Alle</option>
+        </select>
+      </th>
+      <th class="header-cell" data-sort-key="Monetization">
+        <span class="sort-icon-container">
+          <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral" />
+          <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none" />
+          <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none" />
+        </span>
+        <label for="filterMonetization"><span style="white-space: nowrap;">Monetization<br></span></label>
+        <select id="filterMonetization">
+          <option value="">Alle</option>
+        </select>
+      </th>
+      <th class="header-cell" data-sort-key="Start_Date">
+        <span style="white-space: nowrap;"><span class="sort-icon-container">
+          <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral" />
+          <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none" />
+          <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none" />
+        </span>
+        Start-Date</span>
+      </th>
+      <th class="header-cell" data-sort-key="Volume">
+        <span style="white-space: nowrap;"><span class="sort-icon-container">
+          <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral" />
+          <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none" />
+          <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none" />
+        </span>
+        Volume</span>
+      </th>
+      <th class="header-cell">Aktionen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="tr-data">
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+    </tr>
+    <tr class="tr-data">
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+    </tr>
+    <tr class="tr-data">
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+      <td class="td-data">Spacer</td>
+    </tr>
+  </tbody>
+  <tfoot class="table-footer">
+    <tr>
+      <td colspan="7" class="footer-cell"></td>
+    </tr>
+  </tfoot>
+</table>
+	
+	
+
+	
+	
+	
+	  <div style="height: 160px">&nbsp;</div>
+	
+	
+  <div style="height: 40px">&nbsp;</div>
+	
+  <section class="content-submission" style="display: flex; flex-direction: row; gap: 50px;">
+    <h6 class="submission-subtitle" style="display: flex; width: auto">
+      Select your minted draft. Only minted NFTs are promotable. <br>Haven't minted yet? Go claim your content.
+    </h6>
+    <button class="content-button" aria-label="Content navigation button">
+      <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon" />
+      <span class="content-button-text">
+        Mint It 
+      </span>
+    </button>	
+  </section>
+	
+  <div style="height: 80px">&nbsp;</div>
+	
+<section class="content-submission">
+  <h2 class="submission-title">Display</h2>
+  <h6 class="submission-subtitle">
+    Your NFT as a signal. Loud, proud, everywhere.
+  </h6>
+</section>	
+	
+  <div style="height: 80px">&nbsp;</div>	
+	
+	
+</center>	
+	
+	<div style="height: 160px">&nbsp;</div>	
+	
+</div>
+	
+<div id="footer-placeholder"></div>
+	
+
+	
+	
+	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+<script src="ocoso-app-functions.js" defer></script>	
+<script src="js/wallet.js" defer></script>		
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>	
+
+  <!-- JavaScript: Filter, Sortierung, Tabelle und Chart-Overlay -->
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  let sortState = { key: null, direction: 0 };
+  let globalData = [], filteredData = [];
+
+  fetch('ipnft_einzelwerte.json')
+    .then(r => r.json())
+    .then(data => {
+      globalData = prepareData(data);
+      buildFilterOptions(globalData);
+      filteredData = [...globalData];
+      renderTable(filteredData);
+    })
+    .catch(e => console.error('Lade-Fehler:', e));
+
+  function prepareData(data) {
+    const grouped = {};
+    data.forEach(record => {
+      const typeValue = record.Type || 'n/a';
+      const key = `${record.Asset_ID}_${record.Category}_${record.Monetization}_${typeValue}`;
+      const revKeys = Object.keys(record).filter(k=>k.startsWith('Rev_')).sort();
+      if (!grouped[key]) {
+        grouped[key] = {
+          Asset_ID: record.Asset_ID,
+          Topics: record.Category,
+          Monetization: record.Monetization,
+          Type: typeValue,
+          Start_Date: null,
+          Volume: 0,
+          revenueSeries: revKeys.map(k=>({
+            date: k.replace('Rev_',''),
+            value: Number(record[k])
+          }))
+        };
+      }
+      revKeys.forEach(k=>{
+        const v = Number(record[k]);
+        const d = k.replace('Rev_','');
+        if (v>0 && (!grouped[key].Start_Date || d < grouped[key].Start_Date)) {
+          grouped[key].Start_Date = d;
+        }
+        grouped[key].Volume += v;
+      });
+    });
+    return Object.values(grouped);
+  }
+
+  function buildFilterOptions(data) {
+    const topics = [...new Set(data.map(d=>d.Topics))].sort();
+    const monets = [...new Set(data.map(d=>d.Monetization))].sort();
+    const types  = [...new Set(data.map(d=>d.Type))].sort();
+    const byId = id => document.getElementById(id);
+    topics.forEach(t=> byId('filterTopic').append(new Option(t,t)));
+    monets.forEach(m=> byId('filterMonetization').append(new Option(m,m)));
+    types .forEach(tp=> byId('filterType').append(new Option(tp,tp)));
+    ['filterTopic','filterMonetization','filterType']
+      .forEach(id=> byId(id).addEventListener('change', filterAndRender));
+	  
+	  
+    //document.querySelectorAll('th[data-sort-key]')
+      //.forEach(th=> th.addEventListener('click', ()=>{ toggleSort(th.dataset.sortKey); applySort(); }));
+	  
+    // Statt auf das ganze <th> nur auf das Icon-Container-Element lauschen:
+    document.querySelectorAll('th[data-sort-key] .sort-icon-container')
+      .forEach(iconWrap => {
+        iconWrap.style.cursor = 'pointer';
+        iconWrap.addEventListener('click', e => {
+          const th = iconWrap.closest('th[data-sort-key]');
+          toggleSort(th.dataset.sortKey);
+          applySort();
+          e.stopPropagation(); // verhindert andere Listener
+        });
+      });	  
+	  
+  }
+
+  function filterAndRender() {
+    const v = id => document.getElementById(id).value;
+    filteredData = globalData.filter(d=>
+      (!v('filterTopic')   || d.Topics       === v('filterTopic')) &&
+      (!v('filterMonetization') || d.Monetization === v('filterMonetization')) &&
+      (!v('filterType')    || d.Type         === v('filterType'))
+    );
+    applySort();
+  }
+
+  function toggleSort(key) {
+    if (sortState.key===key) {
+      sortState.direction = sortState.direction===1 ? -1 : 0;
+      if (sortState.direction===0) sortState.key = null;
+    } else {
+      sortState.key = key; sortState.direction = 1;
+    }
+    updateSortIcons();
+  }
+
+  function updateSortIcons() {
+    document.querySelectorAll('th[data-sort-key]').forEach(th=>{
+      const [neutral, up, down] = th.querySelectorAll('img.sort-icon');
+      if (sortState.key===th.dataset.sortKey) {
+        neutral.style.display = 'none';
+        up   .style.display = sortState.direction===1 ? 'inline' : 'none';
+        down .style.display = sortState.direction===-1? 'inline' : 'none';
+      } else {
+        neutral.style.display='inline'; up.style.display=down.style.display='none';
+      }
+    });
+  }
+
+  function applySort() {
+    if (sortState.key && sortState.direction) {
+      filteredData.sort((a,b)=>{
+        const A = a[sortState.key], B = b[sortState.key];
+        if (sortState.key==='Volume') return sortState.direction*(A-B);
+        if (sortState.key==='Start_Date') return sortState.direction*(A?.localeCompare(B)||0);
+        return sortState.direction*((''+A).localeCompare(''+B));
+      });
+    }
+    renderTable(filteredData);
+  }
+
+  function renderTable(data) {
+    const tbody = document.querySelector('.data-table tbody');
+    tbody.innerHTML = '';
+    data.forEach(item => {
+      const tr = document.createElement('tr');
+      tr.classList.add('tr-data');                       
+      tr.dataset.assetKey = `${item.Asset_ID}_${item.Topics}_${item.Monetization}_${item.Type}`;
+      tr.innerHTML = `
+        <td class="td-data">${item.Asset_ID}</td>
+        <td class="td-data">${item.Type}</td>
+        <td class="td-data">${item.Topics}</td>
+        <td class="td-data">${item.Monetization}</td>
+        <td class="td-data">${item.Start_Date||'---'}</td>
+        <td class="td-data">${item.Volume.toFixed(2)}</td>
+        <td class="td-data">
+          <img src="img/icon-eye.png"  class="action-icon chart-trigger" />
+          <img src="img/icon-edit.png" class="action-icon" />
+          <img src="img/icon-trash.png"class="action-icon" />
+        </td>`;
+      tbody.append(tr);
+    });
+    attachChartEvents();
+  }
+
+  function attachChartEvents() {
+    document.querySelectorAll('.chart-trigger').forEach(icon=> {
+      icon.addEventListener('mouseover', showChartOverlay);
+      icon.addEventListener('mouseleave', hideChartOverlay);
+    });
+  }
+
+  function showChartOverlay(e) {
+    const key = e.target.closest('tr').dataset.assetKey;
+    const asset = globalData.find(it=>`${it.Asset_ID}_${it.Topics}_${it.Monetization}_${it.Type}`===key);
+    if (!asset) return console.warn('Kein Asset gefunden:', key);
+    const ov = document.getElementById('chartOverlay'),
+          cn = document.getElementById('chartCanvas'),
+          rect = e.target.getBoundingClientRect();
+    ov.style.top    = `${rect.bottom + 5}px`;
+    const widthFall = 470;
+    ov.style.left   = `${rect.left - (ov.offsetWidth||widthFall) - 5}px`;
+    ov.style.display= 'block';
+    if (window.myChart) window.myChart.destroy();
+    const labels = asset.revenueSeries.map(r=>r.date),
+          values = asset.revenueSeries.map(r=>r.value);
+    let cum=[], sum=0; values.forEach(v=>{ sum+=v; cum.push(sum); });
+
+    window.myChart = new Chart(cn.getContext('2d'), {
+      type: 'line',
+      data: {
+        labels, 
+        datasets: [
+          { label:'Tageswert', data:values,  yAxisID:'y',  backgroundColor:'rgba(75,192,192,0.2)', borderColor:'rgba(75,192,192,1)', borderWidth:1, pointRadius:2 },
+          { label:'Kumuliert', data:cum,     yAxisID:'y1', backgroundColor:'rgba(192,75,192,0.2)', borderColor:'rgba(192,75,192,1)', borderWidth:1, pointRadius:2 }
+        ]
+      },
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: asset.Asset_ID  // ← IP‑NFT als Diagramm‑Name
+          }
+        },
+        scales:{
+          y :{ position:'left',  beginAtZero:true, title:{display:true,text:'Tageswert'} },
+          y1:{ position:'right', beginAtZero:true, grid:{drawOnChartArea:false}, title:{display:true,text:'Kumuliert'} }
+        },
+        responsive:false, maintainAspectRatio:false
+      }
+    });
+
+
+  }
+
+  function hideChartOverlay() {
+    const ov = document.getElementById('chartOverlay');
+    ov.style.display = 'none';
+    if (window.myChart) { window.myChart.destroy(); window.myChart = null; }
+  }
+
+
+
+
+
+
+
+});
+</script>
+</body>
+</html>

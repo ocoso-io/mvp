@@ -1,11 +1,3 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Unbenanntes Dokument</title>
-</head>
-
-<body>
 <!-- Header Controls (wird nur bei kleinen Bildschirmen angezeigt) -->
 <div class="header-controls">
     <div class="hamburger-button" onclick="toggleMenu()">
@@ -19,78 +11,177 @@
 
 <header class="site-header">
   <div class="header-container">
-    <img
-      src="img/Logo-Ocoso_Black_250321.png"
+    <a href="index.html"><img
+      src="../img/Logo-Ocoso_Black_250321.png"
       alt="Site Logo"
       class="site-logo"
-    />
+										/></a>
   
     <div class="spacer"></div>
   
     <div class="menu-wrapper">
       <nav class="main-navigation" aria-label="Main navigation">
+		  
         <div class="nav-item-wrapper">
-          <div class="nav-item-container">
+          <div data-submenu="submenuCreators" class="nav-item-container">
             <a href="content-creator.html"><button class="nav-button">
-              <span class="nav-text">For CREATORS</span>
+              <span class="nav-text">CREATORS</span>
               <img
-                src="img/Arrow-Down.png"
+                src="../img/Arrow-Down.png"
                 alt="Dropdown indicator"
                 class="dropdown-icon"
               />
             </button></a>
           </div>
+			
           <div class="nav-min-width"></div>
+			
+          <div class="hsub-menu" id="submenuCreators" >
+            <ul>
+              <li><a href="content-mint.html">Mint</a></li>
+              <li><a href="content-provide.html">Provide</a>
+				<ul>
+                <li><a href="content-promote.html">Promote</a></li>
+                <li><a href="content-monetize.html">Monetize</a></li>
+                <li><a href="content-trade.html">Trade</a></li>
+              </ul></li>
+              <li><a href="content-insights.html">Insights</a></li>
+            </ul>
+          </div>
         </div>
-        <div class="nav-item-wrapper">
-          <div class="nav-item-container">
+		  
+        <div class="nav-item-wrapper" >
+          <div class="nav-item-container" data-submenu="submenuInvestors">
             <a href="investor.html"><button class="nav-button">
-              <span class="nav-text">For INVESTORS</span>
+              <span class="nav-text">INVESTORS</span>
               <img
-                src="img/Arrow-Down.png"
+                src="../img/Arrow-Down.png"
                 alt="Dropdown indicator"
                 class="dropdown-icon"
               />
             </button></a>
           </div>
+			
           <div class="nav-min-width"></div>
+			
+          <div class="hsub-menu" id="submenuInvestors" >
+            <ul>
+              <li><a href="investor-market.html">Market</a>
+              <ul>
+                <li><a href="investor-market-overview.html">Overview</a></li>
+                <li><a href="investor-market-invest.html">Invest & Trade</a></li>
+                <li><a href="investor-market-results.html">Your Results</a></li>
+              </ul></li>
+              <li><a href="investor-trends.html">Trends</a></li>
+              <li><a href="investor-partizipate.html">Partizipate</a></li>
+            </ul>
+          </div>
+			
         </div>
         <div class="nav-item-wrapper">
-          <div class="nav-item-container">
+          <div data-submenu="submenuAdvertisers" class="nav-item-container">
             <a href="advertiser.html"><button class="nav-button">
-              <span class="nav-text">FOR ADVERTISERS</span>
+              <span class="nav-text">ADVERTISERS</span>
               <img
-                src="img/Arrow-Down.png"
+                src="../img/Arrow-Down.png"
                 alt="Dropdown indicator"
                 class="dropdown-icon"
               />
             </button></a>
           </div>
+			
           <div class="nav-min-width"></div>
+			
+          <div class="hsub-menu" id="submenuAdvertisers" >
+            <ul>
+              <li><a href="creator-option1.html">None</a></li>
+              <li><a href="creator-option2.html">None</a></li>
+              <li><a href="creator-option3.html">None</a></li>
+            </ul>
+          </div>
         </div>
         <div class="nav-item-wrapper">
-          <a href="user.html"><div class="nav-item-container">
-            <button class="nav-button">
-              <span class="nav-text">FOr USERS</span>
+          <div data-submenu="submenuUsers" class="nav-item-container">
+            <a href="user.html"><button class="nav-button">
+              <span class="nav-text">USERS</span>
               <img
-                src="img/Arrow-Down.png"
+                src="../img/Arrow-Down.png"
                 alt="Dropdown indicator"
                 class="dropdown-icon"
               />
             </button></a>
           </div>
           <div class="nav-min-width"></div>
+			
+          <div class="hsub-menu" id="submenuUsers" >
+            <ul>
+              <li><a href="creator-option1.html">none</a></li>
+              <li><a href="creator-option2.html">none</a></li>
+              <li><a href="creator-option3.html">none</a></li>
+            </ul>
+          </div>			
+			
         </div>
       </nav>
     </div>
-  
-      <div class="wallet-button-wrapper">
-        <button class="wallet-button" aria-label="Connect wallet">
-          <span class="wallet-button-text">CONNECT WALLET</span>
-        </button>
-      </div>
-  
+	  
+    <div class="wallet-button-wrapper">
+      <button class="wallet-button" aria-label="Connect wallet">
+        <span class="wallet-button-text">CONNECT WALLET!</span>
+      </button>
+    </div>
   </div>
 </header>
-</body>
-</html>
+
+
+
+<!-- Navigation-spezifisches Script -->
+<script>
+	
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Navigation DOMContentLoaded reached');
+  
+  // Setze das Flag, damit globale Hover-Funktionen deaktiviert werden.
+  window.disableGlobalNavHover = true;
+  console.log('++++++++++++ Navigations-Script executed');
+  
+  const navItems = document.querySelectorAll('.nav-item-container[data-submenu]');
+  navItems.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      showSubmenuForItem(item);
+    });
+    item.addEventListener('mouseleave', () => {
+      setTimeout(() => {
+        if (!document.getElementById('overlaySubMenu').matches(':hover')) {
+          hideSubmenu();
+        }
+      }, 200);
+    });
+  });
+  
+  const overlay = document.getElementById('overlaySubMenu');
+  overlay.addEventListener('mouseleave', hideSubmenu);
+  overlay.addEventListener('mouseenter', () => {
+    overlay.style.display = 'block';
+  });
+  
+  function showSubmenuForItem(item) {
+    const submenuId = item.getAttribute('data-submenu');
+    const submenuElem = document.getElementById(submenuId);
+    if (!submenuElem) { return; }
+    const overlay = document.getElementById('overlaySubMenu');
+    overlay.innerHTML = submenuElem.innerHTML;
+    overlay.style.display = 'block';
+    // Positioniere das Overlay 20px unterhalb des nav-item-container
+    const rect = item.getBoundingClientRect();
+    overlay.style.left = rect.left + 'px';
+    overlay.style.top  = (rect.bottom + 20) + 'px';
+  }
+  
+  function hideSubmenu() {
+    document.getElementById('overlaySubMenu').style.display = 'none';
+  }
+});
+	
+//# sourceURL=navigation.html.script.js
+</script>
