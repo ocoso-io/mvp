@@ -24,4 +24,6 @@ Thumbs.db
 # Build files
 dist/
 build/
-*.log 
+*.log
+
+.idea
