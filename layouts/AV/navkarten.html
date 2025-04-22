@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>3D-Karten-Navigation</title>
+  <link rel="stylesheet" href="navkarten-styles.css" />
+	
+  <style>
+	/* styles.css */
+    body, html { margin:0; padding:0; height:100%; }
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+    .card-stack {
+      position: relative;
+      width: 200px;
+      perspective: 1000px;
+    }
+	  
+	  
+:root {
+  --base-angle: 30deg;
+  --step-angle: 5deg;
+  --shift-factor: 0.75;
+  --card-width: 180px;
+  --card-spacing: 20px;
+}
+.card {
+  position: absolute;
+  width: var(--card-width);
+  height: 120px;
+  top: 60px; left: 0;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transform-origin: top left;            /* nur einmal */
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform:
+    rotateY(var(--base-angle))
+    translateX(calc(var(--idx) * var(--card-spacing)));
+  transition: width 0.3s ease,
+              transform 0.3s ease;
+}
+.card:nth-child(1) { --idx: 0; }
+.card:nth-child(2) { --idx: 1; }
+.card:nth-child(3) { --idx: 2; }
+.card:nth-child(4) { --idx: 3; }
+.card:nth-child(5) { --idx: 4; }
+
+    .main {
+      flex: 1;
+      padding: 20px;
+      transition: margin-left 0.3s ease;
+    }
+  </style>
+</head>
+	
+	
+<body>
+  <div class="container">
+    <nav class="card-stack">
+      <div class="card">Ebene 1</div>
+      <div class="card">Ebene 2</div>
+      <div class="card">Ebene 3</div>
+      <div class="card">Ebene 4</div>
+      <div class="card">Ebene 5</div>
+    </nav>
+    <main class="main">Hauptbereich</main>
+  </div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const cards   = document.querySelectorAll('.card');
+  const main    = document.querySelector('.main');
+  const root    = getComputedStyle(document.documentElement);
+  const spacing = parseFloat(root.getPropertyValue('--card-spacing'));
+  const factor  = parseFloat(root.getPropertyValue('--shift-factor'));
+  const baseW   = parseFloat(root.getPropertyValue('--card-width'));
+  const baseA   = parseFloat(root.getPropertyValue('--base-angle'));
+  const stepA   = parseFloat(root.getPropertyValue('--step-angle'));
+
+  cards.forEach((card, i) => {
+    card.addEventListener('mouseenter', () => {
+      const newW = baseW * factor;
+      cards.forEach((c, j) => {
+        // Breite zurücksetzen
+        c.style.width = `${baseW}px`;
+        // schmaler für übergeordnete Ebenen
+        if (j > i) c.style.width = `${newW}px`;
+
+        // Winkel & Skalierung berechnen
+        const delta = j - i;
+        const angle = j > i
+          ? baseA + delta * stepA
+          : baseA;
+        const scale = j > i ? factor : 1;
+
+        // X‑Offset berechnen
+        const offset = j * spacing + (j > i ? baseW - newW : 0);
+
+        // Nur Rotation bleibt im CSS‑3D‑Raum, Breite & Offset im 2D
+        c.style.transform =
+          `rotateY(${angle}deg)`
+          + ` translateX(${offset*1.5}px)`
+          + ` translateY(${-offset/3}px)`
+          + ` scaleX(${scale})`;
+      });
+      // Hauptbereich verschieben
+      main.style.marginLeft = `${220 + (baseW - newW)}px`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      cards.forEach((c, j) => {
+        c.style.width = `${baseW}px`;
+        const offset = j * spacing;
+        c.style.transform =
+          `rotateY(${baseA}deg)`
+          + ` translateX(${offset*1.5}px)`
+          + ` translateY(${-offset/3}px)`
+          + ` scaleX(1)`;
+      });
+      main.style.marginLeft = '0';
+    });
+  });
+});
+</script>
+</body>
+</html>

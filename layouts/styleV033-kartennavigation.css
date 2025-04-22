@@ -428,7 +428,7 @@ a {
 	align-content: center;
 	align-items: center;
 	
-	width: 99vw;
+	width: 100%;
 	max-width: 1300px;
 	margin: 0 auto;
 	
@@ -686,20 +686,7 @@ pointer-events: auto;
   height: 40px;
 }
 
-@media (max-width: 991px) {
-  .header-container {
-    max-width: 100%;
-    padding-inline: 20px;
-  }
 
-  .menu-wrapper {
-    max-width: 100%;
-  }
-
-  .main-navigation {
-    max-width: 100%;
-  }
-}
 
 
 
@@ -868,6 +855,7 @@ pointer-events: auto;
   justify-content: flex-start;
   padding: 0;
 	width: auto;
+    max-width: 370px;
   /* REMOVED width: 100%; Let flexbox control width */
   box-sizing: border-box;
 }
@@ -887,7 +875,7 @@ pointer-events: auto;
 }
 
 .responsive {
-  display: grid;
+  display: flex;
   grid-template-columns: auto auto; /* Automatisch an die Inhalte anpassen */
   border-radius: 20px;
   background-color: #f2f2f7;
@@ -895,11 +883,12 @@ pointer-events: auto;
   gap: 10px;
   box-sizing: border-box;
   width: fit-content;
+  max-width: 370px;
   margin-right: auto; /* Stellt sicher, dass der Inhalt nach links gedrückt wird */
   /* Perspektive und Transition */
   cursor: pointer;
   overflow: visible;
-	
+  box-shadow: 0 0px 80px 60px rgba(0,0,0,0.5); 
   flex-direction: row;
   flex-wrap: wrap; /* Damit Elemente bei Platzmangel umbrechen */
 
@@ -921,6 +910,7 @@ pointer-events: auto;
   transition: transform 0.3s ease-out, background-color 0.2s ease;
   cursor: pointer;
   overflow: visible;
+  box-shadow: 0 0px 80px 60px rgba(0,0,0,0.5); 
 }
 
 .responsive-reduced:hover {
@@ -938,6 +928,7 @@ pointer-events: auto;
   width: fit-content;
   margin-right: auto; /* Stellt sicher, dass der Inhalt nach links gedrückt wird */
   transition: background-color 0.2s ease;
+  box-shadow: 0 0px 80px 60px rgba(0,0,0,0.5); 
 }
 
 .responsive-narrow:hover {
@@ -972,7 +963,7 @@ pointer-events: auto;
   flex-direction: column;
   font-family: var(--main-font-family);
   justify-content: start;
-  width: 370px;
+  width: 350px;
   height: auto; /* Dynamische Höhe */
   max-height: 300px;
   box-sizing: border-box;
@@ -1764,9 +1755,7 @@ textarea {
   .content-row {
     flex-direction: column;
   }
-  .content-box {
-    width: 100%;
-  }
+
 }
 
 
@@ -2439,55 +2428,21 @@ canvas.three-canvas {
   background: transparent;
 }
 
-/* Update breakpoint for responsive stacking */
-@media (max-width: 1300px) { /* Changed breakpoint */
-  .card-content-wide {
-    flex-direction: column; 
-    align-items: center; 
-  }
 
-  .card-content-wide > .wrapper:first-of-type,
-  .card-content-wide > .wrapper-reduced {
-    flex-basis: auto; 
-    flex-direction: row;
-    min-width: 0; 
-  }
-}
 
 /* Keep the tablet breakpoint for inner items or adjust if needed */
 @media (max-width: 991px) {
   .card-content-wide > .wrapper-reduced {
-    flex-direction: row; /* Side-by-side inside reduced wrapper on tablet */
+    flex-direction: column; /* Side-by-side inside reduced wrapper on tablet */
     justify-content: center;
     align-items: stretch; /* Ensure items stretch vertically */
     /* Gap is inherited from base .wrapper-reduced */
   }
-  .card-content-wide > .wrapper > .responsive > .content-block {
-    width: 380px;
-  }
+
 }
 
-@media (max-width: 820px) {
-    .card-content-wide > .wrapper-reduced {
-        flex-direction: column; /* Stack inside reduced wrapper on mobile */
-        align-items: center;
-       /* Gap is inherited */
-    }
-    .wrapper-reduced > .wrapper {
-        flex-basis: auto; 
-        width: 100%; 
-        max-width: 400px; 
-        min-width: 0;
-    }
-    .responsive {
-		flex: 0 0 auto;
-      flex-direction: column;
-		grid-template-columns: auto;
-    }
-	.card-content-wide > .wrapper > .responsive > .content-block {
-		width: 350px;
-	}
-}
+
+
 
 /* --- Market Overview Dashboard Styles --- */
 

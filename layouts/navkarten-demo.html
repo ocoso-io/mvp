@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>3D-Karten-Navigation</title>
+  <link rel="stylesheet" href="navkarten-styles.css" />
+  <link rel="stylesheet" href="styleV033-kartennavigation.css">
+  <style>
+	  
+    :root {
+      --base-angle: 30deg;
+      --step-angle: 5deg;
+      --shift-factor: 0;
+      --card-width: 370px;
+      --card-spacing: 30px;
+    }
+
+    /* styles.css */
+    body, html { margin:0; padding:0; height:100%; }
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .card-stack {
+      position: relative;
+      width: 200px;
+      perspective: 1000px;
+      min-width: calc(var(--card-width) + var(--card-spacing) * 4);
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: absolute;
+      width: var(--card-width);
+      max-width: 370px;
+      height: 50%;
+      top: 60px; left: 0;
+      background: none;
+      transform-origin: top left;            /* nur einmal */
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      transform:
+        rotateY(var(--base-angle))
+        translateX(calc(var(--idx) * var(--card-spacing)));
+      transition: 
+        transform 0.3s ease,
+        filter 0.3s ease;
+    }
+    .card:nth-child(1) { --idx: 0; }
+    .card:nth-child(2) { --idx: 1; }
+    .card:nth-child(3) { --idx: 2; }
+    .card:nth-child(4) { --idx: 3; }
+    .card:nth-child(5) { --idx: 4; }
+
+    .main {
+      flex: 1;
+      height: 4000px;
+      transition: margin-left 0.3s ease;
+      background-color: #444;
+		  margin-left: calc(
+    }
+
+    .responsive-narrow {
+         box-shadow: 0 0px 80px 60px rgba(0,0,0,0.5); 
+    }
+  </style>
+</head>
+	
+	
+<body>
+  <div class="container">
+    <nav class="card-stack" id="stack">
+      <div class="card">
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="content-creator.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-market.jpg');">
+              <div class="content-text">
+                <h2 class="title">Creator</h2>
+                <p class="description">
+                  Track performance. Compare verticals. Make informed moves in the IP economy.
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Enter the Market</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      <div class="wrapper">
+        <div class="responsive-narrow" data-link="investor.html">
+          <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends.jpg');">
+            <div class="content-text">
+              <h2 class="title">Investor</h2>
+              <p class="description">
+                From creator tokens to content DAOs — discover where capital meets culture
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Follow the Signal</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper">
+        <div class="responsive-narrow" data-link="advertiser.html">
+          <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-partizipation.jpg');">
+            <div class="content-text">
+              <h2 class="title">Advertiser</h2>
+              <p class="description">
+                Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Join the Table</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="card">
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="content-creator.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-market.jpg');">
+              <div class="content-text">
+                <h2 class="title">Creator</h2>
+                <p class="description">
+                  Track performance. Compare verticals. Make informed moves in the IP economy.
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Enter the Market</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="investor.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends.jpg');">
+              <div class="content-text">
+                <h2 class="title">Investor</h2>
+                <p class="description">
+                  From creator tokens to content DAOs — discover where capital meets culture
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Follow the Signal</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="advertiser.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-partizipation.jpg');">
+              <div class="content-text">
+                <h2 class="title">Advertiser</h2>
+                <p class="description">
+                  Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Join the Table</span>
+              </button>
+            </div>
+          </div>
+        </div>		  
+      </div>
+      <div class="card">
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="content-creator.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-market.jpg');">
+              <div class="content-text">
+                <h2 class="title">Creator</h2>
+                <p class="description">
+                  Track performance. Compare verticals. Make informed moves in the IP economy.
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Enter the Market</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="content-creator.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-market.jpg');">
+              <div class="content-text">
+                <h2 class="title">Creator</h2>
+                <p class="description">
+                  Track performance. Compare verticals. Make informed moves in the IP economy.
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Enter the Market</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="investor.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends.jpg');">
+              <div class="content-text">
+                <h2 class="title">Investor</h2>
+                <p class="description">
+                  From creator tokens to content DAOs — discover where capital meets culture
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Follow the Signal</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="advertiser.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-partizipation.jpg');">
+              <div class="content-text">
+                <h2 class="title">Advertiser</h2>
+                <p class="description">
+                  Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Join the Table</span>
+              </button>
+            </div>
+          </div>
+        </div>		  
+      </div>
+      <div class="card" style="max-width: 370px; flex-direction: column !important">
+        <div class="wrapper" style="max-width: 370px; flex-direction: column !important">
+          <div class="responsive"  data-link="investor-trends.html" style="max-width: 370px; display: flex; flex-direction: column">
+            <div class="image-container" style="background-image: url('img/invest-trends.jpg'); max-width: 350px;">
+            </div>
+            <div class="content-block"  style="width:350px">
+              <div class="content-text" style="width:330px">
+                <h2 class="title">TRENDS</h2>
+                <p class="description">
+                  From creator tokens to content DAOs — discover where capital meets culture
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">FOLLOW THE SIGNAL</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="investor.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends.jpg');">
+              <div class="content-text">
+                <h2 class="title">Investor</h2>
+                <p class="description">
+                  From creator tokens to content DAOs — discover where capital meets culture
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Follow the Signal</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="advertiser.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-partizipation.jpg');">
+              <div class="content-text">
+                <h2 class="title">Advertiser</h2>
+                <p class="description">
+                  Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Join the Table</span>
+              </button>
+            </div>
+          </div>
+        </div>		  
+      </div>
+    </nav>
+    <main class="main">
+      <p>Hauptbereich</p>
+	  <div style="position:fixed; top:10px; right:10px; background:#222; padding:5px; font-family:monospace;">
+        Winkel: <span id="angle-display">0</span>°
+      </div>
+      <div style="position:fixed; top:30px; right:10px; background:#222; padding:5px; font-family:monospace;">
+        Spacing: <span id="spacing-display">0</span>
+      </div>
+      <div style="position:fixed; top:50px; right:10px; background:#222; padding:5px; font-family:monospace;">
+        Main: <span id="main-display">0</span>
+      </div>
+      <div style="position:fixed; top:70px; right:10px; background:#222; padding:5px; font-family:monospace;">
+        CardWidth: <span id="card-display">0</span>
+      </div>
+    </main>
+  </div>
+
+
+<script src="js/3d-Navigation.js" defer></script>	
+</body>
+</html>

@@ -88,9 +88,15 @@
         // Smart‑Contract
         await window.ethereum.request({ method: 'eth_requestAccounts' });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer   = provider.getSigner();
-        const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+        const signer = provider.getSigner();
+        const userAddress = await signer.getAddress();
+        const userBalance = await provider.getBalance(userAddress);
+        const mintFee = ethers.utils.parseEther("0.01");
   
+        if (userBalance.lt(mintFee)) {
+            document.getElementById("result").innerText = "❌ Nicht genug ETH zum Minten vorhanden.";
+            return;}
+
         const tx = await contract.mintNFT(
           category,
           title,

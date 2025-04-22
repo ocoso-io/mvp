@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>3D-Karten-Navigation</title>
+  <link rel="stylesheet" href="navkarten-styles.css" />
+  <link rel="stylesheet" href="styleV033-kartennavigation.css">
+  <style>
+	  
+    :root {
+      --base-angle: 30deg;
+      --step-angle: 5deg;
+      --shift-factor: 0.9;
+      --card-width: 370px;
+      --card-spacing: 30px;
+    }
+
+    /* styles.css */
+    body, html { margin:0; padding:0; height:100%; }
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .card-stack {
+      position: relative;
+      width: 200px;
+      perspective: 1000px;
+      min-width: calc(var(--card-width) + var(--card-spacing) * 4);
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: absolute;
+      width: var(--card-width);
+      max-width: 370px;
+      height: 50%;
+      top: 60px; left: 0;
+      background: none;
+      transform-origin: top left;            /* nur einmal */
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      transform:
+        rotateY(var(--base-angle))
+        translateX(calc(var(--idx) * var(--card-spacing)));
+      transition: 
+        transform 0.3s ease,
+        filter 0.3s ease;
+    }
+    .card:nth-child(1) { --idx: 0; }
+    .card:nth-child(2) { --idx: 1; }
+    .card:nth-child(3) { --idx: 2; }
+    .card:nth-child(4) { --idx: 3; }
+    .card:nth-child(5) { --idx: 4; }
+
+    .main {
+      flex: 1;
+      height: 4000px;
+      transition: margin-left 0.3s ease;
+      background-color: #444;
+		  margin-left: calc(
+    }
+
+    .responsive-narrow {
+         box-shadow: 0 0px 80px 60px rgba(0,0,0,0.5); 
+    }
+  </style>
+</head>
+	
+	
+<body>
+  <div class="container">
+    <nav class="card-stack" id="stack">
+      <div class="card">
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="content-creator.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-market.jpg');">
+              <div class="content-text">
+                <h2 class="title">Creator</h2>
+                <p class="description">
+                  Track performance. Compare verticals. Make informed moves in the IP economy.
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Enter the Market</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      <div class="wrapper">
+        <div class="responsive-narrow" data-link="investor.html">
+          <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends.jpg');">
+            <div class="content-text">
+              <h2 class="title">Investor</h2>
+              <p class="description">
+                From creator tokens to content DAOs — discover where capital meets culture
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Follow the Signal</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper">
+        <div class="responsive-narrow" data-link="advertiser.html">
+          <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-partizipation.jpg');">
+            <div class="content-text">
+              <h2 class="title">Advertiser</h2>
+              <p class="description">
+                Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Join the Table</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="card">
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="content-creator.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-market.jpg');">
+              <div class="content-text">
+                <h2 class="title">Creator</h2>
+                <p class="description">
+                  Track performance. Compare verticals. Make informed moves in the IP economy.
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Enter the Market</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="investor.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends.jpg');">
+              <div class="content-text">
+                <h2 class="title">Investor</h2>
+                <p class="description">
+                  From creator tokens to content DAOs — discover where capital meets culture
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Follow the Signal</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="advertiser.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-partizipation.jpg');">
+              <div class="content-text">
+                <h2 class="title">Advertiser</h2>
+                <p class="description">
+                  Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Join the Table</span>
+              </button>
+            </div>
+          </div>
+        </div>		  
+      </div>
+      <div class="card">
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="content-creator.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-market.jpg');">
+              <div class="content-text">
+                <h2 class="title">Creator</h2>
+                <p class="description">
+                  Track performance. Compare verticals. Make informed moves in the IP economy.
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Enter the Market</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="content-creator.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-market.jpg');">
+              <div class="content-text">
+                <h2 class="title">Creator</h2>
+                <p class="description">
+                  Track performance. Compare verticals. Make informed moves in the IP economy.
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Enter the Market</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="investor.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends.jpg');">
+              <div class="content-text">
+                <h2 class="title">Investor</h2>
+                <p class="description">
+                  From creator tokens to content DAOs — discover where capital meets culture
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Follow the Signal</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="advertiser.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-partizipation.jpg');">
+              <div class="content-text">
+                <h2 class="title">Advertiser</h2>
+                <p class="description">
+                  Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Join the Table</span>
+              </button>
+            </div>
+          </div>
+        </div>		  
+      </div>
+      <div class="card" style="max-width: 370px; flex-direction: column !important">
+        <div class="wrapper" style="max-width: 370px; flex-direction: column !important">
+          <div class="responsive"  data-link="investor-trends.html" style="max-width: 370px; display: flex; flex-direction: column">
+            <div class="image-container" style="background-image: url('img/invest-trends.jpg'); max-width: 350px;">
+            </div>
+            <div class="content-block"  style="width:350px">
+              <div class="content-text" style="width:330px">
+                <h2 class="title">TRENDS</h2>
+                <p class="description">
+                  From creator tokens to content DAOs — discover where capital meets culture
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">FOLLOW THE SIGNAL</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="investor.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends.jpg');">
+              <div class="content-text">
+                <h2 class="title">Investor</h2>
+                <p class="description">
+                  From creator tokens to content DAOs — discover where capital meets culture
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Follow the Signal</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="responsive-narrow" data-link="advertiser.html">
+            <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-partizipation.jpg');">
+              <div class="content-text">
+                <h2 class="title">Advertiser</h2>
+                <p class="description">
+                  Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+                </p>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Join the Table</span>
+              </button>
+            </div>
+          </div>
+        </div>		  
+      </div>
+    </nav>
+    <main class="main">
+      <p>Hauptbereich</p>
+	  <div style="position:fixed; top:10px; right:10px; background:#222; padding:5px; font-family:monospace;">
+        Winkel: <span id="angle-display">0</span>°
+      </div>
+      <div style="position:fixed; top:30px; right:10px; background:#222; padding:5px; font-family:monospace;">
+        Spacing: <span id="spacing-display">0</span>
+      </div>
+      <div style="position:fixed; top:50px; right:10px; background:#222; padding:5px; font-family:monospace;">
+        Main: <span id="main-display">0</span>
+      </div>
+      <div style="position:fixed; top:70px; right:10px; background:#222; padding:5px; font-family:monospace;">
+        CardWidth: <span id="card-display">0</span>
+      </div>
+    </main>
+  </div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const cards   = document.querySelectorAll('.card');
+  const main    = document.querySelector('.main');
+  const root    = document.documentElement;
+  const styles  = getComputedStyle(root);
+
+  const spacing = parseFloat(styles.getPropertyValue('--card-spacing'));
+  const factor  = parseFloat(styles.getPropertyValue('--shift-factor'));
+  const baseW   = parseFloat(styles.getPropertyValue('--card-width'));
+  const stepA   = parseFloat(styles.getPropertyValue('--step-angle'));
+  const baseAngleStatic = parseFloat(styles.getPropertyValue('--base-angle'));
+  const maxBlur = 3;
+
+  let dynamicAngle = 0;
+  let dynamicSpacing = 0;
+  let dynamicMain = 8;
+  let gcardwidth = 0;
+
+	
+	
+  function updateDynamicAngle() {
+    const vw = window.innerWidth;
+	const anzahl = 0;  
+	  
+	dynamicSpacing = Math.max(0, (1600 - vw) / 70);
+    dynamicAngle = Math.max(0, (1600 - vw) / 40); // z. B. bei 1200px → +20°
+	  
+    const baseA = baseAngleStatic + dynamicAngle;
+	  	  
+    cards.forEach((c, j) => {
+      const offset = j * (spacing - dynamicSpacing);
+      c.style.width = `${baseW}px`;
+      c.style.transform =
+        `rotateY(${baseA}deg)`
+        + ` translateY(${offset / 6 - dynamicSpacing*j/2}px)`
+        + ` translateX(${offset}px)`
+        + ` translateZ(${offset}px)`;
+      c.style.filter = `blur(0)`;
+		
+      const anzahl = j;
+    });
+  }
+  updateDynamicAngle();
+
+	
+	
+  function updateDynamicWidth() {
+    const vw = window.innerWidth;
+	  
+    const card = document.querySelector('.card');
+    const rect = card.getBoundingClientRect();
+    const cardwidth = rect.width;	
+
+    const stack = document.getElementById('stack');
+    const stackRect = stack.getBoundingClientRect();
+    const stackWidth = stackRect.width;	  
+	  
+	dynamicSpacing = Math.max(0, (1600 - vw) / 70);
+    dynamicAngle = Math.max(0, (1600 - vw) / 40); // z. B. bei 1200px → +20°
+	  
+    const baseA = baseAngleStatic + dynamicAngle;
+	  
+    gcardwidth = cardwidth;
+	  
+    cards.forEach((c, j) => {
+      const offset = j * (spacing - dynamicSpacing);
+      c.style.width = `${baseW}px`;
+      c.style.transform =
+        `rotateY(${baseA}deg)`
+        + ` translateY(${offset / 6 - dynamicSpacing*j/2}px)`
+        + ` translateX(${offset}px)`
+        + ` translateZ(${offset}px)`;
+      c.style.filter = `blur(0)`;
+      dynamicMain = cardwidth - stackWidth + (spacing-dynamicSpacing) * (j+2) ;
+    });
+	  
+    main.style.marginLeft = `${dynamicMain}px`;
+    dynamicMain -= 1000;
+    showNumbers();
+  }
+  updateDynamicWidth();
+	
+	
+  window.addEventListener('resize', () => {
+ 
+      // Grundstellung setzen
+      const event1 = new Event('mouseenter');
+      cards.forEach(card => card.dispatchEvent(event1));
+      const event2 = new Event('mouseleave');
+      cards.forEach(card => card.dispatchEvent(event2));
+  });
+	
+	
+	
+	
+  cards.forEach((card, i) => {
+    card.addEventListener('mouseenter', () => {
+      const baseA = baseAngleStatic + dynamicAngle;
+      const newW = (baseW - dynamicSpacing) * factor;
+      const shift = (baseW - dynamicSpacing) * factor;
+      const maxOff = (cards.length - 1);
+		
+      const card = document.querySelector('.card');
+      const rect = card.getBoundingClientRect();
+      const cardwidth = rect.width;
+		
+      const stack = document.getElementById('stack');
+      const stackRect = stack.getBoundingClientRect();
+      const stackWidth = stackRect.width;
+		
+      const distance = 0;
+      const vw = window.innerWidth;
+				
+		
+      cards.forEach((c, j) => {
+        
+        const delta = i - j;
+        const angle = j > i
+          ? baseA + delta * stepA
+          : baseA;
+		  
+        const distance = j > i
+          ? cardwidth/2
+          : 0;
+		  
+        if (j == 0) {
+            card.style.width = `420px`;
+			card.style.padding = `0 0 0 50px`;
+        }		
+		  
+        const offset = (spacing - dynamicSpacing) * j * 2.5;
+		  
+        let blur = 0;
+        if (j > i && j > 0) {
+          blur = (j / maxOff) * maxBlur;
+        } else {
+          blur = 0;
+		}
+		
+        if (j > 0) {
+          c.style.transform =
+            `rotateY(${angle}deg)`
+            + ` translateY(${offset / 6 - dynamicSpacing*j/2}px)`
+            + ` translateX(${offset+distance+50}px)`
+            + ` translateZ(${offset}px)`;
+        } else {
+          c.style.transform =
+            `rotateY(${angle}deg)`
+            + ` translateY(${offset / 6 - dynamicSpacing*j/2}px)`
+            + ` translateX(${offset+distance}px)`
+            + ` translateZ(${offset}px)`;
+        }
+		  
+		  
+        c.style.filter = `blur(${blur}px)`;
+        dynamicMain = cardwidth - stackWidth + (spacing-dynamicSpacing) * (j+2) ;
+      });
+		
+
+      //dynamicMain = cardwidth - stackWidth + cardwidth * 1.3;	
+      main.style.marginLeft = `${dynamicMain}px`;
+      gcardwidth = cardwidth;
+      showNumbers();
+		
+      //main.style.marginLeft = `${dynamicMain}px`;//`${220 + (baseW - newW)}px`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      const vw = window.innerWidth;		
+      const card = document.querySelector('.card');
+      const rect = card.getBoundingClientRect();
+      const cardwidth = rect.width;	
+		
+      const stack = document.getElementById('stack');
+      const stackRect = stack.getBoundingClientRect();
+      const stackWidth = stackRect.width;
+		
+      dynamicSpacing = Math.max(0, (1600 - vw) / 70);
+      dynamicAngle = Math.max(0, (1600 - vw) / 40); // z. B. bei 1200px → +20°
+      const baseA = baseAngleStatic + dynamicAngle;
+		
+      const movedeck = cardwidth + spacing * 2 - stackWidth;
+		
+      cards.forEach((c, j) => {
+        const offset = j * (spacing - dynamicSpacing);
+        c.style.width = `${baseW}px`;
+        c.style.transform =
+          `rotateY(${baseA*1.5}deg)`
+          + ` translateY(${0}px)`
+          + ` translateX(${offset + movedeck}px)`
+          + ` translateZ(${offset}px)`;
+        c.style.filter = `blur(0)`;
+        dynamicMain = cardwidth - stackWidth + (spacing-dynamicSpacing) * (j) + movedeck;
+	  });
+		
+
+      showNumbers();
+      main.style.marginLeft = `${dynamicMain}px`;
+    });
+  });
+
+function showNumbers() {
+  const el = document.getElementById('angle-display');
+  if (el) el.textContent = dynamicAngle.toFixed(1);
+  const sl = document.getElementById('spacing-display');
+  if (sl) sl.textContent = dynamicSpacing.toFixed(1);
+  const ml = document.getElementById('main-display');
+  if (ml) ml.textContent = dynamicMain.toFixed(1);
+  const cl = document.getElementById('card-display');
+  if (cl) cl.textContent = gcardwidth.toFixed(1);
+	
+}	
+	
+  // Grundstellung setzen
+  const event1 = new Event('mouseenter');
+  cards.forEach(card => card.dispatchEvent(event1));
+	
+  const event2 = new Event('mouseleave');
+  cards.forEach(card => card.dispatchEvent(event2));
+});
+</script>
+</body>
+</html>
