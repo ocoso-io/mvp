@@ -24,4 +24,7 @@ Thumbs.db
 # Build files
 dist/
 build/
-*.log 
+*.log
+
+.idea
+node_modules
