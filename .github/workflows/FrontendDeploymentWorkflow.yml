@@ -1,0 +1,43 @@
+name: Deploy Frontend to Webserver
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy via SFTP
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Check if tag is on main branch
+        id: check_branch
+        run: |
+          TAG_BRANCH=$(git branch -a --contains ${{ github.ref }} | grep -v HEAD | grep -v detached | sed -e 's/^\s*//' -e 's/^remotes\/origin\///')
+          echo "Tag is on branch: $TAG_BRANCH"
+          if [[ "$TAG_BRANCH" == *"main"* ]]; then
+            echo "Tag is on main branch, proceeding with deployment"
+            echo "is_main=true" >> $GITHUB_OUTPUT
+          else
+            echo "Tag is not on main branch, skipping deployment"
+            echo "is_main=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Deploy frontend files via SFTP
+        if: steps.check_branch.outputs.is_main == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.SFTP_SERVER }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: ${{ secrets.SFTP_PORT }} # Optional, Standard ist 22
+          protocol: sftp
+          local-dir: ./frontend/
+          server-dir: ${{ secrets.SFTP_TARGET_DIR }}
