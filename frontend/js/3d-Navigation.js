@@ -54,24 +54,6 @@ function initialize3DNavigation() {
     }
 
     /**
-     * Aktualisiert die Karten-Transformation für den Standard-Zustand
-     */
-    function updateCardsTransform() {
-        const { baseAngle, spacing } = calculateDynamicValues();
-        
-        cards.forEach((card, index) => {
-            const offset = index * spacing;
-            card.style.width = `${config.cardWidth}px`;
-            card.style.transform = 
-                `rotateY(${baseAngle}deg) 
-                 translateY(${offset / 6 - dynamics.spacing * index / 2}px) 
-                 translateX(${offset}px) 
-                 translateZ(${offset}px)`;
-            card.style.filter = 'blur(0)';
-        });
-    }
-
-    /**
      * Aktualisiert die Dimension und Position des Hauptinhalts
      */
     function updateLayout() {
