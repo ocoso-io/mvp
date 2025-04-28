@@ -6,10 +6,14 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>OCOSO MVP - Full Layout</title>
-    <link rel="stylesheet" href="styleV033.css?v=20240321">
+    <!-- <link rel="stylesheet" href="styleV033-kartennavigation.css"> -->
+	<link rel="stylesheet" href="css/00-variables.css">
+    <link rel="stylesheet" href="css/01-typography.css">
+    <link rel="stylesheet" href="css/02-components.css">
+    <link rel="stylesheet" href="css/03-media.css">
     <style>
 		.upload-area.dragover {
-  border: 2px dashed #00cc88;
+  border: var(--px-2) dashed #00cc88;
   background-color: #f7fdfb;
 }
     </style>
@@ -21,18 +25,21 @@
 
 
 	
-
 <section class="hero">
-  <div class="hero-container" style="background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/4691e67e3b75d917f12dc87357c5328ca76244d9');">
-    <div class="hero-content-wrapper">
-      <h1 class="main-heading">CONTENT…</h1>
-      <p></p>
-      <p class="hero-description">
-        Yes, it's still content. Created by humans. Protected by code. Powered
-        by community. Not fed into a feed. Not buried by algorithms. It's not
-        just what you post — it's what you own. Content is the asset class of
-        the open web3. Make it work. Make it last.
-      </p>
+  <div class="hero-container" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%), 
+									 radial-gradient(circle at 50% 50%, 
+                                     rgba(0, 0, 0, 0)  60%,    
+                                     rgba(0, 0, 0, 1)  100%), 
+									 url('img/head-mint-cmyk.jpg'); 
+									 background-position: top center;">
+	  
+    <div style="display: flex; flex-direction: column; width: 80%;">
+      <div class="hero-content-wrapper" style="flex-direction: flex-start; justify-content: top;">
+        <div class="main-heading" style="min-height: var(--px-300);   margin-left: var(--px-50)"><h1 class="text-box-wide">OWN IT. CHAIN IT. CLAIM IT.</h1></div>
+        <div class="hero-description" style=" margin-left: 25%"><h5 class="text-box-wide">
+          MINT YOUR CONTENT AND MAKE IT UNTOUCHABLE. You're not just creating — you're claiming what's yours.
+        </h5></div>
+      </div>
     </div>
     <div class="cta-section">
       <div class="button-group">
@@ -48,13 +55,80 @@
     </div>
   </div>
 </section>
+
 	
-<div class="page-wrapper">	
+<div class="card-stack-wrapper">
+  <nav class="card-stack" id="stack">
 	
-	
-  <div style="height: 80px">&nbsp;</div>
-	
-    <article class="card-content-wide">
+    <div class="card"> 
+      <div class="wrapper">
+        <div class="responsive"  data-link="content-creator.html">
+          <div class="image-container" style="background-image: url('img/invest-market.jpg');">
+          </div>
+          <div class="content-block">
+            <div class="content-text">
+              <h2 class="title">Creator</h2>
+              <p class="description">
+                Track performance. Compare verticals. Make informed moves in the IP economy.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Enter the Market</span>
+            </button>
+          </div>
+        </div>
+      </div>
+				
+      <div class="wrapper-reduced">
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="investor.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Investor</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Follow the Signal</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="advertiser.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Advertiser</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Join the Table</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+      </div>	
+    </div>
+
+    <div class="card"> 
       <div class="wrapper">
         <div class="responsive"  data-link="content-mint.html">
           <div class="image-container" style="background-image: url('img/Minten.jpg');">
@@ -120,10 +194,19 @@
         </div>
 		  
       </div>
-		
-    </article>
+
+    </div>	  
+  </nav>
+</div>	
 	
-	  <div style="height: 80px">&nbsp;</div>	
+<main class="main">		
+	
+	
+<div class="page-wrapper">	
+	
+	
+  <div style="height: var(--px-80)">&nbsp;</div>
+	
 	
 <article class="headline-left-wrapper">
   <div class="healine-left-container">
@@ -138,7 +221,7 @@
       </section>
       <section>
         <p>
-          Mint your content and make it untouchable.This isn't a post. It's a proof of authorship. This isn't a file. It's a fingerprint on-chain. You're not just creating — you're claiming what's yours. Mint it. Protect it. Own it forever.
+          This isn't a post. It's a proof of authorship. This isn't a file. It's a fingerprint on-chain.  Mint it. Protect it. Own it forever.
         </p>
       </section>
     </div>
@@ -149,7 +232,7 @@
 	
 
 	
-  <div style="height: 80px">&nbsp;</div>	
+  <div style="height: var(--px-80)">&nbsp;</div>	
 	
 <center class="content-frame">
 	
@@ -175,7 +258,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
   </p>
 </section>	
 	
- <div style="height: 80px">&nbsp;</div>	
+ <div style="height: var(--px-80)">&nbsp;</div>	
 	
 <section class="content-submission">
   <h2 class="submission-title">Upload your Masterpiece</h2>
@@ -195,7 +278,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
 </section>
 	
 	
- <div style="height: 80px">&nbsp;</div>	
+ <div style="height: var(--px-80)">&nbsp;</div>	
 	
 
 	
@@ -224,7 +307,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
   </div>
 </nav>	
 	
-	 <div style="height: 2px">&nbsp;</div>	
+	 <div style="height: var(--px-2)">&nbsp;</div>	
 	
 <section class="caroussel-container">
   <section class="caroussel-back">
@@ -257,12 +340,12 @@ You show up — with proof of authorship, proof of existence, proof of intent.
                   <h6 style="color: black;" >Build, Code, Connect. Your digital space – your rules.</h6>
                 </div>
                 <div class="speech-icon">  
-                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: 80px; height: 80px"/>
+                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: var(--px-80); height: var(--px-80)"/>
                 </div>
               </div>	
             </div>
 
-            <div style="height: 20px">&nbsp;</div>
+            <div style="height: var(--px-20)">&nbsp;</div>
             <h4 style="width: fit-content">Webpage</h4>
           </article>
 			
@@ -278,12 +361,12 @@ You show up — with proof of authorship, proof of existence, proof of intent.
                   <h6 style="color: black;" >Create visuals that speak louder than words.</h6>
                 </div>
                 <div class="speech-icon">  
-                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: 80px; height: 80px"/>
+                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: var(--px-80); height: var(--px-80)"/>
                 </div>
               </div>	
             </div>
 
-            <div style="height: 20px">&nbsp;</div>
+            <div style="height: var(--px-20)">&nbsp;</div>
             <h4 style="width: fit-content">Picture</h4>
           </article>		
         </div>
@@ -301,12 +384,12 @@ You show up — with proof of authorship, proof of existence, proof of intent.
                   <h6 style="color: black;" >Write, script, narrate. Your words, your message.</h6>
                 </div>
                 <div class="speech-icon">  
-                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: 80px; height: 80px"/>
+                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: var(--px-80); height: var(--px-80)"/>
                 </div>
               </div>	
             </div>
 
-            <div style="height: 20px">&nbsp;</div>
+            <div style="height: var(--px-20)">&nbsp;</div>
             <h4 style="width: fit-content">Text</h4>
           </article>
 			
@@ -322,12 +405,12 @@ You show up — with proof of authorship, proof of existence, proof of intent.
                   <h6 style="color: black;" >Record, edit, inspire. Bring your vision to life.</h6>
                 </div>
                 <div class="speech-icon">  
-                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: 80px; height: 80px"/>
+                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: var(--px-80); height: var(--px-80)"/>
                 </div>
               </div>	
             </div>
 
-            <div style="height: 20px">&nbsp;</div>
+            <div style="height: var(--px-20)">&nbsp;</div>
             <h4 style="width: fit-content">Video</h4>
           </article>
         </div>
@@ -345,12 +428,12 @@ You show up — with proof of authorship, proof of existence, proof of intent.
                   <h6 style="color: black;" >Design, prototype, launch. Tools that shape the future.</h6>
                 </div>
                 <div class="speech-icon">  
-                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: 80px; height: 80px"/>
+                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: var(--px-80); height: var(--px-80)"/>
                 </div>
               </div>	
             </div>
 
-            <div style="height: 20px">&nbsp;</div>
+            <div style="height: var(--px-20)">&nbsp;</div>
             <h4 style="width: fit-content">App</h4>
           </article>
 			
@@ -366,12 +449,12 @@ You show up — with proof of authorship, proof of existence, proof of intent.
                   <h6 style="color: black;" >Build, Code, Connect. Your digital space – your rules.</h6>
                 </div>
                 <div class="speech-icon">  
-                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: 80px; height: 80px"/>
+                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: var(--px-80); height: var(--px-80)"/>
                 </div>
               </div>	
             </div>
 
-            <div style="height: 20px">&nbsp;</div>
+            <div style="height: var(--px-20)">&nbsp;</div>
             <h4 style="width: fit-content">Game</h4>
           </article>
         </div>
@@ -389,12 +472,12 @@ You show up — with proof of authorship, proof of existence, proof of intent.
                   <h6 style="color: black;" >Remix, reshape, redefine. Viral content at your fingertips.</h6>
                 </div>
                 <div class="speech-icon">  
-                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: 80px; height: 80px"/>
+                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: var(--px-80); height: var(--px-80)"/>
                 </div>
               </div>	
             </div>
 
-              <div style="height: 20px">&nbsp;</div>
+              <div style="height: var(--px-20)">&nbsp;</div>
               <h4 style="width: fit-content">Meme</h4>
           </article>
 
@@ -410,12 +493,12 @@ You show up — with proof of authorship, proof of existence, proof of intent.
                   <h6 style="color: black;" >Analyze, train, evolve. Intelligence shaped by you.</h6>
                 </div>
                 <div class="speech-icon">  
-                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: 80px; height: 80px"/>
+                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: var(--px-80); height: var(--px-80)"/>
                 </div>
               </div>	
             </div>
 
-            <div style="height: 20px">&nbsp;</div>
+            <div style="height: var(--px-20)">&nbsp;</div>
             <h4 style="width: fit-content">Data + AI</h4>
           </article>
         </div>
@@ -430,32 +513,32 @@ You show up — with proof of authorship, proof of existence, proof of intent.
         </h5>
       </section>		
 
-      <div style="height: 20px">&nbsp;</div>
+      <div style="height: var(--px-20)">&nbsp;</div>
 		
       <section class="caroussel-inner" aria-label="Type Gallery Inner">
 
         <!-- Beschreibung / URL -->
         <section class="content-submission">
           <h3 class="submission-title">Link to your content</h3>
-          <div style="height: 25px">&nbsp;</div>	
+          <div style="height: var(--px-25)">&nbsp;</div>	
           <textarea id="mint-description" class="url-input-container" rows="1" placeholder="Paste the URL that proves you were first here."></textarea>
         </section>	
 
-        <div style="height: 10px">&nbsp;</div>
+        <div style="height: var(--px-10)">&nbsp;</div>
 
         <!-- Titel -->
         <section class="content-submission">
           <h3 class="submission-title">What's it called? Give it a name that sticks</h3>
-          <div style="height: 25px">&nbsp;</div>
+          <div style="height: var(--px-25)">&nbsp;</div>
           <textarea id="mint-title" class="url-input-container" rows="1" placeholder="Say what it is, and let it speak for itself."></textarea>
         </section>	
 
-        <div style="height: 10px">&nbsp;</div>
+        <div style="height: var(--px-10)">&nbsp;</div>
 
         <!-- Tags -->
         <section class="content-submission">
           <h3 class="submission-title">ADD a few tags</h3>
-          <div style="height: 25px">&nbsp;</div>	
+          <div style="height: var(--px-25)">&nbsp;</div>	
           <textarea id="mint-tags" class="url-input-container" rows="1" placeholder="Signals for your tribe."></textarea>
         </section>	
 
@@ -499,12 +582,12 @@ You show up — with proof of authorship, proof of existence, proof of intent.
                   <h6 style="color: black;" >Upload your media by dragging it here or clicking to select.</h6>
                 </div>
                 <div class="speech-icon">  
-                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: 80px; height: 80px"/>
+                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: var(--px-80); height: var(--px-80)"/>
                 </div>
               </div>	
             </div>	  
 
-            <button class="content-button" aria-label="Content navigation button" style="width: 300px; margin: 0px 40px 0px -23px; border-radius: 0 0 20px 20px">
+            <button class="content-button" aria-label="Content navigation button" style="width: var(--px-300); margin: 0px var(--px-40) 0px -23px; border-radius: 0 0 var(--px-20) var(--px-20)">
               <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon" />
               <span class="content-button-text">Upload and Take it</span>
             </button>  
@@ -512,7 +595,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
 	
         </article>	
 		  
-        <div style="height: 20px">&nbsp;</div>
+        <div style="height: var(--px-20)">&nbsp;</div>
         <section class="content-submission">
           <h2 class="submission-title">Some Options</h2>
           <h5 class="submission-subtitle">
@@ -572,7 +655,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
 
         </section>	
 	
-        <div style="height: 40px">&nbsp;</div>	
+        <div style="height: var(--px-40)">&nbsp;</div>	
 
           <section class="content-submission" style="display: flex; flex-direction: row;">
             <button id="finalMintButton" class="content-button" aria-label="Content navigation button" style="width:100%" >
@@ -598,12 +681,12 @@ You show up — with proof of authorship, proof of existence, proof of intent.
 	
 	
 	
-<div style="height: 80px">&nbsp;</div>	
+<div style="height: var(--px-80)">&nbsp;</div>	
 	
 	
 </center>	
 	
-<div style="height: 240px">&nbsp;</div>
+<div style="height: var(--px-240)">&nbsp;</div>
 	
     
 </div>
@@ -637,7 +720,7 @@ You show up — with proof of authorship, proof of existence, proof of intent.
   });
 </script>	
 	
-	
+	</main>
 	
 <div id="footer-placeholder"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -645,7 +728,8 @@ You show up — with proof of authorship, proof of existence, proof of intent.
 <script src="ocoso-app-functions.js" defer></script>	
 <script src="js/wallet.js" defer></script>	
 <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-<script src="js/mint.js" defer></script>
+<script src="js/mintNFTohneAxios.js" defer></script>			
+<script src="js/3d-Navigation.js" defer></script>
 	
 </body>
 </html>

@@ -1,0 +1,324 @@
+@media (max-width: 640px) { /* Kept as pixels */
+  .typography-showcase {
+    padding: var(--px-12);
+  }
+  /* .heading-* classes not used in provided HTML, keeping for reference */
+  .heading-1 {
+    font-size: var(--px-36);
+  }
+  .heading-2 {
+    font-size: var(--px-28);
+  }
+  .heading-3 {
+    font-size: var(--px-24);
+  }
+  .heading-4 {
+    font-size: var(--px-20);
+  }
+  .heading-5 {
+    font-size: var(--px-16);
+  }
+  .hero-container {
+    padding: var(--px-16);
+  }
+  .main-heading {
+    font-size: var(--px-36);
+  }
+  .description { /* Assuming this is hero-description */
+    font-size: var(--px-14);
+  }
+  .headline-left-wrapper {
+    padding: 0 var(--px-16);
+  }
+  .headline-left-inner {
+    padding: 0;
+  }
+  .headline-left-title { /* Assuming class exists */
+    font-size: var(--px-28);
+  }
+  .headline-left-subtitle { /* Assuming class exists */
+    font-size: var(--px-18);
+  }
+  .headline-left-description { /* Assuming class exists */
+    font-size: var(--px-14);
+  }
+  .submission-title, .submission-subtitle {
+    width: 100%;
+  }
+  .url-input-container {
+    min-width: 100%;
+  }
+  .option-title {
+    font-size: var(--px-18);
+  }
+  .option-description {
+    font-size: var(--px-14);
+  }
+  .vertical-funds-grid {
+    grid-template-columns: 1fr; /* Stack cards */
+  }
+  .filter-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .filter-controls select, .filter-controls .filter-button {
+    width: 100%;
+  }
+  .fund-stats {
+    grid-template-columns: 1fr; /* Stack stats */
+  }
+  .fund-card-actions {
+    flex-direction: column;
+  }
+  .content-row {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) { /* Kept as pixels */
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-column {
+    border-right: none;
+    border-bottom: var(--px-1) solid #333;
+    margin-bottom: 1.5rem; /* Kept as rem */
+    padding-bottom: 1rem; /* Kept as rem */
+  }
+  .footer-column:last-child {
+    border-bottom: none;
+  }
+  .category-summary-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  }
+  .monetization-summary-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  }
+}
+
+@media (max-width: 991px) { /* Kept as pixels */
+  .card-content-wide > .wrapper-reduced {
+    flex-direction: column; /* Side-by-side inside reduced wrapper on tablet */
+    justify-content: center;
+    align-items: stretch; /* Ensure items stretch vertically */
+    /* Gap is inherited from base .wrapper-reduced */
+  }
+  .submission-title, .submission-subtitle {
+    width: 100%;
+  }
+  .toggle-cell, .action-cell {
+    padding-left: var(--px-20);
+    padding-right: var(--px-20);
+  }
+  .content-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--px-10);
+  }
+  .headline-left-wrapper {
+    padding: 0 0;
+  }
+  .headline-left-inner {
+    padding: var(--px-24);
+  }
+  .headline-left-title { /* Assuming class exists */
+    font-size: var(--px-32);
+  }
+  .headline-left-subtitle { /* Assuming class exists */
+    font-size: var(--px-20);
+  }
+  .headline-left-description { /* Assuming class exists */
+    font-size: var(--px-14);
+  }	
+  .main-navigation {
+    display: none;
+  }
+  .header-controls {
+    display: flex; /* Zeige Hamburger-Menü und Connect Wallet nur unterhalb 991 */
+  }
+  .wallet-button-wrapper {
+    /*display: block;*/
+    margin-right: var(--px-100);
+  }
+  .spacer {
+    display: none;
+  }
+  .hero-container {
+    padding: var(--px-20) var(--px-40);
+  }
+  .main-heading {
+    font-size: var(--px-48);
+  }
+  .description { /* Assuming this is hero-description */
+    font-size: var(--px-16);
+  }
+  .typography-showcase {
+    padding: var(--px-16);
+  }
+  /* .heading-* classes not used in provided HTML, keeping for reference */
+  .heading-1 {
+    font-size: var(--px-48);
+  }
+  .heading-2 {
+    font-size: var(--px-32);
+  }
+  .heading-3 {
+    font-size: 26px; /* No variable match */
+  }
+  .heading-4 {
+    font-size: var(--px-22);
+  }
+  .heading-5 {
+    font-size: var(--px-18);
+  }
+  .dashboard-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .filter-controls {
+    justify-content: space-between;
+  }
+  .filter-controls select, .filter-controls .filter-button {
+    flex-grow: 1;
+    min-width: var(--px-120);
+  }
+  .option-description {
+    font-size: var(--px-16);
+  }
+  .data-table {
+    max-width: 100%;
+  }
+  .option-title {
+    font-size: var(--px-20);
+  }
+  .submission-title, .submission-subtitle {
+    width: 100%;
+  }
+  .card-stack-wrapper {
+    display: none !important;
+  }
+}
+
+@media (hover:none) and (pointer:coarse), (max-width:991px) {
+  .hamburger-button {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 800px) { /* Kept as pixels */
+  .content-row {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 992px) { /* Kept as pixels */
+  .dashboard-main-content {
+    display: flex; /* Changed to flex */
+    align-items: flex-start; /* Align items to the top (flex) */
+    gap: var(--px-60); /* Use gap for spacing */
+    /* Removed grid-template-columns and column-gap */
+  }
+  .dashboard-highlights {
+    order: -1; /* Move highlights to the left */
+    margin-top: 0; /* Ensure no top margin */
+    flex-basis: var(--px-300); /* Set fixed width for highlights */
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+  .vertical-funds-grid {
+    margin-top: 0; /* Ensure no top margin */
+    flex-grow: 1; /* Allow grid to take remaining space */
+    /* min-width: 0; Optional: prevent content overflow issues in flex */
+  }
+  .dashboard-charts {
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+  }
+}
+
+@media (min-width: 1100px) { /* Kept as pixels */
+  .category-summary-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  }
+  .monetization-summary-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .step-item {
+    transition: transform 0.2s ease;
+  }
+  .step-item:hover {
+    transform: scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .step-item {
+    transition: transform 0.2s ease;
+  }
+  .step-item:hover {
+    transform: scale(1.05);
+  }
+}
+
+@media (forced-colors: active) {
+  .progress-line {
+    background-color: CanvasText;
+  }
+  .step-indicator {
+    border: var(--px-1) solid CanvasText;
+  }
+  .step-item.active .step-indicator {
+    background-color: CanvasText;
+  }
+  .step-label {
+    color: CanvasText;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .step-item {
+    transition: transform 0.2s ease;
+  }
+
+  .step-item:hover {
+    transform: scale(1.05);
+  }
+}
+
+@media (forced-colors: active) {
+  .progress-line {
+    background-color: CanvasText;
+  }
+  .step-indicator {
+    border: var(--px-1) solid CanvasText;
+  }
+  .step-item.active .step-indicator {
+    background-color: CanvasText;
+  }
+  .step-label {
+    color: CanvasText;
+  }
+}
+
+@media (hover:none) and (pointer:coarse){
+  .card-stack-wrapper{display:none!important;}
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  .progress-line {
+    background-color: CanvasText;
+  }
+  .step-indicator {
+    border: var(--px-1) solid CanvasText;
+  }
+  .step-item.active .step-indicator {
+    background-color: CanvasText;
+  }
+  .step-label {
+    color: CanvasText;
+  }
+}

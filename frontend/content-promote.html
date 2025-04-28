@@ -5,8 +5,11 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>OCOSO MVP - Full Layout</title>
-    <link rel="stylesheet" href="styleV033.css?v=20240321">
+    <title>OCOSO MVP - Full Layout</title>    <!-- <link rel="stylesheet" href="styleV033-kartennavigation.css"> -->
+    <link rel="stylesheet" href="css/00-variables.css">
+    <link rel="stylesheet" href="css/01-typography.css">
+    <link rel="stylesheet" href="css/02-components.css">
+    <link rel="stylesheet" href="css/03-media.css">
     <style>
         /* versteckt das Promotion‑Panel initial */
         #promotion-info-container {
@@ -36,11 +39,11 @@
           background: rgba(20, 20, 20, 0.90); /* halbtransparentes Dunkel als Hintergrund */
 		  backdrop-filter: blur(5px);
           color: #fff;
-          padding: 20px;
+          padding: var(--px-20);
           border-radius: 8px;
-          box-shadow: 2 2px 10px rgba(0,0,0,0.8);
-          width: 400px;
-          height: 350px;
+          box-shadow: 2 var(--px-2) var(--px-10) rgba(0,0,0,0.8);
+          width: var(--px-400);
+          height: var(--px-350);
           max-width: 90vw;
           max-height: 90vh;
           overflow: auto;             /* falls der Inhalt zu groß ist */
@@ -54,18 +57,21 @@
 <div id="overlay-menu-placeholder"></div>
 
 	
-
 <section class="hero">
-  <div class="hero-container" style="background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/4691e67e3b75d917f12dc87357c5328ca76244d9');">
-    <div class="hero-content-wrapper">
-      <h1 class="main-heading">CONTENT…</h1>
-      <p></p>
-      <p class="hero-description">
-        Yes, it's still content. Created by humans. Protected by code. Powered
-        by community. Not fed into a feed. Not buried by algorithms. It's not
-        just what you post — it's what you own. Content is the asset class of
-        the open web3. Make it work. Make it last.
-      </p>
+  <div class="hero-container" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%), 
+									 radial-gradient(circle at 50% 50%, 
+                                     rgba(0, 0, 0, 0)  60%,    
+                                     rgba(0, 0, 0, 1)  100%), 
+									 url('img/head-marketing-cmyk.jpg'); 
+									 background-position: top center;">
+	  
+    <div style="display: flex; flex-direction: column; width: 80%;">
+      <div class="hero-content-wrapper" style="flex-direction: flex-start; justify-content: top;">
+        <div class="main-heading" style="min-height: var(--px-300);   margin-left: var(--px-50)"><h1 class="text-box-wide">Put it to work and Promote</h1></div>
+        <div class="hero-description" style=" margin-left: 25%"><h5 class="text-box-wide">
+          LAUNCH YOUR CONTENT INTO THE MARKET. CLAIM YOUR SPACE. SET YOUR TERMS. MAKE IT EARN. PICK YOUR NFT AND TURN VISIBILITY INTO VALUE
+        </h5></div>
+      </div>
     </div>
     <div class="cta-section">
       <div class="button-group">
@@ -81,13 +87,81 @@
     </div>
   </div>
 </section>
+
 	
-<div class="page-wrapper">	
+<div class="card-stack-wrapper">
+  <nav class="card-stack" id="stack">
 	
+    <div class="card"> 
+      <div class="wrapper">
+        <div class="responsive"  data-link="content-creator.html">
+          <div class="image-container" style="background-image: url('img/invest-market.jpg');">
+          </div>
+          <div class="content-block">
+            <div class="content-text">
+              <h2 class="title">Creator</h2>
+              <p class="description">
+                Track performance. Compare verticals. Make informed moves in the IP economy.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Enter the Market</span>
+            </button>
+          </div>
+        </div>
+      </div>
+				
+      <div class="wrapper-reduced">
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="investor.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Investor</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Follow the Signal</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="advertiser.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Advertiser</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Join the Table</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+      </div>	
+    </div>
+
 	
-  <div style="height: 80px">&nbsp;</div>
-	
-    <article class="card-content-wide">
+    <div class="card"> 
       <div class="wrapper">
         <div class="responsive"  data-link="content-provide.html">
           <div class="image-container" style="background-image: url('img/Provide.jpg');">
@@ -153,35 +227,11 @@
         </div>
 		  
       </div>
-		
-    </article>
-	
-	  <div style="height: 80px">&nbsp;</div>	
-	
-<article class="headline-left-wrapper">
-  <div class="healine-left-container">
-    <div class="headline-left-inner">
-      <header>
-        <h2>You minted it. Now put it to work.</h2>
-      </header>
-      <section>
-        <h5>
-          Launch your content into the market. Claim your space. Set your terms. Make it earn. Pick your NFT and turn visibility into value.
-        </h5>
-      </section>
-      <section>
-        <p>
-          Mint your content and make it untouchable. This isn't a post. It's a proof of authorship. This isn't a file. It's a fingerprint on-chain. You're not just creating — you're claiming what's yours. Mint it. Protect it. Own it forever.
-        </p>
-      </section>
+
     </div>
-  </div>
-</article>	
-		
-  <div style="height: 80px">&nbsp;</div>	
 	
-	
-<article class="card-content-wide">
+    <div class="card">
+
       <div class="wrapper">
         <div class="responsive" data-link="content-promote.html">
           <div class="image-container" style="background-image: url('img/Promote.jpg');">
@@ -247,12 +297,20 @@
         </div>
 		  
       </div>
-		
-  </article>	
+	
+	  </div>
+
+	
+  </nav>
+</div>	
+	
+<main class="main">	
 	
 	
+<div class="page-wrapper">	
 	
-  <div style="height: 80px">&nbsp;</div>	
+	
+<div style="height: var(--px-80)">&nbsp;</div>	
 	
 <article class="headline-right-wrapper">
   <div class="healine-right-container">
@@ -274,7 +332,7 @@
   </div>
 </article>	
 	
-  <div style="height: 80px">&nbsp;</div>	
+  <div style="height: var(--px-80)">&nbsp;</div>	
 	
 <center class="content-frame">
 	
@@ -396,7 +454,7 @@
           <img src="img/icon-edit.png" alt="" class="action-icon"/>
         </button>
       </td>
-      <td class="action-cell" style="width: 50px">
+      <td class="action-cell" style="width: var(--px-50)">
         <button class="toggle-btn active" aria-label="Toggle row details">
           <span class="toggle-indicator"></span>
         </button>
@@ -413,9 +471,9 @@
   </tfoot>
 </table>
 	
-  <div style="height: 40px">&nbsp;</div>
+  <div style="height: var(--px-40)">&nbsp;</div>
 <section>
-  <section class="content-submission" style="display: flex; flex-direction: row; gap: 50px;">
+  <section class="content-submission" style="display: flex; flex-direction: row; gap: var(--px-50);">
     <h6 class="submission-subtitle" style="display: flex; width: auto">
       Select your minted draft.</h6> 
 		<p>Only minted NFTs are promotable. <br>Haven't minted yet? Go claim your content.</p>
@@ -428,7 +486,7 @@
     </button></a>
   </section>
 	
-  <div style="height: 160px">&nbsp;</div>
+  <div style="height: var(--px-160)">&nbsp;</div>
 </section>		
 
 	
@@ -446,8 +504,8 @@
     <h1 id="promoTitle" class="submission-title"></h1>
 	  
 	  
-    <div style="height: 80px">&nbsp;</div>
-    <article class="upload-section" style="width: 100%; min-width: 450px; height: auto; flex-direction: row">
+    <div style="height: var(--px-80)">&nbsp;</div>
+    <article class="upload-section" style="width: 100%; min-width: var(--px-450); height: auto; flex-direction: row">
 
       <section class="content-submission">
         <h3 class="submission-title" style="text-align: right">A single image that speaks volumes</h3>
@@ -457,13 +515,13 @@
       </section>	
 
 
-        <div class="upload-area" id="uploadArea" style="height: 200px; padding-top: 15px">
+        <div class="upload-area" id="uploadArea" style="height: var(--px-200); padding-top: var(--px-15)">
             <div class="upload-content">
 				
               <input type="file" id="uploadInput" style="display: none;" accept="image/jpeg, image/png, video/mp4">
 				
 				<h2>Drop it! it's hot!!</h2>
-           <div style="height: 10px">&nbsp;</div>
+           <div style="height: var(--px-10)">&nbsp;</div>
               <p>JPEG, PNG, MP4 Just drag it in or click to download.</p>
             </div>
 
@@ -474,12 +532,12 @@
                   <h6 style="color: black;" >Upload your media by dragging it here or clicking to select.</h6>
                 </div>
                 <div class="speech-icon">  
-                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: 80px; height: 80px"/>
+                  <img src="img/Sprechblase-Haken.png" alt="Haken" style="width: var(--px-80); height: var(--px-80)"/>
                 </div>
               </div>	
             </div>	  
 
-            <button class="content-button" aria-label="Content navigation button" style="width: 300px; margin: 0px 40px 0px -23px; border-radius: 0 0 20px 20px">
+            <button class="content-button" aria-label="Content navigation button" style="width: var(--px-300); margin: 0px var(--px-40) 0px -23px; border-radius: 0 0 var(--px-20) var(--px-20)">
               <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon" />
               <span class="content-button-text">Upload and Take it</span>
             </button>  
@@ -489,37 +547,37 @@
 
     </article>	  
 	  
-    <div style="height: 160px">&nbsp;</div>
+    <div style="height: var(--px-160)">&nbsp;</div>
   </section>	
 
 
 
   <section class="content-submission">
     <h2 class="submission-title">What grabs attention. What makes people click.</h2>
-    <div style="height: 20px">&nbsp;</div>
+    <div style="height: var(--px-20)">&nbsp;</div>
     <textarea class="url-input-container" rows="1" placeholder="Enter your boldest headline here... (100 chars)"></textarea>
   </section>	
 
-  <div style="height: 80px">&nbsp;</div>
+  <div style="height: var(--px-80)">&nbsp;</div>
 
   <section class="content-submission">
     <h2 class="submission-title">Tell people what they’ll discover. Make it irresistible.</h2>
-    <div style="height: 20px">&nbsp;</div>
+    <div style="height: var(--px-20)">&nbsp;</div>
     <textarea class="url-input-container" rows="2" placeholder="Add a short, engaging description of your promoted content... (180 carachters)"></textarea>
   </section>	
 
-  <div style="height: 80px">&nbsp;</div>
+  <div style="height: var(--px-80)">&nbsp;</div>
 		
   <div id="promoShowBox" class="promoShowBox"> 
-	  <div style="display:flex; flex-direction: column; margin: auto; align-content: left; justify-content: left; width: 100%, height: 100%; padding-left: 50px; padding-top: 5px; gap: 25px">
-      <button id="closeOverlay" style="background: none; border: none; cursor: pointer"><h6 style="width: 100px; text-align: left; margin-left: -5px;">X CLOSE</h6></button>
-	  <img src="img/promo-demo.png" alt="promo-demo" style="width: 300px; height: 250px"/>
+	  <div style="display:flex; flex-direction: column; margin: auto; align-content: left; justify-content: left; width: 100%, height: 100%; padding-left: var(--px-50); padding-top: var(--px-5); gap: var(--px-25)">
+      <button id="closeOverlay" style="background: none; border: none; cursor: pointer"><h6 style="width: var(--px-100); text-align: left; margin-left: -5px;">X CLOSE</h6></button>
+	  <img src="img/promo-demo.png" alt="promo-demo" style="width: var(--px-300); height: 250px"/>
 		  </div>
 	</div>
 	
-  <div style="height: 80px">&nbsp;</div>
+  <div style="height: var(--px-80)">&nbsp;</div>
 	
-  <section style="display: flex; flex-direction: row; gap: 50px; flex-wrap: wrap">
+  <section style="display: flex; flex-direction: row; gap: var(--px-50); flex-wrap: wrap">
 	  
     <button id="showPromo" class="content-button" aria-label="Infos schließen">
       <img src="img/Arrow-black.png" alt="Schließen" class="content-button-icon" />
@@ -528,7 +586,7 @@
       </span>
     </button>		  
 	  
-	    <div style="width: 80px">&nbsp;</div>
+	    <div style="width: var(--px-80)">&nbsp;</div>
 	  
     <button id="hidePromotionBtn1" class="content-button" aria-label="Infos schließen">
       <img src="img/Arrow-black.png" alt="Schließen" class="content-button-icon" />
@@ -552,7 +610,7 @@
 • The content does not violate any third-party rights or applicable laws.<br>
 • OCOSO is not liable for any copyright or content-related infringements.</p></div>
   </section>	
-	<div style="height: 80px">&nbsp;</div>	
+	<div style="height: var(--px-80)">&nbsp;</div>	
 </section>		
 	
 	
@@ -562,17 +620,18 @@
 	
 </center>	
 	
-	<div style="height: 80px">&nbsp;</div>	
+	<div style="height: var(--px-80)">&nbsp;</div>	
 	
 </div>
 	
-	
+	</main>
 	
 <div id="footer-placeholder"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
 <script src="ocoso-app-functions.js" defer></script>	
-<script src="js/wallet.js" defer></script>	
+<script src="js/wallet.js" defer></script>			
+<script src="js/3d-Navigation.js" defer></script>	
 	
 <script>
 document.addEventListener('DOMContentLoaded', () => {

@@ -1,0 +1,498 @@
+h1 {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-60);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+  text-transform: uppercase;
+	  letter-spacing: 0.72px; /* No variable match */
+}
+
+h2 {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-36);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+  text-transform: uppercase;
+	  letter-spacing: 0.72px; /* No variable match */
+}
+
+h3 {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-30);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.72px; /* No variable match */
+}
+
+h4 {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-24);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.72px; /* No variable match */
+}
+
+h5 {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-20);
+  font-weight: 800;
+  line-height: 1.4;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.72px; /* No variable match */
+}
+
+h6 {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-16);
+  font-weight: 800;
+  line-height: 1.4;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.72px; /* No variable match */
+}
+
+.text-h1 {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-60);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.text-h2 {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-36);
+  font-weight: 800;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.text-h3 {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-30);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.text-h4 {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-24);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.text-h5 {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-20);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.text-h6 {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-16);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.text-large {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-18);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+}
+
+p {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-18);
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.text-large-bold {
+  color: #fff;
+  font-size: var(--px-18);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.text-body {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-16);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.text-body-bold {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-16);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.text-small {
+  color: #fff;
+  font-size: var(--px-14);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.text-small-bold {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-14);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.text-xs {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-12);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.text-xs-bold {
+  font-family: var(--main-font-family);
+  color: #fff;
+  font-size: var(--px-12);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.comic-block h5 {
+  display: inline-block;
+  transform: rotateZ(-10deg);
+  transform-origin: left bottom;
+  margin: -40px 0 0 var(--px-20); /* Negative value kept */
+}
+
+.text-box {
+  display: inline;
+  background: #ffef00;
+  color: black;
+  padding: 0 var(--px-4);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.comic-block p {
+  display: inline-block;
+  transform: rotateZ(-10deg);
+  transform-origin: left bottom;
+  margin: var(--px-20) 0 0 var(--px-10);
+}
+
+.comic-block-wide h3 {
+  display: inline-block;
+  transform: rotateZ(-10deg);
+  transform-origin: left bottom;
+  margin: -30px 0 0 var(--px-20); /* Negative value kept */
+}
+
+.text-box-wide {
+  display: inline;
+  background: #ffef00;
+  color: black;
+  padding: 0 var(--px-4);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  line-height: 1.4;
+}
+
+.comic-block-wide p {
+  display: inline-block;
+  transform: rotateZ(-10deg);
+  transform-origin: left bottom;
+  margin: var(--px-20) 0 0 var(--px-35);
+}
+
+.text-box-extrawide {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: black;
+  padding: var(--px-20) var(--px-40) var(--px-40) 0;
+  width: 50%;
+  border: black var(--px-1) solid;
+  box-sizing: border-box;
+}
+
+.comic-block-extrawide p {
+    display: inline-block;
+
+}
+
+.footer-links li,
+.auth-links a,
+.legal-links a {
+  display: block;
+  margin-bottom: 0.5rem; /* Kept as rem */
+  text-decoration: none;
+  color: #aaa;
+  text-align: left;align-content: flex-start; align-items: flex-start;
+
+}
+
+
+.footer-links li a:hover,
+.auth-links a:hover,
+.legal-links a:hover {
+  color: #fff;
+}
+
+.hsub-menu ul li a {
+  display: flex;
+  align-items: left;    /* sorgt dafür, dass Icon und Text vertikal zentriert sind */
+  white-space: nowrap;    /* verhindert Zeilenumbruch */
+  padding: var(--px-2) 0;      /* Innenabstand nach Bedarf */
+  margin: var(--px-5) var(--px-10) var(--px-5) 0;
+  /* Entferne ggf. die feste Breite (width: var(--px-200)), oder passe sie an */
+  width: auto;
+  text-decoration: none;
+  color: #000;
+}
+
+.hsub-menu ul li a::before {
+  conten-right: var(--px-5);
+  margint: "";
+  display: inline-block; /* oder flex */
+  width: var(--px-15);
+  height: var(--px-15);
+  background-image: url('../img/Arrow-black.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: var(--px-2);
+}
+
+.hsub-menu ul li a:hover {
+  background-color: #f2f2f2;
+}
+
+/* Make wrapper clickable if it contains a data-link */
+.wrapper:has([data-link]) {
+  cursor: pointer;
+}
+
+.title {
+  font-size: var(--px-36);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.72px; /* No variable match */
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.description {
+  display: flex;
+  font-feature-settings: "dlig" on;
+  font-size: var(--px-16);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.32px; /* No variable match */
+  margin-top: var(--px-20);
+  margin-bottom: 0;
+}
+
+.main-heading {
+  color: #fff;
+  font-family: var(--main-font-family);
+  font-size: var(--px-60);
+  font-weight: 900;
+  line-height: 1; /* Reduziert vertikalen Abstand */
+  letter-spacing: 1.2px; /* No variable match */
+  text-transform: uppercase;
+  margin: 0; /* Entfernt Standardabstand */
+}
+
+.hero-description {
+  color: #fff;
+  font-family: var(--main-font-family);
+  font-size: var(--px-18);
+  font-weight: 700;
+  line-height: 1.4; /* Reduziert vertikalen Abstand */
+  letter-spacing: 0.36px; /* No variable match */
+  margin: 0;
+  margin-top: var(--px-20); /* Entfernt Standardabstand */
+}
+
+.index-panel {
+  color: #fff;
+  font-family: var(--main-font-family);
+  font-size: var(--px-18);
+  font-weight: 700;
+  line-height: 1.4; /* Reduziert vertikalen Abstand */
+  letter-spacing: 0.36px; /* No variable match */
+  margin: 0;
+  margin-top: var(--px-20); /* Entfernt Standardabstand */
+}
+
+/* Three.js Container als Nachfolger-Element */
+/* Duplicated .three-container rule removed */
+
+/* Duplicated canvas.three-canvas rule removed */
+}
+
+.headline-left-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  vertical-align: content-center;
+  gap: 0 0;
+  flex-wrap: wrap;
+  padding: 0 0;
+}
+
+.headline-right-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  vertical-align: content-center;
+  gap: 0 0;
+  flex-wrap: wrap;
+  padding: 0 0;
+	margin: 0;
+}
+
+.headline-left-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--px-10);
+  flex: 1 0 0;
+  border-radius: var(--px-20);
+  background-color: #000;
+  width: 100%;
+  margin: 0;
+}
+
+.headline-right-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--px-10);
+  flex: 1 0 0;
+  border-radius: var(--px-20);
+  background-color: #000;
+  width: 100%;
+}
+
+.headline-left-inner {
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--px-20);
+  width: 100%;
+}
+
+.headline-right-inner {
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--px-20);
+  width: 100%;
+}
+
+.filter-controls h6 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--px-50);
+  align-items: center;
+  width: 100%;
+  min-width: var(--px-300);
+  background-color: none;
+  margin: 0 0 0 var(--px-10);
+}
+
+.dashboard-highlights h3 {
+  margin-top: 0;
+  margin-bottom: var(--space-m);
+  border-bottom: var(--px-1) solid var(--color-border);
+  padding-bottom: var(--space-s);
+  color: var(--color-primary);
+}
+
+.highlight-section h4 {
+  margin-bottom: var(--space-s);
+  font-size: var(--font-size-body-bold);
+  color: var(--color-text-strong);
+}
+
+.highlight-section li a {
+  color: var(--color-link);
+  text-decoration: none;
+  flex-grow: 1; /* Allow link text to take available space */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.highlight-section li a:hover {
+  text-decoration: underline;
+}
+
+.fund-name a {
+  color: #fff; /* Ensure link inherits the h3 color */
+  text-decoration: none;
+}
+
+.fund-name a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.chart-container h3 {
+  margin-bottom: var(--space-m);
+  text-align: center;
+}

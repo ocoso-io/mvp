@@ -5,8 +5,11 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>OCOSO MVP - Full Layout</title>
-    <link rel="stylesheet" href="styleV033.css?v=20240321">
+    <title>OCOSO MVP - Full Layout</title>    <!-- <link rel="stylesheet" href="styleV033-kartennavigation.css"> -->
+    <link rel="stylesheet" href="css/00-variables.css">
+    <link rel="stylesheet" href="css/01-typography.css">
+    <link rel="stylesheet" href="css/02-components.css">
+    <link rel="stylesheet" href="css/03-media.css">
     <style>
 		
 /* Alle toggle-fähigen Sektionen initial verstecken */
@@ -55,16 +58,23 @@
 	
 
 <section class="hero">
-  <div class="hero-container" style="background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/4691e67e3b75d917f12dc87357c5328ca76244d9');">
-    <div class="hero-content-wrapper">
-      <h1 class="main-heading">CONTENT…</h1>
-      <p></p>
-      <p class="hero-description">
-        Yes, it's still content. Created by humans. Protected by code. Powered
-        by community. Not fed into a feed. Not buried by algorithms. It's not
-        just what you post — it's what you own. Content is the asset class of
-        the open web3. Make it work. Make it last.
-      </p>
+  <div class="hero-container" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%), 
+									 radial-gradient(circle at 50% 50%, 
+                                     rgba(0, 0, 0, 0)  60%,    
+                                     rgba(0, 0, 0, 1)  100%), 
+									 url('img/head-marketing-cmyk.jpg'); 
+									 background-position: top center;">
+	  
+    <div style="display: flex; flex-direction: column; width: 80%;">
+      <div class="hero-content-wrapper" style="flex-direction: flex-start; justify-content: top;">
+        <div class="main-heading" style="min-height: var(--px-300);   margin-left: var(--px-50)"><h1 class="text-box-wide">Monetize by Marketing</h1></div>
+        <div class="hero-description" style=" margin-left: 25%"><h5 class="text-box-wide">
+          Yes, it's still content. Created by humans. Protected by code. Powered
+          by community. Not fed into a feed. Not buried by algorithms. It's not
+          just what you post — it's what you own. Content is the asset class of
+          the open web3. Make it work. Make it last.
+        </h5></div>
+      </div>
     </div>
     <div class="cta-section">
       <div class="button-group">
@@ -80,13 +90,79 @@
     </div>
   </div>
 </section>
+
+<div class="card-stack-wrapper" >
+  <nav class="card-stack" id="stack">
 	
-<div class="page-wrapper">	
+    <div class="card"> 
+      <div class="wrapper">
+        <div class="responsive"  data-link="content-creator.html">
+          <div class="image-container" style="background-image: url('img/invest-market.jpg');">
+          </div>
+          <div class="content-block">
+            <div class="content-text">
+              <h2 class="title">Creator</h2>
+              <p class="description">
+                Track performance. Compare verticals. Make informed moves in the IP economy.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Enter the Market</span>
+            </button>
+          </div>
+        </div>
+      </div>
+				
+      <div class="wrapper-reduced">
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="investor.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Investor</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Follow the Signal</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="advertiser.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Advertiser</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Join the Table</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+      </div>	
+    </div>
 	
-	
-  <div style="height: 80px">&nbsp;</div>
-	
-    <article class="card-content-wide">
+    <div class="card"> 
       <div class="wrapper">
         <div class="responsive"  data-link="content-provide.html">
           <div class="image-container" style="background-image: url('img/Provide.jpg');">
@@ -152,34 +228,11 @@
         </div>
 		  
       </div>
-		
-    </article>
-	
-	  <div style="height: 80px">&nbsp;</div>	
-	
-<article class="headline-left-wrapper">
-  <div class="healine-left-container">
-    <div class="headline-left-inner">
-      <header>
-        <h2>You minted it. Now put it to work.</h2>
-      </header>
-      <section>
-        <h4>
-          Launch your content into the market. Claim your space. Set your terms. Make it earn. Pick your NFT and turn visibility into value.
-        </h4>
-      </section>
-      <section>
-        <p>
-          Mint your content and make it untouchable. This isn't a post. It's a proof of authorship. This isn't a file. It's a fingerprint on-chain. You're not just creating — you're claiming what's yours. Mint it. Protect it. Own it forever.
-        </p>
-      </section>
+
     </div>
-  </div>
-</article>	
-		
-  <div style="height: 80px">&nbsp;</div>	
 	
-    <article class="card-content-wide">
+    <div class="card">
+
       <div class="wrapper">
         <div class="responsive"  data-link="content-monetize.html">
           <div class="image-container" style="background-image: url('img/Monetize.jpg');">
@@ -244,40 +297,13 @@
           </div>
         </div>
 		  
-      </div>
-		
-    </article>
-	
+      </div>	
 
-	
-  <div style="height: 80px">&nbsp;</div>
-	
-<article class="headline-right-wrapper">
-  <div class="healine-right-container">
-    <div class="headline-right-inner">
-      <header>
-        <h2>You built it. Now make it pay.</h2>
-      </header>
-      <section>
-        <h5 style="text-align: right">
-          Revenue isn't a promise. It's a process. And you control it.
-        </h5>
-      </section>
-      <section>
-        <p>
-          Monetization goes beyond ads. It's about turning creativity into capital. Whether through advertising, licensing, or subscriptions — your content is your asset. You decide who pays for access, who licenses your work, and who joins your tribe. Every view, every click, every subscriber — it's all revenue, if you claim it.
-        </p>
-      </section>
     </div>
-  </div>
-</article>		
 	
 	
-	
-  <div style="height: 80px">&nbsp;</div>
-	
-	
- <article class="card-content-wide">
+    <div class="card">
+
       <div class="wrapper">
         <div class="responsive" data-link="content-marketing.html">
           <div class="image-container" style="background-image: url('img/Marketing.jpg');">
@@ -342,768 +368,824 @@
           </div>
         </div>
 		  
+      </div>		  
+
+    </div>
+	
+  </nav>
+</div>	
+	
+<main class="main">	
+  <div class="page-wrapper">	
+
+  <div style="height: var(--px-80)">&nbsp;</div>
+
+  <article class="headline-left-wrapper">
+    <div class="healine-left-container">
+      <div class="headline-left-inner">
+        <header>
+          <h2>You minted it. Now put it to work.</h2>
+        </header>
+        <section>
+          <h4>
+            Launch your content into the market. Claim your space. Set your terms. Make it earn. Pick your NFT and turn visibility into value.
+          </h4>
+        </section>
+        <section>
+          <p>
+            Mint your content and make it untouchable. This isn't a post. It's a proof of authorship. This isn't a file. It's a fingerprint on-chain. You're not just creating — you're claiming what's yours. Mint it. Protect it. Own it forever.
+          </p>
+        </section>
       </div>
-		
-    </article>	
-	
-  <div style="height: 80px">&nbsp;</div>
-	
-<center class="content-frame">
-	
+    </div>
+  </article>		
 
-<section class="content-submission">
-  <h2 class="submission-title">Choose your NFT[s] to PRINT MONEY</h2>
-  <h6 class="submission-subtitle">
-    Every great piece deserves the spotlight. Pick the one that's ready to roar.
-  </h6>
-</section>
-	  
-	  
-<table class="data-table">
-  <thead class="table-header">
-    <tr class="header-row">
-      <th class="header-cell">IP-NFT</th>
-      <th class="header-cell">Type</th>
-      <th class="header-cell">TOPICS</th>
-      <th class="header-cell">Actions</th>
-      <th class="header-cell">Active</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="separator-row">
-      <td colspan="5" class="separator"></td>
-    </tr>
 
-    <!-- Level 1 Row -->
-    <tr class="data-row level-1 active">
-      <td class="content-cell">
-		  IP-2014
-      </td>
-      <td class="content-cell">
-        <div class="content-wrapper">
-          <img src="img/Arrow-Down-white.png" alt="Icon" class="content-icon" />
-          <span class="table-text">Website</span>
-        </div>
-      </td>
-      <td class="content-cell">Sport, Lifestyle, Fitness, Fitness, Beauty</td>
-      <td class="action-cell">
-        <img src="img/icon-eye.png" alt="Action 1" class="action-icon" />
-        <button class="table-button openPromoBtn" aria-label="Mehr Infos anzeigen">
-          <img src="img/icon-edit.png" alt="" class="action-icon"/>
-        </button>
-      </td>
-      <td class="action-cell">
-        <button class="toggle-btn active" aria-label="Toggle row details">
-          <span class="toggle-indicator"></span>
-        </button>
-      </td>
-    </tr>
 
-    <!-- Level 2 Row -->
-    <tr class="data-row level-1 active">
-      <td class="content-cell">
-		  IP-2112
-      </td>
-      <td class="content-cell">
-        <div class="content-wrapper">
-          <img src="img/Arrow-Down-white.png" alt="Icon" class="content-icon" />
-          <span class="table-text">Website</span>
-        </div>
-      </td>
-      <td class="content-cell">Sport, Lifestyle, Fitness, Beauty</td>
-      <td class="action-cell">
-        <img src="img/icon-eye.png" alt="Action 1" class="action-icon" />
-        <button class="table-button openPromoBtn" aria-label="Mehr Infos anzeigen">
-          <img src="img/icon-edit.png" alt="" class="action-icon"/>
-        </button>
-      </td>
-      <td class="action-cell">
-        <button class="toggle-btn active" aria-label="Toggle row details">
-          <span class="toggle-indicator"></span>
-        </button>
-      </td>
-    </tr>
+  <div style="height: var(--px-80)">&nbsp;</div>
 
-    <!-- Level 3 Row -->
-    <tr class="data-row level-1 active">
-      <td class="content-cell">
-		  IP-3381
-      </td>
-      <td class="content-cell">
-        <div class="content-wrapper">
-          <img src="img/Arrow-Down-white.png" alt="Icon" class="content-icon" />
-          <span class="table-text">Website</span>
-        </div>
-      </td>
-      <td class="content-cell">Sport, Lifestyle, Fitness, Beauty</td>
-      <td class="action-cell">
-        <img src="img/icon-eye.png" alt="Action 1" class="action-icon" />
-        <button class="table-button openPromoBtn" aria-label="Mehr Infos anzeigen">
-          <img src="img/icon-edit.png" alt="" class="action-icon"/>
-		  </button>
-      </td>
-      <td class="action-cell">
-        <button class="toggle-btn inactive" aria-label="Toggle row details">
-          <span class="toggle-indicator"></span>
-        </button>
-      </td>
-    </tr>
+  <article class="headline-left-wrapper">
+    <div class="healine-right-container">
+      <div class="headline-right-inner">
+        <header>
+          <h2>You built it. Now make it pay.</h2>
+        </header>
+        <section>
+          <h5 style="text-align: right">
+            Revenue isn't a promise. It's a process. And you control it.
+          </h5>
+        </section>
+        <section>
+          <p>
+            Monetization goes beyond ads. It's about turning creativity into capital. Whether through advertising, licensing, or subscriptions — your content is your asset. You decide who pays for access, who licenses your work, and who joins your tribe. Every view, every click, every subscriber — it's all revenue, if you claim it.
+          </p>
+        </section>
+      </div>
+    </div>
+  </article>	
 
-    <!-- Level 4 Row (Inactive) -->
-    <tr class="data-row level-1 active">
-      <td class="content-cell">
-		  IP-4123
-      </td>
-      <td class="content-cell">
-        <div class="content-wrapper">
-          <img src="img/Arrow-Down-white.png" alt="Icon" class="content-icon" />
-          <span class="table-text">Website</span>
-        </div>
-      </td>
-      <td class="content-cell">Sport, Lifestyle, Fitness, Beauty</td>
-      <td class="action-cell">
-        <img src="img/icon-eye.png" alt="Action 1" class="action-icon" />
-        <button class="table-button openPromoBtn" aria-label="Mehr Infos anzeigen">
-          <img src="img/icon-edit.png" alt="" class="action-icon"/>
-        </button>
-      </td>
-      <td class="action-cell" style="width: 50px">
-        <button class="toggle-btn active" aria-label="Toggle row details">
-          <span class="toggle-indicator"></span>
-        </button>
-      </td>
-    </tr>
 
-    <!-- Additional rows following the same pattern -->
-    <!-- Note: I'll continue with all rows, this is just the start -->
-  </tbody>
-  <tfoot class="table-footer">
-    <tr>
-      <td colspan="5" class="footer-cell"></td>
-    </tr>
-  </tfoot>
-	</table>
-	
-  <div style="height: 20px">&nbsp;</div>
-	
-  <section class="content-submission" style="display: flex; flex-direction: row; gap: 50px;">
-    <h5 class="submission-subtitle" style="display: flex; width: auto">
-      Select your minted draft. Only minted NFTs are promotable. <br>Haven't minted yet? Go claim your content.
-    </h5>
-    <button class="content-button" aria-label="Content navigation button">
-      <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon" />
-      <span class="content-button-text">
-        Mint It 
-      </span>
-    </button>	
-  </section>
-	
-<div style="height: 160px">&nbsp;</div>
-	
-	  
-	  
-<section id="promotion-info-container">	  
-	
-    <h2 class="submission-title">Done Creating? Start Earning with your Masterpiece</h2>
-    <!-- hier kommt der dynamische Titel rein -->
-    <h1 id="promoTitle" class="submission-title"></h1>
-	
-	<div style="height: 160px">&nbsp;</div>
-	
-	  <section class="content-submission" style="display: flex; flex-direction: row; gap: 50px;">
-    <div>
-      <h6 class="submission-subtitle" style="display: flex; width: auto">
-        Paste it into any site you own. Or give it to someone who should.
+  <div style="height: var(--px-80)">&nbsp;</div>	
+
+
+
+  <center class="content-frame">
+
+
+    <section class="content-submission">
+      <h2 class="submission-title">Choose your NFT[s] to PRINT MONEY</h2>
+      <h6 class="submission-subtitle">
+        Every great piece deserves the spotlight. Pick the one that's ready to roar.
       </h6>
-      <p>
-        Ads only run when the code is live. No embed — no revenue. It's that simple. The code connects your content to the network, making it visible and monetizable. If it's not there, you're not earning.
-      </p>
-    </div>
-    <button class="content-button" aria-label="Content navigation button">
-      <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon" />
-      <span class="content-button-text">
-        Construction<br>Instruction 
-      </span>
-    </button>	
-  </section>
+    </section>
 
-  <div style="height: 160px">&nbsp;</div>	
-	
-  <section class="content-submission">
-    <h2 class="submission-title">Display</h2>
-    <h6 class="submission-subtitle">
-      Your NFT as a signal. Loud, proud, everywhere.
-    </h6>
-  </section>	
 
-  <div style="height: 30px">&nbsp;</div>
+    <table class="data-table">
+      <thead class="table-header">
+        <tr class="header-row">
+          <th class="header-cell">IP-NFT</th>
+          <th class="header-cell">Type</th>
+          <th class="header-cell">TOPICS</th>
+          <th class="header-cell">Actions</th>
+          <th class="header-cell">Active</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="separator-row">
+          <td colspan="5" class="separator"></td>
+        </tr>
 
-  <section class="marketing-options">
-    <div class="option-item" style="align-items: flex-start">
-      <article class="gallery-item">
-        <div class="gallery-image-container">
-          <img src="img/MedRect.jpg" alt="Gallery image 1" class="gallery-image" />
-        </div>
-      </article>
-      <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: 20px">
-        <div class="content-wrapper" style="margin: -10px; ">
-          <div class="toggle-wrapper">
-            <div class="toggle-cell">
-              <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="medrect">
-                <span class="toggle-indicator"></span>
-              </button>
+        <!-- Level 1 Row -->
+        <tr class="data-row level-1 active">
+          <td class="content-cell">
+              IP-2014
+          </td>
+          <td class="content-cell">
+            <div class="content-wrapper">
+              <img src="img/Arrow-Down-white.png" alt="Icon" class="content-icon" />
+              <span class="table-text">Website</span>
             </div>
-          </div>
-          <h3 class="option-title">MedRect</h3>
-        </div>
-        <p class="option-description">
-          This is where the scroll slows down. By placing a MedRect in the heart
-          of your content, you give advertisers a prime spot — right when your
-          audience is paying attention.
-        </p>  
-        <div style="height: 20px">&nbsp;</div>
-        <section class="content-submission" id="medrect">
-          <h6 class="submission-subtitle">
-            Embed the code. Activate visibility. Earn from every impression.
+          </td>
+          <td class="content-cell">Sport, Lifestyle, Fitness, Fitness, Beauty</td>
+          <td class="action-cell">
+            <img src="img/icon-eye.png" alt="Action 1" class="action-icon" />
+            <button class="table-button openPromoBtn" aria-label="Mehr Infos anzeigen">
+              <img src="img/icon-edit.png" alt="" class="action-icon"/>
+            </button>
+          </td>
+          <td class="action-cell">
+            <button class="toggle-btn active" aria-label="Toggle row details">
+              <span class="toggle-indicator"></span>
+            </button>
+          </td>
+        </tr>
+
+        <!-- Level 2 Row -->
+        <tr class="data-row level-1 active">
+          <td class="content-cell">
+              IP-2112
+          </td>
+          <td class="content-cell">
+            <div class="content-wrapper">
+              <img src="img/Arrow-Down-white.png" alt="Icon" class="content-icon" />
+              <span class="table-text">Website</span>
+            </div>
+          </td>
+          <td class="content-cell">Sport, Lifestyle, Fitness, Beauty</td>
+          <td class="action-cell">
+            <img src="img/icon-eye.png" alt="Action 1" class="action-icon" />
+            <button class="table-button openPromoBtn" aria-label="Mehr Infos anzeigen">
+              <img src="img/icon-edit.png" alt="" class="action-icon"/>
+            </button>
+          </td>
+          <td class="action-cell">
+            <button class="toggle-btn active" aria-label="Toggle row details">
+              <span class="toggle-indicator"></span>
+            </button>
+          </td>
+        </tr>
+
+        <!-- Level 3 Row -->
+        <tr class="data-row level-1 active">
+          <td class="content-cell">
+              IP-3381
+          </td>
+          <td class="content-cell">
+            <div class="content-wrapper">
+              <img src="img/Arrow-Down-white.png" alt="Icon" class="content-icon" />
+              <span class="table-text">Website</span>
+            </div>
+          </td>
+          <td class="content-cell">Sport, Lifestyle, Fitness, Beauty</td>
+          <td class="action-cell">
+            <img src="img/icon-eye.png" alt="Action 1" class="action-icon" />
+            <button class="table-button openPromoBtn" aria-label="Mehr Infos anzeigen">
+              <img src="img/icon-edit.png" alt="" class="action-icon"/>
+              </button>
+          </td>
+          <td class="action-cell">
+            <button class="toggle-btn inactive" aria-label="Toggle row details">
+              <span class="toggle-indicator"></span>
+            </button>
+          </td>
+        </tr>
+
+        <!-- Level 4 Row (Inactive) -->
+        <tr class="data-row level-1 active">
+          <td class="content-cell">
+              IP-4123
+          </td>
+          <td class="content-cell">
+            <div class="content-wrapper">
+              <img src="img/Arrow-Down-white.png" alt="Icon" class="content-icon" />
+              <span class="table-text">Website</span>
+            </div>
+          </td>
+          <td class="content-cell">Sport, Lifestyle, Fitness, Beauty</td>
+          <td class="action-cell">
+            <img src="img/icon-eye.png" alt="Action 1" class="action-icon" />
+            <button class="table-button openPromoBtn" aria-label="Mehr Infos anzeigen">
+              <img src="img/icon-edit.png" alt="" class="action-icon"/>
+            </button>
+          </td>
+          <td class="action-cell" style="width: var(--px-50)">
+            <button class="toggle-btn active" aria-label="Toggle row details">
+              <span class="toggle-indicator"></span>
+            </button>
+          </td>
+        </tr>
+
+        <!-- Additional rows following the same pattern -->
+        <!-- Note: I'll continue with all rows, this is just the start -->
+      </tbody>
+      <tfoot class="table-footer">
+        <tr>
+          <td colspan="5" class="footer-cell"></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div style="height: var(--px-20)">&nbsp;</div>
+
+    <section class="content-submission" style="display: flex; flex-direction: row; gap: var(--px-50);">
+      <h5 class="submission-subtitle" style="display: flex; width: auto">
+        Select your minted draft. Only minted NFTs are promotable. <br>Haven't minted yet? Go claim your content.
+      </h5>
+      <button class="content-button" aria-label="Content navigation button">
+        <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon" />
+        <span class="content-button-text">
+          Mint It 
+        </span>
+      </button>	
+    </section>
+
+    <div style="height: var(--px-160)">&nbsp;</div>
+
+
+
+    <section id="promotion-info-container">	  
+
+        <h2 class="submission-title">Done Creating? Start Earning with your Masterpiece</h2>
+        <!-- hier kommt der dynamische Titel rein -->
+        <h1 id="promoTitle" class="submission-title"></h1>
+
+        <div style="height: var(--px-160)">&nbsp;</div>
+
+          <section class="content-submission" style="display: flex; flex-direction: row; gap: var(--px-50);">
+        <div>
+          <h6 class="submission-subtitle" style="display: flex; width: auto">
+            Paste it into any site you own. Or give it to someone who should.
           </h6>
-          <textarea class="url-input-container" rows="1" placeholder="script src=„…your-nft-ad.js“></script"></textarea>
-          <div style="height: 30px">&nbsp;</div>	
           <p>
             Ads only run when the code is live. No embed — no revenue. It's that simple. The code connects your content to the network, making it visible and monetizable. If it's not there, you're not earning.
           </p>
-        </section>
-      </div>
-    </div>
-
-    <div style="height: 60px">&nbsp;</div>
-
-    <div class="option-item" style="align-items: flex-start">
-      <article class="gallery-item">
-        <div class="gallery-image-container">
-          <img src="img/Wallpaper.jpg" alt="Gallery image 1" class="gallery-image" />
         </div>
-      </article>
-      <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: 20px">
-        <div class="content-wrapper" style="margin: -10px; ">
-          <div class="toggle-wrapper">
-            <div class="toggle-cell">
-              <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="wallpaper">
-                <span class="toggle-indicator"></span>
-              </button>
+        <button class="content-button" aria-label="Content navigation button">
+          <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon" />
+          <span class="content-button-text">
+            Construction<br>Instruction 
+          </span>
+        </button>	
+      </section>
+
+      <div style="height: var(--px-160)">&nbsp;</div>	
+
+      <section class="content-submission">
+        <h2 class="submission-title">Display</h2>
+        <h6 class="submission-subtitle">
+          Your NFT as a signal. Loud, proud, everywhere.
+        </h6>
+      </section>	
+
+      <div style="height: 30px">&nbsp;</div>
+
+      <section class="marketing-options">
+        <div class="option-item" style="align-items: flex-start">
+          <article class="gallery-item">
+            <div class="gallery-image-container">
+              <img src="img/MedRect.jpg" alt="Gallery image 1" class="gallery-image" />
             </div>
-          </div>
-          <h3 class="option-title">Wallpaper</h3>
-        </div>
-        <p class="option-description">
-          Let your site become the stage. With a full-frame Wallpaper, you're
-          offering brands a total experience — and showing them what immersive
-          really means.
-        </p>  
-        <div style="height: 20px">&nbsp;</div>
-        <section class="content-submission" id="wallpaper">
-          <h6 class="submission-subtitle">
-            Embed the code. Activate visibility. Earn from every impression.
-          </h6>
-          <textarea class="url-input-container" rows="1" placeholder="script src=„…your-nft-ad.js“></script"></textarea>
-          <div style="height: 30px">&nbsp;</div>	
-          <p>
-            Ads only run when the code is live. No embed — no revenue. It's that simple. The code connects your content to the network, making it visible and monetizable. If it's not there, you're not earning.
-          </p>
-        </section>
-      </div>
-    </div>
-
-    <div style="height: 60px">&nbsp;</div>
-
-    <div class="option-item" style="align-items: flex-start">
-      <article class="gallery-item">
-        <div class="gallery-image-container">
-          <img src="img/Skyscraper.jpg" alt="Gallery image 1" class="gallery-image" />
-        </div>
-      </article>
-      <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: 20px">
-        <div class="content-wrapper" style="margin: -10px; ">
-          <div class="toggle-wrapper">
-            <div class="toggle-cell">
-              <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="skyscraper">
-                <span class="toggle-indicator"></span>
-              </button>
+          </article>
+          <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: var(--px-20)">
+            <div class="content-wrapper" style="margin: -10px; ">
+              <div class="toggle-wrapper">
+                <div class="toggle-cell">
+                  <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="medrect">
+                    <span class="toggle-indicator"></span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="option-title">MedRect</h3>
             </div>
+            <p class="option-description">
+              This is where the scroll slows down. By placing a MedRect in the heart
+              of your content, you give advertisers a prime spot — right when your
+              audience is paying attention.
+            </p>  
+            <div style="height: var(--px-20)">&nbsp;</div>
+            <section class="content-submission" id="medrect">
+              <h6 class="submission-subtitle">
+                Embed the code. Activate visibility. Earn from every impression.
+              </h6>
+              <textarea class="url-input-container" rows="1" placeholder="script src=„…your-nft-ad.js“></script"></textarea>
+              <div style="height: 30px">&nbsp;</div>	
+              <p>
+                Ads only run when the code is live. No embed — no revenue. It's that simple. The code connects your content to the network, making it visible and monetizable. If it's not there, you're not earning.
+              </p>
+            </section>
           </div>
-          <h3 class="option-title">Skyscraper</h3>
         </div>
-        <p class="option-description">
-          Stay present — without being pushy. A vertical anchor that follows the
-          flow of your content. Great for brands that want to walk with your
-          audience, not chase them.
-        </p>  
-        <div style="height: 20px">&nbsp;</div>  
-        <section class="content-submission" id="skyscraper">
-          <h6 class="submission-subtitle">
-            Embed the code. Activate visibility. Earn from every impression.
-          </h6>
-          <textarea class="url-input-container" rows="1" placeholder="script src=„…your-nft-ad.js“></script"></textarea>
-          <div style="height: 30px">&nbsp;</div>	
-          <p>
-            Ads only run when the code is live. No embed — no revenue. It's that simple. The code connects your content to the network, making it visible and monetizable. If it's not there, you're not earning.
-          </p>
-        </section>
-      </div>
-    </div>
 
-    <div style="height: 60px">&nbsp;</div>
+        <div style="height: 60px">&nbsp;</div>
 
-    <div class="option-item" style="align-items: flex-start">
-      <article class="gallery-item">
-        <div class="gallery-image-container">
-          <img src="img/Wallpaper.jpg" alt="Gallery image 1" class="gallery-image" />
-        </div>
-      </article>
-      <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: 20px">
-        <div class="content-wrapper" style="margin: -10px; ">
-          <div class="toggle-wrapper">
-            <div class="toggle-cell">
-              <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="billboard">
-                <span class="toggle-indicator"></span>
-              </button>
+        <div class="option-item" style="align-items: flex-start">
+          <article class="gallery-item">
+            <div class="gallery-image-container">
+              <img src="img/Wallpaper.jpg" alt="Gallery image 1" class="gallery-image" />
             </div>
-          </div>
-          <h3 class="option-title">Billboard</h3>
-        </div>
-        <p class="option-description">
-          Make space for boldness. With a top-of-page Billboard, you tell
-          advertisers: Here's your moment. Use it well. It sets the tone — without
-          stealing the show.
-        </p>  
-        <div style="height: 20px">&nbsp;</div>  
-        <section class="content-submission" id="billboard">
-          <h6 class="submission-subtitle">
-            Embed the code. Activate visibility. Earn from every impression.
-          </h6>
-          <textarea class="url-input-container" rows="1" placeholder="script src=„…your-nft-ad.js“></script"></textarea>
-          <div style="height: 30px">&nbsp;</div>	
-          <p>
-            Ads only run when the code is live. No embed — no revenue. It's that simple. The code connects your content to the network, making it visible and monetizable. If it's not there, you're not earning.
-          </p>
-        </section>
-      </div>
-    </div>
-
-    <div style="height: 60px">&nbsp;</div>
-
-    <div class="option-item" style="align-items: flex-start">
-      <article class="gallery-item">
-        <div class="gallery-image-container">
-          <img src="img/Superbanner.jpg" alt="Gallery image 1" class="gallery-image" />
-        </div>
-      </article>
-      <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: 20px">
-        <div class="content-wrapper" style="margin: -10px; ">
-          <div class="toggle-wrapper">
-            <div class="toggle-cell">
-              <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="superbanner">
-                <span class="toggle-indicator"></span>
-              </button>
+          </article>
+          <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: var(--px-20)">
+            <div class="content-wrapper" style="margin: -10px; ">
+              <div class="toggle-wrapper">
+                <div class="toggle-cell">
+                  <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="wallpaper">
+                    <span class="toggle-indicator"></span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="option-title">Wallpaper</h3>
             </div>
+            <p class="option-description">
+              Let your site become the stage. With a full-frame Wallpaper, you're
+              offering brands a total experience — and showing them what immersive
+              really means.
+            </p>  
+            <div style="height: var(--px-20)">&nbsp;</div>
+            <section class="content-submission" id="wallpaper">
+              <h6 class="submission-subtitle">
+                Embed the code. Activate visibility. Earn from every impression.
+              </h6>
+              <textarea class="url-input-container" rows="1" placeholder="script src=„…your-nft-ad.js“></script"></textarea>
+              <div style="height: 30px">&nbsp;</div>	
+              <p>
+                Ads only run when the code is live. No embed — no revenue. It's that simple. The code connects your content to the network, making it visible and monetizable. If it's not there, you're not earning.
+              </p>
+            </section>
           </div>
-          <h3 class="option-title">Superbanner</h3>
         </div>
-        <p class="option-description">
-          Visibility with velocity. A widescreen hit that catches eyes fast. You
-          help brands land with impact — and your content keeps them there.
-        </p>  
-        <div style="height: 20px">&nbsp;</div>  
-        <section class="content-submission" id="superbanner">
-          <h6 class="submission-subtitle">
-            Embed the code. Activate visibility. Earn from every impression.
-          </h6>
-          <textarea class="url-input-container" rows="1" placeholder="script src=„…your-nft-ad.js“></script"></textarea>
-          <div style="height: 30px">&nbsp;</div>	
-          <p>
-            Ads only run when the code is live. No embed — no revenue. It's that simple. The code connects your content to the network, making it visible and monetizable. If it's not there, you're not earning.
-          </p>
-        </section>
-      </div>
-    </div>
-  </section>
 
+        <div style="height: 60px">&nbsp;</div>
 
-  <div style="height: 160px">&nbsp;</div>
-
-  <section class="content-submission">
-    <h2 class="submission-title">Video</h2>
-    <h6 class="submission-subtitle">
-      Your story, in motion. Seen, felt, remembered.
-    </h6>
-  </section>
-
-  <div style="height: 30px">&nbsp;</div>
-
-  <section class="marketing-options">
-    <div class="option-item" style="align-items: flex-start">
-      <article class="gallery-item">
-        <div class="gallery-image-container">
-          <img src="img/Outstream.jpg" alt="Gallery image 1" class="gallery-image" />
-        </div>
-      </article>
-      <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: 20px">
-        <div class="content-wrapper" style="margin: -10px; ">
-          <div class="toggle-wrapper">
-            <div class="toggle-cell">
-              <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="outstream">
-                <span class="toggle-indicator"></span>
-              </button>
+        <div class="option-item" style="align-items: flex-start">
+          <article class="gallery-item">
+            <div class="gallery-image-container">
+              <img src="img/Skyscraper.jpg" alt="Gallery image 1" class="gallery-image" />
             </div>
-          </div>
-          <h3 class="option-title">Out-Stream</h3>
-        </div>
-        <p class="option-description">
-          Let video earn its view. By placing out-stream video where it belongs, you invite brands to flow with your content — not fight against it.
-        </p>  
-        <section class="content-submission" id="outstream">
-          <h6 class="submission-subtitle">
-            Embed the code. Activate visibility. Earn from every impression.
-          </h6>
-          <textarea class="url-input-container" rows="1" placeholder="script src=„…your-nft-ad.js“></script"></textarea>
-          <div style="height: 30px">&nbsp;</div>	
-          <p>
-            Ads only run when the code is live. No embed — no revenue. It's that simple. The code connects your content to the network, making it visible and monetizable. If it's not there, you're not earning.
-          </p>
-        </section>
-      </div>
-    </div>
-
-    <div style="height: 30px">&nbsp;</div>
-
-    <div class="option-item" style="align-items: flex-start">
-      <article class="gallery-item">
-        <div class="gallery-image-container">
-          <img src="img/Overlay.jpg" alt="Gallery image 1" class="gallery-image" />
-        </div>
-      </article>
-      <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: 20px">
-        <div class="content-wrapper" style="margin: -10px; ">
-          <div class="toggle-wrapper">
-            <div class="toggle-cell">
-              <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="overlay">
-                <span class="toggle-indicator"></span>
-              </button>
+          </article>
+          <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: var(--px-20)">
+            <div class="content-wrapper" style="margin: -10px; ">
+              <div class="toggle-wrapper">
+                <div class="toggle-cell">
+                  <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="skyscraper">
+                    <span class="toggle-indicator"></span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="option-title">Skyscraper</h3>
             </div>
+            <p class="option-description">
+              Stay present — without being pushy. A vertical anchor that follows the
+              flow of your content. Great for brands that want to walk with your
+              audience, not chase them.
+            </p>  
+            <div style="height: var(--px-20)">&nbsp;</div>  
+            <section class="content-submission" id="skyscraper">
+              <h6 class="submission-subtitle">
+                Embed the code. Activate visibility. Earn from every impression.
+              </h6>
+              <textarea class="url-input-container" rows="1" placeholder="script src=„…your-nft-ad.js“></script"></textarea>
+              <div style="height: 30px">&nbsp;</div>	
+              <p>
+                Ads only run when the code is live. No embed — no revenue. It's that simple. The code connects your content to the network, making it visible and monetizable. If it's not there, you're not earning.
+              </p>
+            </section>
           </div>
-          <h3 class="option-title">Overlay</h3>
         </div>
-        <p class="option-description">
-          Presence without pressure. You offer subtle space for motion — a smart way for advertisers to stay seen without saying too much.
-        </p>  
-        <section class="content-submission" id="overlay">
-          <h6 class="submission-subtitle">
-            Embed the code. Activate visibility. Earn from every impression.
-          </h6>
-          <textarea class="url-input-container" rows="1" placeholder="script src=„…your-nft-ad.js“></script"></textarea>
-          <div style="height: 30px">&nbsp;</div>	
-          <p>
-            Ads only run when the code is live. No embed — no revenue. It's that simple. The code connects your content to the network, making it visible and monetizable. If it's not there, you're not earning.
-          </p>
-        </section>
-      </div>
-    </div>
-	  
-    <div style="height: 30px">&nbsp;</div>
 
-    <div class="option-item" style="align-items: flex-start;">
-      <article class="gallery-item">
-        <div class="gallery-image-container">
-          <img src="img/ContentFeature.jpg" alt="Gallery image 1" class="gallery-image" />
-        </div>
-      </article>
-      <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: 20px">
-        <div class="content-wrapper" style="margin: -10px; ">
-          <div class="toggle-wrapper">
-            <div class="toggle-cell">
-              <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="feature-video">
-                <span class="toggle-indicator"></span>
-              </button>
+        <div style="height: 60px">&nbsp;</div>
+
+        <div class="option-item" style="align-items: flex-start">
+          <article class="gallery-item">
+            <div class="gallery-image-container">
+              <img src="img/Wallpaper.jpg" alt="Gallery image 1" class="gallery-image" />
             </div>
-          </div>
-          <h3 class="option-title">Content Feature</h3>
-        </div>
-        <p class="option-description">
-          You set the vibe — they follow. Brands love your voice. A sponsored segment in your video puts them right in rhythm with your storytelling.
-        </p>
-        <div style="height: 20px">&nbsp;</div>
-        <section class="content-submission" id="feature-video">
-          <h3 class="submission-title">Feature Your Content. Amplify Your Message.</h3>
-          <h6 class="submission-subtitle">
-            Produce powerful Sponsored Segments — and let your voice drive the message.
-          </h6>
-          <textarea class="url-input-container" rows="3" placeholder="Not all ads are created equal. Some are part of the story.
-        A Content Feature is your produced video segment with a sponsored message — seamlessly integrated into your own work.
-        It's not just advertising. It's storytelling with purpose."></textarea>
-          <div style="height: 30px">&nbsp;</div>	
-        </section>
-      </div>
-    </div>	  
-
-  </section>
-
-
-  <div style="height: 160px">&nbsp;</div>
-
-  <section class="content-submission">
-    <h2 class="submission-title">Content</h2>
-    <h6 class="submission-subtitle">
-      Make it part of the page. Native. Organic. Trusted.
-    </h6>
-  </section>
-
-  <div style="height: 30px">&nbsp;</div>
-
-  <section class="marketing-options">
-    <div class="option-item" style="align-items: flex-start">
-      <article class="gallery-item">
-        <div class="gallery-image-container">
-          <img src="img/Story.jpg" alt="Gallery image 1" class="gallery-image" />
-        </div>
-      </article>
-      <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: 20px">
-        <div class="content-wrapper" style="margin: -10px; ">
-          <div class="toggle-wrapper">
-            <div class="toggle-cell">
-              <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="content">
-                <span class="toggle-indicator"></span>
-              </button>
+          </article>
+          <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: var(--px-20)">
+            <div class="content-wrapper" style="margin: -10px; ">
+              <div class="toggle-wrapper">
+                <div class="toggle-cell">
+                  <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="billboard">
+                    <span class="toggle-indicator"></span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="option-title">Billboard</h3>
             </div>
+            <p class="option-description">
+              Make space for boldness. With a top-of-page Billboard, you tell
+              advertisers: Here's your moment. Use it well. It sets the tone — without
+              stealing the show.
+            </p>  
+            <div style="height: var(--px-20)">&nbsp;</div>  
+            <section class="content-submission" id="billboard">
+              <h6 class="submission-subtitle">
+                Embed the code. Activate visibility. Earn from every impression.
+              </h6>
+              <textarea class="url-input-container" rows="1" placeholder="script src=„…your-nft-ad.js“></script"></textarea>
+              <div style="height: 30px">&nbsp;</div>	
+              <p>
+                Ads only run when the code is live. No embed — no revenue. It's that simple. The code connects your content to the network, making it visible and monetizable. If it's not there, you're not earning.
+              </p>
+            </section>
           </div>
-          <h3 class="option-title">Story</h3>
         </div>
-        <p class="option-description">
-          Your voice, their message. You control the narrative. When you host branded stories, you give advertisers access to trust they can't buy.
-        </p>
-      </div>
-    </div>
 
-    <div style="height: 30px">&nbsp;</div>
+        <div style="height: 60px">&nbsp;</div>
 
-    <div class="option-item" style="align-items: flex-start">
-      <article class="gallery-item">
-        <div class="gallery-image-container">
-          <img src="img/Involvement.jpg" alt="Gallery image 1" class="gallery-image" />
-        </div>
-      </article>
-      <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: 20px">
-        <div class="content-wrapper" style="margin: -10px; ">
-          <div class="toggle-wrapper">
-            <div class="toggle-cell">
-              <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="content">
-                <span class="toggle-indicator"></span>
-              </button>
+        <div class="option-item" style="align-items: flex-start">
+          <article class="gallery-item">
+            <div class="gallery-image-container">
+              <img src="img/Superbanner.jpg" alt="Gallery image 1" class="gallery-image" />
             </div>
-          </div>
-          <h3 class="option-title">Brand Involvement</h3>
-        </div>
-        <p class="option-description">
-          Co-creation builds credibility. You let brands into your world — on your terms. That's not selling out. That's building something that sticks.
-        </p>
-      </div>
-    </div>
-
-    <div style="height: 30px">&nbsp;</div>
-
-    <div class="option-item" style="align-items: flex-start">
-      <article class="gallery-item">
-        <div class="gallery-image-container">
-          <img src="img/Test.jpg" alt="Gallery image 1" class="gallery-image" />
-        </div>
-      </article>
-      <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: 20px">
-        <div class="content-wrapper" style="margin: -10px; ">
-          <div class="toggle-wrapper">
-            <div class="toggle-cell">
-              <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="content">
-                <span class="toggle-indicator"></span>
-              </button>
+          </article>
+          <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: var(--px-20)">
+            <div class="content-wrapper" style="margin: -10px; ">
+              <div class="toggle-wrapper">
+                <div class="toggle-cell">
+                  <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="superbanner">
+                    <span class="toggle-indicator"></span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="option-title">Superbanner</h3>
             </div>
+            <p class="option-description">
+              Visibility with velocity. A widescreen hit that catches eyes fast. You
+              help brands land with impact — and your content keeps them there.
+            </p>  
+            <div style="height: var(--px-20)">&nbsp;</div>  
+            <section class="content-submission" id="superbanner">
+              <h6 class="submission-subtitle">
+                Embed the code. Activate visibility. Earn from every impression.
+              </h6>
+              <textarea class="url-input-container" rows="1" placeholder="script src=„…your-nft-ad.js“></script"></textarea>
+              <div style="height: 30px">&nbsp;</div>	
+              <p>
+                Ads only run when the code is live. No embed — no revenue. It's that simple. The code connects your content to the network, making it visible and monetizable. If it's not there, you're not earning.
+              </p>
+            </section>
           </div>
-          <h3 class="option-title">Tests</h3>
         </div>
-        <p class="option-description">
-          You don't sell — you prove. Real use. Real talk. Real results. When you test, your audience listens — and advertisers love that.
-        </p>
-        <div style="height: 80px">&nbsp;</div>
-        <section class="content-submission" id="content">
-          <h3 class="submission-title">PROVE YOUR VALUE. OFFER YOUR SPACE.</h3>
-          <h6 class="submission-subtitle">
-            WRITE A PITCH THAT SHOWS WHY YOUR CONTENT DESERVES TO BE CHOSEN. EXPLAIN WHY YOUR CONTENT CONVERTS — AND WHY BRANDS SHOULD BET ON YOU AND WHY YOUR REACH MATTERS.
-          </h6>
-          <textarea class="url-input-container" rows="3" placeholder="What makes you a valued amplifier?
-  Talk about your audience, your voice, and your reach.
-  Why should brands choose you to amplify their message?"></textarea>
-          <div style="height: 30px">&nbsp;</div>	
-        </section>
-      </div>
-    </div>
-
-  </section>
+      </section>
 
 
-  <div style="height: 160px">&nbsp;</div>
+      <div style="height: var(--px-160)">&nbsp;</div>
 
+      <section class="content-submission">
+        <h2 class="submission-title">Video</h2>
+        <h6 class="submission-subtitle">
+          Your story, in motion. Seen, felt, remembered.
+        </h6>
+      </section>
 
-  <section class="content-submission">
-    <h2 class="submission-title">Direct Sales</h2>
-    <h6 class="submission-subtitle">
-      Ready to convert. One click from view to value.
-    </h6>
-  </section>
+      <div style="height: 30px">&nbsp;</div>
 
-  <div style="height: 30px">&nbsp;</div>
-
-  <section class="marketing-options">
-    <div class="option-item" style="align-items: flex-start">
-      <article class="gallery-item">
-        <div class="gallery-image-container">
-          <img src="img/Highlight.jpg" alt="Gallery image 1" class="gallery-image" />
-        </div>
-      </article>
-      <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: 20px">
-        <div class="content-wrapper" style="margin: -10px; ">
-          <div class="toggle-wrapper">
-            <div class="toggle-cell">
-              <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="sales">
-                <span class="toggle-indicator"></span>
-              </button>
+      <section class="marketing-options">
+        <div class="option-item" style="align-items: flex-start">
+          <article class="gallery-item">
+            <div class="gallery-image-container">
+              <img src="img/Outstream.jpg" alt="Gallery image 1" class="gallery-image" />
             </div>
-          </div>
-          <h3 class="option-title">Product Highlight</h3>
-        </div>
-        <p class="option-description">
-          Put the spotlight where it converts. Showcase a product as part of your page — and offer brands a moment of instant relevance.
-        </p>
-      </div>
-    </div>
-
-    <div style="height: 30px">&nbsp;</div>
-
-    <div class="option-item" style="align-items: flex-start">
-      <article class="gallery-item">
-        <div class="gallery-image-container">
-          <img src="img/Recommend.jpg" alt="Gallery image 1" class="gallery-image" />
-        </div>
-      </article>
-      <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: 20px">
-        <div class="content-wrapper" style="margin: -10px; ">
-          <div class="toggle-wrapper">
-            <div class="toggle-cell">
-              <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="sales">
-                <span class="toggle-indicator"></span>
-              </button>
+          </article>
+          <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: var(--px-20)">
+            <div class="content-wrapper" style="margin: -10px; ">
+              <div class="toggle-wrapper">
+                <div class="toggle-cell">
+                  <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="outstream">
+                    <span class="toggle-indicator"></span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="option-title">Out-Stream</h3>
             </div>
+            <p class="option-description">
+              Let video earn its view. By placing out-stream video where it belongs, you invite brands to flow with your content — not fight against it.
+            </p>  
+            <section class="content-submission" id="outstream">
+              <h6 class="submission-subtitle">
+                Embed the code. Activate visibility. Earn from every impression.
+              </h6>
+              <textarea class="url-input-container" rows="1" placeholder="script src=„…your-nft-ad.js“></script"></textarea>
+              <div style="height: 30px">&nbsp;</div>	
+              <p>
+                Ads only run when the code is live. No embed — no revenue. It's that simple. The code connects your content to the network, making it visible and monetizable. If it's not there, you're not earning.
+              </p>
+            </section>
           </div>
-          <h3 class="option-title">Recommendation</h3>
         </div>
-        <p class="option-description">
-          Trust is the new targeting. You recommend it, they believe it. Your audience follows you — not retargeting pixels.
-        </p>
-      </div>
-    </div>
 
-    <div style="height: 30px">&nbsp;</div>
+        <div style="height: 30px">&nbsp;</div>
 
-    <div class="option-item" style="align-items: flex-start">
-      <article class="gallery-item">
-        <div class="gallery-image-container">
-          <img src="img/DirectSales.jpg" alt="Gallery image 1" class="gallery-image" />
-        </div>
-      </article>
-      <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: 20px">
-        <div class="content-wrapper" style="margin: -10px; ">
-          <div class="toggle-wrapper">
-            <div class="toggle-cell">
-              <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="sales">
-                <span class="toggle-indicator"></span>
-              </button>
+        <div class="option-item" style="align-items: flex-start">
+          <article class="gallery-item">
+            <div class="gallery-image-container">
+              <img src="img/Overlay.jpg" alt="Gallery image 1" class="gallery-image" />
             </div>
+          </article>
+          <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: var(--px-20)">
+            <div class="content-wrapper" style="margin: -10px; ">
+              <div class="toggle-wrapper">
+                <div class="toggle-cell">
+                  <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="overlay">
+                    <span class="toggle-indicator"></span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="option-title">Overlay</h3>
+            </div>
+            <p class="option-description">
+              Presence without pressure. You offer subtle space for motion — a smart way for advertisers to stay seen without saying too much.
+            </p>  
+            <section class="content-submission" id="overlay">
+              <h6 class="submission-subtitle">
+                Embed the code. Activate visibility. Earn from every impression.
+              </h6>
+              <textarea class="url-input-container" rows="1" placeholder="script src=„…your-nft-ad.js“></script"></textarea>
+              <div style="height: 30px">&nbsp;</div>	
+              <p>
+                Ads only run when the code is live. No embed — no revenue. It's that simple. The code connects your content to the network, making it visible and monetizable. If it's not there, you're not earning.
+              </p>
+            </section>
           </div>
-          <h3 class="option-title">Creator led CTA</h3>
         </div>
-        <p class="option-description">
-          Your words move people. When you say "go", they go. You offer brands not just a place — but a voice with real pull.
-        </p>
-        <div style="height: 80px">&nbsp;</div>
-        <section class="content-submission" id="sales">
-          <h3 class="submission-title">MAKE YOUR CASE. SEAL THE DEAL.</h3>
-          <h6 class="submission-subtitle">
-            TELL US WHY YOUR CONTENT IS READY TO CONVERT — AND WHY BRANDS SHOULD BET ON YOU. EXPLAIN WHY YOUR CONTENT CONVERTS — AND WHY BRANDS SHOULD BET ON YOU.
-          </h6>
-          <textarea class="url-input-container" rows="3" placeholder="What makes you a valued amplifier?
-  Talk about your audience, your voice, and your reach.
-  Why should brands choose you to amplify their message?"></textarea>
-          <div style="height: 30px">&nbsp;</div>	
-        </section>
-      </div>
-    </div>
 
-  </section>
+        <div style="height: 30px">&nbsp;</div>
 
-  <div style="height: 160px">&nbsp;</div>
+        <div class="option-item" style="align-items: flex-start;">
+          <article class="gallery-item">
+            <div class="gallery-image-container">
+              <img src="img/ContentFeature.jpg" alt="Gallery image 1" class="gallery-image" />
+            </div>
+          </article>
+          <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: var(--px-20)">
+            <div class="content-wrapper" style="margin: -10px; ">
+              <div class="toggle-wrapper">
+                <div class="toggle-cell">
+                  <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="feature-video">
+                    <span class="toggle-indicator"></span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="option-title">Content Feature</h3>
+            </div>
+            <p class="option-description">
+              You set the vibe — they follow. Brands love your voice. A sponsored segment in your video puts them right in rhythm with your storytelling.
+            </p>
+            <div style="height: var(--px-20)">&nbsp;</div>
+            <section class="content-submission" id="feature-video">
+              <h3 class="submission-title">Feature Your Content. Amplify Your Message.</h3>
+              <h6 class="submission-subtitle">
+                Produce powerful Sponsored Segments — and let your voice drive the message.
+              </h6>
+              <textarea class="url-input-container" rows="3" placeholder="Not all ads are created equal. Some are part of the story.
+            A Content Feature is your produced video segment with a sponsored message — seamlessly integrated into your own work.
+            It's not just advertising. It's storytelling with purpose."></textarea>
+              <div style="height: 30px">&nbsp;</div>	
+            </section>
+          </div>
+        </div>	  
 
+      </section>
+
+
+      <div style="height: var(--px-160)">&nbsp;</div>
+
+      <section class="content-submission">
+        <h2 class="submission-title">Content</h2>
+        <h6 class="submission-subtitle">
+          Make it part of the page. Native. Organic. Trusted.
+        </h6>
+      </section>
+
+      <div style="height: 30px">&nbsp;</div>
+
+      <section class="marketing-options">
+        <div class="option-item" style="align-items: flex-start">
+          <article class="gallery-item">
+            <div class="gallery-image-container">
+              <img src="img/Story.jpg" alt="Gallery image 1" class="gallery-image" />
+            </div>
+          </article>
+          <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: var(--px-20)">
+            <div class="content-wrapper" style="margin: -10px; ">
+              <div class="toggle-wrapper">
+                <div class="toggle-cell">
+                  <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="content">
+                    <span class="toggle-indicator"></span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="option-title">Story</h3>
+            </div>
+            <p class="option-description">
+              Your voice, their message. You control the narrative. When you host branded stories, you give advertisers access to trust they can't buy.
+            </p>
+          </div>
+        </div>
+
+        <div style="height: 30px">&nbsp;</div>
+
+        <div class="option-item" style="align-items: flex-start">
+          <article class="gallery-item">
+            <div class="gallery-image-container">
+              <img src="img/Involvement.jpg" alt="Gallery image 1" class="gallery-image" />
+            </div>
+          </article>
+          <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: var(--px-20)">
+            <div class="content-wrapper" style="margin: -10px; ">
+              <div class="toggle-wrapper">
+                <div class="toggle-cell">
+                  <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="content">
+                    <span class="toggle-indicator"></span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="option-title">Brand Involvement</h3>
+            </div>
+            <p class="option-description">
+              Co-creation builds credibility. You let brands into your world — on your terms. That's not selling out. That's building something that sticks.
+            </p>
+          </div>
+        </div>
+
+        <div style="height: 30px">&nbsp;</div>
+
+        <div class="option-item" style="align-items: flex-start">
+          <article class="gallery-item">
+            <div class="gallery-image-container">
+              <img src="img/Test.jpg" alt="Gallery image 1" class="gallery-image" />
+            </div>
+          </article>
+          <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: var(--px-20)">
+            <div class="content-wrapper" style="margin: -10px; ">
+              <div class="toggle-wrapper">
+                <div class="toggle-cell">
+                  <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="content">
+                    <span class="toggle-indicator"></span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="option-title">Tests</h3>
+            </div>
+            <p class="option-description">
+              You don't sell — you prove. Real use. Real talk. Real results. When you test, your audience listens — and advertisers love that.
+            </p>
+            <div style="height: var(--px-80)">&nbsp;</div>
+            <section class="content-submission" id="content">
+              <h3 class="submission-title">PROVE YOUR VALUE. OFFER YOUR SPACE.</h3>
+              <h6 class="submission-subtitle">
+                WRITE A PITCH THAT SHOWS WHY YOUR CONTENT DESERVES TO BE CHOSEN. EXPLAIN WHY YOUR CONTENT CONVERTS — AND WHY BRANDS SHOULD BET ON YOU AND WHY YOUR REACH MATTERS.
+              </h6>
+              <textarea class="url-input-container" rows="3" placeholder="What makes you a valued amplifier?
+      Talk about your audience, your voice, and your reach.
+      Why should brands choose you to amplify their message?"></textarea>
+              <div style="height: 30px">&nbsp;</div>	
+            </section>
+          </div>
+        </div>
+
+      </section>
+
+
+      <div style="height: var(--px-160)">&nbsp;</div>
+
+
+      <section class="content-submission">
+        <h2 class="submission-title">Direct Sales</h2>
+        <h6 class="submission-subtitle">
+          Ready to convert. One click from view to value.
+        </h6>
+      </section>
+
+      <div style="height: 30px">&nbsp;</div>
+
+      <section class="marketing-options">
+        <div class="option-item" style="align-items: flex-start">
+          <article class="gallery-item">
+            <div class="gallery-image-container">
+              <img src="img/Highlight.jpg" alt="Gallery image 1" class="gallery-image" />
+            </div>
+          </article>
+          <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: var(--px-20)">
+            <div class="content-wrapper" style="margin: -10px; ">
+              <div class="toggle-wrapper">
+                <div class="toggle-cell">
+                  <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="sales">
+                    <span class="toggle-indicator"></span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="option-title">Product Highlight</h3>
+            </div>
+            <p class="option-description">
+              Put the spotlight where it converts. Showcase a product as part of your page — and offer brands a moment of instant relevance.
+            </p>
+          </div>
+        </div>
+
+        <div style="height: 30px">&nbsp;</div>
+
+        <div class="option-item" style="align-items: flex-start">
+          <article class="gallery-item">
+            <div class="gallery-image-container">
+              <img src="img/Recommend.jpg" alt="Gallery image 1" class="gallery-image" />
+            </div>
+          </article>
+          <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: var(--px-20)">
+            <div class="content-wrapper" style="margin: -10px; ">
+              <div class="toggle-wrapper">
+                <div class="toggle-cell">
+                  <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="sales">
+                    <span class="toggle-indicator"></span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="option-title">Recommendation</h3>
+            </div>
+            <p class="option-description">
+              Trust is the new targeting. You recommend it, they believe it. Your audience follows you — not retargeting pixels.
+            </p>
+          </div>
+        </div>
+
+        <div style="height: 30px">&nbsp;</div>
+
+        <div class="option-item" style="align-items: flex-start">
+          <article class="gallery-item">
+            <div class="gallery-image-container">
+              <img src="img/DirectSales.jpg" alt="Gallery image 1" class="gallery-image" />
+            </div>
+          </article>
+          <div class="content-wrapper" style="flex-direction: column; align-items: flex-start; padding-top: var(--px-20)">
+            <div class="content-wrapper" style="margin: -10px; ">
+              <div class="toggle-wrapper">
+                <div class="toggle-cell">
+                  <button class="toggle-btn inactive" aria-label="Toggle row details" data-target="sales">
+                    <span class="toggle-indicator"></span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="option-title">Creator led CTA</h3>
+            </div>
+            <p class="option-description">
+              Your words move people. When you say "go", they go. You offer brands not just a place — but a voice with real pull.
+            </p>
+            <div style="height: var(--px-80)">&nbsp;</div>
+            <section class="content-submission" id="sales">
+              <h3 class="submission-title">MAKE YOUR CASE. SEAL THE DEAL.</h3>
+              <h6 class="submission-subtitle">
+                TELL US WHY YOUR CONTENT IS READY TO CONVERT — AND WHY BRANDS SHOULD BET ON YOU. EXPLAIN WHY YOUR CONTENT CONVERTS — AND WHY BRANDS SHOULD BET ON YOU.
+              </h6>
+              <textarea class="url-input-container" rows="3" placeholder="What makes you a valued amplifier?
+      Talk about your audience, your voice, and your reach.
+      Why should brands choose you to amplify their message?"></textarea>
+              <div style="height: 30px">&nbsp;</div>	
+            </section>
+          </div>
+        </div>
+
+      </section>
+
+      <div style="height: var(--px-160)">&nbsp;</div>
+
+
+        <section style="display: flex; flex-direction: row; gap: var(--px-50); flex-wrap: wrap">
+        <button id="hidePromotionBtn1" class="content-button" aria-label="Infos schließen">
+          <img src="img/Arrow-black.png" alt="Schließen" class="content-button-icon" />
+          <span class="content-button-text">
+            <br>Push their show. <br>Save It.<br><br>
+          </span>
+        </button>	
+
+
+
+        <button id="hidePromotionBtn2" class="content-button" aria-label="Infos schließen">
+          <img src="img/Arrow-black.png" alt="Schließen" class="content-button-icon" />
+          <span class="content-button-text">
+            Cancel and Close
+          </span>
+        </button>
+
+          <div><h6>Legal Note<br><br></h6>
+    <p>By embedding and serving ads through this platform, the publisher expressly agrees to the following terms:<br><br>
+        1.	No Guarantee of Revenue:<br>
+    The display of ads does not constitute a promise or guarantee of income, earnings, traffic, or engagement.
+    All monetization outcomes are entirely variable and not assured.<br><br>
+        2.	Binding Agreement:<br>
+    Serving ads implies the start of a binding agreement between the publisher and OCOSO.<br>
+    This agreement is governed by the Advertising Terms &amp; Conditions available at:&nbsp;&nbsp;<a href="#">ocoso.io/terms-of-advertising</a><br><br>
+        3.	Obligation to Comply with Ad Rules:<br>
+    The publisher agrees to fully comply with all technical, legal, and ethical requirements outlined in the above terms.
+    Any violation may result in immediate suspension or termination of participation.<br><br>
+        4.	Limitation of Liability:<br>
+    OCOSO accepts no liability for the implementation or operation of third-party ad placements.
+    The full responsibility for ad delivery, user experience, and legal compliance lies with the publisher.</p></div>
+      </section>	
+        <div style="height: var(--px-80)">&nbsp;</div>		
+
+
+    </section>
+
+
+
+
+
+  </center>	
+
+  <div style="height: var(--px-160)">&nbsp;</div>	
+
+
+
+  </div>
 	
-	<section style="display: flex; flex-direction: row; gap: 50px; flex-wrap: wrap">
-    <button id="hidePromotionBtn1" class="content-button" aria-label="Infos schließen">
-      <img src="img/Arrow-black.png" alt="Schließen" class="content-button-icon" />
-      <span class="content-button-text">
-        <br>Push their show. <br>Save It.<br><br>
-      </span>
-    </button>	
-	  
-
-
-    <button id="hidePromotionBtn2" class="content-button" aria-label="Infos schließen">
-      <img src="img/Arrow-black.png" alt="Schließen" class="content-button-icon" />
-      <span class="content-button-text">
-        Cancel and Close
-      </span>
-    </button>
-	  
-	  <div><h6>Legal Note<br><br></h6>
-<p>By embedding and serving ads through this platform, the publisher expressly agrees to the following terms:<br><br>
-	1.	No Guarantee of Revenue:<br>
-The display of ads does not constitute a promise or guarantee of income, earnings, traffic, or engagement.
-All monetization outcomes are entirely variable and not assured.<br><br>
-	2.	Binding Agreement:<br>
-Serving ads implies the start of a binding agreement between the publisher and OCOSO.<br>
-This agreement is governed by the Advertising Terms &amp; Conditions available at:&nbsp;&nbsp;<a href="#">ocoso.io/terms-of-advertising</a><br><br>
-	3.	Obligation to Comply with Ad Rules:<br>
-The publisher agrees to fully comply with all technical, legal, and ethical requirements outlined in the above terms.
-Any violation may result in immediate suspension or termination of participation.<br><br>
-	4.	Limitation of Liability:<br>
-OCOSO accepts no liability for the implementation or operation of third-party ad placements.
-The full responsibility for ad delivery, user experience, and legal compliance lies with the publisher.</p></div>
-  </section>	
-	<div style="height: 80px">&nbsp;</div>		
-	
-	
-</section>
-	
-
-	
-	
-	
-</center>	
-	
-  <div style="height: 160px">&nbsp;</div>	
-	
-
-	
-</div>
-	
-	
+</main>	
 	
 <div id="footer-placeholder"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
 <script src="ocoso-app-functions.js" defer></script>	
 <script src="js/wallet.js" defer></script>	
+<script src="js/3d-Navigation.js" defer></script>
 	
 	
 <script>
@@ -1171,44 +1253,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-	
-	
-	
-	
-	
-/*document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.toggle-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      // Klasse umschalten
-      if (btn.classList.contains('active')) {
-        btn.classList.remove('active');
-        btn.classList.add('inactive');
-      } else {
-        btn.classList.remove('inactive');
-        btn.classList.add('active');
-      }
-      // Optional: aria‑State anpassen
-      btn.setAttribute('aria-pressed', btn.classList.contains('active'));
-    });
-  });
-});
-
-	
-document.addEventListener('DOMContentLoaded', () => {
-  const toggleButtons = document.querySelectorAll('.toggle-btn');
-
-  toggleButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const targetId = button.getAttribute('data-target');
-      const targetEl = document.getElementById(targetId);
-
-      if (targetEl) {
-        targetEl.classList.toggle('is-visible');
-      }
-    });
-  });
-});*/
-	
 </script>	
 </body>
 </html>

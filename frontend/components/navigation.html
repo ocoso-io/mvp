@@ -1,18 +1,7 @@
-<!-- Header Controls (wird nur bei kleinen Bildschirmen angezeigt) -->
-<div class="header-controls">
-    <div class="hamburger-button" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-</div>
-
-
-
 <header class="site-header">
   <div class="header-container">
     <a href="index.html"><img
-      src="../img/Logo-Ocoso_Black_250321.png"
+      src="img/Logo-Ocoso_Black_250321.png"
       alt="Site Logo"
       class="site-logo"
 										/></a>
@@ -27,7 +16,7 @@
             <a href="content-creator.html"><button class="nav-button">
               <span class="nav-text">CREATORS</span>
               <img
-                src="../img/Arrow-Down.png"
+                src="img/Arrow-Down.png"
                 alt="Dropdown indicator"
                 class="dropdown-icon"
               />
@@ -55,7 +44,7 @@
             <a href="investor.html"><button class="nav-button">
               <span class="nav-text">INVESTORS</span>
               <img
-                src="../img/Arrow-Down.png"
+                src="img/Arrow-Down.png"
                 alt="Dropdown indicator"
                 class="dropdown-icon"
               />
@@ -73,7 +62,7 @@
                 <li><a href="investor-market-results.html">Your Results</a></li>
               </ul></li>
               <li><a href="investor-trends.html">Trends</a></li>
-              <li><a href="investor-partizipate.html">Partizipate</a></li>
+              <li><a href="investor-partizipation.html">Partizipate</a></li>
             </ul>
           </div>
 			
@@ -83,7 +72,7 @@
             <a href="advertiser.html"><button class="nav-button">
               <span class="nav-text">ADVERTISERS</span>
               <img
-                src="../img/Arrow-Down.png"
+                src="img/Arrow-Down.png"
                 alt="Dropdown indicator"
                 class="dropdown-icon"
               />
@@ -105,7 +94,7 @@
             <a href="user.html"><button class="nav-button">
               <span class="nav-text">USERS</span>
               <img
-                src="../img/Arrow-Down.png"
+                src="img/Arrow-Down.png"
                 alt="Dropdown indicator"
                 class="dropdown-icon"
               />
@@ -172,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('overlaySubMenu');
     overlay.innerHTML = submenuElem.innerHTML;
     overlay.style.display = 'block';
-    // Positioniere das Overlay 20px unterhalb des nav-item-container
+    // Positioniere das Overlay var(--px-20) unterhalb des nav-item-container
     const rect = item.getBoundingClientRect();
     overlay.style.left = rect.left + 'px';
     overlay.style.top  = (rect.bottom + 20) + 'px';

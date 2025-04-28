@@ -1,490 +1,561 @@
+/* ------------- ocoso-app-functions.js (COMPLETE) ------------- */
 console.log('ocoso-app-functions.js loaded');
 
-// Prevent caching
-console.log('Adding cache control meta tags');
-const metaTags = `
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-`;
-document.querySelector('head').insertAdjacentHTML('beforeend', metaTags);
-console.log('Meta tags added');
-
-// Force CSS reload
-console.log('Checking for CSS links');
-const links = document.getElementsByTagName('link');
-console.log('Found links:', links.length);
-for (let i = 0; i < links.length; i++) {
-    const link = links[i];
-    console.log('Checking link:', link.href, 'with rel:', link.rel);
-    if (link.rel === 'stylesheet') {
-        console.log('Found stylesheet:', link.href);
-        const newHref = link.href.split('?')[0] + '?v=' + new Date().getTime();
-        console.log('Updating to:', newHref);
-        link.href = newHref;
-    }
+/* 0. Desktop-only CSS for .card-stack-wrapper */
+/* -------- helper ---------- */
+function isMobileDevice(){
+  /* moderne Touch-Erkennung */
+  if (window.matchMedia('(hover:none) and (pointer:coarse)').matches) return true;
+  /* Fallback */
+  if (window.matchMedia('(max-width:991px)').matches)               return true;
+  /* Backup: UA-String (für iPadOS-Safari) */
+  return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 }
 
-// Menu toggle functionality
-function toggleMenu() {
-    const menuOverlay = document.getElementById('menuOverlay');
-    const hamburgerButton = document.querySelector('.hamburger-button');
-    const mainNavigation = document.querySelector('.main-navigation');
-    const isMobile = window.matchMedia("(max-width: 991px)").matches;
+/* ========== 1. Prevent caching for HTML, CSS ========== */
+document.head.insertAdjacentHTML(
+  'beforeend',
+  `<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+   <meta http-equiv="Pragma"        content="no-cache">
+   <meta http-equiv="Expires"       content="0">`
+);
 
-    menuOverlay.classList.toggle('show');
-
-    if (menuOverlay.classList.contains('show')) {
-        document.body.style.overflow = 'hidden';
-        if (isMobile) {
-            hamburgerButton.style.display = 'none';
-            mainNavigation.style.display = 'none';
-        }
-    } else {
-        document.body.style.overflow = 'auto';
-        if (isMobile) {
-            hamburgerButton.style.display = 'block';
-            mainNavigation.style.display = 'none';
-        }
+function preventCSSCaching() {
+  [...document.querySelectorAll('link[rel="stylesheet"]')].forEach(link => {
+    try {
+      const url = new URL(link.href, document.baseURI);
+      url.searchParams.set('v', Date.now());
+      link.href = url.toString();
+    } catch {
+      link.href = link.href.split('?')[0] + '?v=' + Date.now();
     }
+  });
 }
 
-// Handle window resize
+/* ========== 2. Responsive helpers ========== */
+/* -------- visibility ---------- */
+function updateCardStackVisibility(){
+  const hide = isMobileDevice();
+  document.querySelectorAll('.card-stack-wrapper')
+          .forEach(el => el.hidden = hide);   // <-- nur Attribut toggeln
+}
+
 function handleResize() {
-    const hamburgerButton = document.querySelector('.hamburger-button');
-    const mainNavigation = document.querySelector('.main-navigation');
-    const isMobile = window.matchMedia("(max-width: 991px)").matches;
+  const hb   = document.querySelector('.hamburger-button');
+  const main = document.querySelector('.main-navigation');
+  const mob  = isMobileDevice(); /*const mob  = window.matchMedia('(max-width: 991px)').matches;*/
 
-    if (isMobile) {
-        hamburgerButton.style.display = 'block';
-        mainNavigation.style.display = 'none';
-    } else {
-        hamburgerButton.style.display = 'none';
-        mainNavigation.style.display = 'flex';
-    }
+  if (hb && main) {
+    hb.style.display   = mob ? 'flex' : 'none';
+    main.style.display = mob ? 'none' : 'flex';
+  }
+  updateCardStackVisibility();       // keep in sync
 }
-
-// Add resize event listener
 window.addEventListener('resize', handleResize);
 
+/* ========== 3. Menu overlay toggle (legacy overlay) ========== */
+function toggleMenu() {
+  const overlay  = document.getElementById('menuOverlay');
+  const hb       = document.querySelector('.hamburger-button');
+  const mainNav  = document.querySelector('.main-navigation');
+  const isMobile = window.matchMedia('(max-width: 991px)').matches;
 
+  if (!overlay) { console.error('#menuOverlay not found'); return; }
 
+  overlay.classList.toggle('show');
+  const shown = overlay.classList.contains('show');
+  document.body.style.overflow = shown ? 'hidden' : 'auto';
 
-// Typ-Kachel Auswählen und Auswerten
+  if (isMobile && hb && mainNav) {
+    hb.style.display   = shown ? 'none' : 'flex';
+    mainNav.style.display = 'none';
+  }
+}
 
+/* ========== 4. Type selection ========== */
 let selectedType = null;
-
-document.addEventListener('DOMContentLoaded', () => {
-  const galleryItems = document.querySelectorAll('.gallery-item-caroussel');
-
-  galleryItems.forEach(item => {
+function initializeTypeSelection() {
+  document.querySelectorAll('.gallery-item-caroussel').forEach(item => {
     item.addEventListener('click', () => {
-      // Deaktiviere vorherige Auswahl
-      galleryItems.forEach(i => i.classList.remove('active'));
-
-      // Aktiviere geklicktes Element
+      document.querySelectorAll('.gallery-item-caroussel')
+              .forEach(i => i.classList.remove('active'));
       item.classList.add('active');
-
-      // Hole den zugehörigen Typ
-      const typeLabel = item.querySelector('h4')?.textContent.trim();
-      selectedType = typeLabel;
-
+      selectedType = item.querySelector('h4')?.textContent.trim();
       console.log('Ausgewählter IP-Typ:', selectedType);
     });
   });
-});
-
-
-
-
-// Carousel functionality
-const galleries = document.querySelectorAll('.caroussel-gallery');
-const backBtn = document.querySelector('.caroussel-back');
-const nextBtn = document.querySelector('.caroussel-next');
-const steps = document.querySelectorAll('.step-item');
-
-// Only initialize carousel if all necessary elements are found
-if (galleries.length > 0 && backBtn && nextBtn && steps.length > 0) {
-    let currentIndex = 0;
-
-    function updateCarousel() {
-      galleries.forEach((gallery, idx) => {
-        gallery.style.display = (idx === currentIndex) ? 'flex' : 'none';
-      });
-      steps.forEach((step, idx) => {
-        if (idx === currentIndex) {
-          step.classList.add('active');
-          step.setAttribute('aria-current', 'step');
-        } else {
-          step.classList.remove('active');
-          step.removeAttribute('aria-current');
-        }
-      });
-    }
-
-    // Initial carousel setup
-    updateCarousel();
-
-    // Carousel navigation
-    backBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + galleries.length) % galleries.length;
-      updateCarousel();
-    });
-
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % galleries.length;
-      updateCarousel();
-    });
-
-    // Step click handlers
-    steps.forEach((step, idx) => {
-      step.addEventListener('click', () => {
-        currentIndex = idx;
-        updateCarousel();
-      });
-    });
-} else {
-    console.log("Carousel elements not found on this page. Skipping carousel initialization.");
 }
 
-// JavaScript: Beim Mouse-Enter wird der Zustand "hovered" gesetzt, sodass der Tooltip erscheint.
-const uploadArea = document.getElementById('uploadArea');
+/* ========== 5. Carousel ========== */
+function initializeCarousel() {
+  const galleries = document.querySelectorAll('.caroussel-gallery');
+  const backBtn   = document.querySelector('.caroussel-back');
+  const nextBtn   = document.querySelector('.caroussel-next');
+  const steps     = document.querySelectorAll('.step-item');
+  if (!galleries.length || !backBtn || !nextBtn || !steps.length) return;
 
-// Only add listeners if the upload area exists
-if (uploadArea) {
-    uploadArea.addEventListener('mouseenter', () => {
-      uploadArea.classList.add('hovered');
+  let cur = 0;
+  const update = () => {
+    galleries.forEach((g, i) => g.style.display = i === cur ? 'flex' : 'none');
+    steps.forEach((s, i) => {
+      s.classList.toggle('active', i === cur);
+      if (i === cur) s.setAttribute('aria-current', 'step');
+      else           s.removeAttribute('aria-current');
     });
-
-    uploadArea.addEventListener('mouseleave', () => {
-      uploadArea.classList.remove('hovered');
-    });
-} else {
-    console.log("Upload area element not found on this page.");
+  };
+  update();
+  backBtn.addEventListener('click', () => { cur = (cur - 1 + galleries.length) % galleries.length; update(); });
+  nextBtn.addEventListener('click', () => { cur = (cur + 1) % galleries.length; update(); });
+  steps.forEach((s, i) => s.addEventListener('click', () => { cur = i; update(); }));
 }
 
-
-
-	  
-	  
-
-
-// Function to prevent CSS caching
-function preventCSSCaching() {
-    console.log('Running preventCSSCaching');
-    const links = document.getElementsByTagName('link');
-    console.log('Found links:', links.length);
-    
-    for (let i = 0; i < links.length; i++) {
-        const link = links[i];
-        console.log('Checking link:', link.href, 'with rel:', link.rel);
-        
-        if (link.rel === 'stylesheet') {
-            console.log('Found stylesheet:', link.href);
-            // Add a timestamp to the href to force a fresh load
-            const newHref = link.href.split('?')[0] + '?v=' + new Date().getTime();
-            console.log('Updating to:', newHref);
-            link.href = newHref;
-        }
-    }
+/* ========== 6. Tooltip hover ========== */
+function initializeTooltip() {
+  const area = document.getElementById('uploadArea');
+  if (area) {
+    area.addEventListener('mouseenter', () => area.classList.add('hovered'));
+    area.addEventListener('mouseleave', () => area.classList.remove('hovered'));
+  }
 }
 
-// Call the function when the page loads
-document.addEventListener('DOMContentLoaded', preventCSSCaching);
-
-// NEW: Make parent wrapper clickable based on data-link
+/* ========== 7. data-link wrapper navigation ========== */
 function setupWrapperLinks() {
-    console.log('Setting up wrapper links');
-    const linkedElements = document.querySelectorAll('[data-link]');
-    console.log(`Found ${linkedElements.length} elements with data-link.`);
-
-    linkedElements.forEach(element => {
-        const url = element.getAttribute('data-link');
-        // Find the closest ancestor element with the class 'wrapper'
-        const parentWrapper = element.closest('.wrapper'); 
-
-        if (parentWrapper && url) {
-            console.log(`Attaching link ${url} to wrapper:`, parentWrapper);
-            // Prevent duplicate listeners if this runs multiple times
-            if (!parentWrapper.dataset.hasLinkListener) { 
-                parentWrapper.addEventListener('click', (event) => {
-                    // Optional: Prevent clicks on interactive elements inside the wrapper from navigating
-                    // if (event.target.closest('button, a, input, textarea')) {
-                    //     return; 
-                    // }
-                    console.log(`Wrapper clicked, navigating to: ${url}`);
-                    window.location.href = url;
-                });
-                parentWrapper.dataset.hasLinkListener = 'true'; // Mark as having a listener
-            }
-        } else {
-            if (!parentWrapper) console.warn('Could not find parent .wrapper for element:', element);
-            if (!url) console.warn('Element has data-link attribute but no value:', element);
-        }
-    });
+  document.querySelectorAll('[data-link]').forEach(el => {
+    const url = el.dataset.link;
+    const wrap = el.closest('.wrapper');
+    if (wrap && url && !wrap.dataset.hasLinkListener) {
+      wrap.addEventListener('click', ev => {
+        if (ev.target.closest('a,button,input,textarea,select,[onclick],.click-target')) return;
+        window.location.href = url;
+      });
+      wrap.dataset.hasLinkListener = 'true';
+    }
+  });
 }
 
-// Call setupWrapperLinks after components are loaded 
-// We need to ensure this runs *after* loadNavigation and loadOverlayMenu
-// A simple way is to call it inside those functions, but let's try a slightly delayed call
-// or potentially call it within the .then() block of the fetch calls.
+/* ========== 8. Upload area ========== */
+function initializeUploadArea() {
+  const area  = document.getElementById('uploadArea');
+  const input = document.getElementById('uploadInput');
+  if (!area || !input) return;
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Initial setup for elements present on page load
-    setupWrapperLinks();
-});
+  const content = area.querySelector('.upload-content');
+  const btn     = area.querySelector('.content-button');
+  let fileSel   = null;
 
-// Function to load navigation component
+  area.addEventListener('click', e => { if (!e.target.closest('.content-button')) input.click(); });
+  input.addEventListener('change', e => { if (e.target.files[0]) handle(e.target.files[0]); });
+  area.addEventListener('dragover', e => { e.preventDefault(); area.classList.add('dragover'); });
+  area.addEventListener('dragleave', () => area.classList.remove('dragover'));
+  area.addEventListener('drop', e => {
+    e.preventDefault(); area.classList.remove('dragover');
+    const f = e.dataTransfer.files[0];
+    if (f) { input.files = e.dataTransfer.files; handle(f); }
+  });
+  btn?.addEventListener('click', () => {
+    alert(fileSel ? `Demo: "${fileSel.name}" erkannt – Upload möglich.` : 'Bitte Datei auswählen.');
+  });
+
+  function handle(f) {
+    fileSel = f;
+    if (content) {
+      content.innerHTML =
+        `<h2>${f.name}</h2><p>${(f.size / 1048576).toFixed(2)} MB</p><p>${f.type}</p>`;
+    }
+  }
+}
+
+/* ========== 9. Desktop hover navigation ========== */
+function initDesktopHoverNavigation() {
+  const wrappers = document.querySelectorAll('.nav-item-wrapper');
+  if (!wrappers.length) return false;
+
+  wrappers.forEach(w => {
+    const sub = w.querySelector('.hsub-menu');
+    let hide;
+    w.addEventListener('mouseenter', () => {
+      clearTimeout(hide); sub?.classList.add('active'); sub?.classList.remove('inactive');
+    });
+    w.addEventListener('mouseleave', () => {
+      hide = setTimeout(() => { if (!w.matches(':hover')) { sub?.classList.remove('active'); sub?.classList.add('inactive'); } }, 300);
+    });
+    sub?.addEventListener('mouseenter', () => clearTimeout(hide));
+    sub?.addEventListener('mouseleave', () => {
+      hide = setTimeout(() => { if (!w.matches(':hover')) { sub.classList.remove('active'); sub.classList.add('inactive'); } }, 300);
+    });
+  });
+  console.log('Desktop hover navigation initialized.');
+  return true;
+}
+
+/* ========== 10. Loaders: NAV, Overlay, Footer, Wallet ========== */
 function loadNavigation() {
-    const navPlaceholder = document.getElementById('navigation-placeholder');
-    if (navPlaceholder) {
-        fetch('components/navigation.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok for navigation.html');
-                }
-                return response.text();
-            })
-            .then(html => {
-                navPlaceholder.innerHTML = html;
-                console.log('Navigation loaded successfully.');
-                handleResize(); 
-                setupWrapperLinks();
-
-                // 1️⃣ wallet.js nachladen
-                const script = document.createElement('script');
-                script.src = 'js/wallet.js';
-                script.defer = true;
-                script.onload = () => {
-                    console.log('wallet.js geladen');
-
-                    // 2️⃣ initWallet() ausführen
-                    if (typeof initWallet === 'function') {
-                        initWallet();
-                        console.log('initWallet() aufgerufen');
-                    }
-
-                    // 3️⃣ Wallet-Zustand sofort prüfen
-                    if (typeof window.ethereum !== 'undefined') {
-                        window.ethereum.request({ method: 'eth_accounts' })
-                            .then(accounts => {
-                                if (accounts.length > 0 && typeof handleAccountsChanged === 'function') {
-                                    handleAccountsChanged(accounts); // 💡 aktualisiert Button
-                                    console.log('Wallet war bereits verbunden:', accounts[0]);
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Fehler beim Abfragen von eth_accounts:', error);
-                            });
-                    }
-                };
-                document.body.appendChild(script);
-            })
-            .catch(error => {
-                console.error('Error loading navigation:', error);
-                navPlaceholder.innerHTML = '<p>Error loading navigation.</p>';
-            });
-    }
+  const ph = document.getElementById('navigation-placeholder');
+  if (!ph) return;
+  fetch('components/navigation.html')
+    .then(r => { if (!r.ok) throw new Error('nav'); return r.text(); })
+    .then(html => {
+      ph.innerHTML = html;
+      console.log('Navigation loaded');
+      handleResize();
+      setupWrapperLinks();
+      loadAndInitWallet();
+    })
+    .catch(() => ph.innerHTML = '<p>Error loading navigation.</p>');
 }
 
-// Function to load overlay menu component
 function loadOverlayMenu() {
-    const overlayPlaceholder = document.getElementById('overlay-menu-placeholder');
-    if (overlayPlaceholder) {
-        fetch('components/overlay-menu.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok for overlay-menu.html');
-                }
-                return response.text();
-            })
-            .then(html => {
-                overlayPlaceholder.innerHTML = html;
-                console.log('Overlay menu loaded successfully.');
-                setupWrapperLinks(); // Re-run link setup for newly added content
-            })
-            .catch(error => {
-                console.error('Error loading overlay menu:', error);
-                overlayPlaceholder.innerHTML = '<p>Error loading overlay menu.</p>';
-            });
-    }
+  const ph = document.getElementById('overlay-menu-placeholder');
+  if (!ph) return;
+  fetch('components/mobile-flag-nav3d-crossbrowser.html')
+    .then(r => { if (!r.ok) throw new Error('overlay'); return r.text(); })
+    .then(html => {
+      ph.innerHTML = html;
+      console.log('Overlay menu loaded');
+      initializeFlagNav(ph);
+    })
+    .catch(() => ph.innerHTML = '<p>Error loading overlay menu.</p>');
 }
 
-// Function to load overlay menu component
 function loadFooter() {
-	console.log("Running loadFooter()");
-    const footerPlaceholder = document.getElementById('footer-placeholder');
-    console.log("Found footerPlaceholder:", footerPlaceholder);
-	
-    if (footerPlaceholder) {
-        fetch('components/footer.html')
-            .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok for footer.html');
-                return response.text();
-            })
-            .then(html => {
-                footerPlaceholder.innerHTML = html;
-                console.log('Footer loaded successfully.');
-                setupWrapperLinks?.();
-            })
-            .catch(error => {
-                console.error('Error loading footer:', error);
-                footerPlaceholder.innerHTML = '<p>Error loading footer.</p>';
-            });
-    }
+  const ph = document.getElementById('footer-placeholder');
+  if (!ph) return;
+  fetch('components/footer.html')
+    .then(r => { if (!r.ok) throw new Error('footer'); return r.text(); })
+    .then(html => {
+      ph.innerHTML = html;
+      console.log('Footer loaded');
+      setupWrapperLinks();
+    })
+    .catch(() => ph.innerHTML = '<p>Error loading footer.</p>');
 }
 
-// Fetch-API zum Laden der Daten
-fetch('/data/ipnft_dashboard_data.json')
-  .then(response => response.json())
-  .then(data => {
-    console.log('Geladene Daten:', data);
-
-    // Zugriff auf Datenblöcke
-    const kategorien = data.kategorien;
-    const monetarisierung = data.monetarisierung;
-    const anteile = data.anteile_monetarisierung;
-
-    // Beispiel: Erste Kategorie ausgeben
-    console.log('Erste Kategorie:', kategorien[0]);
-  });
-
-			
-				
-// Upload-Funktionalitaet				
-				
-let selectedFile = null; // speichert die ausgewählte Datei für später
-
-document.addEventListener('DOMContentLoaded', () => {
-  const uploadArea = document.getElementById('uploadArea');
-  const uploadInput = document.getElementById('uploadInput');
-  const uploadContent = uploadArea.querySelector('.upload-content');
-  const uploadButton = uploadArea.querySelector('.content-button');
-
-  // Klick auf Upload-Bereich → Datei-Auswahl öffnen
-  uploadArea.addEventListener('click', (e) => {
-    // Nur auslösen, wenn NICHT auf den Button geklickt wurde
-    if (!e.target.closest('.content-button')) {
-      uploadInput.click();
+function loadAndInitWallet() {
+  const s = document.createElement('script');
+  s.src = 'js/wallet.js';
+  s.defer = true;
+  s.onload = () => {
+    console.log('wallet.js geladen');
+    typeof initWallet === 'function' && initWallet();
+    if (window.ethereum && typeof handleAccountsChanged === 'function') {
+      window.ethereum.request({ method: 'eth_accounts' })
+        .then(acc => acc.length && handleAccountsChanged(acc))
+        .catch(console.error);
     }
-  });
+  };
+  s.onerror = () => console.error('wallet.js failed');
+  document.body.appendChild(s);
+}
 
-  // Datei wurde über Datei-Auswahl ausgewählt
-  uploadInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (file) handleFile(file);
-  });
+/* ========== 11. Flag Navigation (volle Version) ========== */
+// --- Function to Initialize the Flag Nav ---
+function initializeFlagNav(containerElement) {
+    console.log('Initializing Flag Nav inside:', containerElement);
 
-  // Datei per Drag & Drop
-  uploadArea.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    uploadArea.classList.add('dragover');
-  });
+    // --- DOM Elements (Scoped to containerElement) ---
+    const btnOpen = containerElement.querySelector('#hamburgerBtn');
+    const btnClose = containerElement.querySelector('#closeFlagNav');
+    const nav = containerElement.querySelector('#mobileFlagNav'); // The <aside> element
+	const wrapperLi = document.querySelector('.flag-wrapper');
 
-  uploadArea.addEventListener('dragleave', () => {
-    uploadArea.classList.remove('dragover');
-  });
-
-  uploadArea.addEventListener('drop', (e) => {
-    e.preventDefault();
-    uploadArea.classList.remove('dragover');
-
-    const file = e.dataTransfer.files[0];
-    if (file) {
-      uploadInput.files = e.dataTransfer.files;
-      handleFile(file);
-    }
-  });
-
-  // Upload-Button klick (Demo)
-  uploadButton.addEventListener('click', () => {
-    if (selectedFile) {
-      console.log('Demo: Datei bereit zum Upload:', selectedFile);
-      alert(`Demo: "${selectedFile.name}" erkannt – Upload wäre jetzt möglich.`);
-    } else {
-      alert('Bitte zuerst eine Datei auswählen oder hineinziehen.');
-    }
-  });
-
-  // Datei verarbeiten (für Anzeige + Speicherung)
-  function handleFile(file) {
-    selectedFile = file;
-
-    uploadContent.innerHTML = `
-      <h2>${file.name}</h2>
-      <p>${(file.size / 1024 / 1024).toFixed(2)} MB</p>
-      <p>${file.type}</p>
-    `;
-  }
-});				
-
-
-
-// Call loadNavigation and loadOverlayMenu when the page loads
-document.addEventListener('DOMContentLoaded', loadNavigation);
-document.addEventListener('DOMContentLoaded', loadOverlayMenu);
-document.addEventListener('DOMContentLoaded', loadFooter);
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-
-  // Initialisiert das Navigationsverhalten.
-  function initNavigation() {
-    const wrappers = document.querySelectorAll('.nav-item-wrapper');
-    if (wrappers.length === 0) {
-      return false;
-    }
-    wrappers.forEach(function(wrapper) {
-      let hideTimeout;
-      let submenu = wrapper.querySelector('.hsub-menu');
-
-      wrapper.addEventListener('mouseenter', function() {
-        clearTimeout(hideTimeout);
-        if (submenu) {
-          submenu.classList.add('active');
-          submenu.classList.remove('inactive');
+    // Check if essential elements were found
+    if (!btnOpen || !btnClose || !nav) {
+        console.error("Flag Nav Error: Could not find essential elements (#hamburgerBtn, #closeFlagNav, #mobileFlagNav) within", containerElement);
+        // Attempt to hide the global hamburger button if the menu failed to load properly
+        const globalHamburger = document.getElementById('hamburgerBtn'); // May need adjustment if ID isn't unique
+        if(globalHamburger && globalHamburger !== btnOpen) { // Check it's not the one we failed to find
+            globalHamburger.style.display = 'none';
+            console.log("Hiding global hamburger button as flag nav failed to initialize.");
         }
-      });
+        return; // Stop initialization
+    } else {
+        console.log('Flag Nav elements found.');
+    }
 
-      wrapper.addEventListener('mouseleave', function() {
-        hideTimeout = setTimeout(function() {
-          if (!wrapper.matches(':hover') && !submenu.matches(':hover')) {
-            submenu.classList.remove('active');
-            submenu.classList.add('inactive');
-          }
-        }, 300);
-      });
+    // --- State & Helpers ---
+    const activeTransitions = new Map();
+    const transitionListeners = new Map();
 
-      if (submenu) {
-        submenu.addEventListener('mouseenter', function() {
-          clearTimeout(hideTimeout);
-        });
-        submenu.addEventListener('mouseleave', function() {
-          hideTimeout = setTimeout(function() {
-            if (!wrapper.matches(':hover')) {
-              submenu.classList.remove('active');
-              submenu.classList.add('inactive');
+    // --- Transition End Listener Management ---
+    function removeExistingListener(element, propertyName) {
+        if (transitionListeners.has(element)) {
+            const propertyMap = transitionListeners.get(element);
+            const handler = propertyMap.get(propertyName);
+            if (handler) {
+                element.removeEventListener('transitionend', handler);
+                propertyMap.delete(propertyName);
+                if (propertyMap.size === 0) {
+                    transitionListeners.delete(element);
+                }
             }
-          }, 300);
+        }
+    }
+    function addTransitionListener(element, propertyName, callback) {
+        removeExistingListener(element, propertyName);
+        const handler = (event) => {
+            if (event.target === element && event.propertyName === propertyName) {
+                removeExistingListener(element, propertyName);
+                callback();
+            }
+        };
+        if (!transitionListeners.has(element)) {
+            transitionListeners.set(element, new Map());
+        }
+        transitionListeners.get(element).set(propertyName, handler);
+        element.addEventListener('transitionend', handler);
+    }
+    function cancelElementTransitions(element) {
+        if (!element) return;
+        if (transitionListeners.has(element)) {
+            const listeners = transitionListeners.get(element);
+            listeners.forEach((handler, propertyName) => {
+                element.removeEventListener('transitionend', handler);
+            });
+            transitionListeners.delete(element);
+        }
+    }
+
+    // --- Reset Submenu State ---
+    function resetSubmenuState(ul, state = 'closed') {
+        if (!ul) return;
+        cancelElementTransitions(ul);
+        activeTransitions.delete(ul);
+        const parentLi = ul.parentElement;
+        if (!parentLi) return;
+        const children = Array.from(ul.children);
+        const originalTransition = ul.style.transition;
+        ul.style.transition = 'none';
+        if (state === 'closed') {
+            parentLi.classList.remove('expanded');
+            ul.style.display = 'none'; ul.style.height = ''; ul.style.overflow = '';
+            children.forEach(child => {
+                if(child.classList.contains('flag-item')) {
+                    child.classList.add('hidden'); child.classList.remove('visible');
+                    child.style.transitionDelay = '';
+                }
+            });
+        } else {
+            parentLi.classList.add('expanded');
+            ul.style.display = 'block'; ul.style.height = 'auto'; ul.style.overflow = 'visible';
+            children.forEach(child => {
+                if(child.classList.contains('flag-item')) {
+                child.classList.remove('hidden'); child.classList.add('visible');
+                child.style.transitionDelay = '';
+                }
+            });
+        }
+        void ul.offsetHeight;
+        ul.style.transition = originalTransition;
+        if (!originalTransition) ul.style.removeProperty('transition');
+    }
+
+    // --- Animation Functions ---
+     function animateOpen(parentLi) {
+        const ul = parentLi.querySelector(':scope > ul');
+        if (!ul || parentLi.classList.contains('expanded') || activeTransitions.get(ul) === 'opening') return;
+        if (activeTransitions.get(ul) === 'closing') {
+            resetSubmenuState(ul, 'closed');
+        }
+        activeTransitions.set(ul, 'opening');
+        const children = Array.from(ul.children);
+        ul.style.transition = 'none'; ul.style.display = 'block'; ul.style.height = 'auto';
+        children.forEach(child => { if (child.classList.contains('flag-item')) { child.classList.remove('hidden'); } });
+        void ul.offsetHeight;
+        const targetHeight = ul.scrollHeight + 'px';
+        ul.style.height = '0px'; ul.style.overflow = 'hidden';
+        children.forEach(child => { if (child.classList.contains('flag-item')) { child.classList.add('hidden'); } });
+        void ul.offsetHeight; ul.style.transition = '';
+        if (parseFloat(targetHeight) <= 0) {
+            console.warn(`Calculated targetHeight is ${targetHeight} for`, parentLi, ". Aborting open.");
+            activeTransitions.delete(ul); ul.style.display = 'none'; return;
+        }
+        parentLi.classList.add('expanded');
+        requestAnimationFrame(() => {
+            if (activeTransitions.get(ul) !== 'opening') return;
+            ul.style.transition = 'height 0.4s ease'; ul.style.height = targetHeight;
         });
-      }
+        children.forEach((child, i) => {
+            if (child.classList.contains('flag-item')) {
+            child.style.transitionDelay = `${i * 60}ms`; child.classList.remove('hidden');
+            requestAnimationFrame(() => { requestAnimationFrame(() => {
+                if (activeTransitions.get(ul) !== 'opening') return;
+                child.classList.add('visible');
+            }); });
+            }
+        });
+        addTransitionListener(ul, 'height', () => {
+            if (activeTransitions.get(ul) === 'opening') {
+                ul.style.height = 'auto'; ul.style.overflow = 'visible'; activeTransitions.set(ul, null);
+            }
+        });
+    }
+    function animateClose(parentLi, callback) {
+        const ul = parentLi.querySelector(':scope > ul');
+        if (!ul || !parentLi.classList.contains('expanded')) {
+            if (ul && activeTransitions.get(ul) === 'opening') { resetSubmenuState(ul, 'closed'); }
+            if (callback) callback(); return;
+        }
+        if (activeTransitions.get(ul) === 'closing') { if (callback) callback(); return; }
+        if (activeTransitions.get(ul) === 'opening') { resetSubmenuState(ul, 'open'); }
+        activeTransitions.set(ul, 'closing');
+        ul.style.height = ul.scrollHeight + 'px'; ul.style.overflow = 'hidden';
+        void ul.offsetHeight; // Reflow
+        parentLi.classList.remove('expanded');
+        requestAnimationFrame(() => {
+        if (activeTransitions.get(ul) !== 'closing') return;
+            ul.style.transition = 'height 0.4s ease';
+        ul.style.height = '0px';
+        });
+        const children = Array.from(ul.children);
+        children.reverse().forEach((child, i) => {
+        if (child.classList.contains('flag-item')) {
+            child.style.transitionDelay = `${i * 60}ms`;
+            requestAnimationFrame(() => {
+                if (activeTransitions.get(ul) !== 'closing') return;
+                child.classList.remove('visible');
+            });
+        }
+        });
+        addTransitionListener(ul, 'height', () => {
+            const wasClosing = activeTransitions.get(ul) === 'closing';
+            if (wasClosing) { resetSubmenuState(ul, 'closed'); }
+            activeTransitions.delete(ul);
+            if (callback) callback();
+        });
+    }
+
+    // --- Attach Event Listeners ---
+    btnOpen.addEventListener('click', () => {
+        console.log('Flag Nav Hamburger Clicked');
+        if (!nav) { console.error("Cannot open flag nav, element not found."); return; }
+        nav.classList.add('open');
+        btnOpen.classList.add('hamburger-hidden');
+        btnClose.classList.remove('close-btn-hidden');
+        //document.body.style.overflow = 'hidden';
+
+        const wrapperLi = nav.querySelector('.flag-wrapper');
+        if (wrapperLi) {
+            wrapperLi.classList.remove('hidden');
+            wrapperLi.classList.add('visible');
+            setTimeout(() => { animateOpen(wrapperLi); }, 50);
+        } else { console.warn('Flag wrapper not found inside nav.'); }
     });
-    return true;
+
+    btnClose.addEventListener('click', closeNavMenu);
+
+    /* ------------------ Klick außerhalb schließt ------------------ */
+    document.addEventListener('click', outsideClickClose, true); // capture-Phase
+
+    function outsideClickClose(e) {
+      /* nur reagieren, wenn Menü offen */
+      if (!nav.classList.contains('open')) return;
+
+      /* Klick IM Menü → ignorieren */
+      if (e.target.closest('.mobile-flag-nav')) return;
+
+      /* Klick auf einen Hamburger (auch zukünftige) → ignorieren */
+      if (e.target.closest('.hamburger-button')) return;
+
+      /* alles andere schließt */
+      closeNavMenu();
+    }
+
+    /* ------------------ Menü zentral schließen ------------------ */
+    function closeNavMenu() {
+      if (!nav.classList.contains('open')) return;
+
+      btnOpen.classList.remove('hamburger-hidden');
+      btnClose.classList.add('close-btn-hidden');
+
+      const wrapperLi = nav.querySelector('.flag-wrapper');
+      if (!wrapperLi) {
+        nav.classList.remove('open');
+        return;
+      }
+
+      const expanded = nav.querySelectorAll(
+        '.flag-item.expanded, .flag-wrapper.expanded'
+      );
+
+      const cleanup = () => {
+        nav.classList.remove('open');
+        wrapperLi.classList.remove('visible');
+        wrapperLi.classList.add('hidden');
+      };
+
+      if (!expanded.length) {
+        animateClose(wrapperLi, cleanup);
+        return;
+      }
+      expanded.forEach(li => {
+        const isWrapper = li === wrapperLi;
+        animateClose(li, () => { if (isWrapper) cleanup(); });
+      });
+    }
+
+    console.log('Flag Nav initialised with outside-click close.');
+
+    // Attach submenu click listener
+    nav.addEventListener('click', e => {
+        const linkElement = e.target.closest('.flag-item > a');
+        if (!linkElement) return;
+        const li = linkElement.parentElement;
+        const ul = li ? li.querySelector(':scope > ul') : null;
+        if (!li || !ul) return;
+
+        e.preventDefault();
+        const isExpanded = li.classList.contains('expanded');
+        const currentState = activeTransitions.get(ul);
+        const siblings = Array.from(li.parentElement.children)
+            .filter(el => el !== li && el.classList.contains('flag-item') && el.classList.contains('expanded'));
+        siblings.forEach(sibLi => animateClose(sibLi));
+
+        if (isExpanded && currentState !== 'closing') {
+            animateClose(li);
+        } else if (!isExpanded && currentState !== 'opening') {
+            setTimeout(() => {
+                const currentUl = li.querySelector(':scope > ul');
+                if (currentUl && !li.classList.contains('expanded') && activeTransitions.get(currentUl) !== 'opening'){
+                    animateOpen(li);
+                }
+            }, 60);
+        }
+    });
+
+    console.log("Flag Nav Initialized successfully.");
+
+} // --- End of initializeFlagNav function ---
+
+
+/* ========== 12. Demo-Fetch JSON ========== */
+fetch('/data/ipnft_dashboard_data.json')
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(d => console.log('Erste Kategorie:', d.kategorien?.[0]))
+  .catch(console.error);
+
+/* ========== 13. DOMContentLoaded bootstrap ========== */
+document.addEventListener('DOMContentLoaded', () => {
+  preventCSSCaching();
+  loadNavigation();
+  loadOverlayMenu();
+  loadFooter();
+
+  handleResize();                     // initial sync
+  initializeTypeSelection();
+  initializeCarousel();
+  initializeTooltip();
+  initializeUploadArea();
+  setupWrapperLinks();
+  updateCardStackVisibility();
+
+  if (!initDesktopHoverNavigation()) {
+    const obs = new MutationObserver((_, o) => {
+      if (initDesktopHoverNavigation()) o.disconnect();
+    });
+    obs.observe(document.body, { childList: true, subtree: true });
   }
 
-  // MutationObserver wird gestartet.
-  const observer = new MutationObserver(function(mutations, obs) {
-    if (initNavigation()) {
-      console.log('Navigationselemente sind geladen.');
-      obs.disconnect();
-    }
-  });
-  
-  // Beobachtet Änderungen im ganzen Dokument.
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
-  
+  /* watch late-loaded card stacks */
+  const csObs = new MutationObserver(updateCardStackVisibility);
+  csObs.observe(document.body, { childList: true, subtree: true });
 });

@@ -6,7 +6,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>OCOSO MVP - Full Layout</title>
-    <link rel="stylesheet" href="styleV033.css?v=20240321">
+    <link rel="stylesheet" href="styleV033-kartennavigation.css">
     <style>
 		
 .comic-row {
@@ -15,17 +15,17 @@
           flex-wrap: wrap;
           justify-content: center;
           align-items: flex-start;
-          gap: 20px;
+          gap: var(--px-20);
           margin: 0 auto;
           padding: 0px;
           box-sizing: border-box;
       }
 		
       .comic-block {
-        width: 300px;
-        height: 450px;
-        padding: 0px 20px 20px 20px;
-        border-radius: 20px;
+        width: var(--px-300);
+        height: var(--px-450);
+        padding: 0px var(--px-20) var(--px-20) var(--px-20);
+        border-radius: var(--px-20);
         box-sizing: border-box;
         background-color: black;
         display: flex;
@@ -38,14 +38,14 @@
         display: inline-block;
         transform: rotateZ(-10deg);
         transform-origin: left bottom;
-        margin: -40px 0 0 20px;
+        margin: -40px 0 0 var(--px-20);
       }
 
       .text-box {
         display: inline;
         background: yellow;
         color: black;
-        padding: 0 4px;
+        padding: 0 var(--px-4);
         box-decoration-break: clone;
         -webkit-box-decoration-break: clone;
       }		
@@ -54,15 +54,15 @@
           display: inline-block;
           transform: rotateZ(-10deg);
           transform-origin: left bottom;
-          margin: 20px 0 0 10px;
+          margin: var(--px-20) 0 0 var(--px-10);
       }
 		
       .comic-image {
-          width: 300px;
-          height: 300px;
-		  border-radius: 20px 20px 0 0;
+          width: var(--px-300);
+          height: var(--px-300);
+		  border-radius: var(--px-20) var(--px-20) 0 0;
           margin: 0px 0 7px -20px;
-		  border: black 5px solid;
+		  border: black var(--px-5) solid;
           box-sizing:border-box;
           background-size: cover;
           background-repeat: no-repeat;
@@ -75,17 +75,17 @@
           flex-wrap: wrap;
           justify-content: center;
           align-items: flex-start;
-          gap: 20px;
+          gap: var(--px-20);
           margin: 0 auto;
           padding: 0px;
           box-sizing: border-box;
       }
 		
       .comic-block-wide {
-        width: 460px;
+        width: var(--px-460);
         height: 650px;
-		border-radius: 20px;
-        padding: 0px 20px 20px 20px;
+		border-radius: var(--px-20);
+        padding: 0px var(--px-20) var(--px-20) var(--px-20);
         box-sizing: border-box;
         background-color: black;
         display: flex;
@@ -98,14 +98,14 @@
         display: inline-block;
         transform: rotateZ(-10deg);
         transform-origin: left bottom;
-        margin: -30px 0 0 20px;
+        margin: -30px 0 0 var(--px-20);
       }
 
       .text-box-wide {
         display: inline;
         background: yellow;
         color: black;
-        padding: 0 4px;
+        padding: 0 var(--px-4);
         box-decoration-break: clone;
         -webkit-box-decoration-break: clone;
       }		
@@ -114,15 +114,15 @@
           display: inline-block;
           transform: rotateZ(-10deg);
           transform-origin: left bottom;
-          margin: 20px 0 0 35px;
+          margin: var(--px-20) 0 0 35px;
       }
 		
       .comic-image-wide {
-          width: 460px;
-          height: 460px;
-		  border-radius: 20px 20px 0 0;
+          width: var(--px-460);
+          height: var(--px-460);
+		  border-radius: var(--px-20) var(--px-20) 0 0;
           margin: 0px 0 7px -20px;
-		  border: black 5px solid;
+		  border: black var(--px-5) solid;
           box-sizing:border-box;
           background-size: cover;
           background-repeat: no-repeat;
@@ -136,7 +136,7 @@
           flex-wrap: wrap;
           justify-content: center;
           align-items: flex-start;
-          gap: 20px;
+          gap: var(--px-20);
           margin: 0 auto;
           padding: 0px;
           box-sizing: border-box;
@@ -144,8 +144,8 @@
 		
       .comic-block-extrawide {
         width: 100%;
-        height: 350px;
-		border-radius: 20px;
+        height: var(--px-350);
+		border-radius: var(--px-20);
         padding: 0px 0px 0px 0px;
         box-sizing: border-box;
         background-color: black;
@@ -161,9 +161,9 @@
         flex-direction: column;
         justify-content: flex-end;
         color: black;
-        padding: 20px 40px 40px 0;
+        padding: var(--px-20) var(--px-40) var(--px-40) 0;
         width: 50%;
-		  border: black 1px solid;
+		  border: black var(--px-1) solid;
 		  box-sizing: border-box;
       }		
 				
@@ -174,13 +174,13 @@
 		
       .comic-image-extrawide {
           width: 50%;
-          height: 350px;
-		  border-radius: 20px 0 0 20px;
-          margin: 0px 10px 0px 0px;
+          height: var(--px-350);
+		  border-radius: var(--px-20) 0 0 var(--px-20);
+          margin: 0px var(--px-10) 0px 0px;
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
-		  border: black 5px solid;
+		  border: black var(--px-5) solid;
 		  box-sizing: border-box;
 		  backhround-color: black;
       }		
@@ -192,15 +192,15 @@
           flex-wrap: wrap;
           justify-content: center;
           align-items: flex-start;
-          gap: 20px;
+          gap: var(--px-20);
           margin: 0 auto;
           padding: 0px;
           box-sizing: border-box;		  
       }
 		
       .starttext-block {
-        width: 300px;
-        padding: 0px 20px 20px 20px;
+        width: var(--px-300);
+        padding: 0px var(--px-20) var(--px-20) var(--px-20);
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
@@ -216,18 +216,24 @@
 <div id="overlay-menu-placeholder"></div>
 
  
-	
-
 <section class="hero">
-  <div class="hero-container" style="background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/4691e67e3b75d917f12dc87357c5328ca76244d9');">
-    <div class="hero-content-wrapper">
-      <h1 class="main-heading">Advertise</h1>
-      <p></p>
-      <p class="hero-description">
-        Tap into verified creators, owned media, and trusted audiences.
+  <div class="hero-container" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%), 
+									 radial-gradient(circle at 50% 50%, 
+                                     rgba(0, 0, 0, 0)  60%,    
+                                     rgba(0, 0, 0, 1)  100%), 
+									 url('img/head-advertiser-cmyk.jpg'); 
+									 background-position: center;">
+	  
+    <div style="display: flex; flex-direction: column; width: 80%;">
+      <div class="hero-content-wrapper" style="flex-direction: flex-start; justify-content: top;">
+        <div class="main-heading" style="min-height: var(--px-300);   margin-left: var(--px-50)"><h1 class="text-box-wide">Advertise</h1>
+        </div>
+        <div class="hero-description" style=" margin-left: 25%"><h5 class="text-box-wide">
+          Tap into verified creators, owned media, and trusted audiences.
 No noise. No guesswork. Just results — on your terms. Web3 creators bring soul, not scripts — and they mean every word.
 Your brand deserves more than a slot. It deserves a story.
-      </p>
+        </h5></div>
+      </div>
     </div>
     <div class="cta-section">
       <div class="button-group">
@@ -244,9 +250,159 @@ Your brand deserves more than a slot. It deserves a story.
   </div>
 </section>
 	
+
+<div class="card-stack-wrapper">
+  <nav class="card-stack" id="stack">
+	
+    <div class="card"> 
+      <div class="wrapper">
+        <div class="responsive"  data-link="advertiser.html">
+          <div class="image-container" style="background-image: url('img/advertiser.jpg');">
+          </div>
+          <div class="content-block">
+            <div class="content-text">
+              <h2 class="title">Advertiser</h2>
+              <p class="description">
+                Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Join the Table</span>
+            </button>
+          </div>
+        </div>
+      </div>
+				
+      <div class="wrapper-reduced">
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="content-creator.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Creator</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">content-creator</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="investor.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Investor</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Follow the Signal</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+      </div>	
+    </div>
+	
+    <div class="card"> 
+      <div class="wrapper">
+        <div class="responsive-narrow" data-link="investor-market.html">
+          <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-market.jpg');">
+            <div class="content-text">
+              <h2 class="title">Market</h2>
+              <p class="description">
+                Track performance. Compare verticals. Make informed moves in the IP economy.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Enter the Market</span>
+            </button>
+          </div>
+        </div>
+      </div>
+		
+      <div class="wrapper">
+        <div class="responsive-narrow" data-link="investor-trends.html">
+          <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends.jpg');">
+            <div class="content-text">
+              <h2 class="title">Trends</h2>
+              <p class="description">
+                From creator tokens to content DAOs — discover where capital meets culture
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Follow the Signal</span>
+            </button>
+          </div>
+        </div>
+      </div>
+		      <div class="wrapper">
+        <div class="responsive-narrow" data-link="investor-partizipation.html">
+          <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-partizipation.jpg');">
+            <div class="content-text">
+              <h2 class="title">Participate</h2>
+              <p class="description">
+                Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Join the Table</span>
+            </button>
+          </div>
+        </div>
+      </div>
+		  
+
+
+    </div>
+	
+ 
+	
+  </nav>
+</div>	
+	
+<main class="main">		
+	
+	
 <div class="page-wrapper">	
 	
-  <div style="height: 40px">&nbsp;</div>
+  <div style="height: var(--px-40)">&nbsp;</div>
 	
     <!--<article class="card-content-wide">
       <div class="wrapper">
@@ -388,15 +544,15 @@ Your brand deserves more than a slot. It deserves a story.
 	<section>
 		
       <div class="starttext-row">
-        <div class="starttext-block" style="gap: 10px">
+        <div class="starttext-block" style="gap: var(--px-10)">
           <h4>People aren’t looking for polished campaigns.</h4>
           <p>The era of sleek, high-gloss advertising is losing its edge. Audiences no longer respond to perfect images and corporate scripts — they see through them. What once stood for professionalism now reads as artificial. Trust isn’t built with polish; it’s earned with presence, honesty, and proximity.</p>
         </div>
-        <div class="starttext-block" style="gap: 10px">
+        <div class="starttext-block" style="gap: var(--px-10)">
           <h4>They’re looking for real stories. Told by real people.</h4>
           <p>What audiences crave is connection. Not content for content’s sake — but narratives grounded in lived experience, emotion, and vulnerability. When real people speak, listeners lean in. It’s not about volume anymore — it’s about voice. And voice is powerful when it’s personal.</p>
           </div>
-        <div class="starttext-block" style="gap: 10px">
+        <div class="starttext-block" style="gap: var(--px-10)">
           <h4>The Long Tail of creators delivers what institutions can’t:
 Authenticity. Relevance. Credibility.</h4>
           <p>This is where the media paradigm shifts. Millions of independent creators now shape the cultural narrative — not as influencers, but as informers. They speak with conviction, not obligation. Their reach may be niche, but their impact is deep. They don’t need to fabricate relevance — they live it.</p>
@@ -430,11 +586,14 @@ We bring it back to those who still have them.</p>
 </div>
 	    <div style="height:160px">&nbsp;</div>	
 	
+	</main>	
+	
 <div id="footer-placeholder"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
 <script src="ocoso-app-functions.js" defer></script>	
-<script src="js/wallet.js" defer></script>	
+<script src="js/wallet.js" defer></script>		
+	<script src="js/3d-Navigation.js" defer></script>
 	
 </body>
 </html>

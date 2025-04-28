@@ -6,15 +6,20 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>OCOSO MVP - Full Layout</title>
-    <link rel="stylesheet" href="styleV033.css?v=20240321">
+    <!--<link rel="stylesheet" href="styleV033-kartennavigation.css">-->
+	<link rel="stylesheet" href="css/00-variables.css">
+    <link rel="stylesheet" href="css/01-typography.css">
+    <link rel="stylesheet" href="css/02-components.css">
+    <link rel="stylesheet" href="css/03-media.css">    
+     
     <style>
 		
     .sort-icons {
-      margin-left: 5px;
+      margin-left: var(--px-5);
     }
     .arrow {
-      width: 10px;
-      height: 10px;
+      width: var(--px-10);
+      height: var(--px-10);
     }
     .arrow.inactive {
       display: none;
@@ -26,8 +31,8 @@
 		
     .sort-icon-container img {
         margin: -2px 0px;
-        height: 15px;
-        width: 15px;
+        height: var(--px-15);
+        width: var(--px-15);
     }	
 		
     /* Overlay-Box für Diagramm */
@@ -35,11 +40,11 @@
       display: none;
       position: fixed;
       background: #fff;
-      border: 1px solid #ccc;
-      padding: 10px;
+      border: var(--px-1) solid #ccc;
+      padding: var(--px-10);
       z-index: 9999;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      border-radius: 4px;
+      box-shadow: 0 0 var(--px-10) rgba(0,0,0,0.3);
+      border-radius: var(--px-4);
     }	
 		
     .tr-data {
@@ -47,10 +52,10 @@
     }
 
     .td-data {
-        margin: 5px;
-        padding: 3px 0px 3px 15px;
-		font-size: 15px;
-		border-bottom: 2px solid #222;
+        margin: var(--px-5);
+        padding: var(--px-3) 0px var(--px-3) var(--px-15);
+		font-size: var(--px-15);
+		border-bottom: var(--px-2) solid #222;
     }
 		
     .donut-row {
@@ -66,7 +71,7 @@
     .donut-container {
       display; flex;
       flex-shrink: 1 1 50%;
-      height: 300px;
+      height: var(--px-300);
       /* moderner Weg */
       background-color: black;
       position: relative;
@@ -88,14 +93,14 @@
   display: flex;
   align‑items: center;
   gap: 30px;               /* Abstand zwischen Donut und Legend */
-  margin‑bottom: 20px;
-  height: 300px;
+  margin‑bottom: var(--px-20);
+  height: var(--px-300);
   width: 500px;
 }
 
 .donut‑canvas‑wrapper {
-  width: 200px;            /* passt zum Radius unten (2x100px) */
-  height: 200px;
+  width: var(--px-200);            /* passt zum Radius unten (2x100px) */
+  height: var(--px-200);
 }
 
 .donut‑canvas‑wrapper canvas {
@@ -114,14 +119,14 @@
   letter-spacing: 0.72px;
   margin-bottom: 8px;
   color: #fff; /* oder Deine Wunsch‑Farbe */
-  padding: 0 0 0 10px;
+  padding: 0 0 0 var(--px-10);
   white-space: nowrap;
 }
 
 .donut‑html‑legend {
   font‑size: 14px;
   color: #fff;
-  margin-top: 40px;
+  margin-top: var(--px-40);
 }
 .donut‑html‑legend ul {
   font-family: "Avenir Next", -apple-system, Roboto, Helvetica, sans-serif;
@@ -139,16 +144,16 @@
 .donut‑html‑legend li {
   display: flex;
   align‑items: center;
-  margin-bottom: 4px;
+  margin-bottom: var(--px-4);
 	  text-align: left;
 
 }
 .donut‑html‑legend span.dot {
   display: inline‑block;
-  width: 15px;
-  height: 15px;
-  margin-top: 3px;
-  margin-right: 10px;
+  width: var(--px-15);
+  height: var(--px-15);
+  margin-top: var(--px-3);
+  margin-right: var(--px-10);
   border‑radius: 50%;
 	  text-align: left;
 }		
@@ -156,12 +161,12 @@
 		
   #stacked-chart-widget {
     background: #2a2a2a;
-    padding: 20px;
+    padding: var(--px-20);
     border-radius: 8px;
     color: #fff;
     font-family: "Avenir Next", sans-serif;
     max-width: 800px;
-    margin: 0 auto 40px;
+    margin: 0 auto var(--px-40);
   }
   .widget-header {
     display: flex;
@@ -180,7 +185,7 @@
   letter-spacing: 0.72px;
   margin-bottom: 8px;
   color: #fff; /* oder Deine Wunsch‑Farbe */
-  padding: 0 0 0 10px;
+  padding: 0 0 0 var(--px-10);
   white-space: nowrap;
 
   }
@@ -188,14 +193,14 @@
     background: #444;
     color: #fff;
     border: none;
-    padding: 6px 10px;
-    border-radius: 4px;
+    padding: 6px var(--px-10);
+    border-radius: var(--px-4);
     font-weight: 400;
     font-size: 1rem;
   }
   .widget-body {
     position: relative;
-    height: 300px;
+    height: var(--px-300);
   }
   /* Canvas füllt den Container */
   #stackedChart {
@@ -216,16 +221,21 @@
   <div id="navigation-placeholder"></div>
   <div id="overlay-menu-placeholder"></div>
 
-	
-
- <section class="hero">
-  <div class="hero-container" style="background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/4691e67e3b75d917f12dc87357c5328ca76244d9');">
-    <div class="hero-content-wrapper">
-      <h1 class="main-heading">INVEST</h1>
-      <p></p>
-      <p class="hero-description">
-        It’s not just capital. It’s conviction. You’re not buying ads — you’re backing ideas. No brokers. No bias. Just code, ownership, and upside. This isn’t Wall Street in disguise — it’s a network where your stake shapes the story. Invest in attention. Invest in impact. And hold the proof in your wallet.
-      </p>
+<section class="hero">
+  <div class="hero-container" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%), 
+									 radial-gradient(circle at 50% 50%, 
+                                     rgba(0, 0, 0, 0)  60%,    
+                                     rgba(0, 0, 0, 1)  100%), 
+									 url('img/head-invest-ownership-cmyk.jpg'); 
+									 background-position: center;">
+	  
+    <div style="display: flex; flex-direction: column; width: 80%;">
+      <div class="hero-content-wrapper" style="flex-direction: flex-start; justify-content: top;">
+        <div class="main-heading" style="min-height: var(--px-300);   margin-left: var(--px-50)"><h1 class="text-box-wide">Investor</h1></div>
+        <div class="hero-description" style=" margin-left: 25%"><h5 class="text-box-wide">
+          It’s not just capital. It’s conviction. You’re not buying ads — you’re backing ideas. No brokers. No bias. Just code, ownership, and upside. This isn’t Wall Street in disguise — it’s a network where your stake shapes the story. Invest in attention. Invest in impact. And hold the proof in your wallet.
+        </h5></div>
+      </div>
     </div>
     <div class="cta-section">
       <div class="button-group">
@@ -240,23 +250,45 @@
       </div>
     </div>
   </div>
-</section>
-	
-<div class="page-wrapper">	
-	
-	
-  <div style="height: 80px">&nbsp;</div>
+</section>	
 
-    <article class="card-content-wide" style="flex-direction: row; gap: 0px; padding-bottom: 0px">
-			
-      <div class="wrapper-reduced" style="flex-direction: row; gap: 20px">
+	
+	
+<div class="card-stack-wrapper">
+  <nav class="card-stack" id="stack">
+	
+    <div class="card"> 
+      <div class="wrapper">
+        <div class="responsive"  data-link="investor.html">
+          <div class="image-container" style="background-image: url('img/invest-trends.jpg');">
+          </div>
+          <div class="content-block">
+            <div class="content-text">
+              <h2 class="title">Investor</h2>
+              <p class="description">
+                From creator tokens to content DAOs — discover where capital meets culture
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Follow the Signal</span>
+            </button>
+          </div>
+        </div>
+      </div>
+				
+      <div class="wrapper-reduced">
 		  
-		  
-        <div class="wrapper" style="height: 250px">
-          <div class="responsive-reduced"   style="height: 250px; border-radius: 20px 20px 0 0" data-link="investor-trends.html">
-            <div class="content-block-reduced"  style="height: 240px; background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-market.jpg');   background-size: 102%;   background-position: center;   background-repeat: no-repeat; ">
-              <div class="content-text-reduced" style="  display: flex;  flex-direction: column;  justify-content: flex-end; height: 110px; padding: 30px 0 30px 0;">
-                <h2 class="title">Market</h2>
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="content-creator.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Creator</h2>
               </div>
               <button class="action-button" aria-label="Stake Your Claim">
                 <img
@@ -265,13 +297,63 @@
                   class="button-icon"
                   aria-hidden="true"
                 />
-                <span class="button-text">Enter the market</span>
+                <span class="button-text">content-creator</span>
               </button>
             </div>
           </div>
         </div>
-      <div style="width: 15px; height: 15px; margin-top: auto; background-image: url('img/round-edge-left-bottom.jpg'); margin: auto -15px 0 -20px"></div>
-
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="advertiser.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Advertiser</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Join the Table</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+      </div>	
+    </div>
+	
+    <div class="card"> 
+		
+		
+      <div class="wrapper">
+        <div class="responsive"  data-link="investor-market.html">
+          <div class="image-container" style="background-image: url('img/invest-market.jpg');">
+          </div>
+          <div class="content-block">
+            <div class="content-text">
+              <h2 class="title">Market</h2>
+              <p class="description">
+                Track performance. Compare verticals. Make informed moves in the IP economy.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">ENTER THE MARKET</span>
+            </button>
+          </div>
+        </div>
+      </div>
+		
+      <div class="wrapper-reduced">
+		  
         <div class="wrapper">
           <div class="responsive-reduced"  data-link="investor-trends.html">
             <div class="content-block-reduced">
@@ -308,25 +390,37 @@
               </button>
             </div>
           </div>
-    </div>
+        </div>
 		  
       </div>
-	</article>
+		  
+
+
+    </div>
 	
-	
-	
-    <article class="card-content-wide">
+    <div class="card"> 
+		
+		
       <div class="wrapper">
-        <div class="responsive"  data-link="investor-market-invest.html" style="border-radius: 0 20px 20px 20px">
+        <div class="responsive"  data-link="investor-market-invest.html">
           <div class="image-container" style="background-image: url('img/invest-ownership.jpg');">
           </div>
-          <div class="content-block" style="width: 380px">
+          <div class="content-block">
             <div class="content-text">
               <h2 class="title">INVEST &amp; TRADE</h2>
               <p class="description">
                 See what moves the market. Compare verticals. Spot performance across the chain.
               </p>
             </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">VIEW YOUR PORTFOLIO</span>
+            </button>
           </div>
         </div>
       </div>
@@ -372,19 +466,31 @@
         </div>
 		  
       </div>
+		  
+
+
+    </div>
 		
-    </article>
+  </nav>
+</div>	
 	
-  <div style="height: 80px">&nbsp;</div>
+<main class="main">	
 	
-<article class="headline-wrapper">
-  <div class="healine-container">
-    <div class="headline-inner">
+<div class="page-wrapper">	
+	
+	
+  <div style="height: var(--px-80)">&nbsp;</div>
+	
+
+	
+<article class="headline-right-wrapper">
+  <div class="healine-right-container">
+    <div class="headline-right-inner">
       <header>
-        <h1>Turn Belief into Stake</h1>
+        <h2>Turn Belief into Stake</h2>
       </header>
       <section>
-        <h4 style="text-align: left">
+        <h4 style="text-align: right">
           Buy into potential. Exit on returns. Make every bet a bet on meaning.
         </h4>
       </section>
@@ -397,7 +503,7 @@
   </div>
 </article>		
 		
-  <div style="height: 80px">&nbsp;</div>	
+  <div style="height: var(--px-80)">&nbsp;</div>	
 	
 	
 <center class="content-frame">
@@ -415,7 +521,7 @@
 	
 	
 	
-  <div style="height: 160px">&nbsp;</div>
+  <div style="height: var(--px-160)">&nbsp;</div>
 	
 	
 
@@ -429,7 +535,7 @@
     </div>
     <div id="legendType" class="donut‑html‑legend"></div>
   </div>	
-        <div style="height: 40px">&nbsp;</div>
+        <div style="height: var(--px-40)">&nbsp;</div>
 
   <div class="donut‑block">
     <div class="donut‑canvas‑wrapper">
@@ -440,7 +546,7 @@
     <div id="legendTopic" class="donut‑html‑legend"></div>
   </div>		
 
-        <div style="height: 40px">&nbsp;</div>
+        <div style="height: var(--px-40)">&nbsp;</div>
   <div class="donut‑block">
     <div class="donut‑canvas‑wrapper">
       <!-- Separater Titel -->
@@ -450,7 +556,7 @@
     <div id="legendMonetize" class="donut‑html‑legend"></div>
   </div>
 	
-	  <div style="height: 40px">&nbsp;</div>
+	  <div style="height: var(--px-40)">&nbsp;</div>
 	
   <div class="donut‑block">
 	  
@@ -474,7 +580,7 @@
 </section>
 	
 	
-	  <div style="height: 160px">&nbsp;</div>
+	  <div style="height: var(--px-160)">&nbsp;</div>
 	
 <table class="data-table">
   <thead class="table-header">
@@ -580,12 +686,12 @@
 	
 	
 	
-	  <div style="height: 160px">&nbsp;</div>
+	  <div style="height: var(--px-160)">&nbsp;</div>
 	
 	
-  <div style="height: 40px">&nbsp;</div>
+  <div style="height: var(--px-40)">&nbsp;</div>
 	
-  <section class="content-submission" style="display: flex; flex-direction: row; gap: 50px;">
+  <section class="content-submission" style="display: flex; flex-direction: row; gap: var(--px-50);">
     <h6 class="submission-subtitle" style="display: flex; width: auto">
       Select your minted draft. Only minted NFTs are promotable. <br>Haven't minted yet? Go claim your content.
     </h6>
@@ -597,7 +703,7 @@
     </button>	
   </section>
 	
-  <div style="height: 80px">&nbsp;</div>
+  <div style="height: var(--px-80)">&nbsp;</div>
 	
 <section class="content-submission">
   <h2 class="submission-title">Display</h2>
@@ -606,14 +712,16 @@
   </h6>
 </section>	
 	
-  <div style="height: 80px">&nbsp;</div>	
+  <div style="height: var(--px-80)">&nbsp;</div>	
 	
 	
 </center>	
 	
-	<div style="height: 160px">&nbsp;</div>	
+	<div style="height: var(--px-160)">&nbsp;</div>	
 	
 </div>
+	
+</main>	
 	
 <div id="footer-placeholder"></div>
 	
@@ -625,7 +733,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
 <script src="ocoso-app-functions.js" defer></script>	
 <script src="js/wallet.js" defer></script>		
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>	
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>		
+<script src="js/3d-Navigation.js" defer></script>	
 
   <!-- JavaScript: Filter, Sortierung, Tabelle und Chart-Overlay -->
   <script>

@@ -1,0 +1,33 @@
+/* styles.css */
+body, html { margin:0; padding:0; height:100%; }
+.container {
+  display: flex;
+  height: 100vh;
+}
+.card-stack {
+  position: relative;
+  width: var(--px-200);
+  perspective: 1000px;
+}
+.card {
+  position: absolute;
+  width: var(--px-180); height: var(--px-120);
+  top: var(--px-20); left: 0;
+  margin-top: var(--px-40);
+  background: #fff;
+  box-shadow: 0 var(--px-4) 6px rgba(0,0,0,0.3);
+  transform-origin: left center;
+  transform: rotateY(-30deg) translateX(calc(var(--idx) * var(--px-20)));
+  transition: transform 0.3s ease, width 0.3s ease;
+}
+.card:nth-child(1) { --idx: 0; }
+.card:nth-child(2) { --idx: 1; }
+.card:nth-child(3) { --idx: 2; }
+.card:nth-child(4) { --idx: 3; }
+.card:nth-child(5) { --idx: 4; }
+
+.main {
+  flex: 1;
+  padding: var(--px-20);
+  transition: margin-left 0.3s ease;
+}

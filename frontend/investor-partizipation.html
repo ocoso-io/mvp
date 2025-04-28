@@ -5,8 +5,11 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>OCOSO MVP - Full Layout</title>
-    <link rel="stylesheet" href="styleV033.css?v=20240321">
+    <title>OCOSO MVP - Full Layout</title>    <!-- <link rel="stylesheet" href="styleV033-kartennavigation.css"> -->
+    <link rel="stylesheet" href="css/00-variables.css">
+    <link rel="stylesheet" href="css/01-typography.css">
+    <link rel="stylesheet" href="css/02-components.css">
+    <link rel="stylesheet" href="css/03-media.css">
     <style>
     </style>
 </head>
@@ -15,16 +18,21 @@
 <div id="navigation-placeholder"></div>
 <div id="overlay-menu-placeholder"></div>
 
-	
-
 <section class="hero">
-  <div class="hero-container" style="background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/4691e67e3b75d917f12dc87357c5328ca76244d9');">
-    <div class="hero-content-wrapper">
-      <h1 class="main-heading">INVEST</h1>
-      <p></p>
-      <p class="hero-description">
-        It’s not just capital. It’s conviction. You’re not buying ads — you’re backing ideas. No brokers. No bias. Just code, ownership, and upside. This isn’t Wall Street in disguise — it’s a network where your stake shapes the story. Invest in attention. Invest in impact. And hold the proof in your wallet.
-      </p>
+  <div class="hero-container" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%), 
+									 radial-gradient(circle at 50% 50%, 
+                                     rgba(0, 0, 0, 0)  60%,    
+                                     rgba(0, 0, 0, 1)  100%), 
+									 url('img/head-invest-participate-cmyk.jpg'); 
+									 background-position: center;">
+	  
+    <div style="display: flex; flex-direction: column; width: 80%;">
+      <div class="hero-content-wrapper" style="flex-direction: flex-start; justify-content: top;">
+        <div class="main-heading" style="min-height: var(--px-300);   margin-left: var(--px-50)"><h1 class="text-box-wide">SHAPE WHAT YOU FUND</h1></div>
+        <div class="hero-description" style=" margin-left: 25%"><h5 class="text-box-wide">
+          YOU DON’T JUST INVEST. YOU INFLUENCE. THE NETWORK LISTENS — IF YOU SPEAK.
+        </h5></div>
+      </div>
     </div>
     <div class="cta-section">
       <div class="button-group">
@@ -39,15 +47,81 @@
       </div>
     </div>
   </div>
-</section>
+</section>	
+
 	
-<div class="page-wrapper">	
+<div class="card-stack-wrapper">
+  <nav class="card-stack" id="stack">
 	
+    <div class="card"> 
+      <div class="wrapper">
+        <div class="responsive"  data-link="investor.html">
+          <div class="image-container" style="background-image: url('img/invest-trends.jpg');">
+          </div>
+          <div class="content-block">
+            <div class="content-text">
+              <h2 class="title">Investor</h2>
+              <p class="description">
+                From creator tokens to content DAOs — discover where capital meets culture
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Follow the Signal</span>
+            </button>
+          </div>
+        </div>
+      </div>
+				
+      <div class="wrapper-reduced">
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="content-creator.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Creator</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">content-creator</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="advertiser.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Advertiser</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Join the Table</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+      </div>	
+    </div>
 	
-  <div style="height: 80px">&nbsp;</div>
-	
-	
-    <article class="card-content-wide">
+    <div class="card"> 
       <div class="wrapper">
         <div class="responsive"  data-link="investor-partizipation.html">
           <div class="image-container" style="background-image: url('img/invest-partizipation.jpg');">
@@ -113,10 +187,25 @@
         </div>
 		  
       </div>
-		
-    </article>
+		  
+
+
+    </div>
 	
-	  <div style="height: 80px">&nbsp;</div>	
+ 
+	
+  </nav>
+</div>	
+	
+<main class="main">	
+	
+	
+<div class="page-wrapper">	
+	
+	
+  <div style="height: var(--px-80)">&nbsp;</div>
+	
+
 	
 <article class="headline-left-wrapper">
   <div class="healine-left-container">
@@ -138,7 +227,7 @@
   </div>
 </article>	
 		
-  <div style="height: 80px">&nbsp;</div>	
+  <div style="height: var(--px-80)">&nbsp;</div>	
 
 	
 	
@@ -264,9 +353,9 @@
   </tfoot>
 </table>
 	
-  <div style="height: 40px">&nbsp;</div>
+  <div style="height: var(--px-40)">&nbsp;</div>
 	
-  <section class="content-submission" style="display: flex; flex-direction: row; gap: 50px;">
+  <section class="content-submission" style="display: flex; flex-direction: row; gap: var(--px-50);">
     <h6 class="submission-subtitle" style="display: flex; width: auto">
       Select your minted draft. Only minted NFTs are promotable. <br>Haven't minted yet? Go claim your content.
     </h6>
@@ -278,7 +367,7 @@
     </button>	
   </section>
 	
-  <div style="height: 80px">&nbsp;</div>
+  <div style="height: var(--px-80)">&nbsp;</div>
 	
 <section class="content-submission">
   <h2 class="submission-title">Display</h2>
@@ -287,22 +376,24 @@
   </h6>
 </section>	
 	
-  <div style="height: 80px">&nbsp;</div>	
+  <div style="height: var(--px-80)">&nbsp;</div>	
 	
-  <div style="height: 80px">&nbsp;</div>
+  <div style="height: var(--px-80)">&nbsp;</div>
 	
 </center>	
 	
-	<div style="height: 160px">&nbsp;</div>	
-	<div style="height: 80px">&nbsp;</div>	
+	<div style="height: var(--px-160)">&nbsp;</div>	
+	<div style="height: var(--px-80)">&nbsp;</div>	
 	
 </div>
 	
+	</main>
 <div id="footer-placeholder"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
 <script src="ocoso-app-functions.js" defer></script>	
-<script src="js/wallet.js" defer></script>		
+<script src="js/wallet.js" defer></script>			
+<script src="js/3d-Navigation.js" defer></script>
 	
 
 </body>

@@ -5,8 +5,11 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>OCOSO MVP - Full Layout</title>
-    <link rel="stylesheet" href="styleV033.css?v=20240321">
+    <title>OCOSO MVP - Full Layout</title>    <!-- <link rel="stylesheet" href="styleV033-kartennavigation.css"> -->
+    <link rel="stylesheet" href="css/00-variables.css">
+    <link rel="stylesheet" href="css/01-typography.css">
+    <link rel="stylesheet" href="css/02-components.css">
+    <link rel="stylesheet" href="css/03-media.css">
 	
     <style>
 .fund-details.hidden {
@@ -19,17 +22,22 @@
 <div id="navigation-placeholder"></div>
 <div id="overlay-menu-placeholder"></div>
 
-
-	
-
 <section class="hero">
-  <div class="hero-container" style="background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/4691e67e3b75d917f12dc87357c5328ca76244d9');">
-    <div class="hero-content-wrapper">
-      <h1 class="main-heading">Invest</h1>
-      <p></p>
-      <p class="hero-description">
-        It's not just capital. It's conviction. You're not buying ads — you're backing ideas. No brokers. No bias. Just code, ownership, and upside. This isn't Wall Street in disguise — it's a network where your stake shapes the story. Invest in attention. Invest in impact. And hold the proof in your wallet.
-      </p>
+  <div class="hero-container" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%), 
+									 radial-gradient(circle at 50% 50%, 
+                                     rgba(0, 0, 0, 0)  60%,    
+                                     rgba(0, 0, 0, 1)  100%), 
+									 url('img/head-invest-overview-cmyk.jpg'); 
+									 background-position: center;">
+	  
+    <div style="display: flex; flex-direction: column; width: 80%;">
+      <div class="hero-content-wrapper" style="flex-direction: flex-start; justify-content: top;">
+        <div class="main-heading" style="min-height: var(--px-300);   margin-left: var(--px-50)"><h1 class="text-box-wide">THE PORTFOLIO ECONOMY</h1>
+        </div>
+        <div class="hero-description" style=" margin-left: 25%"><h5 class="text-box-wide">
+          CROSS-COMPARE CATEGORIES, MONITOR GROWTH, AND FOLLOW THE SIGNALS BEHIND THE STRONGEST VERTICALS.
+        </h5></div>
+      </div>
     </div>
     <div class="cta-section">
       <div class="button-group">
@@ -46,12 +54,83 @@
   </div>
 </section>
 	
-<div class="page-wrapper">	
+
+
 	
+<div class="card-stack-wrapper">
+  <nav class="card-stack" id="stack">
 	
-  <div style="height: 80px">&nbsp;</div>
+    <div class="card"> 
+      <div class="wrapper">
+        <div class="responsive"  data-link="investor.html">
+          <div class="image-container" style="background-image: url('img/invest-trends.jpg');">
+          </div>
+          <div class="content-block">
+            <div class="content-text">
+              <h2 class="title">Investor</h2>
+              <p class="description">
+                From creator tokens to content DAOs — discover where capital meets culture
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img
+                src="img/Arrow.png"
+                alt=""
+                class="button-icon"
+                aria-hidden="true"
+              />
+              <span class="button-text">Follow the Signal</span>
+            </button>
+          </div>
+        </div>
+      </div>
+				
+      <div class="wrapper-reduced">
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="content-creator.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Creator</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">content-creator</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+        <div class="wrapper">
+          <div class="responsive-reduced"  data-link="advertiser.html">
+            <div class="content-block-reduced">
+              <div class="content-text-reduced">
+                <h2 class="title">Advertiser</h2>
+              </div>
+              <button class="action-button" aria-label="Stake Your Claim">
+                <img
+                  src="img/Arrow.png"
+                  alt=""
+                  class="button-icon"
+                  aria-hidden="true"
+                />
+                <span class="button-text">Join the Table</span>
+              </button>
+            </div>
+          </div>
+        </div>
+		  
+      </div>	
+    </div>
 	
-        <article class="card-content-wide">
+    <div class="card"> 
+		
+		
       <div class="wrapper">
         <div class="responsive"  data-link="investor-market.html">
           <div class="image-container" style="background-image: url('img/invest-market.jpg');">
@@ -117,34 +196,14 @@
         </div>
 		  
       </div>
-		
-    </article>
-	
-	  <div style="height: 80px">&nbsp;</div>	
-	
-<article class="headline-left-wrapper">
-  <div class="healine-left-container">
-    <div class="headline-left-inner">
-      <header>
-        <h2>You minted it. Now put it to work.</h2>
-      </header>
-      <section>
-        <h4>
-          Launch your content into the market. Claim your space. Set your terms. Make it earn. Pick your NFT and turn visibility into value.
-        </h4>
-      </section>
-      <section>
-        <p>
-          Mint your content and make it untouchable. This isn't a post. It's a proof of authorship. This isn't a file. It's a fingerprint on-chain. You're not just creating — you're claiming what's yours. Mint it. Protect it. Own it forever.
-        </p>
-      </section>
+		  
+
+
     </div>
-  </div>
-</article>	
-		
-  <div style="height: 80px">&nbsp;</div>	
 	
-    <article class="card-content-wide">
+    <div class="card"> 
+		
+		
       <div class="wrapper">
         <div class="responsive"  data-link="investor-market-overview.html">
           <div class="image-container" style="background-image: url('img/invest-overview.jpg');">
@@ -210,10 +269,25 @@
         </div>
 		  
       </div>
+		  
+
+
+    </div>
 		
-    </article>
+  </nav>
+</div>	
 	
-  <div style="height: 80px">&nbsp;</div>
+<main class="main">		
+	
+	
+<div class="page-wrapper">	
+	
+	
+
+		
+  <div style="height: var(--px-80)">&nbsp;</div>	
+	
+ 
 	
 <article class="headline-right-wrapper">
   <div class="healine-right-container">
@@ -236,7 +310,7 @@
 </article>		
 	
 	
-  <div style="height: 160px">&nbsp;</div>
+  <div style="height: var(--px-160)">&nbsp;</div>
 	
 	<center class="content-frame dashboard-market-overview">
 
@@ -649,20 +723,20 @@
       }
     </script>	
 
-    <div style="height: 160px">&nbsp;</div>	
+    <div style="height: var(--px-160)">&nbsp;</div>	
 
     <!-- Participant Growth Chart Section -->
-    <div style="height: 160px">&nbsp;</div>	
+    <div style="height: var(--px-160)">&nbsp;</div>	
     <h2>Teilnehmer Entwicklung</h2>
     <h6>Wachstum der aktiven Assets über die Zeit.</h6>
-    <div style="height: 80px">&nbsp;</div>
+    <div style="height: var(--px-80)">&nbsp;</div>
     <canvas id="participant-chart" width="600" height="300"></canvas>
       
-      <div style="height: 80px">&nbsp;</div>
+      <div style="height: var(--px-80)">&nbsp;</div>
     <!-- Monetization Chart Section -->
     <h2>Category Overview</h2>
     <h6>Track performance across verticals. Spot momentum. See where the value flows.</h6>
-    <div style="height: 80px">&nbsp;</div>	
+    <div style="height: var(--px-80)">&nbsp;</div>	
 
     <!-- Timeframe Filter Buttons -->
     <div class="timeframe-filter-buttons">
@@ -1139,15 +1213,15 @@
     </script>
 
       
-      <div style="height: 80px">&nbsp;</div>	
+      <div style="height: var(--px-80)">&nbsp;</div>	
       
   <section id="category-summary-container" class="category-summary-grid"></section>
 
-  <div style="height: 160px">&nbsp;</div>	
+  <div style="height: var(--px-160)">&nbsp;</div>	
 
   <h2>Monetisation Shares</h2>
   <h6>Break down the revenue. See what pays. Know what earns, how it scales</h6>
-      <div style="height: 80px">&nbsp;</div>
+      <div style="height: var(--px-80)">&nbsp;</div>
   <div class="timeframe-filter-buttons monetization-timeframe-buttons">
       <button class="timeframe-button active" data-timeframe="all">Total</button>
       <button class="timeframe-button" data-timeframe="30d">30 days</button>
@@ -1163,18 +1237,19 @@
     </center>	
 
 	
-  <div style="height: 80px">&nbsp;</div>	
+  <div style="height: var(--px-80)">&nbsp;</div>	
 	
 
 </div>
 	
-	
+</main>
 	
 <div id="footer-placeholder"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
 <script src="ocoso-app-functions.js" defer></script>	
-<script src="js/wallet.js" defer></script>	
+<script src="js/wallet.js" defer></script>		
+<script src="js/3d-Navigation.js" defer></script>
 	
 </body>
 </html>
