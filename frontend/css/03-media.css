@@ -1,3 +1,5 @@
+@import "/css/00-variables.css";
+
 @media (max-width: 640px) { /* Kept as pixels */
   .typography-showcase {
     padding: var(--px-12);

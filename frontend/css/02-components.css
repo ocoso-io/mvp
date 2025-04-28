@@ -1,3 +1,5 @@
+@import "/css/00-variables.css";
+
 .comic-row {
   display: flex;
   flex-direction: row;
@@ -193,7 +195,7 @@ body {
   background-color: #fff;
   display: flex;
   gap: var(--px-20);
-  font-family: var(--main-font-family);
+  font-family: var(--main-font-family), serif;
   font-size: var(--px-15);
   font-weight: 600;
   text-align: center;
@@ -492,7 +494,7 @@ body {
   min-height: var(--px-350);
   padding: var(--px-10) var(--px-10);
   flex-direction: column;
-  font-family: var(--main-font-family);
+  font-family: var(--main-font-family), serif;
   justify-content: start;
   width: var(--px-350);
   height: auto; /* Dynamische Höhe */
@@ -508,7 +510,7 @@ body {
   min-height: var(--px-10);
   padding: var(--px-10) var(--px-10);
   flex-direction: column;
-  font-family: var(--main-font-family);
+  font-family: var(--main-font-family), serif;
   justify-content: start;
   width: var(--px-350);
   height: 155px; /* No variable match */
@@ -526,7 +528,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   padding: var(--px-5) var(--px-5);
-  font-family: var(--main-font-family);
+  font-family: var(--main-font-family), serif;
   width: var(--px-350);
   height: var(--px-350); /* Dynamische Höhe */
   border: solid black var(--px-5);
@@ -642,7 +644,7 @@ body {
   cursor: pointer;
   border: none;
   width: 100%;
-  transition: background-color transform 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease;
   display: flex;
   align-items: flex-end;
   min-height: var(--px-50);
@@ -722,7 +724,7 @@ textarea {
   border: none;
   cursor: pointer;
   /* Typography */
-  font-family: var(--main-font-family);
+  font-family: var(--main-font-family), serif;
   font-size: var(--px-20);
   font-weight: 900;
   line-height: var(--px-20);
@@ -852,7 +854,7 @@ textarea {
 }
 .insight-graph-title {
   color: #fff;
-  font-family: var(--main-font-family);
+  font-family: var(--main-font-family), serif;
   font-size: var(--px-20);
   font-weight: 900;
   line-height: 100%;
@@ -885,7 +887,7 @@ textarea {
 }
 .insight-legend-label {
   color: #fff;
-  font-family: var(--main-font-family);
+  font-family: var(--main-font-family), serif;
   font-size: var(--px-16);
   font-weight: 700;
   line-height: 100%;
@@ -980,7 +982,7 @@ textarea {
   box-shadow: 0 var(--px-4) var(--px-12) rgba(0, 0, 0, 0.15);
   border-collapse: separate;
   border-spacing: 0;
-  font-family: var(--main-font-family);
+  font-family: var(--main-font-family), serif;
   color: #fff;
   font-size: var(--px-18);
   font-weight: 400;
@@ -1571,7 +1573,7 @@ select:focus {
 }
 .highlight-section li {
   margin-bottom: var(--space-xs);
-  font-family: var(--main-font-family); /* Match p */
+  font-family: var(--main-font-family), serif; /* Match p */
   font-size: var(--px-18); /* Match p */
   font-weight: 400; /* Match p */
   line-height: 1.4; /* Match p */
@@ -1641,7 +1643,7 @@ select:focus {
   background-color: #000;
 }
 .fund-category {
-  font-family: var(--main-font-family);
+  font-family: var(--main-font-family), serif;
   color: #fff; /* Match h5 color */
   font-size: var(--px-20); /* Match h5 font-size */
   font-weight: 800; /* Match h5 font-weight */
@@ -1651,7 +1653,7 @@ select:focus {
   letter-spacing: 0.72px; /* No variable match */
 }
 .fund-name {
-  font-family: var(--main-font-family);
+  font-family: var(--main-font-family), serif;
   color: #fff; /* Match h3 color */
   font-size: var(--px-30); /* Match h3 font-size */
   font-weight: 800; /* Match h3 font-weight */
@@ -1689,7 +1691,7 @@ select:focus {
   margin-bottom: var(--px-2);
   font-size: var(--px-18); /* Match p font-size */
   line-height: 1.4; /* Match p line-height */
-  font-family: var(--main-font-family); /* Match p font-family */
+  font-family: var(--main-font-family), serif; /* Match p font-family */
 }
 .fund-stats dd {
   margin-left: 0;
@@ -1697,7 +1699,7 @@ select:focus {
   color: var(--color-text-strong);
   font-size: var(--px-18); /* Match p font-size */
   line-height: 1.4; /* Match p line-height */
-  font-family: var(--main-font-family); /* Match p font-family */
+  font-family: var(--main-font-family), serif; /* Match p font-family */
 }
 .fund-card-actions {
   display: flex;
