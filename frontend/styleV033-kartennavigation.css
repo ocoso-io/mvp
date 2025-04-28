@@ -77,6 +77,7 @@
   --px-450: 28.125rem; 
   --px-460: 28.75rem; 
   --px-600: 37.5rem; 
+  --px-650: 40.625rem; 
   --px-9999: 624.9375rem; 
 
   /* Viewport-Werte */
@@ -93,7 +94,7 @@ h1 {
   line-height: 1.1;
   margin: 0;
   text-transform: uppercase;
-	  letter-spacing: 0.72px; /* No variable match */
+	  letter-spacing: var(--px-075);
 }
 
 h2 {
@@ -104,7 +105,7 @@ h2 {
   line-height: 1.1;
   margin: 0;
   text-transform: uppercase;
-	  letter-spacing: 0.72px; /* No variable match */
+	  letter-spacing: var(--px-075);
 }
 
 h3 {
@@ -115,7 +116,7 @@ h3 {
   line-height: 1.1;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
 }
 
 h4 {
@@ -126,7 +127,7 @@ h4 {
   line-height: 1.1;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
 }
 
 h5 {
@@ -137,7 +138,7 @@ h5 {
   line-height: 1.4;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
 }
 
 h6 {
@@ -148,7 +149,7 @@ h6 {
   line-height: 1.4;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
 }
 
 .text-h1 {
@@ -323,7 +324,7 @@ a {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        background: no-repeat top cover ;
+        background: top cover no-repeat;
       }
 
       .comic-block h5 {
@@ -375,7 +376,7 @@ a {
 
       .comic-block-wide {
         width: var(--px-460);
-        height: 650px; /* No variable match */
+        height: var(--px-650); /* No variable match */
 		border-radius: var(--px-20);
         padding: 0 var(--px-20) var(--px-20) var(--px-20);
         box-sizing: border-box;
@@ -383,7 +384,7 @@ a {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        background: no-repeat top cover ;
+        background: top cover no-repeat;
       }
 
       .comic-block-wide h3 {
@@ -445,7 +446,7 @@ a {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
-        background: no-repeat top cover ;
+        background: top cover no-repeat;
         background-color: black;
       }
 
@@ -475,7 +476,7 @@ a {
           background-position: center;
 		  border: black var(--px-5) solid;
 		  box-sizing: border-box;
-		  backhround-color: black;
+		  background-color: black;
       }
 
 
@@ -724,7 +725,7 @@ a {
 .site-logo {
   object-fit: contain;
   object-position: center;
-  width: 250px; /* No variable match */
+  width: var(--px-250); /* No variable match */
   align-self: stretch;
   margin-block: auto;
   flex-shrink: 0;
@@ -1242,7 +1243,7 @@ pointer-events: auto;
   font-family: var(--main-font-family);
   justify-content: start;
   width: var(--px-350);
-  height: 155px; /* No variable match */
+  height: var(--px-155); /* No variable match */
   box-sizing: border-box;
 }
 
@@ -1297,7 +1298,7 @@ pointer-events: auto;
   font-size: var(--px-36);
   font-weight: 900;
   line-height: 1;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
   text-transform: uppercase;
   margin: 0;
 }
@@ -1308,7 +1309,7 @@ pointer-events: auto;
   font-size: var(--px-16);
   font-weight: 700;
   line-height: 1.4;
-  letter-spacing: 0.32px; /* No variable match */
+  letter-spacing: var(--px-075);
   margin-top: var(--px-20);
   margin-bottom: 0;
 }
@@ -1389,7 +1390,7 @@ pointer-events: auto;
   font-size: var(--px-60);
   font-weight: 900;
   line-height: 1; /* Reduziert vertikalen Abstand */
-  letter-spacing: 1.2px; /* No variable match */
+  letter-spacing: var(--px-1);
   text-transform: uppercase;
   margin: 0; /* Entfernt Standardabstand */
 }
@@ -1400,7 +1401,7 @@ pointer-events: auto;
   font-size: var(--px-18);
   font-weight: 700;
   line-height: 1.4; /* Reduziert vertikalen Abstand */
-  letter-spacing: 0.36px; /* No variable match */
+  letter-spacing: var(--px-075);
   margin: 0;
   margin-top: var(--px-20); /* Entfernt Standardabstand */
 }
@@ -1411,7 +1412,7 @@ pointer-events: auto;
   font-size: var(--px-18);
   font-weight: 700;
   line-height: 1.4; /* Reduziert vertikalen Abstand */
-  letter-spacing: 0.36px; /* No variable match */
+  letter-spacing: var(--px-075);
   margin: 0;
   margin-top: var(--px-20); /* Entfernt Standardabstand */
 }
@@ -1442,7 +1443,7 @@ pointer-events: auto;
 
 .action-button {
   color: #000;
-  font-family: "Avenir Next";
+  font-family: var(--main-font-family);
   font-size: var(--px-18);
   font-weight: 900;
   letter-spacing: 0.01em; /* Kept as em */
@@ -1476,7 +1477,7 @@ pointer-events: auto;
 
 .cta-text {
   color: #fff;
-  font-family: "Avenir Next";
+  font-family: var(--main-font-family);
   font-size: var(--px-40);
   font-weight: 900;
   letter-spacing: 0.02em; /* Kept as em */
@@ -1654,7 +1655,7 @@ pointer-events: auto;
   padding: var(--px-20);
   outline: none;
   resize: none;
-  font-family: "Avenir Next", sans-serif;
+  font-family: var(--main-font-family);
   font-size: var(--px-18);
   width: 100%;
   min-width: var(--px-400);
@@ -1709,7 +1710,7 @@ textarea {
   font-size: var(--px-20);
   font-weight: 900;
   line-height: var(--px-20);
-  letter-spacing: 0.2px; /* No variable match */
+  letter-spacing: var(--px-075);
   text-transform: uppercase;
   white-space: nowrap;
   color: #000;
@@ -1951,8 +1952,8 @@ textarea {
 }
 
 .radio-indicator {
-  width: 2var(--px-1); /* No variable match */
-  height: 2var(--px-1); /* No variable match */
+  width: var(--px-20); /* No variable match */
+  height: var(--px-20); /* No variable match */
   background-color: none;
   display: block;
 }
@@ -2069,7 +2070,7 @@ textarea {
   text-transform: uppercase;
   font-weight: 900;
   font-size: var(--px-16);
-  letter-spacing: 0.16px; /* No variable match */
+  letter-spacing: var(--px-075);
   line-height: 1.1;
 }
 
@@ -2330,16 +2331,7 @@ textarea {
 
 }
 
-/* Die Sprechblase ordentlich einbinden */
 
-.speech-bubble-warning {
-	display: flex;
-	width: var(--px-300);
-	height: auto;
-	padding: var(--px-20);
-	background-color: #fe0;
-	border-radius: var(--px-20)
-}
 
 .speech-container {
   position: absolute;
@@ -2353,13 +2345,7 @@ textarea {
   transition: opacity 0.3s ease;
 }
 
-.speech-bubble-warning {
-  display: flex;
-  width: fit-content;
-  padding: var(--px-20);
-  background-color: #fe0;
-  border-radius: var(--px-20);
-}
+
 
 .speech-icon {
   /* Optional: Weitere Styling-Anpassungen */
@@ -2554,7 +2540,7 @@ textarea {
 .step-label {
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
   margin-top: var(--px-13);
   color: #fff;
 }
@@ -2956,7 +2942,7 @@ select:focus {
     line-height: 1.4; /* Match h5 line-height */
     margin-bottom: var(--space-xs); /* Keep existing bottom margin */
     text-transform: uppercase; /* Match h5 text-transform */
-    letter-spacing: 0.72px; /* No variable match */
+    letter-spacing: var(--px-075);
 }
 
 .fund-name {
@@ -2966,7 +2952,7 @@ select:focus {
     font-weight: 800; /* Match h3 font-weight */
     line-height: 1.1; /* Match h3 line-height */
     text-transform: uppercase; /* Match h3 text-transform */
-    letter-spacing: 0.72px; /* No variable match */
+    letter-spacing: var(--px-075);
     margin-top: 0; /* Keep existing top margin */
     margin-bottom: var(--space-m); /* Keep existing bottom margin */
 }
@@ -3616,7 +3602,7 @@ h1 {
   line-height: 1.1;
   margin: 0;
   text-transform: uppercase;
-	  letter-spacing: 0.72px; /* No variable match */
+	  letter-spacing: var(--px-075);
 }
 
 h2 {
@@ -3627,7 +3613,7 @@ h2 {
   line-height: 1.1;
   margin: 0;
   text-transform: uppercase;
-	  letter-spacing: 0.72px; /* No variable match */
+	  letter-spacing: var(--px-075);
 }
 
 h3 {
@@ -3638,7 +3624,7 @@ h3 {
   line-height: 1.1;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
 }
 
 h4 {
@@ -3649,7 +3635,7 @@ h4 {
   line-height: 1.1;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
 }
 
 h5 {
@@ -3660,7 +3646,7 @@ h5 {
   line-height: 1.4;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
 }
 
 h6 {
@@ -3671,7 +3657,7 @@ h6 {
   line-height: 1.4;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
 }
 
 .text-h1 {
@@ -3846,7 +3832,7 @@ a {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        background: no-repeat top cover ;
+        background: top cover no-repeat;
       }
 
       .comic-block h5 {
@@ -3898,7 +3884,7 @@ a {
 
       .comic-block-wide {
         width: var(--px-460);
-        height: 650px; /* No variable match */
+        height: var(--px-650); /* No variable match */
 		border-radius: var(--px-20);
         padding: 0 var(--px-20) var(--px-20) var(--px-20);
         box-sizing: border-box;
@@ -3906,7 +3892,7 @@ a {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        background: no-repeat top cover ;
+        background:top cover no-repeat;
       }
 
       .comic-block-wide h3 {
@@ -3968,7 +3954,7 @@ a {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
-        background: no-repeat top cover ;
+        background: top cover no-repeat;
         background-color: black;
       }
 
@@ -3998,7 +3984,7 @@ a {
           background-position: center;
 		  border: black var(--px-5) solid;
 		  box-sizing: border-box;
-		  backhround-color: black;
+		  background-color: black;
       }
 
 
@@ -4247,7 +4233,7 @@ a {
 .site-logo {
   object-fit: contain;
   object-position: center;
-  width: 250px; /* No variable match */
+  width: var(--px-250); /* No variable match */
   align-self: stretch;
   margin-block: auto;
   flex-shrink: 0;
@@ -4636,7 +4622,7 @@ pointer-events: auto;
   font-family: var(--main-font-family);
   justify-content: start;
   width: var(--px-350);
-  height: 155px; /* No variable match */
+  height: var(--px-155); /* No variable match */
   box-sizing: border-box;
 }
 
@@ -4691,7 +4677,7 @@ pointer-events: auto;
   font-size: var(--px-36);
   font-weight: 900;
   line-height: 1;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
   text-transform: uppercase;
   margin: 0;
 }
@@ -4702,7 +4688,7 @@ pointer-events: auto;
   font-size: var(--px-16);
   font-weight: 700;
   line-height: 1.4;
-  letter-spacing: 0.32px; /* No variable match */
+  letter-spacing: var(--px-075);
   margin-top: var(--px-20);
   margin-bottom: 0;
 }
@@ -4783,7 +4769,7 @@ pointer-events: auto;
   font-size: var(--px-60);
   font-weight: 900;
   line-height: 1; /* Reduziert vertikalen Abstand */
-  letter-spacing: 1.2px; /* No variable match */
+  letter-spacing: var(--px-1);
   text-transform: uppercase;
   margin: 0; /* Entfernt Standardabstand */
 }
@@ -4794,7 +4780,7 @@ pointer-events: auto;
   font-size: var(--px-18);
   font-weight: 700;
   line-height: 1.4; /* Reduziert vertikalen Abstand */
-  letter-spacing: 0.36px; /* No variable match */
+  letter-spacing: var(--px-075);
   margin: 0;
   margin-top: var(--px-20); /* Entfernt Standardabstand */
 }
@@ -4805,7 +4791,7 @@ pointer-events: auto;
   font-size: var(--px-18);
   font-weight: 700;
   line-height: 1.4; /* Reduziert vertikalen Abstand */
-  letter-spacing: 0.36px; /* No variable match */
+  letter-spacing: var(--px-075);
   margin: 0;
   margin-top: var(--px-20); /* Entfernt Standardabstand */
 }
@@ -4836,7 +4822,7 @@ pointer-events: auto;
 
 .action-button {
   color: #000;
-  font-family: "Avenir Next";
+  font-family: var(--main-font-family);
   font-size: var(--px-18);
   font-weight: 900;
   letter-spacing: 0.01em; /* Kept as em */
@@ -4870,7 +4856,7 @@ pointer-events: auto;
 
 .cta-text {
   color: #fff;
-  font-family: "Avenir Next";
+  font-family: var(--main-font-family);
   font-size: var(--px-40);
   font-weight: 900;
   letter-spacing: 0.02em; /* Kept as em */
@@ -5048,7 +5034,7 @@ pointer-events: auto;
   padding: var(--px-20);
   outline: none;
   resize: none;
-  font-family: "Avenir Next", sans-serif;
+  font-family: var(--main-font-family);
   font-size: var(--px-18);
   width: 100%;
   min-width: var(--px-400);
@@ -5103,7 +5089,7 @@ textarea {
   font-size: var(--px-20);
   font-weight: 900;
   line-height: var(--px-20);
-  letter-spacing: 0.2px; /* No variable match */
+  letter-spacing: var(--px-075);
   text-transform: uppercase;
   white-space: nowrap;
   color: #000;
@@ -5345,8 +5331,8 @@ textarea {
 }
 
 .radio-indicator {
-  width: 2var(--px-1); /* No variable match */
-  height: 2var(--px-1); /* No variable match */
+  width: var(--px-20); /* No variable match */
+  height: var(--px-20); /* No variable match */
   background-color: none;
   display: block;
 }
@@ -5463,7 +5449,7 @@ textarea {
   text-transform: uppercase;
   font-weight: 900;
   font-size: var(--px-16);
-  letter-spacing: 0.16px; /* No variable match */
+  letter-spacing: var(--px-075);
   line-height: 1.1;
 }
 
@@ -5725,14 +5711,12 @@ textarea {
 }
 
 /* Die Sprechblase ordentlich einbinden */
-
 .speech-bubble-warning {
-	display: flex;
-	width: var(--px-300);
-	height: auto;
-	padding: var(--px-20);
-	background-color: #fe0;
-	border-radius: var(--px-20)
+  display: flex;
+  width: fit-content;
+  padding: var(--px-20);
+  background-color: #fe0;
+  border-radius: var(--px-20);
 }
 
 .speech-container {
@@ -5747,13 +5731,7 @@ textarea {
   transition: opacity 0.3s ease;
 }
 
-.speech-bubble-warning {
-  display: flex;
-  width: fit-content;
-  padding: var(--px-20);
-  background-color: #fe0;
-  border-radius: var(--px-20);
-}
+
 
 .speech-icon {
   /* Optional: Weitere Styling-Anpassungen */
@@ -5948,7 +5926,7 @@ textarea {
 .step-label {
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
   margin-top: var(--px-13);
   color: #fff;
 }
@@ -6350,7 +6328,7 @@ select:focus {
     line-height: 1.4; /* Match h5 line-height */
     margin-bottom: var(--space-xs); /* Keep existing bottom margin */
     text-transform: uppercase; /* Match h5 text-transform */
-    letter-spacing: 0.72px; /* No variable match */
+    letter-spacing: var(--px-075);
 }
 
 .fund-name {
@@ -6360,7 +6338,7 @@ select:focus {
     font-weight: 800; /* Match h3 font-weight */
     line-height: 1.1; /* Match h3 line-height */
     text-transform: uppercase; /* Match h3 text-transform */
-    letter-spacing: 0.72px; /* No variable match */
+    letter-spacing: var(--px-075);
     margin-top: 0; /* Keep existing top margin */
     margin-bottom: var(--space-m); /* Keep existing bottom margin */
 }

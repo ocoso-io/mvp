@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background: no-repeat top cover;
+  background: top cover no-repeat;
 }
 .comic-image {
   width: var(--px-300);
@@ -45,7 +45,7 @@
 }
 .comic-block-wide {
   width: var(--px-460);
-  height: 650px; /* No variable match */
+  height: var(--px-650);
   border-radius: var(--px-20);
   padding: 0 var(--px-20) var(--px-20) var(--px-20);
   box-sizing: border-box;
@@ -100,7 +100,7 @@
   background-position: center;
   border: black var(--px-5) solid;
   box-sizing: border-box;
-  backhround-color: black;
+  background-color: black;
 }
 .starttext-row {
   display: flex;
@@ -414,7 +414,7 @@ body {
 }
 .responsive {
   display: flex;
-  grid-template-columns: auto auto; /* Automatisch an die Inhalte anpassen */
+  /* grid-template-columns: auto auto;  Automatisch an die Inhalte anpassen */
   border-radius: var(--px-20);
   background-color: #f2f2f7;
   padding: var(--px-10);
@@ -928,9 +928,8 @@ textarea {
   background-repeat: no-repeat; /* Verhindert Wiederholung */
 }
 .radio-indicator {
-  width: 2var(--px-1); /* No variable match */
-  height: 2var(--px-1); /* No variable match */
-  background-color: none;
+  width: var(--px-20); /* No variable match */
+  height: var(--px-20); /* No variable match */
   display: block;
 }
 .content-frame {
@@ -996,6 +995,27 @@ textarea {
   white-space: nowrap;
   padding: var(--px-10) var(--px-20);
 }
+
+
+/* Basis – gilt immer */
+.data-table{
+  table-layout: fixed;          /* feste Breite pro Spalte   */
+  width: 100%;
+}
+
+.data-table th,
+.data-table td{
+  padding: var(--px-6) var(--px-10);
+  font-size: var(--px-14);
+  white-space: nowrap;          /* EINZEILIG                 */
+  overflow: hidden;
+  text-overflow: ellipsis;      /* „…“ bei zu langem Inhalt   */
+}
+
+
+
+
+
 .table-header {
   background-color: #222222;
   color: #f8f9fa;
@@ -1054,8 +1074,8 @@ textarea {
 }
 .toggle-btn {
   width: var(--px-40);
-  height: var(--px-20);
-  border-radius: var(--px-97-74);
+  height: var(--px-40);
+  border-radius: var(--px-20);
   border: none;
   padding: var(--px-3);
   cursor: pointer;
@@ -1381,7 +1401,7 @@ textarea {
   flex: 0 0 var(--px-400);
   width: var(--px-400);
   flex-direction: row;
-  flex-wrap: no-wrap;
+  flex-wrap: nowrap;
   gap: var(--px-10);
 }
 .caroussel-container {
@@ -1475,7 +1495,6 @@ canvas.three-canvas {
   flex-wrap: wrap;
   gap: var(--px-20);
   padding: var(--px-10) var(--px-20) var(--px-10) var(--px-20);
-  background-color: none;
   border-radius: var(--px-20);
   align-items: center;
 }
@@ -1496,7 +1515,6 @@ canvas.three-canvas {
   margin: var(--px-10) 0;
   display: flex;
   flex-direction: column;
-  background-color: none;
 }
 .filter-controls label {
   font-size: var(--px-24);
@@ -2021,8 +2039,6 @@ select:focus {
 }
 .card-stack {
   position: absolute;
-  /*height: 2500px;
-  perspective: 1000px;*/
   perspective-origin: 50% 50%;
   width: var(--px-200);
   min-width: calc(var(--px-370) + var(--px-30) * 4); /* Using variables in calc */
@@ -2066,10 +2082,10 @@ select:focus {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  border: rgba(0, 0, 0, 0) solid var(--px-20);
+  border: rgba(0, 0, 0, 0) solid var(--px-20); /* Invisible BOrder ! Important!*/
   gap: var(--px-20);
   position: absolute;
-  width: var(--px-370); /* Width uses number only, should have unit? Assuming px */
+  width: var(--px-370);
   max-width: var(--px-370);
   /*height: 50%;*/
   top: var(--px-60);
@@ -2080,7 +2096,7 @@ select:focus {
   backface-visibility: hidden;
   transform:
     rotateY(30deg) /* Kept as deg */
-    translateX(calc(var(--idx) * var(--px-30))); /* Using var in calc */
+    translateX(calc(var(--idx) * var(--px-30)));
   transition:
     transform 0.2s ease, filter 0.2s ease;
   pointer-events: auto;
@@ -2090,27 +2106,11 @@ select:focus {
   height: 100%;
   transition: margin-left 0.3s ease;
 }
-.responsive-narrow {
-  box-shadow: 0 0 var(--px-80) var(--px-60) rgba(0, 0, 0, 0.5);
-}
-/* === Three.js Container und Canvas Styles === */
-/* Standard-Wrapper für 3D-Elemente */
-.three-container {
-  position: absolute;
-  overflow: visible; /* Damit beim Drehen nichts abgeschnitten wird */
-  z-index: 9500; /* No variable match */
-  cursor: pointer;
-}
 /* Das Canvas für Three.js */
 canvas.three-canvas {
   display: block;
   pointer-events: none;
   background: transparent;
-}
-/* === Sichtbarkeit und Spezial-Container === */
-/* Sichtbarer Wrapper */
-.wrapper:not(.invisible) {
-  visibility: visible;
 }
 /* Unsichtbarer Wrapper */
 .invisible {
@@ -2129,19 +2129,6 @@ canvas.three-canvas {
   /*max-width: var(--max-width);*/
   margin: 0 auto;
   box-sizing: border-box;
-}
-.data-table {
-  border-radius: var(--px-15);
-  box-shadow: 0 var(--px-4) var(--px-12) rgba(0, 0, 0, 0.15);
-  border-collapse: separate;
-  border-spacing: 0;
-  font-family: var(--main-font-family);
-  color: #fff;
-  font-size: var(--px-18);
-  font-weight: 400;
-  line-height: 1.2;
-  width: 100%; /* zwingt gleiche Spaltenbreiten */
-  border-collapse: collapse;
 }
 .type-gallery {
   display: flex;

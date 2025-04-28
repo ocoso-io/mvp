@@ -1,0 +1,212 @@
+<style>
+   /* ====== Design-Tokens ====== */
+  :root{
+    /* Pixel-Skala */
+    --px-1: .0625rem; --px-2: .125rem; --px-3: .1875rem; --px-4: .25rem;
+    --px-5: .3125rem; --px-6: .375rem; --px-7: .4375rem; --px-8: .5rem;
+    --px-10: .625rem; --px-12: .75rem; --px-16: 1rem; --px-20: 1.25rem;
+    --px-24: 1.5rem; --px-32: 2rem; --px-48: 3rem; --px-9999: 625rem;
+
+    /* Abstände & Radien */
+    --space-xxs: var(--px-4);  --space-xs: var(--px-8);  --space-s:  var(--px-12);
+    --space-m:   var(--px-16); --space-l:  var(--px-24); --space-xl: var(--px-32);
+    --border-radius-s:  var(--px-5);  --border-radius-m: var(--px-10);
+    --border-radius-l:  var(--px-20); --border-radius-full: var(--px-9999);
+
+    /* Typo */
+    --font-sans: "Avenir Next",-apple-system,Roboto,Helvetica,sans-serif;
+
+    /* Viewport */
+    --vh-100: 100vh; --vw-100: 100vw;
+  }
+
+  /* ====== Mobile Navigation ====== */
+  .mobile-flag-nav{
+    position:fixed; top:0; right:0;
+    height:auto; width:auto;
+    padding-top:var(--space-s);
+    display:none; flex-direction:column; align-items:flex-start;
+    overflow:visible;                /* Verhindert unnötiges Painten */
+    z-index:9900;
+  }
+  .mobile-flag-nav.open{
+    display:flex;
+    perspective:1000px;             /* Nur aktiv wenn sichtbar */
+  }
+
+  /* Close-Button */
+  .mobile-flag-nav .close-btn{
+    background:none; border:none; color:#666;
+    font-size:2rem; padding:0 var(--space-xs);
+    align-self:flex-end; cursor:pointer; z-index:9950;
+  }
+
+  /* ====== Hamburger ====== */
+  .hamburger-button{
+    position:fixed; 
+    top:var(--px-24); 
+    right:var(--px-24);
+    display:flex; 
+    flex-direction:column; 
+    justify-content:space-between;
+    width: var(--px-48); 
+    height: var(--px-48); 
+    border:none; 
+    cursor:pointer;
+    z-index:3000;
+    background-color: #ffef00;
+    box-shadow:var(--px-3) var(--px-3) var(--px-12) rgba(0,0,0,.5);
+    padding: var(--px-10);
+  }
+  .hamburger-button .bar{
+    width:100%; height:var(--px-3, .1875rem);   /* Fallback-Wert */
+    background:#666; border-radius:var(--px-2, .125rem);
+  }
+  .hamburger-button.hidden, .hamburger-hidden,
+  .close-btn.hidden, .close-btn-hidden{display:none!important;}
+
+  /* ====== Menü-Struktur ====== */
+  .menu-wrapper-outer{list-style:none; margin:0; padding:0; width:100%;}
+
+  .flag-list,
+  .flag-item > ul{
+    list-style:none; margin:0; padding:0;
+    display:flex; flex-direction:column; gap:.25rem;
+  }
+
+  /* Ein-/Ausklappen */
+  .flag-item > ul{
+    overflow:hidden; height:0;
+    transition:height .35s ease;
+  }
+
+  /* ====== Animation: Wrapper ====== */
+  .flag-wrapper{
+    margin:0; padding:0;
+    opacity:0; transform-origin:100% 50%;
+    transform:rotateY(-90deg);
+    transition:transform .45s ease, opacity .4s ease;
+    pointer-events:none;
+  }
+  .flag-wrapper.visible{
+    opacity:1; transform:rotateY(0deg); pointer-events:auto;
+  }
+
+  /* ====== Animation: Items ====== */
+  .flag-item{
+    position:relative; margin: .2rem 0 0;
+    opacity:0; transform-origin:100% 0%;
+    transform:rotateY(90deg);
+    transition:transform .35s ease, opacity .35s ease;
+    pointer-events:none;
+    backface-visibility:hidden;     /* Glättet GPU-Ränder */
+  }
+  .flag-item.visible{
+    opacity:1; transform:rotateY(15deg); pointer-events:auto;
+  }
+
+  /* Verschachtelte Items */
+  .flag-item > ul > .flag-item{margin-left:1.5rem;}
+  .flag-item > ul > .flag-item.visible{transform:rotateY(15deg);}
+
+  /* ====== Links ====== */
+  .flag-item a{
+    display:flex; align-items:center;
+    background:#ffef00;
+    padding:.6rem 1rem;
+    box-shadow:var(--px-3) 6px 24px rgba(0,0,0,.8);
+    color:#000; text-decoration:none; font:700 1rem/1 var(--font-sans);
+    white-space:nowrap; position:relative;
+  }
+  .flag-item a::before{
+    content:""; position:absolute; inset:0;
+    z-index:1;                         /* Klick-Layer */
+  }
+  .flag-item a > *{pointer-events:none; position:relative; z-index:2;}
+  .mobile-dropdown-icon{margin-left:.5rem; width:1rem; height:1rem;}
+ 
+ 
+</style>
+
+<!-- Hamburger-Button -->
+<button class="hamburger-button" aria-label="Open menu" id="hamburgerBtn">
+  <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+</button>
+<!-- Mobile Navigation -->
+<aside class="mobile-flag-nav" id="mobileFlagNav">
+  <button class="close-btn close-btn-hidden" aria-label="Close menu" id="closeFlagNav">×</button>
+  <!-- VISUAL MENU -->
+  <ul class="menu-wrapper-outer">
+    <li class="flag-wrapper hidden">
+      <ul class="flag-list">
+        <li class="flag-item hidden">
+			<a href="content-creator.html"><h3 class="text-box-wide">Creators</h3><img src="img/Arrow-Down.png" alt="" class="mobile-dropdown-icon"/></a>
+          <ul>
+            <li class="flag-item hidden">
+              <a href="content-mint.html"><h3 class="text-box-wide">Mint</h3></a>
+            </li>
+            <li class="flag-item hidden">
+				<a href="content-provide.html"><h3 class="text-box-wide">Provide</h3><img src="img/Arrow-Down.png" alt="" class="mobile-dropdown-icon"/></a>
+              <ul>
+                <li class="flag-item hidden">
+                  <a href="content-promote.html"><h3 class="text-box-wide">Promote</h3></a>
+                </li>
+                <li class="flag-item hidden">
+                  <a href="content-monetize.html"><h3 class="text-box-wide">Monetize</h3><img src="img/Arrow-Down.png" alt="" class="mobile-dropdown-icon"/></a>
+                  <ul>
+                    <li class="flag-item hidden">
+                      <a href="content-marketing.html"><h3 class="text-box-wide">Marketing</h3></a>
+                    </li>
+                    <li class="flag-item hidden">
+                      <a href="content-licencing.html"><h3 class="text-box-wide">Licencing</h3></a>
+                    </li>
+                    <li class="flag-item hidden">
+                      <a href="content-subscribers.html"><h3 class="text-box-wide">Subscribers</h3></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="flag-item hidden">
+                  <a href="content-trade.html"><h3 class="text-box-wide">Trade</h3></a>
+                </li>
+              </ul>
+            </li>
+            <li class="flag-item hidden">
+              <a href="content-insights.html"><h3 class="text-box-wide">Insights</h3></a>
+            </li>
+          </ul>
+        </li>
+        <li class="flag-item hidden">
+          <a href="investor.html"><h3 class="text-box-wide">Investors</h3><img src="img/Arrow-Down.png" alt="" class="mobile-dropdown-icon"/></a>
+          <ul>
+            <li class="flag-item hidden">
+              <a href="investor-market.html"><h3 class="text-box-wide">Market</h3><img src="img/Arrow-Down.png" alt="" class="mobile-dropdown-icon"/></a>
+              <ul>
+                <li class="flag-item hidden">
+                  <a href="investor-market-overview.html"><h3 class="text-box-wide">Overview</h3></a>
+                </li>
+                <li class="flag-item hidden">
+                  <a href="investor-market-invest.html"><h3 class="text-box-wide">Invest + Trade</h3></a>
+                </li>
+                <li class="flag-item hidden">
+                  <a href="investor-market-results.html"><h3 class="text-box-wide">Your Results</h3></a>
+                </li>
+              </ul>
+            </li>
+            <li class="flag-item hidden">
+                <a href="investor-trends.html"><h3 class="text-box-wide">Trends</h3></a>
+            </li>
+            <li class="flag-item hidden">
+              <a href="investor-partizipation.html"><h3 class="text-box-wide">Partizipate</h3></a>
+            </li>
+          </ul>
+        </li>
+        <li class="flag-item hidden">
+          <a href="advertiser.html"><h3 class="text-box-wide">Advertisers</h3></a>
+        </li>
+        <li class="flag-item hidden">
+			<a href="user.html"><h3 class="text-box-wide">Users</h3></a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</aside>

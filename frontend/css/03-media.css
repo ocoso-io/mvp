@@ -73,6 +73,14 @@
   .content-row {
     flex-direction: column;
   }
+  .data-table
+  { 
+     /* sehr kleine Geräte → horizontales Scroll-Fallback */
+    display:block; 
+    overflow-x:auto; 
+  } 
+  
+  
 }
 
 @media (max-width: 768px) { /* Kept as pixels */

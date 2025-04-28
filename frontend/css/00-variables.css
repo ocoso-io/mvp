@@ -23,6 +23,8 @@
   --border-radius-xxxlarge: var(--px-50);
   --border-radius-full: var(--px-9999);
 
+
+  --px-075: 0.047rem; 
   --px-1: 0.0625rem; 
   --px-2: 0.125rem; 
   --px-3: 0.1875rem; 
@@ -63,11 +65,13 @@
   --px-100: 6.25rem; 
   --px-120: 7.5rem; 
   --px-150: 9.375rem; 
+  --px-155: 9.688rem; 
   --px-160: 10rem;
   --px-170: 10.625rem; 
   --px-180: 11.25rem; 
   --px-200: 12.5rem; 
   --px-240: 15rem; 
+  --px-250: 15.625rem; 
   --px-260: 16.25rem; 
   --px-300: 18.75rem; 
   --px-320: 20rem; 
@@ -76,10 +80,47 @@
   --px-400: 25rem; 
   --px-450: 28.125rem; 
   --px-460: 28.75rem; 
-  --px-600: 37.5rem; 
+  --px-600: 37.5rem;  
+  --px-650: 40.625rem; 
   --px-9999: 624.9375rem; 
 
   /* Viewport-Werte */
   --vw-100: 100vw; /* Viewport width */
   --vh-100: 100vh; /* Viewport height */
+  
+  
+  /* undefined */
+  /*
+  --color-background-subtle
+  --color-link
+  --font-size-body-bold
+  --Gray-100
+  --border-radius-m
+  --color-background-alt
+  --color-background-subtle
+  --color-border
+  --color-border-light
+  --color-error
+  --color-link
+  --color-primary
+  --color-primary-dark
+  --color-primary-light
+  --color-success
+  --color-text
+  --color-text-inverse
+  --color-text-secondary
+  --color-text-strong
+  --font-size-body
+  --font-size-body-bold
+  --font-size-small
+  --font-size-small-bold
+  --font-weight-bold
+  --idx
+  --max-width
+  --px-250
+  --shadow-sm
+
+
+  */
+  
 }
