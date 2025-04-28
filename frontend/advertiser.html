@@ -1,216 +1,210 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <title>OCOSO MVP - Full Layout</title>
-    <link rel="stylesheet" href="css/00-variables.css">
-    <link rel="stylesheet" href="css/01-typography.css">
-    <link rel="stylesheet" href="css/02-components.css">
-    <link rel="stylesheet" href="css/03-media.css">
+    <link rel="stylesheet" href="css/main.css">
     <style>
-		
-.comic-row {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: center;
-          align-items: flex-start;
-          gap: var(--px-20);
-          margin: 0 auto;
-          padding: 0px;
-          box-sizing: border-box;
-      }
-		
-      .comic-block {
-        width: var(--px-300);
-        height: var(--px-450);
-        padding: 0px var(--px-20) var(--px-20) var(--px-20);
-        border-radius: var(--px-20);
-        box-sizing: border-box;
-        background-color: black;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        background: no-repeat top cover ;
-      }
 
-      .comic-block h5 {
-        display: inline-block;
-        transform: rotateZ(-10deg);
-        transform-origin: left bottom;
-        margin: -40px 0 0 var(--px-20);
-      }
+        .comic-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            gap: var(--px-20);
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      .text-box {
-        display: inline;
-        background: yellow;
-        color: black;
-        padding: 0 var(--px-4);
-        box-decoration-break: clone;
-        -webkit-box-decoration-break: clone;
-      }		
-				
-      .comic-block p {
-          display: inline-block;
-          transform: rotateZ(-10deg);
-          transform-origin: left bottom;
-          margin: var(--px-20) 0 0 var(--px-10);
-      }
-		
-      .comic-image {
-          width: var(--px-300);
-          height: var(--px-300);
-		  border-radius: var(--px-20) var(--px-20) 0 0;
-          margin: 0px 0 7px -20px;
-		  border: black var(--px-5) solid;
-          box-sizing:border-box;
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center;		  
-      }
-		
-      .comic-row-wide {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: center;
-          align-items: flex-start;
-          gap: var(--px-20);
-          margin: 0 auto;
-          padding: 0px;
-          box-sizing: border-box;
-      }
-		
-      .comic-block-wide {
-        width: var(--px-460);
-        height: 650px;
-		border-radius: var(--px-20);
-        padding: 0px var(--px-20) var(--px-20) var(--px-20);
-        box-sizing: border-box;
-        background-color: black;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        background: no-repeat top cover ;
-      }
+        .comic-block {
+            width: var(--px-300);
+            height: var(--px-450);
+            padding: 0 var(--px-20) var(--px-20) var(--px-20);
+            border-radius: var(--px-20);
+            box-sizing: border-box;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            background: no-repeat top cover;
+        }
 
-      .comic-block-wide h3 {
-        display: inline-block;
-        transform: rotateZ(-10deg);
-        transform-origin: left bottom;
-        margin: -30px 0 0 var(--px-20);
-      }
+        .comic-block h5 {
+            display: inline-block;
+            transform: rotateZ(-10deg);
+            transform-origin: left bottom;
+            margin: -40px 0 0 var(--px-20);
+        }
 
-      .text-box-wide {
-        display: inline;
-        background: yellow;
-        color: black;
-        padding: 0 var(--px-4);
-        box-decoration-break: clone;
-        -webkit-box-decoration-break: clone;
-      }		
-				
-      .comic-block-wide p {
-          display: inline-block;
-          transform: rotateZ(-10deg);
-          transform-origin: left bottom;
-          margin: var(--px-20) 0 0 35px;
-      }
-		
-      .comic-image-wide {
-          width: var(--px-460);
-          height: var(--px-460);
-		  border-radius: var(--px-20) var(--px-20) 0 0;
-          margin: 0px 0 7px -20px;
-		  border: black var(--px-5) solid;
-          box-sizing:border-box;
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center;
+        .text-box {
+            display: inline;
+            background: yellow;
+            color: black;
+            padding: 0 var(--px-4);
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+        }
 
-      }		
-		
-      .comic-row-extrawide {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: center;
-          align-items: flex-start;
-          gap: var(--px-20);
-          margin: 0 auto;
-          padding: 0px;
-          box-sizing: border-box;
-      }
-		
-      .comic-block-extrawide {
-        width: 100%;
-        height: var(--px-350);
-		border-radius: var(--px-20);
-        padding: 0px 0px 0px 0px;
-        box-sizing: border-box;
-        background-color: black;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        background: no-repeat top cover ;
-        background-color: black;
-      }
+        .comic-block p {
+            display: inline-block;
+            transform: rotateZ(-10deg);
+            transform-origin: left bottom;
+            margin: var(--px-20) 0 0 var(--px-10);
+        }
 
-      .text-box-extrawide {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        color: black;
-        padding: var(--px-20) var(--px-40) var(--px-40) 0;
-        width: 50%;
-		  border: black var(--px-1) solid;
-		  box-sizing: border-box;
-      }		
-				
-      .comic-block-extrawide p {
-          display: inline-block;
+        .comic-image {
+            width: var(--px-300);
+            height: var(--px-300);
+            border-radius: var(--px-20) var(--px-20) 0 0;
+            margin: 0 0 7px -20px;
+            border: black var(--px-5) solid;
+            box-sizing: border-box;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
 
-      }
-		
-      .comic-image-extrawide {
-          width: 50%;
-          height: var(--px-350);
-		  border-radius: var(--px-20) 0 0 var(--px-20);
-          margin: 0px var(--px-10) 0px 0px;
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center;
-		  border: black var(--px-5) solid;
-		  box-sizing: border-box;
-		  backhround-color: black;
-      }		
+        .comic-row-wide {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            gap: var(--px-20);
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-		
-      .starttext-row {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: center;
-          align-items: flex-start;
-          gap: var(--px-20);
-          margin: 0 auto;
-          padding: 0px;
-          box-sizing: border-box;		  
-      }
-		
-      .starttext-block {
-        width: var(--px-300);
-        padding: 0px var(--px-20) var(--px-20) var(--px-20);
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;		  
-		  
-      }				
-		
+        .comic-block-wide {
+            width: var(--px-460);
+            height: 650px;
+            border-radius: var(--px-20);
+            padding: 0 var(--px-20) var(--px-20) var(--px-20);
+            box-sizing: border-box;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            background: no-repeat top cover;
+        }
+
+        .comic-block-wide h3 {
+            display: inline-block;
+            transform: rotateZ(-10deg);
+            transform-origin: left bottom;
+            margin: -30px 0 0 var(--px-20);
+        }
+
+        .text-box-wide {
+            display: inline;
+            background: yellow;
+            color: black;
+            padding: 0 var(--px-4);
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+        }
+
+        .comic-block-wide p {
+            display: inline-block;
+            transform: rotateZ(-10deg);
+            transform-origin: left bottom;
+            margin: var(--px-20) 0 0 35px;
+        }
+
+        .comic-image-wide {
+            width: var(--px-460);
+            height: var(--px-460);
+            border-radius: var(--px-20) var(--px-20) 0 0;
+            margin: 0 0 7px -20px;
+            border: black var(--px-5) solid;
+            box-sizing: border-box;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+
+        }
+
+        .comic-row-extrawide {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            gap: var(--px-20);
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .comic-block-extrawide {
+            width: 100%;
+            height: var(--px-350);
+            border-radius: var(--px-20);
+            padding: 0 0 0 0;
+            box-sizing: border-box;
+            background-color: black;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            background: no-repeat top cover;
+            background-color: black;
+        }
+
+        .text-box-extrawide {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            color: black;
+            padding: var(--px-20) var(--px-40) var(--px-40) 0;
+            width: 50%;
+            border: black var(--px-1) solid;
+            box-sizing: border-box;
+        }
+
+        .comic-block-extrawide p {
+            display: inline-block;
+
+        }
+
+        .comic-image-extrawide {
+            width: 50%;
+            height: var(--px-350);
+            border-radius: var(--px-20) 0 0 var(--px-20);
+            margin: 0 var(--px-10) 0 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: black var(--px-5) solid;
+            box-sizing: border-box;
+            backhround-color: black;
+        }
+
+
+        .starttext-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            gap: var(--px-20);
+            margin: 0 auto;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        .starttext-block {
+            width: var(--px-300);
+            padding: 0px var(--px-20) var(--px-20) var(--px-20);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+
+        }
+
     </style>
 </head>
 <body>
@@ -218,385 +212,422 @@
 <div id="navigation-placeholder"></div>
 <div id="overlay-menu-placeholder"></div>
 
- 
+
 <section class="hero">
-  <div class="hero-container" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%), 
+    <div class="hero-container" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
 									 radial-gradient(circle at 50% 50%, 
                                      rgba(0, 0, 0, 0)  60%,    
                                      rgba(0, 0, 0, 1)  100%), 
 									 url('img/head-advertiser-cmyk.jpg'); 
 									 background-position: center;">
-	  
-    <div style="display: flex; flex-direction: column; width: 80%;">
-      <div class="hero-content-wrapper" style="flex-direction: flex-start; justify-content: top;">
-        <div class="main-heading" style="min-height: var(--px-300);   margin-left: var(--px-50)"><h1 class="text-box-wide">Advertise</h1>
+
+        <div style="display: flex; flex-direction: column; width: 80%;">
+            <div class="hero-content-wrapper" style="flex-direction: flex-start; justify-content: top;">
+                <div class="main-heading" style="min-height: var(--px-300);   margin-left: var(--px-50)"><h1
+                        class="text-box-wide">Advertise</h1>
+                </div>
+                <div class="hero-description" style=" margin-left: 25%"><h5 class="text-box-wide">
+                    Tap into verified creators, owned media, and trusted audiences.
+                    No noise. No guesswork. Just results — on your terms. Web3 creators bring soul, not scripts — and
+                    they mean every word.
+                    Your brand deserves more than a slot. It deserves a story.
+                </h5></div>
+            </div>
         </div>
-        <div class="hero-description" style=" margin-left: 25%"><h5 class="text-box-wide">
-          Tap into verified creators, owned media, and trusted audiences.
-No noise. No guesswork. Just results — on your terms. Web3 creators bring soul, not scripts — and they mean every word.
-Your brand deserves more than a slot. It deserves a story.
-        </h5></div>
-      </div>
-    </div>
-    <div class="cta-section">
-      <div class="button-group">
-        <div class="button-wrapper">
-          <button class="action-button" aria-label="Login">
-            <span class="button-text">Login</span>
-          </button>
-          <button class="action-button" aria-label="Register">
-            <span class="button-text">Register</span>
-          </button>
+        <div class="cta-section">
+            <div class="button-group">
+                <div class="button-wrapper">
+                    <button class="action-button" aria-label="Login">
+                        <span class="button-text">Login</span>
+                    </button>
+                    <button class="action-button" aria-label="Register">
+                        <span class="button-text">Register</span>
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
-	
+
 
 <div class="card-stack-wrapper">
-  <nav class="card-stack" id="stack">
-	
-    <div class="card"> 
-      <div class="wrapper">
-        <div class="responsive"  data-link="advertiser.html">
-          <div class="image-container" style="background-image: url('img/advertiser.jpg');">
-          </div>
-          <div class="content-block">
-            <div class="content-text">
-              <h2 class="title">Advertiser</h2>
-              <p class="description">
-                Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
-              </p>
+    <nav class="card-stack" id="stack">
+
+        <div class="card">
+            <div class="wrapper">
+                <div class="responsive" data-link="advertiser.html">
+                    <div class="image-container" style="background-image: url('img/advertiser.jpg');">
+                    </div>
+                    <div class="content-block">
+                        <div class="content-text">
+                            <h2 class="title">Advertiser</h2>
+                            <p class="description">
+                                Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+                            </p>
+                        </div>
+                        <button class="action-button" aria-label="Stake Your Claim">
+                            <img
+                                    src="img/Arrow.png"
+                                    alt=""
+                                    class="button-icon"
+                                    aria-hidden="true"
+                            />
+                            <span class="button-text">Join the Table</span>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <button class="action-button" aria-label="Stake Your Claim">
-              <img
-                src="img/Arrow.png"
-                alt=""
-                class="button-icon"
-                aria-hidden="true"
-              />
-              <span class="button-text">Join the Table</span>
-            </button>
-          </div>
-        </div>
-      </div>
-				
-      <div class="wrapper-reduced">
-		  
-        <div class="wrapper">
-          <div class="responsive-reduced"  data-link="content-creator.html">
-            <div class="content-block-reduced">
-              <div class="content-text-reduced">
-                <h2 class="title">Creator</h2>
-              </div>
-              <button class="action-button" aria-label="Stake Your Claim">
-                <img
-                  src="img/Arrow.png"
-                  alt=""
-                  class="button-icon"
-                  aria-hidden="true"
-                />
-                <span class="button-text">content-creator</span>
-              </button>
+
+            <div class="wrapper-reduced">
+
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="content-creator.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">Creator</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">content-creator</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="investor.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">Investor</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">Follow the Signal</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-          </div>
         </div>
-		  
-        <div class="wrapper">
-          <div class="responsive-reduced"  data-link="investor.html">
-            <div class="content-block-reduced">
-              <div class="content-text-reduced">
-                <h2 class="title">Investor</h2>
-              </div>
-              <button class="action-button" aria-label="Stake Your Claim">
-                <img
-                  src="img/Arrow.png"
-                  alt=""
-                  class="button-icon"
-                  aria-hidden="true"
-                />
-                <span class="button-text">Follow the Signal</span>
-              </button>
+
+        <div class="card">
+            <div class="wrapper">
+                <div class="responsive-narrow" data-link="investor-market.html">
+                    <div class="content-block-narrow"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-market.jpg');">
+                        <div class="content-text">
+                            <h2 class="title">Market</h2>
+                            <p class="description">
+                                Track performance. Compare verticals. Make informed moves in the IP economy.
+                            </p>
+                        </div>
+                        <button class="action-button" aria-label="Stake Your Claim">
+                            <img
+                                    src="img/Arrow.png"
+                                    alt=""
+                                    class="button-icon"
+                                    aria-hidden="true"
+                            />
+                            <span class="button-text">Enter the Market</span>
+                        </button>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-		  
-      </div>	
-    </div>
-	
-    <div class="card"> 
-      <div class="wrapper">
-        <div class="responsive-narrow" data-link="investor-market.html">
-          <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-market.jpg');">
-            <div class="content-text">
-              <h2 class="title">Market</h2>
-              <p class="description">
-                Track performance. Compare verticals. Make informed moves in the IP economy.
-              </p>
+
+            <div class="wrapper">
+                <div class="responsive-narrow" data-link="investor-trends.html">
+                    <div class="content-block-narrow"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends.jpg');">
+                        <div class="content-text">
+                            <h2 class="title">Trends</h2>
+                            <p class="description">
+                                From creator tokens to content DAOs — discover where capital meets culture
+                            </p>
+                        </div>
+                        <button class="action-button" aria-label="Stake Your Claim">
+                            <img
+                                    src="img/Arrow.png"
+                                    alt=""
+                                    class="button-icon"
+                                    aria-hidden="true"
+                            />
+                            <span class="button-text">Follow the Signal</span>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <button class="action-button" aria-label="Stake Your Claim">
-              <img
-                src="img/Arrow.png"
-                alt=""
-                class="button-icon"
-                aria-hidden="true"
-              />
-              <span class="button-text">Enter the Market</span>
-            </button>
-          </div>
-        </div>
-      </div>
-		
-      <div class="wrapper">
-        <div class="responsive-narrow" data-link="investor-trends.html">
-          <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends.jpg');">
-            <div class="content-text">
-              <h2 class="title">Trends</h2>
-              <p class="description">
-                From creator tokens to content DAOs — discover where capital meets culture
-              </p>
+            <div class="wrapper">
+                <div class="responsive-narrow" data-link="investor-partizipation.html">
+                    <div class="content-block-narrow"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-partizipation.jpg');">
+                        <div class="content-text">
+                            <h2 class="title">Participate</h2>
+                            <p class="description">
+                                Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+                            </p>
+                        </div>
+                        <button class="action-button" aria-label="Stake Your Claim">
+                            <img
+                                    src="img/Arrow.png"
+                                    alt=""
+                                    class="button-icon"
+                                    aria-hidden="true"
+                            />
+                            <span class="button-text">Join the Table</span>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <button class="action-button" aria-label="Stake Your Claim">
-              <img
-                src="img/Arrow.png"
-                alt=""
-                class="button-icon"
-                aria-hidden="true"
-              />
-              <span class="button-text">Follow the Signal</span>
-            </button>
-          </div>
-        </div>
-      </div>
-		      <div class="wrapper">
-        <div class="responsive-narrow" data-link="investor-partizipation.html">
-          <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-partizipation.jpg');">
-            <div class="content-text">
-              <h2 class="title">Participate</h2>
-              <p class="description">
-                Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
-              </p>
-            </div>
-            <button class="action-button" aria-label="Stake Your Claim">
-              <img
-                src="img/Arrow.png"
-                alt=""
-                class="button-icon"
-                aria-hidden="true"
-              />
-              <span class="button-text">Join the Table</span>
-            </button>
-          </div>
-        </div>
-      </div>
-		  
 
 
-    </div>
-	
- 
-	
-  </nav>
-</div>	
-	
-<main class="main">		
-	
-	
-<div class="page-wrapper">	
-	
-  <div style="height: var(--px-40)">&nbsp;</div>
-	
-    <!--<article class="card-content-wide">
-      <div class="wrapper">
-        <div class="responsive-narrow" data-link="investor-market.html">
-          <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-market.jpg');">
-            <div class="content-text">
-              <h2 class="title">Market</h2>
-              <p class="description">
-                Track performance. Compare verticals. Make informed moves in the IP economy.
-              </p>
-            </div>
-            <button class="action-button" aria-label="Stake Your Claim">
-              <img
-                src="img/Arrow.png"
-                alt=""
-                class="button-icon"
-                aria-hidden="true"
-              />
-              <span class="button-text">Enter the Market</span>
-            </button>
-          </div>
         </div>
-      </div>
-		
-      <div class="wrapper">
-        <div class="responsive-narrow" data-link="investor-trends.html">
-          <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends.jpg');">
-            <div class="content-text">
-              <h2 class="title">Trends</h2>
-              <p class="description">
-                From creator tokens to content DAOs — discover where capital meets culture
-              </p>
-            </div>
-            <button class="action-button" aria-label="Stake Your Claim">
-              <img
-                src="img/Arrow.png"
-                alt=""
-                class="button-icon"
-                aria-hidden="true"
-              />
-              <span class="button-text">Follow the Signal</span>
-            </button>
-          </div>
-        </div>
-      </div>
-		      <div class="wrapper">
-        <div class="responsive-narrow" data-link="investor-partizipation.html">
-          <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-partizipation.jpg');">
-            <div class="content-text">
-              <h2 class="title">Participate</h2>
-              <p class="description">
-                Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
-              </p>
-            </div>
-            <button class="action-button" aria-label="Stake Your Claim">
-              <img
-                src="img/Arrow.png"
-                alt=""
-                class="button-icon"
-                aria-hidden="true"
-              />
-              <span class="button-text">Join the Table</span>
-            </button>
-          </div>
-        </div>
-      </div>
-		
-    </article>
-		
-  <div style="height:80px">&nbsp;</div>	-->
-	
-    <center class="content-frame">	
 
-      <section class="content-submission">
-        <h2 class="submission-title">Why the long tail?</h2>
-        <h6 class="submission-subtitle">
-            BECAUSE real ATTENTION is not BOUGHT — IT is EARNED.</h6>
-          <p>Audiences are done with noise. They want meaning, not manipulation.
-      OCOSO connects brands with creators who move people — not pixels.
-      This isn’t performance marketing. It’s purpose marketing.
-      At scale. With soul. On a web that finally works for trust.
-        </p>
-      </section>
-      <div style="height: 60px">&nbsp;</div>
-      <section class="comic-row">
-        <div class="comic-block">
-          <div class="comic-image" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/advertiser-panel01.jpg');"><div style="height:300px;">&nbsp;</div></div>
-          <h5><span class="text-box">People are awakening</span></h5>
-          <p>Authenticity is the new authority. People want the truth — raw, real, unfiltered. Not optimized. But original.</p></div>
-        <div class="comic-block" style="width: 250: height: auto">
-          <div class="comic-image" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/advertiser-panel03.jpg');"><div style="height:300px;">&nbsp;</div></div>
-          <h5><span class="text-box">creators speak what mainstream won’t</span></h5>
-          <p>Their voice isn’t controlled by an agenda. Millions are driven by conviction.</p>
-        </div>
-        <div class="comic-block" style="width: 250: height: auto">
-          <div class="comic-image" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/advertiser-panel02.jpg');"><div style="height:300px;">&nbsp;</div></div>
-          <h5><span class="text-box">INFORMERS – <br>Not Influencers.</span></h5>
-          <p>These aren’t lifestyle puppets. These are truth amplifiers. This is the Long Tail… and this is precision at scale.</p>
-        </div>
-        <div class="comic-block" style="width: 250: height: auto">
-          <div class="comic-image" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/advertiser-panel05.jpg');"><div style="height:300px;">&nbsp;</div></div>
-          <h5><span class="text-box">What It Makes Work</span></h5>
-          <p>Audiences listen because it’s not staged. Verified reach of the modern age.</p>
-        </div>	
-        <div class="comic-block" style="width: 250: height: auto">
-          <div class="comic-image" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/advertiser-panel04.jpg');"><div style="height:300px;">&nbsp;</div></div>
-          <h5><span class="text-box">Trust x Message = Impact</span></h5>
-          <p>We connect authentic creators today and the next web3. Human voice transmitted by transparent tech.</p>
-        </div>
-        <div class="comic-block" style="width: 250: height: auto">
-          <div class="comic-image" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/advertiser-panel06.jpg');"><div style="height:300px;">&nbsp;</div></div>
-          <h5><span class="text-box">The Offer</span></h5>
-          <p>Native and impactfull Ads. Authentic traffic. Delivered with heart — in an independent space.</p>
-        </div>
-        <div class="comic-block" style="width: 250: height: auto">
-          <div class="comic-image" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/advertiser-panel07.jpg');"><div style="height:300px;">&nbsp;</div></div>
-          <h5><span class="text-box">OCOSO Central<br>The Control Room</span></h5>
-          <p>Realtime control. On-chain validation. Ad delivery you can trust — and prove.</p></div>
-        <div class="comic-block" style="width: 250: height: auto">
-          <div class="comic-image" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/adveriser-panel08.jpg');"><div style="height:300px;">&nbsp;</div></div>
-          <h5><span class="text-box">Let the Web3 Speak for You</span></h5>
-          <p>Inspire with creators.Scale with the network. Grow with Web3. From today on.</p>
-        </div>
-      </section>	
-		
-    <div style="height:160px">&nbsp;</div>
-		
 
-<section class="content-submission">
-	<h2 class="submission-title">THE TRUST GAP</h2>
-	  <h1 style="line-height: 1">74 % don’t trust traditional media anymore.</h1>
-  <h6 class="submission-subtitle">
-    It’s not a crisis of attention, but people reject manipulation. Authority is no longer owned — it’s earned. 
-  </h6>
-	<p style="width: 100%; text-align: right">(Source: Edelman Trust Barometer)</p>
-</section>
-
-    <div style="height: 60px">&nbsp;</div>
-	<section>
-		
-      <div class="starttext-row">
-        <div class="starttext-block" style="gap: var(--px-10)">
-          <h4>People aren’t looking for polished campaigns.</h4>
-          <p>The era of sleek, high-gloss advertising is losing its edge. Audiences no longer respond to perfect images and corporate scripts — they see through them. What once stood for professionalism now reads as artificial. Trust isn’t built with polish; it’s earned with presence, honesty, and proximity.</p>
-        </div>
-        <div class="starttext-block" style="gap: var(--px-10)">
-          <h4>They’re looking for real stories. Told by real people.</h4>
-          <p>What audiences crave is connection. Not content for content’s sake — but narratives grounded in lived experience, emotion, and vulnerability. When real people speak, listeners lean in. It’s not about volume anymore — it’s about voice. And voice is powerful when it’s personal.</p>
-          </div>
-        <div class="starttext-block" style="gap: var(--px-10)">
-          <h4>The Long Tail of creators delivers what institutions can’t:
-Authenticity. Relevance. Credibility.</h4>
-          <p>This is where the media paradigm shifts. Millions of independent creators now shape the cultural narrative — not as influencers, but as informers. They speak with conviction, not obligation. Their reach may be niche, but their impact is deep. They don’t need to fabricate relevance — they live it.</p>
-        </div>
-      </div>
-
-    </section>
-		
-
-		
-		
-		
-      <div style="height:80px">&nbsp;</div>	
-		
-		<section class="content-submission">
-	<h2 class="submission-title">OCOSO makes this accessible — and scalable.</h2>
-  <h6 class="submission-subtitle">
-    One voice at a time. Millions at once.
-  </h6>
-			<p>OCOSO is where independent voices get heard — and get paid.<br>
-No middlemen. No manipulation. Just creators, audiences, and value in motion.<br>
-The web wasn’t built for ads. It was built for ideas.
-We bring it back to those who still have them.</p>
-</section>
-		
-		
-      <div style="height:80px">&nbsp;</div>	
-		
-	</center>	
-
+    </nav>
 </div>
-	    <div style="height:160px">&nbsp;</div>	
-	
-	</main>	
-	
+
+<main class="main">
+
+
+    <div class="page-wrapper">
+
+        <div style="height: var(--px-40)">&nbsp;</div>
+
+        <!--<article class="card-content-wide">
+          <div class="wrapper">
+            <div class="responsive-narrow" data-link="investor-market.html">
+              <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-market.jpg');">
+                <div class="content-text">
+                  <h2 class="title">Market</h2>
+                  <p class="description">
+                    Track performance. Compare verticals. Make informed moves in the IP economy.
+                  </p>
+                </div>
+                <button class="action-button" aria-label="Stake Your Claim">
+                  <img
+                    src="img/Arrow.png"
+                    alt=""
+                    class="button-icon"
+                    aria-hidden="true"
+                  />
+                  <span class="button-text">Enter the Market</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="wrapper">
+            <div class="responsive-narrow" data-link="investor-trends.html">
+              <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends.jpg');">
+                <div class="content-text">
+                  <h2 class="title">Trends</h2>
+                  <p class="description">
+                    From creator tokens to content DAOs — discover where capital meets culture
+                  </p>
+                </div>
+                <button class="action-button" aria-label="Stake Your Claim">
+                  <img
+                    src="img/Arrow.png"
+                    alt=""
+                    class="button-icon"
+                    aria-hidden="true"
+                  />
+                  <span class="button-text">Follow the Signal</span>
+                </button>
+              </div>
+            </div>
+          </div>
+                  <div class="wrapper">
+            <div class="responsive-narrow" data-link="investor-partizipation.html">
+              <div class="content-block-narrow" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-partizipation.jpg');">
+                <div class="content-text">
+                  <h2 class="title">Participate</h2>
+                  <p class="description">
+                    Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+                  </p>
+                </div>
+                <button class="action-button" aria-label="Stake Your Claim">
+                  <img
+                    src="img/Arrow.png"
+                    alt=""
+                    class="button-icon"
+                    aria-hidden="true"
+                  />
+                  <span class="button-text">Join the Table</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </article>
+
+      <div style="height:80px">&nbsp;</div>	-->
+
+        <center class="content-frame">
+
+            <section class="content-submission">
+                <h2 class="submission-title">Why the long tail?</h2>
+                <h6 class="submission-subtitle">
+                    BECAUSE real ATTENTION is not BOUGHT — IT is EARNED.</h6>
+                <p>Audiences are done with noise. They want meaning, not manipulation.
+                    OCOSO connects brands with creators who move people — not pixels.
+                    This isn’t performance marketing. It’s purpose marketing.
+                    At scale. With soul. On a web that finally works for trust.
+                </p>
+            </section>
+            <div style="height: 60px">&nbsp;</div>
+            <section class="comic-row">
+                <div class="comic-block">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/advertiser-panel01.jpg');">
+                        <div style="height:300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">People are awakening</span></h5>
+                    <p>Authenticity is the new authority. People want the truth — raw, real, unfiltered. Not optimized.
+                        But original.</p></div>
+                <div class="comic-block" style="width: 250: height: auto">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/advertiser-panel03.jpg');">
+                        <div style="height:300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">creators speak what mainstream won’t</span></h5>
+                    <p>Their voice isn’t controlled by an agenda. Millions are driven by conviction.</p>
+                </div>
+                <div class="comic-block" style="width: 250: height: auto">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/advertiser-panel02.jpg');">
+                        <div style="height:300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">INFORMERS – <br>Not Influencers.</span></h5>
+                    <p>These aren’t lifestyle puppets. These are truth amplifiers. This is the Long Tail… and this is
+                        precision at scale.</p>
+                </div>
+                <div class="comic-block" style="width: 250: height: auto">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/advertiser-panel05.jpg');">
+                        <div style="height:300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">What It Makes Work</span></h5>
+                    <p>Audiences listen because it’s not staged. Verified reach of the modern age.</p>
+                </div>
+                <div class="comic-block" style="width: 250: height: auto">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/advertiser-panel04.jpg');">
+                        <div style="height:300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">Trust x Message = Impact</span></h5>
+                    <p>We connect authentic creators today and the next web3. Human voice transmitted by transparent
+                        tech.</p>
+                </div>
+                <div class="comic-block" style="width: 250: height: auto">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/advertiser-panel06.jpg');">
+                        <div style="height:300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">The Offer</span></h5>
+                    <p>Native and impactfull Ads. Authentic traffic. Delivered with heart — in an independent space.</p>
+                </div>
+                <div class="comic-block" style="width: 250: height: auto">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/advertiser-panel07.jpg');">
+                        <div style="height:300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">OCOSO Central<br>The Control Room</span></h5>
+                    <p>Realtime control. On-chain validation. Ad delivery you can trust — and prove.</p></div>
+                <div class="comic-block" style="width: 250: height: auto">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/adveriser-panel08.jpg');">
+                        <div style="height:300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">Let the Web3 Speak for You</span></h5>
+                    <p>Inspire with creators.Scale with the network. Grow with Web3. From today on.</p>
+                </div>
+            </section>
+
+            <div style="height:160px">&nbsp;</div>
+
+
+            <section class="content-submission">
+                <h2 class="submission-title">THE TRUST GAP</h2>
+                <h1 style="line-height: 1">74 % don’t trust traditional media anymore.</h1>
+                <h6 class="submission-subtitle">
+                    It’s not a crisis of attention, but people reject manipulation. Authority is no longer owned — it’s
+                    earned.
+                </h6>
+                <p style="width: 100%; text-align: right">(Source: Edelman Trust Barometer)</p>
+            </section>
+
+            <div style="height: 60px">&nbsp;</div>
+            <section>
+
+                <div class="starttext-row">
+                    <div class="starttext-block" style="gap: var(--px-10)">
+                        <h4>People aren’t looking for polished campaigns.</h4>
+                        <p>The era of sleek, high-gloss advertising is losing its edge. Audiences no longer respond to
+                            perfect images and corporate scripts — they see through them. What once stood for
+                            professionalism now reads as artificial. Trust isn’t built with polish; it’s earned with
+                            presence, honesty, and proximity.</p>
+                    </div>
+                    <div class="starttext-block" style="gap: var(--px-10)">
+                        <h4>They’re looking for real stories. Told by real people.</h4>
+                        <p>What audiences crave is connection. Not content for content’s sake — but narratives grounded
+                            in lived experience, emotion, and vulnerability. When real people speak, listeners lean in.
+                            It’s not about volume anymore — it’s about voice. And voice is powerful when it’s
+                            personal.</p>
+                    </div>
+                    <div class="starttext-block" style="gap: var(--px-10)">
+                        <h4>The Long Tail of creators delivers what institutions can’t:
+                            Authenticity. Relevance. Credibility.</h4>
+                        <p>This is where the media paradigm shifts. Millions of independent creators now shape the
+                            cultural narrative — not as influencers, but as informers. They speak with conviction, not
+                            obligation. Their reach may be niche, but their impact is deep. They don’t need to fabricate
+                            relevance — they live it.</p>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <div style="height:80px">&nbsp;</div>
+
+            <section class="content-submission">
+                <h2 class="submission-title">OCOSO makes this accessible — and scalable.</h2>
+                <h6 class="submission-subtitle">
+                    One voice at a time. Millions at once.
+                </h6>
+                <p>OCOSO is where independent voices get heard — and get paid.<br>
+                    No middlemen. No manipulation. Just creators, audiences, and value in motion.<br>
+                    The web wasn’t built for ads. It was built for ideas.
+                    We bring it back to those who still have them.</p>
+            </section>
+
+
+            <div style="height:80px">&nbsp;</div>
+
+        </center>
+
+    </div>
+    <div style="height:160px">&nbsp;</div>
+
+</main>
+
 <div id="footer-placeholder"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-<script src="ocoso-app-functions.js" defer></script>	
-<script src="js/wallet.js" defer></script>		
-	<script src="js/3d-Navigation.js" defer></script>
-	
+<script src="ocoso-app-functions.js" defer></script>
+<script src="js/wallet.js" defer></script>
+<script src="js/3d-Navigation.js" defer></script>
+
 </body>
 </html>
