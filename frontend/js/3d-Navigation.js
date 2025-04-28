@@ -5,106 +5,131 @@ function initialize3DNavigation() {
     const stack = document.querySelector('.card-stack');
     const main = document.querySelector('.main');
 
-    const maxBlur = 3;
-
-    // Direktzuweisungen der ursprünglichen CSS-Variablen
-    const baseAngleStatic = 30;           // --base-angle: 30deg
-    const stepA = 5;            // --step-angle: 5deg
-    const baseW = 370;          // --card-width: var(--px-370)
-    const spacing = 30;           // --card-spacing: 30px
+    // Konfigurationswerte
+    const config = {
+        maxBlur: 3,
+        baseAngle: 30,         // --base-angle: 30deg
+        stepAngle: 5,          // --step-angle: 5deg
+        cardWidth: 370,        // --card-width: var(--px-370)
+        cardSpacing: 30,       // --card-spacing: 30px
+        breakpoint: 1600       // Breakpoint für responsive Anpassungen
+    };
 
     const cardCount = cards.length;
-
-    let vw = window.innerWidth;
-
-    let dynamicAngle = 0;
-    let dynamicSpacing = 0;
-    let dynamicMain = 8;
-    let gcardwidth = 0;
+    
+    // Cached Werte
+    let viewport = {
+        width: window.innerWidth,
+        height: window.innerHeight
+    };
+    
+    let dynamics = {
+        angle: 0,
+        spacing: 0,
+        mainOffset: 8,
+        cardWidth: 0
+    };
 
     let lastScrollY = window.scrollY;
     let lastOrigin = '';
 
+    /**
+     * Erzwingt einen Reflow des Dokuments
+     */
     function forceReflow() {
         void document.body.offsetHeight;
     }
 
-    function updateDynamicAngle() {
-        vw = window.innerWidth;
+    /**
+     * Berechnet dynamische Werte basierend auf Viewport-Breite
+     */
+    function calculateDynamicValues() {
+        dynamics.spacing = Math.max(0, (config.breakpoint - viewport.width) / 70);
+        dynamics.angle = Math.max(0, (config.breakpoint - viewport.width) / 40);
+        
+        return {
+            baseAngle: config.baseAngle + dynamics.angle,
+            spacing: config.cardSpacing - dynamics.spacing
+        };
+    }
 
-        dynamicSpacing = Math.max(0, (1600 - vw) / 70);
-        dynamicAngle = Math.max(0, (1600 - vw) / 40);
-
-        const baseA = baseAngleStatic + dynamicAngle;
-
-        cards.forEach((c, j) => {
-            const offset = j * (spacing - dynamicSpacing);
-            c.style.width = `${baseW}px`;
-            c.style.transform =
-                `rotateY(${baseA}deg)`
-                + ` translateY(${offset / 6 - dynamicSpacing * j / 2}px)`
-                + ` translateX(${offset}px)`
-                + ` translateZ(${offset}px)`;
-            c.style.filter = `blur(0)`;
+    /**
+     * Aktualisiert die Karten-Transformation für den Standard-Zustand
+     */
+    function updateCardsTransform() {
+        const { baseAngle, spacing } = calculateDynamicValues();
+        
+        cards.forEach((card, index) => {
+            const offset = index * spacing;
+            card.style.width = `${config.cardWidth}px`;
+            card.style.transform = 
+                `rotateY(${baseAngle}deg) 
+                 translateY(${offset / 6 - dynamics.spacing * index / 2}px) 
+                 translateX(${offset}px) 
+                 translateZ(${offset}px)`;
+            card.style.filter = 'blur(0)';
         });
     }
 
-    function updateDynamicWidth() {
-        vw = window.innerWidth;
-
-        const card = document.querySelector('.card');
-        const rect = card.getBoundingClientRect();
-        const cardwidth = rect.width;
-
-        const stack = document.getElementById('stack');
+    /**
+     * Aktualisiert die Dimension und Position des Hauptinhalts
+     */
+    function updateLayout() {
+        viewport = {
+            width: window.innerWidth,
+            height: window.innerHeight
+        };
+        
+        const card = cards[0];
+        const cardRect = card.getBoundingClientRect();
         const stackRect = stack.getBoundingClientRect();
-        const stackWidth = stackRect.width;
-
-        dynamicSpacing = Math.max(0, (1600 - vw) / 70);
-        dynamicAngle = Math.max(0, (1600 - vw) / 40);
-
-        const baseA = baseAngleStatic + dynamicAngle;
-
-        gcardwidth = cardwidth;
-
-        cards.forEach((c, j) => {
-            const offset = j * (spacing - dynamicSpacing);
-            c.style.width = `${baseW}px`;
-            c.style.transform =
-                `rotateY(${baseA}deg)`
-                + ` translateY(${offset / 6 - dynamicSpacing * j / 2}px)`
-                + ` translateX(${offset}px)`
-                + ` translateZ(${offset}px)`;
-            c.style.filter = `blur(0)`;
-            dynamicMain = cardwidth - stackWidth + (spacing - dynamicSpacing) * (j + 2);
+        
+        dynamics.cardWidth = cardRect.width;
+        
+        const { baseAngle, spacing } = calculateDynamicValues();
+        
+        // Aktualisiere Kartenpositionierung
+        cards.forEach((card, index) => {
+            const offset = index * spacing;
+            card.style.width = `${config.cardWidth}px`;
+            card.style.transform = 
+                `rotateY(${baseAngle}deg) 
+                 translateY(${offset / 6 - dynamics.spacing * index / 2}px) 
+                 translateX(${offset}px) 
+                 translateZ(${offset}px)`;
+            card.style.filter = 'blur(0)';
+            
+            // Berechnung nur beim letzten Element
+            if (index === cards.length - 1) {
+                dynamics.mainOffset = cardRect.width - stackRect.width + spacing * (index + 2);
+            }
         });
-
-        main.style.marginLeft = `${dynamicMain}px`;
-        main.style.width = `${vw - dynamicMain}px`;
+        
+        // Hauptinhalt positionieren
+        main.style.marginLeft = `${dynamics.mainOffset}px`;
+        main.style.width = `${viewport.width - dynamics.mainOffset}px`;
     }
 
+    /**
+     * Aktualisiert den Perspektivursprung basierend auf Scroll-Position
+     */
     function updatePerspectiveOrigin() {
         forceReflow();
 
-        const scrollTop = window.scrollY;
-        const viewportHeight = window.innerHeight;
-        const yPercent = (scrollTop / viewportHeight) * 100;
-
+        const yPercent = (window.scrollY / viewport.height) * 100;
         const origin = `50% ${yPercent}%`;
 
-        // Nur aktualisieren, wenn sich etwas geändert hat
         if (origin !== lastOrigin) {
-            //stack.style.perspectiveOrigin = origin;
-            //document.documentElement.style.setProperty('--perspective-origin', origin);
-            //stack.style.setProperty("perspective-origin", origin);
             stack.style.perspectiveOrigin = origin;
             lastOrigin = origin;
-            //root.style.setProperty('--perspective-origin', origin); // ✅ CSS var update
             stack.getBoundingClientRect(); // Repaint triggern
         }
     }
 
-    function dispatchEnterAndLeaveMouseEventsToAllCards() {
+    /**
+     * Löst Mausereignisse für alle Karten aus
+     */
+    function dispatchMouseEvents() {
         const enter = new Event('mouseenter');
         const leave = new Event('mouseleave');
         cards.forEach(card => {
@@ -113,99 +138,42 @@ function initialize3DNavigation() {
         });
     }
 
+    // Event Listeners
     window.addEventListener('resize', () => {
         updatePerspectiveOrigin();
-        dispatchEnterAndLeaveMouseEventsToAllCards();
+        updateLayout();
     });
 
     document.scrollingElement.addEventListener('scroll', updatePerspectiveOrigin);
 
-    cards.forEach((card, i) => {
+    // Mouseenter/leave Handler für jede Karte
+    cards.forEach((card, activeIndex) => {
         card.addEventListener('mouseenter', () => {
+            const { baseAngle } = calculateDynamicValues();
+            const maxOff = cardCount - 1;
+            const cardWidth = dynamics.cardWidth;
+            
+            cards.forEach((otherCard, index) => {
+                const delta = activeIndex - index;
+                const angle = index > activeIndex ? baseAngle + delta * config.stepAngle : baseAngle;
+                const distance = index > activeIndex ? cardWidth : 0;
+                const offset = (config.cardSpacing - dynamics.spacing) * index * 1.5;
+                const blur = (index > activeIndex && index > 0) ? (index / maxOff) * config.maxBlur : 0;
 
-            const baseA = baseAngleStatic + dynamicAngle;
-            const maxOff = (cards.length - 1);
-
-            const card = document.querySelector('.card');
-            const rect = card.getBoundingClientRect();
-            const cardwidth = rect.width;
-
-            const stack = document.getElementById('stack');
-            const stackRect = stack.getBoundingClientRect();
-            const stackWidth = stackRect.width;
-
-            vw = window.innerWidth;
-
-            cards.forEach((c, j) => {
-
-                const delta = i - j;
-                const angle = j > i
-                    ? baseA + delta * stepA
-                    : baseA;
-
-                const distance = j > i
-                    ? cardwidth
-                    : 0;
-
-                const offset = (spacing - dynamicSpacing) * j * 1.5;
-
-                let blur = (j > i && j > 0) ? (j / maxOff) * maxBlur : 0;
-
-                c.style.transform =
-                    `rotateY(${angle}deg)`
-                    + ` translateY(${0}px)` //offset / 6 - dynamicSpacing*j/2}px`
-                    + ` translateX(${offset + distance + 0}px)`
-                    + ` translateZ(${offset}px)`;
-
-                c.style.filter = `blur(${blur}px)`;
+                otherCard.style.transform = 
+                    `rotateY(${angle}deg) 
+                     translateY(0px) 
+                     translateX(${offset + distance}px) 
+                     translateZ(${offset}px)`;
+                
+                otherCard.style.filter = `blur(${blur}px)`;
             });
-
-
-            const movedeck = cardwidth + spacing * (cardCount + 2) - stackWidth;
-            dynamicMain = cardwidth + movedeck;
-
-            vw = window.innerWidth;
-            /*main.style.marginLeft = `${dynamicMain}px`;
-            main.style.width = `${vw-dynamicMain-20}px`;*/
-            gcardwidth = cardwidth;
-
         });
 
         card.addEventListener('mouseleave', () => {
-
-            vw = window.innerWidth;
-            const card = document.querySelector('.card');
-            const rect = card.getBoundingClientRect();
-            const cardwidth = rect.width;
-
-            const stack = document.getElementById('stack');
-            const stackRect = stack.getBoundingClientRect();
-            const stackWidth = stackRect.width;
-
-            dynamicSpacing = Math.max(0, (1600 - vw) / 70);
-            dynamicAngle = Math.max(0, (1600 - vw) / 40); // z. B. bei 1200px → +20°
-            const baseA = baseAngleStatic + dynamicAngle;
-
-            const movedeck = 0; //cardwidth + spacing * (cardnumber + 1) - stackWidth;
-
-            dynamicMain = cardwidth + movedeck;
-            vw = window.innerWidth;
-            main.style.marginLeft = `${dynamicMain}px`;
-            main.style.width = `${vw - dynamicMain - 20}px`;
-
-            cards.forEach((c, j) => {
-                const offset = j * (spacing - dynamicSpacing);
-                c.style.width = `${baseW}px`;
-                c.style.transform =
-                    `rotateY(${baseA * 1.5}deg)`
-                    + ` translateY(${0}px)`
-                    + ` translateX(${0}px)`
-                    + ` translateZ(${offset}px)`;
-                c.style.filter = `blur(0)`;
-            });
+            updateLayout();
         });
     });
-
 
     function checkScroll() {
         const currentScroll = window.scrollY;
@@ -216,12 +184,12 @@ function initialize3DNavigation() {
         requestAnimationFrame(checkScroll);
     }
 
-    updateDynamicAngle();
-    updateDynamicWidth();
+    // Initialisierung
+    updateLayout();
     updatePerspectiveOrigin();
     setInterval(updatePerspectiveOrigin, 50);
     requestAnimationFrame(checkScroll);
-    dispatchEnterAndLeaveMouseEventsToAllCards()
+    dispatchMouseEvents();
 }
 
 document.addEventListener('DOMContentLoaded', initialize3DNavigation);
