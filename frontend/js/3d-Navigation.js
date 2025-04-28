@@ -4,23 +4,18 @@ function initialize3DNavigation() {
     const cards = document.querySelectorAll('.card');
     const stack = document.querySelector('.card-stack');
     const main = document.querySelector('.main');
-    const root = document.documentElement;
-    const styles = getComputedStyle(root);
 
     const maxBlur = 3;
 
     // Direktzuweisungen der ursprünglichen CSS-Variablen
     const baseAngleStatic = 30;           // --base-angle: 30deg
     const stepA = 5;            // --step-angle: 5deg
-    const shiftFactor = 0;            // --shift-factor: 0
     const baseW = 370;          // --card-width: var(--px-370)
     const spacing = 30;           // --card-spacing: 30px
-    const perspectiveOrigin = '50% 50%';  // --perspective-origin: 50% 50%
 
-    const cardnumber = cards.length;
+    const cardCount = cards.length;
 
     let vw = window.innerWidth;
-    let vh = window.innerHeight;
 
     let dynamicAngle = 0;
     let dynamicSpacing = 0;
@@ -30,11 +25,7 @@ function initialize3DNavigation() {
     let lastScrollY = window.scrollY;
     let lastOrigin = '';
 
-    function delay(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    function forceLayoutRecalc() {
+    function forceReflow() {
         void document.body.offsetHeight;
     }
 
@@ -58,9 +49,6 @@ function initialize3DNavigation() {
         });
     }
 
-    updateDynamicAngle();
-
-
     function updateDynamicWidth() {
         vw = window.innerWidth;
 
@@ -73,7 +61,7 @@ function initialize3DNavigation() {
         const stackWidth = stackRect.width;
 
         dynamicSpacing = Math.max(0, (1600 - vw) / 70);
-        dynamicAngle = Math.max(0, (1600 - vw) / 40); // z. B. bei 1200px → +20°
+        dynamicAngle = Math.max(0, (1600 - vw) / 40);
 
         const baseA = baseAngleStatic + dynamicAngle;
 
@@ -95,24 +83,12 @@ function initialize3DNavigation() {
         main.style.width = `${vw - dynamicMain}px`;
     }
 
-    updateDynamicWidth();
-
-
-    function forceReflow() {
-        document.body.offsetHeight; // Löst Reflow aus
-    }
-
-
     function updatePerspectiveOrigin() {
-        forceReflow(); // 👈 Das triggert neue Layout-Berechnung
-        forceLayoutRecalc(); // 🧠 Reflow vor dem Update
+        forceReflow();
 
         const scrollTop = window.scrollY;
         const viewportHeight = window.innerHeight;
-        const y = scrollTop;
-
-        //const totalHeight = document.body.scrollHeight;
-        const yPercent = (y / viewportHeight) * 100;
+        const yPercent = (scrollTop / viewportHeight) * 100;
 
         const origin = `50% ${yPercent}%`;
 
@@ -128,23 +104,21 @@ function initialize3DNavigation() {
         }
     }
 
-    updatePerspectiveOrigin();
-    setInterval(updatePerspectiveOrigin, 50);
-
-
-    window.addEventListener('resize', () => {
-        updatePerspectiveOrigin();
+    function dispatchEnterAndLeaveMouseEventsToAllCards() {
         const enter = new Event('mouseenter');
         const leave = new Event('mouseleave');
         cards.forEach(card => {
             card.dispatchEvent(enter);
             card.dispatchEvent(leave);
         });
+    }
+
+    window.addEventListener('resize', () => {
+        updatePerspectiveOrigin();
+        dispatchEnterAndLeaveMouseEventsToAllCards();
     });
 
     document.scrollingElement.addEventListener('scroll', updatePerspectiveOrigin);
-    //window.addEventListener('scroll', updatePerspectiveOrigin);
-    //window.addEventListener('scroll', updatePerspectiveOrigin);
 
     cards.forEach((card, i) => {
         card.addEventListener('mouseenter', () => {
@@ -160,9 +134,7 @@ function initialize3DNavigation() {
             const stackRect = stack.getBoundingClientRect();
             const stackWidth = stackRect.width;
 
-            const distance = 0;
             vw = window.innerWidth;
-
 
             cards.forEach((c, j) => {
 
@@ -172,21 +144,16 @@ function initialize3DNavigation() {
                     : baseA;
 
                 const distance = j > i
-                    ? cardwidth * 1
+                    ? cardwidth
                     : 0;
 
                 const offset = (spacing - dynamicSpacing) * j * 1.5;
 
-                let blur = 0;
-                if (j > i && j > 0) {
-                    blur = (j / maxOff) * maxBlur;
-                } else {
-                    blur = 0;
-                }
+                let blur = (j > i && j > 0) ? (j / maxOff) * maxBlur : 0;
 
                 c.style.transform =
                     `rotateY(${angle}deg)`
-                    + ` translateY(${0}px)` //offset / 6 - dynamicSpacing*j/2}px)`
+                    + ` translateY(${0}px)` //offset / 6 - dynamicSpacing*j/2}px`
                     + ` translateX(${offset + distance + 0}px)`
                     + ` translateZ(${offset}px)`;
 
@@ -194,7 +161,7 @@ function initialize3DNavigation() {
             });
 
 
-            const movedeck = cardwidth + spacing * (cardnumber + 2) - stackWidth;
+            const movedeck = cardwidth + spacing * (cardCount + 2) - stackWidth;
             dynamicMain = cardwidth + movedeck;
 
             vw = window.innerWidth;
@@ -249,15 +216,12 @@ function initialize3DNavigation() {
         requestAnimationFrame(checkScroll);
     }
 
+    updateDynamicAngle();
+    updateDynamicWidth();
+    updatePerspectiveOrigin();
+    setInterval(updatePerspectiveOrigin, 50);
     requestAnimationFrame(checkScroll);
-
-
-    // Grundstellung setzen
-    const event1 = new Event('mouseenter');
-    cards.forEach(card => card.dispatchEvent(event1));
-
-    const event2 = new Event('mouseleave');
-    cards.forEach(card => card.dispatchEvent(event2));
+    dispatchEnterAndLeaveMouseEventsToAllCards()
 }
 
 document.addEventListener('DOMContentLoaded', initialize3DNavigation);
