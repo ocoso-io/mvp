@@ -431,7 +431,7 @@
                     </td>
                     <td class="action-cell">
                         <button class="toggle-btn offline" aria-label="Toggle row details">
-                         Edit
+                            Edit
                         </button>
                     </td>
                 </tr>
@@ -593,7 +593,7 @@
 
                     <div style="width: var(--px-80)">&nbsp;</div>
 
-                    <button id="hidePromotionBtn1" class="content-button" aria-label="Infos schließen">
+                    <button id="promotionSubmitButton" class="content-button" aria-label="Infos schließen">
                         <img src="img/Arrow-black.png" alt="Schließen" class="content-button-icon"/>
                         <span class="content-button-text">
         <br>Push your show. <br>Save It.<br><br>
@@ -601,7 +601,7 @@
                     </button>
 
 
-                    <button id="hidePromotionBtn2" class="content-button" aria-label="Infos schließen">
+                    <button id="promotionCancelButton" class="content-button" aria-label="Infos schließen">
                         <img src="img/Arrow-black.png" alt="Schließen" class="content-button-icon"/>
                         <span class="content-button-text">
         Cancel and Close
@@ -634,78 +634,182 @@
 <script src="js/3d-Navigation.js" defer></script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const promo = document.getElementById('promotion-info-container');
-        const titleEl = document.getElementById('promoTitle');
-        const btnsOpen = document.querySelectorAll('.openPromoBtn');
-        const btnHide = document.getElementById('hidePromotionBtn1');
-        const btnCancle = document.getElementById('hidePromotionBtn2');
-
-        // Öffnen: Titel setzen und Panel sichtbar machen
-        btnsOpen.forEach(btn =>
-            btn.addEventListener('click', function () {
-                // 1) die Zeile ermitteln
-                const row = this.closest('tr');
-                if (!row) return;
-
-                // 2) ersten <td> auslesen
-                const idText = row.querySelector('td').textContent.trim();
-
-                // 3) in den Promo‑Titel schreiben
-                titleEl.textContent = idText;
-
-                // 4) Panel anzeigen
-                promo.classList.add('is-visible');
-            })
-        );
-
-        // Schließen
-        btnHide.addEventListener('click', () => {
-            promo.classList.remove('is-visible');
-            // ... und was passieren soll wenn die Promotion startet
-        });
-
-        btnCancle.addEventListener('click', () => {
-            promo.classList.remove('is-visible');
-        });
-
-    });
-
-
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.toggle-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Klasse umschalten
-                if (btn.classList.contains('active')) {
-                    btn.classList.remove('active');
-                    btn.classList.add('inactive');
-                } else {
-                    btn.classList.remove('inactive');
-                    btn.classList.add('active');
-                }
-                // Optional: aria‑State anpassen
-                btn.setAttribute('aria-pressed', btn.classList.contains('active'));
-            });
-        });
-    });
-
-
-    const overlay = document.getElementById('promoShowBox');
-    const btnClose = document.getElementById('closeOverlay');
-
-    // Funktion zum Anzeigen
-    function showOverlay() {
-        overlay.style.display = 'block';
+    function getPromotionOverlay() {
+        return document.getElementById('promoShowBox');
     }
 
-    // Funktion zum Verstecken
-    btnClose.addEventListener('click', () => {
-        overlay.style.display = 'none';
-    });
+    function getPromotionOverlayCloseButton() {
+        return document.getElementById('closeOverlay');
+    }
 
-    // Beispiel: Overlay per Klick auf irgend einen Button öffnen
-    document.getElementById('showPromo')
-        .addEventListener('click', showOverlay);
+    function getPromotionOverlayShowButton() {
+        return document.getElementById('showPromo');
+    }
+
+    function getCancelPromotionButton() {
+        return document.getElementById('promotionCancelButton');
+    }
+
+    function getPromotionSubmitButton() {
+        return document.getElementById('promotionSubmitButton');
+    }
+
+    function getPromotionInfoContainer() {
+        return document.getElementById('promotion-info-container');
+    }
+
+    function showPromotionInfoContainer() {
+        getPromotionInfoContainer()?.classList.add('is-visible');
+    }
+
+    function hidePromotionInfoContainer() {
+        getPromotionInfoContainer()?.classList.remove('is-visible');
+    }
+
+    function showPromotionInfoContainerForButton(button) {
+        const row = findTableRowForButton(button);
+        if (!row) return;
+
+        setPromotionTitle(findIdTextOfRow(row));
+        showPromotionInfoContainer()
+    }
+
+    function findAllToggleButtons() {
+        return document.querySelectorAll('.toggle-btn');
+    }
+
+    function findAllEditButtons() {
+        return document.querySelectorAll('.openPromoBtn');
+    }
+
+    function findTableRowForButton(button) {
+        return button.closest('tr')
+    }
+
+    function findIdTextOfRow(row) {
+        return row.querySelector('td')?.textContent?.trim() ?? '';
+    }
+
+    function getPromotionTitleElement() {
+        return document.getElementById('promoTitle')
+    }
+
+    function getPromotionTitle() {
+        return getPromotionTitleElement()?.textContent?.trim() ?? '';
+    }
+
+    function setPromotionTitle(title) {
+        const element = getPromotionTitleElement();
+        if (!!element) {
+            element.textContent = title;
+        }
+    }
+
+    function showPromotionOverlay(overlay) {
+        if (!!overlay) {
+            overlay.style.display = 'block';
+        }
+    }
+
+    function hidePromotionOverlay(overlay) {
+        if (!!overlay) {
+            overlay.style.display = 'none';
+        }
+    }
+
+    function initializeToggleButtons() {
+        function handleActiveToggleButton(toggleButton) {
+            toggleButton?.classList.remove('active');
+            toggleButton?.classList.add('inactive');
+        }
+
+        function handleInactiveToggleButton(toggleButton) {
+            toggleButton?.classList.remove('inactive');
+            toggleButton?.classList.add('active');
+        }
+
+        function handleOfflineToggleButton(toggleButton) {
+            toggleButton?.classList.remove('offline');
+            toggleButton?.classList.add('inactive');
+        }
+
+        function isActiveToggleButton(toggleButton) {
+            return toggleButton?.classList.contains('active') ?? false
+        }
+
+        function isInactiveToggleButton(toggleButton) {
+            return toggleButton?.classList.contains('inactive') ?? false
+        }
+
+        function isOfflineToggleButton(toggleButton) {
+            return toggleButton?.classList.contains('offline') ?? false
+        }
+
+        function handleToggleButton(toggleButton) {
+            // Klasse umschalten
+            if (isOfflineToggleButton(toggleButton)) {
+                handleOfflineToggleButton(toggleButton);
+            } else {
+                if (isActiveToggleButton(toggleButton)) {
+                    handleActiveToggleButton(toggleButton)
+                } else if (isInactiveToggleButton(toggleButton)) {
+                    handleInactiveToggleButton(toggleButton)
+                }
+            }
+
+            // Optional: aria‑State anpassen
+            toggleButton.setAttribute('aria-pressed', isActiveToggleButton(toggleButton));
+        }
+
+        function bindAllToggleButtons() {
+            findAllToggleButtons()?.forEach(currentToggleButton => {
+                currentToggleButton.addEventListener('click', () => handleToggleButton(currentToggleButton));
+            });
+        }
+
+        bindAllToggleButtons()
+    }
+
+    function initializeEditButtons() {
+        function bindEditButtons() {
+            findAllEditButtons()?.forEach(currentEditButton =>
+                currentEditButton.addEventListener('click', () => showPromotionInfoContainerForButton(currentEditButton))
+            );
+        }
+
+        bindEditButtons();
+    }
+
+    function initializePromotionInfoContainer() {
+
+        function bindCancelButtons() {
+            getCancelPromotionButton().addEventListener('click', hidePromotionInfoContainer);
+        }
+
+        function bindSubmitButton() {
+            getPromotionSubmitButton()?.addEventListener('click', () => {
+                hidePromotionInfoContainer();
+                // ... und was passieren soll wenn die Promotion startet
+            });
+        }
+
+        function bindPromotionOverlayButtons() {
+            getPromotionOverlayShowButton()?.addEventListener('click', () => showPromotionOverlay(getPromotionOverlay()));
+            getPromotionOverlayCloseButton()?.addEventListener('click', () => hidePromotionOverlay(getPromotionOverlay()))
+        }
+
+        bindSubmitButton();
+        bindCancelButtons();
+        bindPromotionOverlayButtons();
+    }
+
+    function initializePromotionPage() {
+        initializeEditButtons();
+        initializeToggleButtons();
+        initializePromotionInfoContainer();
+    }
+
+    document.addEventListener('DOMContentLoaded', initializePromotionPage);
 
 
 </script>
