@@ -55,25 +55,6 @@ function handleResize() {
 }
 window.addEventListener('resize', handleResize);
 
-/* ========== 3. Menu overlay toggle (legacy overlay) ========== */
-function toggleMenu() {
-  const overlay  = document.getElementById('menuOverlay');
-  const hb       = document.querySelector('.hamburger-button');
-  const mainNav  = document.querySelector('.main-navigation');
-  const isMobile = window.matchMedia('(max-width: 991px)').matches;
-
-  if (!overlay) { console.error('#menuOverlay not found'); return; }
-
-  overlay.classList.toggle('show');
-  const shown = overlay.classList.contains('show');
-  document.body.style.overflow = shown ? 'hidden' : 'auto';
-
-  if (isMobile && hb && mainNav) {
-    hb.style.display   = shown ? 'none' : 'flex';
-    mainNav.style.display = 'none';
-  }
-}
-
 /* ========== 4. Type selection ========== */
 let selectedType = null;
 function initializeTypeSelection() {
