@@ -436,8 +436,8 @@
                         </button>
                     </td>
                     <td class="action-cell">
-                        <button class="toggle-btn offline" aria-label="Toggle row details">
-                            Edit
+                        <button class="toggle-btn offline inactive" aria-label="Toggle row details">
+                            <span class="toggle-indicator"></span>
                         </button>
                     </td>
                 </tr>
@@ -756,6 +756,7 @@
         function handleOfflineToggleButton(toggleButton) {
             toggleButton?.classList.remove('offline');
             toggleButton?.classList.add('inactive');
+            showPromotionInfoContainerForButton(toggleButton)
         }
 
         function isActiveToggleButton(toggleButton) {
