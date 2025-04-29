@@ -1,3 +1,38 @@
+/**
+ * Represents the structure of NFT data.
+ *
+ * @typedef {Object} NFTData
+ * @property {string} title - The title of the NFT.
+ * @property {string} description - A description of the NFT.
+ * @property {string[]} tags - Array of tags associated with the NFT.
+ * @property {string} category - The category of the NFT.
+ * @property {string} visibility - The visibility status of the NFT, e.g., public or private.
+ * @property {string} onchainText - On-chain metadata or text associated with the NFT.
+ * @property {string} tokenURI - The token URI linking to the NFT metadata location.
+ * @property {string} contentLink - Link to the actual content of the NFT.
+ */
+const nftDataExample = {
+  title: "My NFT",
+  description: "This is my NFT",
+  tags: ["nft", "example"],
+  category: "example",
+  visibility: "public",
+  onchainText: "This is my NFT",
+  tokenURI: "ipfs://QmW2WQi7j6c7UgJTarActp7tDNikE4B2qXtFCfLPdsgaTQ",
+  contentLink: "ipfs://QmW2WQi7j6c7UgJTarActp7tDNikE4B2qXtFCfLPdsgaTQ"
+}
+
+/**
+ * Mints an NFT on the blockchain.
+ *
+ * @param {NFTData} nftData - The NFT data to mint.
+ * @param nftData
+ * @returns {Promise<void>}
+ */
+async function mintNFT(nftData) {
+
+}
+
 (() => {
     console.log("✅ mint.js wurde geladen!");
   
