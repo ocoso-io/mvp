@@ -152,9 +152,7 @@ function initialize3DNavigation() {
             });
         });
 
-        card.addEventListener('mouseleave', () => {
-            updateLayout();
-        });
+        card.addEventListener('mouseleave', updateLayout);
     });
 
     function checkScroll() {
