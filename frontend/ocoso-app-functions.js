@@ -4,12 +4,22 @@ console.log('ocoso-app-functions.js loaded');
 /* 0. Desktop-only CSS for .card-stack-wrapper */
 /* -------- helper ---------- */
 function isMobileDevice(){
-  /* moderne Touch-Erkennung */
-  if (window.matchMedia('(hover:none) and (pointer:coarse)').matches) return true;
-  /* Fallback */
-  if (window.matchMedia('(max-width:991px)').matches)               return true;
-  /* Backup: UA-String (für iPadOS-Safari) */
-  return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    // primary method
+    if (window.matchMedia && window.matchMedia('(hover:none) and (pointer:coarse)').matches) {
+        return true;
+    }
+
+    // secondary method
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+        // Ausschluss von Desktop-Geräten mit Touch-Fähigkeit aber großem Bildschirm
+        if (window.innerWidth < 768 || window.innerHeight < 768) {
+            return true;
+        }
+    }
+
+    // last method
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    return /android|mobi|iphone|ipod|webos|blackberry|windows phone/i.test(ua);
 }
 
 /* ========== 1. Prevent caching for HTML, CSS ========== */
