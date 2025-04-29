@@ -600,9 +600,9 @@
 
                     <button id="promotionSubmitButton" class="content-button" aria-label="Infos schließen">
                         <img src="img/Arrow-black.png" alt="Schließen" class="content-button-icon"/>
-                        <span class="content-button-text">
-        <br>Push your show. <br>Save It.<br><br>
-      </span>
+                        <span id="promotion-submit-button-content" class="content-button-text">
+                            <br/>Push your show.<br/>Save It.<br/><br/>
+                        </span>
                     </button>
 
 
@@ -643,6 +643,56 @@
         const indicator = document.createElement('span');
         indicator.className = 'toggle-indicator';
         return indicator;
+    }
+
+    function createSubmitButtonFragment(...texts) {
+        const fragment = document.createDocumentFragment();
+        texts.forEach(text => {
+            if(!text || text.trim() === '') {
+                fragment.appendChild(document.createElement('br'));
+            } else {
+                fragment.appendChild(document.createTextNode(text));
+            }
+        });
+        return fragment;
+    }
+
+    function createStandardSubmitButtonFragment() {
+        return createSubmitButtonFragment(
+            '',
+            'Push your show.',
+            '',
+            'Save It.',
+            '',
+            ''
+        );
+    }
+
+    function createActivationSubmitButtonFragment() {
+        return createSubmitButtonFragment(
+            'Push your show.',
+            '',
+            'Save It.',
+            '',
+            'Activate It.',
+            ''
+        );
+    }
+
+    function replaceSubmitButtonContent(fragment) {
+        const buttonContent = document.getElementById('promotion-submit-button-content');
+        if(buttonContent) {
+            buttonContent.replaceChildren(fragment);
+        }
+
+    }
+
+    function useStandardSubmitButton() {
+        replaceSubmitButtonContent(createStandardSubmitButtonFragment());
+    }
+
+    function useActivateSubmitButton() {
+        replaceSubmitButtonContent(createActivationSubmitButtonFragment());
     }
 
     function getPromotionOverlay() {
@@ -853,8 +903,10 @@
 
         function handleToggleButton(toggleButton) {
             if (isOfflineToggleButton(toggleButton)) {
+                useActivateSubmitButton();
                 handleOfflineToggleButton(toggleButton);
             } else {
+                useStandardSubmitButton();
                 if (isActiveToggleButton(toggleButton)) {
                     handleActiveToggleButton(toggleButton)
                 } else if (isInactiveToggleButton(toggleButton)) {
@@ -905,6 +957,7 @@
                     changeToggleButtonToToggleIndicatorByRow(row)
                 }
             }
+            useStandardSubmitButton()
             hidePromotionInfoContainer()
         }
 
