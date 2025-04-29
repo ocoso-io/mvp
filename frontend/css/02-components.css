@@ -1090,7 +1090,7 @@ textarea {
 }
 .toggle-btn.inactive {
   background-color: var(--offline-color);
-  border: var(--px-1) solid var(--highlight-color);
+  border: var(--px-1) solid var(--offline-color);
   transform: rotate(180deg);
 }
 .toggle-btn.offline {
