@@ -436,8 +436,8 @@
                         </button>
                     </td>
                     <td class="action-cell">
-                        <button class="toggle-btn offline inactive" aria-label="Toggle row details">
-                            <span class="toggle-indicator"></span>
+                        <button class="toggle-btn offline" aria-label="Toggle row details">
+                            Create
                         </button>
                     </td>
                 </tr>
@@ -586,8 +586,6 @@
 
                 <div style="height: var(--px-80)">&nbsp;</div>
 
-                <div style="height: var(--px-80)">&nbsp;</div>
-
                 <section style="display: flex; flex-direction: row; gap: var(--px-50); flex-wrap: wrap">
 
                     <button id="showPromo" class="content-button" aria-label="Infos schließen">
@@ -635,6 +633,7 @@
 <div id="footer-placeholder"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+<script src="https://unpkg.com/zustand@5.0.3"></script>
 <script src="ocoso-app-functions.js" defer></script>
 <script src="js/wallet.js" defer></script>
 <script src="js/3d-Navigation.js" defer></script>
@@ -754,8 +753,8 @@
         }
 
         function handleOfflineToggleButton(toggleButton) {
-            toggleButton?.classList.remove('offline');
-            toggleButton?.classList.add('inactive');
+            //toggleButton?.classList.remove('offline');
+            //toggleButton?.classList.add('inactive');
             showPromotionInfoContainerForButton(toggleButton)
         }
 
