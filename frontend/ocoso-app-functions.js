@@ -22,14 +22,6 @@ function isMobileDevice(){
     return /android|mobi|iphone|ipod|webos|blackberry|windows phone/i.test(ua);
 }
 
-/* ========== 1. Prevent caching for HTML, CSS ========== */
-document.head.insertAdjacentHTML(
-  'beforeend',
-  `<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-   <meta http-equiv="Pragma"        content="no-cache">
-   <meta http-equiv="Expires"       content="0">`
-);
-
 function preventCSSCaching() {
   [...document.querySelectorAll('link[rel="stylesheet"]')].forEach(link => {
     try {
