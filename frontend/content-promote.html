@@ -30,7 +30,7 @@
             top: 50%; /* 50% von oben */
             left: 50%; /* 50% von links */
             transform: translate(-50%, -50%); /* genau zentrieren */
-            z-index: 1000; /* über allen anderen Inhalten */
+            z-index: 10000; /* über allen anderen Inhalten */
             background: rgba(20, 20, 20, 0.90); /* halbtransparentes Dunkel als Hintergrund */
             backdrop-filter: blur(5px);
             color: #fff;
@@ -374,7 +374,9 @@
                     </td>
                     <td class="content-cell">Sport, Lifestyle, Fitness, Fitness, Beauty</td>
                     <td class="action-cell">
-                        <img src="img/icon-eye.png" alt="Action 1" class="action-icon"/>
+                        <button class="table-button show-promotion-button" aria-label="Show Promotion">
+                            <img src="img/icon-eye.png" alt="Action 1" class="action-icon"/>
+                        </button>
                         <button class="table-button openPromoBtn" aria-label="Mehr Infos anzeigen">
                             <img src="img/icon-edit.png" alt="" class="action-icon"/>
                         </button>
@@ -399,7 +401,9 @@
                     </td>
                     <td class="content-cell">Sport, Lifestyle, Fitness, Beauty</td>
                     <td class="action-cell">
-                        <img src="img/icon-eye.png" alt="Action 1" class="action-icon"/>
+                        <button class="table-button show-promotion-button" aria-label="Show Promotion">
+                            <img src="img/icon-eye.png" alt="Action 1" class="action-icon"/>
+                        </button>
                         <button class="table-button openPromoBtn" aria-label="Mehr Infos anzeigen">
                             <img src="img/icon-edit.png" alt="" class="action-icon"/>
                         </button>
@@ -424,13 +428,15 @@
                     </td>
                     <td class="content-cell">Sport, Lifestyle, Fitness, Beauty</td>
                     <td class="action-cell">
-                        <img src="img/icon-eye.png" alt="Action 1" class="action-icon"/>
+                        <button class="table-button show-promotion-button" aria-label="Show Promotion">
+                            <img src="img/icon-eye.png" alt="Action 1" class="action-icon"/>
+                        </button>
                         <button class="table-button openPromoBtn" aria-label="Mehr Infos anzeigen">
                             <img src="img/icon-edit.png" alt="" class="action-icon"/>
                         </button>
                     </td>
                     <td class="action-cell">
-                        <button class="toggle-btn inactive" aria-label="Toggle row details">
+                        <button class="toggle-btn offline inactive" aria-label="Toggle row details">
                             <span class="toggle-indicator"></span>
                         </button>
                     </td>
@@ -449,7 +455,9 @@
                     </td>
                     <td class="content-cell">Sport, Lifestyle, Fitness, Beauty</td>
                     <td class="action-cell">
-                        <img src="img/icon-eye.png" alt="Action 1" class="action-icon"/>
+                        <button class="table-button show-promotion-button" aria-label="Show Promotion">
+                            <img src="img/icon-eye.png" alt="Action 1" class="action-icon"/>
+                        </button>
                         <button class="table-button openPromoBtn" aria-label="Mehr Infos anzeigen">
                             <img src="img/icon-edit.png" alt="" class="action-icon"/>
                         </button>
@@ -491,9 +499,15 @@
                 <div style="height: var(--px-160)">&nbsp;</div>
             </section>
 
+            <div id="promoShowBox" class="promoShowBox">
+                <div style="display:flex; flex-direction: column; margin: auto; align-content: left; justify-content: left; width: 100%, height: 100%; padding-left: var(--px-50); padding-top: var(--px-5); gap: var(--px-25)">
+                    <button id="closeOverlay" style="background: none; border: none; cursor: pointer"><h6
+                            style="width: var(--px-100); text-align: left; margin-left: -5px;">X CLOSE</h6></button>
+                    <img src="img/promo-demo.png" alt="promo-demo" style="width: var(--px-300); height: 250px"/>
+                </div>
+            </div>
 
             <section id="promotion-info-container">
-
 
                 <section class="content-submission">
                     <h2 class="submission-title">Upload your Masterpiece</h2>
@@ -572,14 +586,6 @@
 
                 <div style="height: var(--px-80)">&nbsp;</div>
 
-                <div id="promoShowBox" class="promoShowBox">
-                    <div style="display:flex; flex-direction: column; margin: auto; align-content: left; justify-content: left; width: 100%, height: 100%; padding-left: var(--px-50); padding-top: var(--px-5); gap: var(--px-25)">
-                        <button id="closeOverlay" style="background: none; border: none; cursor: pointer"><h6
-                                style="width: var(--px-100); text-align: left; margin-left: -5px;">X CLOSE</h6></button>
-                        <img src="img/promo-demo.png" alt="promo-demo" style="width: var(--px-300); height: 250px"/>
-                    </div>
-                </div>
-
                 <div style="height: var(--px-80)">&nbsp;</div>
 
                 <section style="display: flex; flex-direction: row; gap: var(--px-50); flex-wrap: wrap">
@@ -593,7 +599,7 @@
 
                     <div style="width: var(--px-80)">&nbsp;</div>
 
-                    <button id="hidePromotionBtn1" class="content-button" aria-label="Infos schließen">
+                    <button id="promotionSubmitButton" class="content-button" aria-label="Infos schließen">
                         <img src="img/Arrow-black.png" alt="Schließen" class="content-button-icon"/>
                         <span class="content-button-text">
         <br>Push your show. <br>Save It.<br><br>
@@ -601,7 +607,7 @@
                     </button>
 
 
-                    <button id="hidePromotionBtn2" class="content-button" aria-label="Infos schließen">
+                    <button id="promotionCancelButton" class="content-button" aria-label="Infos schließen">
                         <img src="img/Arrow-black.png" alt="Schließen" class="content-button-icon"/>
                         <span class="content-button-text">
         Cancel and Close
@@ -634,78 +640,203 @@
 <script src="js/3d-Navigation.js" defer></script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const promo = document.getElementById('promotion-info-container');
-        const titleEl = document.getElementById('promoTitle');
-        const btnsOpen = document.querySelectorAll('.openPromoBtn');
-        const btnHide = document.getElementById('hidePromotionBtn1');
-        const btnCancle = document.getElementById('hidePromotionBtn2');
-
-        // Öffnen: Titel setzen und Panel sichtbar machen
-        btnsOpen.forEach(btn =>
-            btn.addEventListener('click', function () {
-                // 1) die Zeile ermitteln
-                const row = this.closest('tr');
-                if (!row) return;
-
-                // 2) ersten <td> auslesen
-                const idText = row.querySelector('td').textContent.trim();
-
-                // 3) in den Promo‑Titel schreiben
-                titleEl.textContent = idText;
-
-                // 4) Panel anzeigen
-                promo.classList.add('is-visible');
-            })
-        );
-
-        // Schließen
-        btnHide.addEventListener('click', () => {
-            promo.classList.remove('is-visible');
-            // ... und was passieren soll wenn die Promotion startet
-        });
-
-        btnCancle.addEventListener('click', () => {
-            promo.classList.remove('is-visible');
-        });
-
-    });
-
-
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.toggle-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Klasse umschalten
-                if (btn.classList.contains('active')) {
-                    btn.classList.remove('active');
-                    btn.classList.add('inactive');
-                } else {
-                    btn.classList.remove('inactive');
-                    btn.classList.add('active');
-                }
-                // Optional: aria‑State anpassen
-                btn.setAttribute('aria-pressed', btn.classList.contains('active'));
-            });
-        });
-    });
-
-
-    const overlay = document.getElementById('promoShowBox');
-    const btnClose = document.getElementById('closeOverlay');
-
-    // Funktion zum Anzeigen
-    function showOverlay() {
-        overlay.style.display = 'block';
+    function getPromotionOverlay() {
+        return document.getElementById('promoShowBox');
     }
 
-    // Funktion zum Verstecken
-    btnClose.addEventListener('click', () => {
-        overlay.style.display = 'none';
-    });
+    function getPromotionOverlayCloseButton() {
+        return document.getElementById('closeOverlay');
+    }
 
-    // Beispiel: Overlay per Klick auf irgend einen Button öffnen
-    document.getElementById('showPromo')
-        .addEventListener('click', showOverlay);
+    function getPromotionOverlayShowButton() {
+        return document.getElementById('showPromo');
+    }
+
+    function getCancelPromotionButton() {
+        return document.getElementById('promotionCancelButton');
+    }
+
+    function getPromotionSubmitButton() {
+        return document.getElementById('promotionSubmitButton');
+    }
+
+    function getPromotionInfoContainer() {
+        return document.getElementById('promotion-info-container');
+    }
+
+    function showPromotionInfoContainer() {
+        getPromotionInfoContainer()?.classList.add('is-visible');
+    }
+
+    function hidePromotionInfoContainer() {
+        getPromotionInfoContainer()?.classList.remove('is-visible');
+    }
+
+    function showPromotionInfoContainerForButton(button) {
+        const row = findTableRowForButton(button);
+        if (!row) return;
+
+        setPromotionTitle(findIdTextOfRow(row));
+        showPromotionInfoContainer()
+    }
+
+    function findAllToggleButtons() {
+        return document.querySelectorAll('.toggle-btn');
+    }
+
+    function findAllEditButtons() {
+        return document.querySelectorAll('.openPromoBtn');
+    }
+
+    function findAllShowButtons() {
+        return document.querySelectorAll('.show-promotion-button');
+    }
+
+    function findTableRowForButton(button) {
+        return button.closest('tr')
+    }
+
+    function findIdTextOfRow(row) {
+        return row.querySelector('td')?.textContent?.trim() ?? '';
+    }
+
+    function getPromotionTitleElement() {
+        return document.getElementById('promoTitle')
+    }
+
+    function getPromotionTitle() {
+        return getPromotionTitleElement()?.textContent?.trim() ?? '';
+    }
+
+    function setPromotionTitle(title) {
+        const element = getPromotionTitleElement();
+        if (!!element) {
+            element.textContent = title;
+        }
+    }
+
+    function showPromotionOverlay(overlay) {
+        if (!!overlay) {
+            overlay.style.display = 'block';
+        }
+    }
+
+    function hidePromotionOverlay(overlay) {
+        if (!!overlay) {
+            overlay.style.display = 'none';
+        }
+    }
+
+    function initializeShowButtons() {
+        function handleShowButton(showButton) {
+            showPromotionOverlay(getPromotionOverlay())
+        }
+
+        function bindAllShowButtons() {
+            const buttons = findAllShowButtons();
+            for (const button of buttons) {
+                button.addEventListener('click', () => handleShowButton(button));
+            }
+        }
+
+        bindAllShowButtons();
+    }
+
+    function initializeToggleButtons() {
+        function handleActiveToggleButton(toggleButton) {
+            toggleButton?.classList.remove('active');
+            toggleButton?.classList.add('inactive');
+        }
+
+        function handleInactiveToggleButton(toggleButton) {
+            toggleButton?.classList.remove('inactive');
+            toggleButton?.classList.add('active');
+        }
+
+        function handleOfflineToggleButton(toggleButton) {
+            toggleButton?.classList.remove('offline');
+            toggleButton?.classList.add('inactive');
+            showPromotionInfoContainerForButton(toggleButton)
+        }
+
+        function isActiveToggleButton(toggleButton) {
+            return toggleButton?.classList.contains('active') ?? false
+        }
+
+        function isInactiveToggleButton(toggleButton) {
+            return toggleButton?.classList.contains('inactive') ?? false
+        }
+
+        function isOfflineToggleButton(toggleButton) {
+            return toggleButton?.classList.contains('offline') ?? false
+        }
+
+        function handleToggleButton(toggleButton) {
+            // Klasse umschalten
+            if (isOfflineToggleButton(toggleButton)) {
+                handleOfflineToggleButton(toggleButton);
+            } else {
+                if (isActiveToggleButton(toggleButton)) {
+                    handleActiveToggleButton(toggleButton)
+                } else if (isInactiveToggleButton(toggleButton)) {
+                    handleInactiveToggleButton(toggleButton)
+                }
+            }
+
+            // Optional: aria‑State anpassen
+            toggleButton.setAttribute('aria-pressed', isActiveToggleButton(toggleButton));
+        }
+
+        function bindAllToggleButtons() {
+            findAllToggleButtons()?.forEach(currentToggleButton => {
+                currentToggleButton.addEventListener('click', () => handleToggleButton(currentToggleButton));
+            });
+        }
+
+        bindAllToggleButtons()
+    }
+
+    function initializeEditButtons() {
+        function bindEditButtons() {
+            findAllEditButtons()?.forEach(currentEditButton =>
+                currentEditButton.addEventListener('click', () => showPromotionInfoContainerForButton(currentEditButton))
+            );
+        }
+
+        bindEditButtons();
+    }
+
+    function initializePromotionInfoContainer() {
+
+        function bindCancelButtons() {
+            getCancelPromotionButton().addEventListener('click', hidePromotionInfoContainer);
+        }
+
+        function bindSubmitButton() {
+            getPromotionSubmitButton()?.addEventListener('click', () => {
+                hidePromotionInfoContainer();
+                // ... und was passieren soll wenn die Promotion startet
+            });
+        }
+
+        function bindPromotionOverlayButtons() {
+            getPromotionOverlayShowButton()?.addEventListener('click', () => showPromotionOverlay(getPromotionOverlay()));
+            getPromotionOverlayCloseButton()?.addEventListener('click', () => hidePromotionOverlay(getPromotionOverlay()))
+        }
+
+        bindSubmitButton();
+        bindCancelButtons();
+        bindPromotionOverlayButtons();
+    }
+
+    function initializePromotionPage() {
+        initializeShowButtons();
+        initializeEditButtons();
+        initializeToggleButtons();
+        initializePromotionInfoContainer();
+    }
+
+    document.addEventListener('DOMContentLoaded', initializePromotionPage);
 
 
 </script>

@@ -87,4 +87,38 @@
   /* Viewport-Werte */
   --vw-100: 100vw; /* Viewport width */
   --vh-100: 100vh; /* Viewport height */
+  
+  --highlight-color: #82d616;
+  --offline-color: #adb5bd;
+
+  --color-background-subtle: rgba (255, 255, 0, 1);
+  --color-link rgba (255, 255, 0, 1);
+  --font-size-body-bold rgba (255, 255, 0, 1);
+  --Gray-100 rgba (255, 255, 0, 1);
+  --border-radius-m: var(--px-20);
+  --color-background-alt rgba (255, 255, 0, 1);
+  --color-background-subtle rgba (255, 255, 0, 1);
+  --color-border rgba (255, 255, 0, 1);
+  --color-border-light rgba (255, 255, 0, 1);
+  --color-error rgba (255, 255, 0, 1);
+  --color-link rgba (255, 255, 0, 1);
+  --color-primary rgba (255, 255, 0, 1);
+  --color-primary-dark rgba (255, 255, 0, 1);
+  --color-primary-light rgba (255, 255, 0, 1);
+  --color-success rgba (255, 255, 0, 1);
+  --color-text rgba (255, 255, 0, 1);
+  --color-text-inverse rgba (255, 255, 0, 1);
+  --color-text-secondary rgba (255, 255, 0, 1);
+  --color-text-strong rgba (255, 255, 0, 1);
+  --font-size-body: 200rem;
+  --font-size-body-bold: 200rem;
+  --font-size-small: 200rem;
+  --font-size-small:-bold 200rem;
+  --font-weight-bold: 200rem;
+  --max-width: 2000rem;
+  --shadow-sm: 0 var(--px-2) var(--px-5) rgba(0, 0, 0, 0.2);
+
+
+
+  
 }
