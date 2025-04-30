@@ -1,8 +1,3 @@
-Okay, hier ist die aktuelle Version des JavaScript-Codes, nachdem die Redundanz beseitigt und die erste `mintNFT(nftData)`-Funktion in den Workflow integriert wurde.
-
-**Wichtiger Hinweis:** Denken Sie daran, dass die Pinata API-Schlüssel aus Sicherheitsgründen **nicht** im Frontend-Code verbleiben sollten, wenn Sie dies über einen Test hinaus verwenden möchten.
-
-```javascript
 // Import ethers (assuming this is at the top level or handled by a build tool)
 import { ethers } from 'ethers';
 
