@@ -1,0 +1,400 @@
+:host {
+    --px-1: 0.0625rem;
+    --px-2: 0.125rem;
+    --px-3: 0.1875rem;
+    --px-4: 0.25rem;
+    --px-5: 0.3125rem;
+    --px-10: 0.625rem;
+    --px-11: 0.6875rem;
+    --px-12: 0.75rem;
+    --px-13: 0.8125rem;
+    --px-14: 0.875rem;
+    --px-15: 0.9375rem;
+    --px-16: 1rem;
+    --px-18: 1.125rem;
+    --px-20: 1.25rem;
+    --px-24: 1.5rem;
+    --px-25: 1.5625rem;
+    --px-50: 3.125rem;
+    --px-61: 3.8125rem;
+    --px-70: 4.375rem;
+    --px-200: 12.5rem;
+    --px-320: 20rem;
+    --main-font-family: "Avenir Next", -apple-system, Roboto, Helvetica, sans-serif;
+    --highlight-color: #82d616;
+    --offline-color: #adb5bd;
+}
+
+:host {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--main-font-family);
+}
+
+/* Table base styling */
+[part="data-table"] {
+    border-radius: var(--px-15);
+    box-shadow: 0 var(--px-4) var(--px-12) rgba(0, 0, 0, 0.15);
+    border-spacing: 0;
+    font-family: var(--main-font-family);
+    color: #fff;
+    font-size: var(--px-18);
+    font-weight: 400;
+    line-height: 1.2;
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+/* Header styling */
+[part="table-header"] {
+    background-color: #222222;
+    color: #f8f9fa;
+}
+
+[part="header-row"] {
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: var(--px-16);
+    letter-spacing: 0.16px;
+    line-height: 1.1;
+}
+
+[part="header-cell"] {
+    padding: var(--px-10) var(--px-20);
+    gap: var(--px-10);
+    text-align: left;
+    vertical-align: top;
+}
+
+[part="header-cell"]:first-child {
+    border-top-left-radius: var(--px-12);
+    width: var(--px-61);
+}
+
+[part="header-cell"]:last-child {
+    border-top-right-radius: var(--px-12);
+}
+
+/* Data row styling */
+[part="data-row"] {
+    background-color: #000;
+}
+
+[part="data-cell"] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: var(--px-10) var(--px-20);
+    color: #f8f9fa;
+    font-size: var(--px-14);
+    font-weight: 400;
+    max-width: var(--px-200);
+}
+
+[part="error-message"],
+[part="empty-message"] {
+    text-align: center;
+    padding: var(--px-20);
+    color: #ff6b6b;
+}
+
+[part="empty-message"] {
+    color: #adb5bd;
+}
+
+/* Separator row */
+[part="separator-row"] {
+}
+
+[part="separator-cell"] {
+    height: var(--px-20);
+    background-color: #000;
+    padding: 0;
+}
+
+/* Content wrapper for cells with icons */
+[part="content-wrapper"] {
+    display: flex;
+    align-items: center;
+    gap: var(--px-20);
+    flex: 1;
+}
+
+[part="table-text"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: var(--px-15);
+    min-height: 10%;
+    max-width: 100%;
+    width: var(--px-320);
+    height: 100%;
+    padding-bottom: var(--px-5);
+    color: #fff;
+}
+
+/* Footer styling */
+[part="table-footer"] {
+    background-color: #222222;
+    border-radius: 0 0 var(--px-20) var(--px-20);
+}
+
+[part="footer-cell"] {
+    height: var(--px-10);
+    border-radius: 0 0 var(--px-10) var(--px-10);
+}
+
+/* Icon styling */
+[part="content-icon"] {
+    width: var(--px-15);
+    height: var(--px-15);
+    object-fit: cover;
+    padding-bottom: 0;
+    box-sizing: border-box;
+    margin-left: -10px;
+    margin-top: -4px;
+}
+
+/* Action cell styling */
+[part="action-cell"] {
+    gap: var(--px-24);
+    padding: 0 var(--px-20);
+    width: var(--px-70);
+    text-align: center;
+}
+
+[part="action-icon"] {
+    width: var(--px-24);
+    height: var(--px-24);
+    object-fit: contain;
+}
+
+/* Button styling */
+[part="button"] {
+    cursor: pointer;
+    background-color: black;
+    border: none;
+    padding: 0;
+    margin: 0 var(--px-5);
+    transition: transform 0.2s ease;
+}
+
+[part="button"]:hover {
+    transform: scale(1.1);
+}
+
+[part="button"]:active {
+    transform: scale(0.95);
+}
+
+/* Toggle button styling (for the parts we control outside the web component) */
+[part="toggle-button"] {
+    width: var(--px-50);
+    height: var(--px-25);
+    border-radius: var(--px-13);
+    border: none;
+    padding: var(--px-3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: none;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    [part="data-table"] {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    [part="data-cell"] {
+        max-width: 150px;
+    }
+}
+nft-table::part(data-table) {
+    border-radius: var(--px-15);
+    box-shadow: 0 var(--px-4) var(--px-12) rgba(0, 0, 0, 0.15);
+    /*border-collapse: separate;*/
+    border-spacing: 0;
+    font-family: var(--main-font-family), sans-serif;
+    color: #fff;
+    font-size: var(--px-18);
+    font-weight: 400;
+    line-height: 1.2;
+    width: 100%; /* zwingt gleiche Spaltenbreiten */
+    border-collapse: collapse;
+}
+
+nft-table::part(table-header) {
+    background-color: #222222;
+    color: #f8f9fa;
+}
+
+nft-table::part(header-row) {
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: var(--px-16);
+    letter-spacing: 0.16px; /* No variable match */
+    line-height: 1.1;
+}
+
+nft-table::part(header-cell) {
+    padding: var(--px-10) var(--px-20);
+    gap: var(--px-10);
+    text-align: left;
+    vertical-align: top;
+}
+
+nft-table::part(header-cell:first-child) {
+    border-top-left-radius: var(--px-12);
+    width: var(--px-61);
+}
+
+nft-table::part(header-cell:last-child) {
+    border-top-right-radius: var(--px-12);
+}
+
+nft-table::part(data-row) {
+    background-color: #000;
+}
+
+nft-table::part(data-cell) {
+    /* kein width hier! */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: var(--px-10) var(--px-20);
+    color: #f8f9fa;
+    font-size: var(--px-14);
+    font-weight: 400;
+    width: var(--px-200);
+}
+
+
+
+nft-table::part(separator-row) {
+}
+
+nft-table::part(separator-cell) {
+    height: var(--px-20);
+    background-color: #000;
+    padding: 0;
+}
+
+nft-table::part(content-wrapper) {
+    display: flex;
+    align-items: center;
+    gap: var(--px-20);
+    flex: 1;
+}
+
+nft-table::part(table-text) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: var(--px-15);
+    min-height: 10%;
+    max-width: 100%;
+    width: var(--px-320);
+    height: 100%;
+    padding-bottom: var(--px-5);
+    color: #fff;
+}
+
+nft-table::part(table-footer) {
+    background-color: #222222;
+    border-radius: 0 0 var(--px-20) var(--px-20);
+}
+
+nft-table::part(footer-cell) {
+    height: var(--px-10);
+    border-radius: 0 0 var(--px-10) var(--px-10);
+}
+
+nft-table::part(content-icon) {
+    width: var(--px-15);
+    height: var(--px-15);
+    object-fit: cover;
+    padding-bottom: 0;
+    box-sizing: border-box;
+    margin-left: -10px; /* Negative value kept */
+    margin-top: -4px; /* Negative value kept */
+}
+
+nft-table::part(action-cell) {
+    gap: var(--px-24);
+    padding: 0 var(--px-20);
+    width: var(--px-70);
+    text-align: center;
+}
+
+nft-table::part(action-icon) {
+    width: var(--px-24);
+    height: var(--px-24);
+    object-fit: contain;
+}
+
+nft-table::part(button) {
+    cursor: pointer;
+    background-color: black;
+    border: none;
+    padding: 0;
+    margin: 0 var(--px-5);
+    transition: transform 0.2s ease;
+}
+
+nft-table::part(button):hover {
+    transform: scale(1.1);
+}
+
+nft-table::part(button):active {
+    transform: scale(0.95);
+}
+
+nft-table::part(show-promotion-button) {
+}
+
+nft-table::part(open-promotion-button) {
+}
+
+nft-table::part(toggle-button) {
+    width: var(--px-50);
+    height: var(--px-25);
+    border-radius: var(--px-13);
+    border: none;
+    padding: var(--px-3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: none;
+}
+
+nft-table::part(active) {
+    background-color: var(--highlight-color);
+    border: var(--px-1) solid var(--highlight-color);
+}
+
+nft-table::part(inactive) {
+    background-color: var(--offline-color);
+    border: var(--px-1) solid var(--offline-color);
+    transform: rotate(180deg);
+}
+
+nft-table::part(offline) {
+    background-color:  var(--offline-color);
+    border: var(--px-3) solid var(--offline-color);
+}
+
+nft-table::part(toggle-indicator) {
+    width: var(--px-15);
+    height: var(--px-15);
+    background-color: #000;
+    border-radius: 50%;
+    display: block;
+}
