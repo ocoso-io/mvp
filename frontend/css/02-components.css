@@ -426,7 +426,12 @@ body {
   /* Perspektive und Transition */
   cursor: pointer;
   overflow: visible;
-  box-shadow: 0 0 var(--px-80) var(--px-60) rgba(0, 0, 0, 0.5);
+  box-shadow: 
+      calc(-1 * var(--px-80)) 
+      var(--px-80) 
+      var(--px-80) 
+      var(--px-60) 
+      rgba(0, 0, 0, 0.5);
   flex-direction: row;
   flex-wrap: wrap; /* Damit Elemente bei Platzmangel umbrechen */
 }
