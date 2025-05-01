@@ -20,7 +20,6 @@ import './nft-table-row.js';
  * @fires nft-removed - Fired when an NFT is removed from the table
  * @fires nfts-cleared - Fired when all NFTs are cleared from the table
  *
- * @attr {string} src - URL for loading NFT data
  * @attr {string} loading - Indicates whether data is being loaded ('true'/'false')
  *
  * @csspart data-grid - The grid itself
@@ -191,11 +190,11 @@ export class NFTTable extends HTMLElement {
     }
 
     // Private fields
-    #nfts = [];
+    #dataProvider = null;  // External service for handling data operations
+    #statusMapper = null;  // External service for handling status mapping
     #grid = null;
     #gridBody = null;
     #loadingContainer = null;
-    #abortController = null;
     #initialized = false;
     #boundHandlers = {
         showAction: null,
@@ -215,7 +214,7 @@ export class NFTTable extends HTMLElement {
             editAction: this._handleEditAction.bind(this),
             rowToggleStatus: this._handleRowToggleStatus.bind(this),
             rowOfflineClick: this._handleRowOfflineClick.bind(this),
-            retryClick: this.loadNFTData.bind(this)
+            retryClick: this._handleRetryClick.bind(this)
         };
     }
 
@@ -224,41 +223,18 @@ export class NFTTable extends HTMLElement {
             this._initialize();
         }
         
-        // Load data if src is present
-        if (this.hasAttribute('src')) {
-            this.loadNFTData();
-        }
-        
         this._addEventListeners();
     }
     
     disconnectedCallback() {
         this._removeEventListeners();
-        
-        // Abort any ongoing fetch requests
-        if (this.#abortController) {
-            this.#abortController.abort();
-            this.#abortController = null;
-        }
     }
 
     static get observedAttributes() {
-        return ['src', 'loading'];
+        return ['loading'];
     }
 
-    // Getters and setters for attributes
-    get src() {
-        return this.getAttribute('src');
-    }
-
-    set src(value) {
-        if (value) {
-            this.setAttribute('src', value);
-        } else {
-            this.removeAttribute('src');
-        }
-    }
-    
+    // Getters and setters
     get loading() {
         return this.hasAttribute('loading') && this.getAttribute('loading') !== 'false';
     }
@@ -277,26 +253,74 @@ export class NFTTable extends HTMLElement {
         }
     }
     
-    get nfts() {
-        return [...this.#nfts]; // Return a copy to prevent modifying the original
+    get dataProvider() {
+        return this.#dataProvider;
     }
     
-    set nfts(data) {
-        if (Array.isArray(data)) {
-            this.#nfts = [...data];
-            this.render();
+    set dataProvider(provider) {
+        if (typeof provider !== 'object' || provider === null) {
+            throw new Error('Data provider must be an object with the required methods');
         }
+        
+        // Check for required methods
+        const requiredMethods = ['getData', 'getItem', 'addItem', 'updateItem', 'removeItem'];
+        const missingMethods = requiredMethods.filter(method => typeof provider[method] !== 'function');
+        
+        if (missingMethods.length > 0) {
+            throw new Error(`Data provider is missing required methods: ${missingMethods.join(', ')}`);
+        }
+        
+        // Remove old event listeners if any
+        if (this.#dataProvider && typeof this.#dataProvider.removeEventListener === 'function') {
+            this.#dataProvider.removeEventListener('data-changed', this.render.bind(this));
+        }
+        
+        this.#dataProvider = provider;
+        
+        // Set up event listeners for the provider
+        if (typeof provider.addEventListener === 'function') {
+            // Hier die Änderung: Action-Parameter aus dem Event extrahieren
+            provider.addEventListener('data-changed', (event) => {
+                const action = event.detail?.action;
+                this.render(action);
+            });
+            
+            // Setup specific event listeners
+            if (typeof provider.onSpecificChange === 'function') {
+                provider.onSpecificChange('item-added', (event) => {
+                    this._handleItemAdded(event.detail);
+                });
+                
+                provider.onSpecificChange('item-updated', (event) => {
+                    this._handleItemUpdated(event.detail);
+                });
+                
+                provider.onSpecificChange('item-removed', (event) => {
+                    this._handleItemRemoved(event.detail);
+                });
+            }
+        }
+        
+        // Initial render
+        this.render();
+    }
+    
+    get statusMapper() {
+        return this.#statusMapper;
+    }
+    
+    set statusMapper(mapper) {
+        if (typeof mapper !== 'object' || mapper === null || typeof mapper.getStatusClass !== 'function') {
+            throw new Error('Status mapper must be an object with a getStatusClass method');
+        }
+        
+        this.#statusMapper = mapper;
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue === newValue) return;
         
         switch (name) {
-            case 'src':
-                if (this.isConnected) {
-                    this.loadNFTData();
-                }
-                break;
             case 'loading':
                 const isLoading = newValue !== null && newValue !== 'false';
                 if (this.#loadingContainer) {
@@ -319,102 +343,37 @@ export class NFTTable extends HTMLElement {
         this.#gridBody = this.shadowRoot.querySelector('.grid-body');
         this.#loadingContainer = this.shadowRoot.querySelector('.loading-container');
         
+        // Default status mapper if none is provided
+        if (!this.#statusMapper) {
+            this.#statusMapper = {
+                getStatusClass: (nft) => {
+                    if (!nft.status || nft.status === 'offline') {
+                        return 'offline';
+                    }
+                    return nft.status;
+                }
+            };
+        }
+        
         // Set initialization status
         this.#initialized = true;
     }
 
     /**
-     * Loads NFT data from the specified URL
-     * @returns {Promise<void>}
-     */
-    async loadNFTData() {
-        try {
-            // Abort any ongoing requests
-            if (this.#abortController) {
-                this.#abortController.abort();
-            }
-            
-            // Create new AbortController for this request
-            this.#abortController = new AbortController();
-            
-            if (!this.src) {
-                this.#nfts = [];
-                this.render();
-                return;
-            }
-            
-            this.loading = true;
-            
-            // Clear grid body and show loading message
-            this._renderLoadingState();
-            
-            // Load data with timeout
-            const timeoutId = setTimeout(() => {
-                if (this.#abortController) {
-                    this.#abortController.abort('timeout');
-                }
-            }, 10000); // 10 second timeout
-            
-            try {
-                this.#nfts = await this._fetchNFTData(this.src, this.#abortController.signal);
-                clearTimeout(timeoutId);
-                
-                // Dispatch event that data was loaded
-                this._dispatchDataEvent('data-loaded', { 
-                    count: this.#nfts.length,
-                    source: this.src
-                });
-                
-                // Render the loaded data
-                this.render();
-            } finally {
-                clearTimeout(timeoutId);
-                this.loading = false;
-            }
-        } catch (error) {
-            if (error.name !== 'AbortError') {
-                console.error('Error loading NFT data:', error);
-                this._renderErrorState(error.message);
-                
-                // Dispatch error event
-                this._dispatchDataEvent('data-error', { 
-                    error,
-                    source: this.src
-                });
-            }
-            this.loading = false;
-        }
-    }
-
-    /**
-     * Fetches data from the specified URL
-     * @param {string} src - URL to load the data from
-     * @param {AbortSignal} signal - Signal to abort the request
-     * @returns {Promise<Array>} The loaded NFT data
+     * Handles retry button clicks
      * @private
      */
-    async _fetchNFTData(src, signal) {
-        try {
-            const response = await fetch(src, { 
-                signal,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            
-            const data = await response.json();
-            return Array.isArray(data) ? data : [];
-        } catch (error) {
-            if (error.name === 'AbortError') {
-                console.log('Fetch aborted');
-            } else {
-                console.error('Error fetching NFT data:', error);
-            }
-            throw error;
+    _handleRetryClick() {
+        if (this.#dataProvider && typeof this.#dataProvider.reload === 'function') {
+            this.loading = true;
+            this._renderLoadingState();
+            this.#dataProvider.reload()
+                .catch(error => {
+                    this._renderErrorState(error.message);
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         }
     }
 
@@ -486,7 +445,7 @@ export class NFTTable extends HTMLElement {
         rowElement.setAttribute('nft-id', nft.id || '');
         rowElement.setAttribute('nft-type', nft.type || '');
         rowElement.setAttribute('nft-categories', nft.categories?.join(', ') || '');
-        rowElement.setAttribute('nft-status', this._getToggleButtonClass(nft));
+        rowElement.setAttribute('nft-status', this.#statusMapper.getStatusClass(nft));
         
         // Set the full data object
         rowElement.nftData = nft;
@@ -499,17 +458,19 @@ export class NFTTable extends HTMLElement {
     }
 
     /**
-     * Renders the complete table
+     * Alte render-Methode umbenennen und als Fallback-Methode behalten
      */
-    render() {
-        if (!this.#gridBody) return;
+    _renderAllRows() {
+        if (!this.#gridBody || !this.#dataProvider) return;
+        
+        const data = this.#dataProvider.getData();
         
         // Clear grid body except for separator
         this.#gridBody.innerHTML = `
             <div part="separator" class="separator"></div>
         `;
         
-        if (!this.#nfts || this.#nfts.length === 0) {
+        if (!data || data.length === 0) {
             this._renderEmptyState();
             return;
         }
@@ -518,12 +479,30 @@ export class NFTTable extends HTMLElement {
         const fragment = document.createDocumentFragment();
         
         // Render NFT rows using the NFTTableRow component
-        this.#nfts.forEach(nft => {
+        data.forEach(nft => {
             fragment.appendChild(this._createRowElement(nft));
         });
         
         // Append all rows at once
         this.#gridBody.appendChild(fragment);
+    }
+
+    /**
+     * Neue optimierte render-Methode
+     * Prüft, ob eine vollständige Neuerstellung nötig ist
+     */
+    render(action = null) {
+        // Wenn kein Action-Parameter übergeben wurde, oder die Action ist 'load' oder 'clear',
+        // dann vollständiges Rendering durchführen
+        if (!action || action === 'load' || action === 'clear') {
+            this._renderAllRows();
+            return;
+        }
+        
+        // Für andere Aktionen (add, update, remove) werden die spezifischen Handler verwendet,
+        // die bereits implementiert sind
+        // Diese Methode tut nichts, wenn sie von data-changed mit 'update' aufgerufen wird,
+        // da der spezifische Handler _handleItemUpdated bereits zuständig ist
     }
     
     /**
@@ -574,6 +553,11 @@ export class NFTTable extends HTMLElement {
         if (retryButton) {
             retryButton.removeEventListener('click', this.#boundHandlers.retryClick);
         }
+        
+        // Remove data provider listener if it exists
+        if (this.#dataProvider && typeof this.#dataProvider.removeEventListener === 'function') {
+            this.#dataProvider.removeEventListener('data-changed', this.render.bind(this));
+        }
     }
     
     /**
@@ -584,18 +568,28 @@ export class NFTTable extends HTMLElement {
     _handleRowToggleStatus(event) {
         const { nftId, status, nft } = event.detail;
         
-        // Find and update the NFT
-        const nftIndex = this.#nfts.findIndex(item => item.id === nftId);
-        if (nftIndex >= 0) {
-            // Update local data
-            this.#nfts[nftIndex] = { ...this.#nfts[nftIndex], status };
+        if (this.#dataProvider) {
+            // Get the current item
+            const currentNft = this.#dataProvider.getItem(nftId);
             
-            // Forward the event
-            this._dispatchDataEvent('toggle-nft-status', { 
-                nftId, 
-                status, 
-                nft: this.#nfts[nftIndex] 
-            });
+            if (currentNft) {
+                // Nur das Status-Feld aktualisieren anstatt der gesamten NFT-Daten
+                // Das verhindert, dass data-changed einen vollständigen Neuaufbau auslöst
+                const updatedNft = { 
+                    id: nftId,
+                    status
+                };
+                
+                // Update in the data provider, aber ohne die komplette render() auszulösen
+                this.#dataProvider.updateItem(updatedNft);
+                
+                // Forward the event
+                this._dispatchDataEvent('toggle-nft-status', { 
+                    nftId, 
+                    status, 
+                    nft: {...currentNft, status}
+                });
+            }
         }
     }
     
@@ -618,9 +612,9 @@ export class NFTTable extends HTMLElement {
      */
     _handleShowAction(event) {
         const { itemId } = event.detail;
-        if (!itemId) return;
+        if (!itemId || !this.#dataProvider) return;
         
-        const nft = this.#nfts.find(item => item.id === itemId);
+        const nft = this.#dataProvider.getItem(itemId);
         if (!nft) return;
         
         this._dispatchDataEvent('show-nft', { nft });
@@ -633,228 +627,73 @@ export class NFTTable extends HTMLElement {
      */
     _handleEditAction(event) {
         const { itemId } = event.detail;
-        if (!itemId) return;
+        if (!itemId || !this.#dataProvider) return;
         
-        const nft = this.#nfts.find(item => item.id === itemId);
+        const nft = this.#dataProvider.getItem(itemId);
         if (!nft) return;
         
         this._dispatchDataEvent('edit-nft', { nft });
     }
-    
+
     /**
-     * Determines the CSS class for the toggle button
-     * @param {Object} nft - The NFT object
-     * @returns {string} The status value
+     * Handles item-added event - Adds a single row without rerendering the whole table
+     * @param {Object} detail - Event detail with item data
      * @private
      */
-    _getToggleButtonClass(nft) {
-        if (!nft.status || nft.status === 'offline') {
-            return 'offline';
+    _handleItemAdded(detail) {
+        if (!this.#gridBody || !detail.item) return;
+        
+        // Check if we need to remove the empty state message
+        const emptyMessage = this.#gridBody.querySelector('.empty-message');
+        if (emptyMessage) {
+            emptyMessage.remove();
         }
-        return nft.status;
+        
+        // Create and append the new row
+        const rowElement = this._createRowElement(detail.item);
+        this.#gridBody.appendChild(rowElement);
     }
-    
+
     /**
-     * Filters the NFT data by the specified search term
-     * @param {string} searchTerm - The search term
-     * @public
+     * Handles item-updated event - Updates a specific row without rerendering the whole table
+     * @param {Object} detail - Event detail with updated item data
+     * @private
      */
-    filterNFTs(searchTerm) {
-        if (!searchTerm || typeof searchTerm !== 'string') {
-            this.render();
-            return;
-        }
+    _handleItemUpdated(detail) {
+        if (!this.#gridBody || !detail.item || !detail.id) return;
         
-        const term = searchTerm.toLowerCase().trim();
+        // Find the row with this NFT ID
+        const rowElement = this.#gridBody.querySelector(`nft-table-row[nft-id="${detail.id}"]`);
+        if (!rowElement) return;
         
-        const filteredNFTs = this.#nfts.filter(nft => {
-            // Search in different fields
-            return (
-                (nft.id && nft.id.toLowerCase().includes(term)) ||
-                (nft.type && nft.type.toLowerCase().includes(term)) ||
-                (nft.categories && nft.categories.some(cat => 
-                    cat.toLowerCase().includes(term)
-                ))
-            );
-        });
+        // Update the row's attributes
+        rowElement.setAttribute('nft-type', detail.item.type || '');
+        rowElement.setAttribute('nft-categories', detail.item.categories?.join(', ') || '');
+        rowElement.setAttribute('nft-status', this.#statusMapper.getStatusClass(detail.item));
         
-        // Clear grid body except for separator
-        this.#gridBody.innerHTML = `
-            <div part="separator" class="separator"></div>
-        `;
-        
-        if (filteredNFTs.length === 0) {
-            const emptyDiv = document.createElement('div');
-            emptyDiv.setAttribute('part', 'empty-message');
-            emptyDiv.classList.add('empty-message');
-            emptyDiv.textContent = `No results found for "${searchTerm}"`;
-            
-            this.#gridBody.appendChild(emptyDiv);
-        } else {
-            // Batch DOM updates with DocumentFragment
-            const fragment = document.createDocumentFragment();
-            
-            // Add filtered rows
-            filteredNFTs.forEach(nft => {
-                fragment.appendChild(this._createRowElement(nft));
-            });
-            
-            // Append all rows at once
-            this.#gridBody.appendChild(fragment);
-        }
-        
-        // Dispatch event that data was filtered
-        this._dispatchDataEvent('data-filtered', {
-            count: filteredNFTs.length,
-            searchTerm
-        });
+        // Update the full data object
+        rowElement.nftData = detail.item;
     }
-    
+
     /**
-     * Updates a single NFT in the table
-     * @param {Object} updatedNFT - The updated NFT object
-     * @public
+     * Handles item-removed event - Removes a specific row without rerendering the whole table
+     * @param {Object} detail - Event detail with removed item data
+     * @private
      */
-    updateNFT(updatedNFT) {
-        if (!updatedNFT || !updatedNFT.id) return;
+    _handleItemRemoved(detail) {
+        if (!this.#gridBody || !detail.id) return;
         
-        const index = this.#nfts.findIndex(nft => nft.id === updatedNFT.id);
-        if (index >= 0) {
-            // Update NFT in array
-            this.#nfts[index] = { ...this.#nfts[index], ...updatedNFT };
-            
-            // Find and update the specific row
-            const rowElement = this.shadowRoot.querySelector(`nft-table-row[nft-id="${updatedNFT.id}"]`);
-            if (rowElement) {
-                // Update data through attributes
-                if (updatedNFT.type !== undefined) {
-                    rowElement.setAttribute('nft-type', updatedNFT.type || '');
-                }
-                
-                if (updatedNFT.categories !== undefined) {
-                    rowElement.setAttribute('nft-categories', updatedNFT.categories?.join(', ') || '');
-                }
-                
-                if (updatedNFT.status !== undefined) {
-                    rowElement.setAttribute('nft-status', this._getToggleButtonClass(updatedNFT));
-                }
-                
-                // Update the full data object
-                rowElement.nftData = this.#nfts[index];
-            } else {
-                // Row not found, re-render the whole table
-                this.render();
-            }
-        }
-    }
-    
-    /**
-     * Adds a new NFT to the table
-     * @param {Object} nft - The NFT object to add
-     * @public
-     */
-    addNFT(nft) {
-        if (!nft || !nft.id) return;
-        
-        // Check if NFT already exists
-        const existingIndex = this.#nfts.findIndex(item => item.id === nft.id);
-        if (existingIndex >= 0) {
-            // Update existing NFT
-            this.updateNFT(nft);
-            return;
-        }
-        
-        // Add to array
-        this.#nfts.push(nft);
-        
-        // Add new row if grid body exists
-        if (this.#gridBody) {
-            // If this is the first NFT, clear the empty message
-            const emptyMessage = this.#gridBody.querySelector('.empty-message');
-            if (emptyMessage) {
-                emptyMessage.remove();
-            }
-            
-            // Create and append the new row
-            this.#gridBody.appendChild(this._createRowElement(nft));
-            
-            // Dispatch event
-            this._dispatchDataEvent('nft-added', { nft });
-        } else {
-            // If grid body doesn't exist yet, render the whole grid
-            this.render();
-        }
-    }
-    
-    /**
-     * Removes an NFT from the table
-     * @param {string} nftId - The ID of the NFT to remove
-     * @public
-     */
-    removeNFT(nftId) {
-        if (!nftId) return;
-        
-        const index = this.#nfts.findIndex(nft => nft.id === nftId);
-        if (index === -1) return;
-        
-        // Remove from array
-        const removedNFT = this.#nfts.splice(index, 1)[0];
-        
-        // Remove from DOM
-        const rowElement = this.shadowRoot.querySelector(`nft-table-row[nft-id="${nftId}"]`);
+        // Find and remove the row with this NFT ID
+        const rowElement = this.#gridBody.querySelector(`nft-table-row[nft-id="${detail.id}"]`);
         if (rowElement) {
-            // Remove event listeners
-            rowElement.removeEventListener('toggle-status', this.#boundHandlers.rowToggleStatus);
-            rowElement.removeEventListener('offline-click', this.#boundHandlers.rowOfflineClick);
-            
-            // Remove from DOM
             rowElement.remove();
-            
-            // Show empty message if no NFTs left
-            if (this.#nfts.length === 0 && this.#gridBody) {
-                this._renderEmptyState();
-            }
-            
-            // Dispatch event
-            this._dispatchDataEvent('nft-removed', {
-                nftId,
-                nft: removedNFT
-            });
         }
-    }
-    
-    /**
-     * Clears all NFTs from the table
-     * @public
-     */
-    clearNFTs() {
-        this.#nfts = [];
         
-        if (this.#gridBody) {
-            // Clear grid body except for separator
-            this.#gridBody.innerHTML = `
-                <div part="separator" class="separator"></div>
-            `;
-            
-            // Show empty message
+        // Check if we need to show the empty state
+        const rows = this.#gridBody.querySelectorAll('nft-table-row');
+        if (rows.length === 0) {
             this._renderEmptyState();
-            
-            // Dispatch event
-            this._dispatchDataEvent('nfts-cleared', {});
         }
-    }
-    
-    /**
-     * Returns an NFT by its ID
-     * @param {string} nftId - The ID of the NFT to retrieve
-     * @returns {Object|null} The NFT object or null if not found
-     * @public
-     */
-    getNFT(nftId) {
-        if (!nftId) return null;
-        
-        const nft = this.#nfts.find(item => item.id === nftId);
-        return nft ? { ...nft } : null;
     }
 }
 

@@ -182,11 +182,40 @@ export class NFTTableRow extends HTMLElement {
         return ['nft-id', 'nft-type', 'nft-categories', 'nft-status'];
     }
     
+    /**
+     * Optimierte attributeChangedCallback für nft-table-row.js
+     */
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue === newValue) return;
         
+        // Nur bei Änderungen neu rendern, die UI-Elemente betreffen
         if (this.#initialized) {
-            this._renderData();
+            // Nur die spezifischen Elemente aktualisieren statt _renderData() aufzurufen
+            switch(name) {
+                case 'nft-id':
+                    if (this.#idCell) this.#idCell.textContent = newValue || 'N/A';
+                    if (this.#showButton) this.#showButton.setAttribute('item-id', newValue);
+                    if (this.#editButton) this.#editButton.setAttribute('item-id', newValue);
+                    if (this.#toggleButton) this.#toggleButton.dataset.nftId = newValue;
+                    this.id = `nft-row-${newValue}`;
+                    this.dataset.nftId = newValue;
+                    break;
+                    
+                case 'nft-type':
+                    if (this.#typeText) this.#typeText.textContent = newValue || 'N/A';
+                    // Stil-Änderungen basierend auf Typ
+                    this._applyDataBasedStyling();
+                    break;
+                    
+                case 'nft-categories':
+                    if (this.#categoriesCell) this.#categoriesCell.textContent = newValue || '';
+                    break;
+                    
+                case 'nft-status':
+                    if (this.#toggleButton) this.#toggleButton.setAttribute('status', newValue || 'offline');
+                    // Status-Änderung aktualisiert die Host-Attribut-Klasse automatisch durch den Browser
+                    break;
+            }
         }
     }
     
@@ -336,38 +365,43 @@ export class NFTTableRow extends HTMLElement {
     }
     
     /**
-     * Sets the NFT data object and updates the UI
-     * @param {Object} data - The NFT data object
+     * Setzt die NFT-Daten und aktualisiert die UI nur bei Änderungen
+     * @param {Object} data - Das NFT-Datenobjekt
      */
     set nftData(data) {
         if (!data) return;
         
+        const oldData = this.#nftData || {};
         this.#nftData = data;
         
-        // Update attributes from data
-        if (data.id !== undefined) {
+        // Nur Attribute aktualisieren, die sich geändert haben
+        if (data.id !== undefined && data.id !== oldData.id) {
             this.setAttribute('nft-id', data.id);
         }
         
-        if (data.type !== undefined) {
+        if (data.type !== undefined && data.type !== oldData.type) {
             this.setAttribute('nft-type', data.type);
         }
         
         if (data.categories !== undefined) {
-            const categoriesStr = Array.isArray(data.categories) 
+            const newCategories = Array.isArray(data.categories) 
                 ? data.categories.join(', ') 
                 : data.categories;
-            this.setAttribute('nft-categories', categoriesStr);
+        
+            const oldCategories = Array.isArray(oldData.categories) 
+                ? oldData.categories.join(', ') 
+                : oldData.categories || '';
+            
+            if (newCategories !== oldCategories) {
+                this.setAttribute('nft-categories', newCategories);
+            }
         }
         
-        if (data.status !== undefined) {
+        if (data.status !== undefined && data.status !== oldData.status) {
             this.setAttribute('nft-status', data.status);
         }
         
-        // If already initialized, update the row
-        if (this.#initialized) {
-            this._renderData();
-        }
+        // Keine explizite Render-Aufruf hier, da attributeChangedCallback sich darum kümmert
     }
     
     /**
