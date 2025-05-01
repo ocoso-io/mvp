@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "hardhat test",
-    "deploy": "hardhat run scripts/deploy.js --network sepolia"
+    "deploy": "hardhat run scripts/deploy.js --network sepolia",
+    "start": "rollup -c -w",
+    "build": "rollup -c",
+    "web:test": "web-test-runner --config web-test-runner.config.js"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.9.3"
@@ -13,8 +16,19 @@
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
     "@nomicfoundation/hardhat-verify": "^2.0.13",
+    "@open-wc/testing": "^4.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@web/dev-server-esbuild": "^1.0.4",
+    "@web/test-runner": "^0.20.1",
     "dotenv": "^16.5.0",
-    "hardhat": "^2.23.0"
+    "hardhat": "^2.23.0",
+    "rollup": "^4.40.1",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-serve": "^3.0.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.8.3"
   },
   "repository": {
     "type": "git",

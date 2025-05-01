@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NFT Komponenten Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    header {
+      margin-bottom: 2rem;
+    }
+    h1 {
+      color: #333;
+    }
+    .controls {
+      margin: 1rem 0;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      border-radius: 4px;
+    }
+  </style>
+  <script type="module" src="dist/bundle.js"></script>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>NFT Tabelle Demo</h1>
+    <p>Diese Demo zeigt die NFT-Tabellen-Komponente mit Beispieldaten.</p>
+  </header>
+
+  <div class="controls">
+    <button id="addNftButton">NFT hinzufügen</button>
+    <button id="toggleStatusButton">Status umschalten</button>
+  </div>
+
+  <nft-table id="nftTable"></nft-table>
+</div>
+
+<script type="module">
+  import { MockDataProvider } from './bundle.js';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Mock-Daten erstellen
+    const mockData = [
+      { id: 'NFT-001', type: 'Art', categories: ['Digital'], status: 'online' },
+      { id: 'NFT-002', type: 'Music', categories: ['Audio', 'Limited'], status: 'offline' },
+      { id: 'NFT-003', type: 'Collectible', categories: ['Trading Cards', 'Rare'], status: 'online' }
+    ];
+
+    // DataProvider erstellen
+    const provider = new MockDataProvider(mockData);
+
+    // Tabelle konfigurieren
+    const table = document.getElementById('nftTable');
+    table.provider = provider;
+
+    // Event-Listener für Auswahlaktionen
+    table.addEventListener('nft-select', (event) => {
+      console.log('NFT selected:', event.detail.nft);
+      alert(`NFT ausgewählt: ${event.detail.nft.id} (${event.detail.nft.type})`);
+    });
+
+    // Buttons für Demo-Interaktionen
+    document.getElementById('addNftButton').addEventListener('click', () => {
+      const newId = `NFT-${Math.floor(Math.random() * 1000)}`;
+      provider.addItem({
+        id: newId,
+        type: 'New NFT',
+        categories: ['Demo'],
+        status: 'online'
+      });
+    });
+
+    document.getElementById('toggleStatusButton').addEventListener('click', () => {
+      const data = provider.getData();
+      if (data.length > 0) {
+        const firstItem = data[0];
+        const newStatus = firstItem.status === 'online' ? 'offline' : 'online';
+        provider.updateItem({
+          id: firstItem.id,
+          status: newStatus
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>
