@@ -4,29 +4,29 @@ import './nft-table-row.js';
 
 /**
  * NFTTable Web Component
- * 
- * Eine anpassbare Grid-basierte Komponente zur Anzeige von NFT-Daten
- * mit Row-Komponenten für bessere Kapselung und Performance.
- * 
+ *
+ * A customizable grid-based component for displaying NFT data
+ * with row components for better encapsulation and performance.
+ *
  * @element nft-table
- * @fires show-nft - Wird ausgelöst, wenn ein NFT angezeigt werden soll
- * @fires edit-nft - Wird ausgelöst, wenn ein NFT bearbeitet werden soll
- * @fires toggle-nft-status - Wird ausgelöst, wenn sich der Status eines NFT ändert
- * @fires create-promotion - Wird ausgelöst, wenn eine neue Promotion erstellt werden soll
- * @fires data-loaded - Wird ausgelöst, wenn Daten erfolgreich geladen wurden
- * @fires data-error - Wird ausgelöst, wenn beim Laden der Daten ein Fehler auftritt
- * @fires data-filtered - Wird ausgelöst, wenn Daten gefiltert werden
- * 
- * @attr {string} src - URL zum Laden von NFT-Daten
- * @attr {string} loading - Gibt an, ob Daten geladen werden ('true'/'false')
- * 
- * @csspart data-grid - Das Grid selbst
- * @csspart grid-header - Die Kopfzeile des Grids
- * @csspart header-cell - Die Kopfzellen
- * @csspart grid-body - Der Hauptteil des Grids
- * @csspart separator - Der Trennbereich
- * @csspart grid-footer - Die Fußzeile des Grids
- * @csspart footer-content - Der Inhalt der Fußzeile
+ * @fires show-nft - Fired when an NFT should be displayed
+ * @fires edit-nft - Fired when an NFT should be edited
+ * @fires toggle-nft-status - Fired when the status of an NFT changes
+ * @fires create-promotion - Fired when a new promotion should be created
+ * @fires data-loaded - Fired when data has been successfully loaded
+ * @fires data-error - Fired when an error occurs while loading data
+ * @fires data-filtered - Fired when data is filtered
+ *
+ * @attr {string} src - URL for loading NFT data
+ * @attr {string} loading - Indicates whether data is being loaded ('true'/'false')
+ *
+ * @csspart data-grid - The grid itself
+ * @csspart grid-header - The header row of the grid
+ * @csspart header-cell - The header cells
+ * @csspart grid-body - The main body of the grid
+ * @csspart separator - The separator area
+ * @csspart grid-footer - The footer of the grid
+ * @csspart footer-content - The content of the footer
  */
 export class NFTTable extends HTMLElement {
     // Static template for better performance
@@ -129,7 +129,7 @@ export class NFTTable extends HTMLElement {
                     background-color: var(--nft-button-hover-bg, #2980b9);
                 }
                 
-                /* Responsive Design - wichtige Änderung hier */
+                /* Responsive Design - important change here */
                 @media (max-width: 768px) {
                     .data-grid {
                         display: block; /* Wichtig: Ändert das Display-Modell */
@@ -304,7 +304,7 @@ export class NFTTable extends HTMLElement {
     }
     
     /**
-     * Initialisiert die Komponente
+     * Initializes the component
      * @private
      */
     _initialize() {
@@ -321,7 +321,7 @@ export class NFTTable extends HTMLElement {
     }
 
     /**
-     * Lädt NFT-Daten von der angegebenen URL
+     * Loads NFT data from the specified URL
      * @returns {Promise<void>}
      */
     async loadNFTData() {
@@ -399,10 +399,10 @@ export class NFTTable extends HTMLElement {
     }
 
     /**
-     * Holt Daten von der angegebenen URL
-     * @param {string} src - URL zum Laden der Daten
-     * @param {AbortSignal} signal - Signal zum Abbrechen der Anfrage
-     * @returns {Promise<Array>} Die geladenen NFT-Daten
+     * Fetches data from the specified URL
+     * @param {string} src - URL to load the data from
+     * @param {AbortSignal} signal - Signal to abort the request
+     * @returns {Promise<Array>} The loaded NFT data
      * @private
      */
     async _fetchNFTData(src, signal) {
@@ -431,8 +431,8 @@ export class NFTTable extends HTMLElement {
     }
 
     /**
-     * Rendert einen Fehlerzustand
-     * @param {string} message - Die anzuzeigende Fehlermeldung
+     * Renders an error state
+     * @param {string} message - The error message to display
      * @private
      */
     _renderErrorState(message = 'Unable to load NFT data. Please try again later.') {
@@ -505,7 +505,7 @@ export class NFTTable extends HTMLElement {
     }
     
     /**
-     * Fügt Event-Listener hinzu
+     * Adds event listeners
      * @private
      */
     _addEventListeners() {
@@ -517,7 +517,7 @@ export class NFTTable extends HTMLElement {
     }
 
     /**
-     * Entfernt Event-Listener
+     * Removes event listeners
      * @private
      */
     _removeEventListeners() {
@@ -541,8 +541,8 @@ export class NFTTable extends HTMLElement {
     }
     
     /**
-     * Handhabt toggle-status Events von Zeilenkomponenten
-     * @param {CustomEvent} event - Das toggle-status Event
+     * Handles toggle-status events from row components
+     * @param {CustomEvent} event - The toggle-status event
      * @private
      */
     _handleRowToggleStatus(event) {
@@ -564,8 +564,8 @@ export class NFTTable extends HTMLElement {
     }
     
     /**
-     * Handhabt offline-click Events von Zeilenkomponenten
-     * @param {CustomEvent} event - Das offline-click Event
+     * Handles offline-click events from row components
+     * @param {CustomEvent} event - The offline-click event
      * @private
      */
     _handleRowOfflineClick(event) {
@@ -580,8 +580,8 @@ export class NFTTable extends HTMLElement {
     }
     
     /**
-     * Handhabt show-action Events
-     * @param {CustomEvent} event - Das show-action Event
+     * Handles show-action events
+     * @param {CustomEvent} event - The show-action event
      * @private
      */
     _handleShowAction(event) {
@@ -599,8 +599,8 @@ export class NFTTable extends HTMLElement {
     }
     
     /**
-     * Handhabt edit-action Events
-     * @param {CustomEvent} event - Das edit-action Event
+     * Handles edit-action events
+     * @param {CustomEvent} event - The edit-action event
      * @private
      */
     _handleEditAction(event) {
@@ -618,9 +618,9 @@ export class NFTTable extends HTMLElement {
     }
     
     /**
-     * Bestimmt die CSS-Klasse für den Toggle-Button
-     * @param {Object} nft - Das NFT-Objekt
-     * @returns {string} Der Statuswert
+     * Determines the CSS class for the toggle button
+     * @param {Object} nft - The NFT object
+     * @returns {string} The status value
      * @private
      */
     _getToggleButtonClass(nft) {
@@ -631,8 +631,8 @@ export class NFTTable extends HTMLElement {
     }
     
     /**
-     * Filtert die NFT-Daten nach dem angegebenen Suchbegriff
-     * @param {string} searchTerm - Der Suchbegriff
+     * Filters the NFT data by the specified search term
+     * @param {string} searchTerm - The search term
      * @public
      */
     filterNFTs(searchTerm) {
@@ -707,8 +707,8 @@ export class NFTTable extends HTMLElement {
     }
     
     /**
-     * Aktualisiert ein einzelnes NFT in der Tabelle
-     * @param {Object} updatedNFT - Das aktualisierte NFT-Objekt
+     * Updates a single NFT in the table
+     * @param {Object} updatedNFT - The updated NFT object
      * @public
      */
     updateNFT(updatedNFT) {
@@ -745,8 +745,8 @@ export class NFTTable extends HTMLElement {
     }
     
     /**
-     * Fügt ein neues NFT zur Tabelle hinzu
-     * @param {Object} nft - Das hinzuzufügende NFT-Objekt
+     * Adds a new NFT to the table
+     * @param {Object} nft - The NFT object to add
      * @public
      */
     addNFT(nft) {
@@ -802,8 +802,8 @@ export class NFTTable extends HTMLElement {
     }
     
     /**
-     * Entfernt ein NFT aus der Tabelle
-     * @param {string} nftId - Die ID des zu entfernenden NFT
+     * Removes an NFT from the table
+     * @param {string} nftId - The ID of the NFT to remove
      * @public
      */
     removeNFT(nftId) {
@@ -848,7 +848,7 @@ export class NFTTable extends HTMLElement {
     }
     
     /**
-     * Löscht alle NFTs aus der Tabelle
+     * Clears all NFTs from the table
      * @public
      */
     clearNFTs() {
@@ -872,9 +872,9 @@ export class NFTTable extends HTMLElement {
     }
     
     /**
-     * Gibt ein NFT anhand der ID zurück
-     * @param {string} nftId - Die ID des abzurufenden NFT
-     * @returns {Object|null} Das NFT-Objekt oder null, wenn nicht gefunden
+     * Returns an NFT by its ID
+     * @param {string} nftId - The ID of the NFT to retrieve
+     * @returns {Object|null} The NFT object or null if not found
      * @public
      */
     getNFT(nftId) {

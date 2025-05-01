@@ -1,22 +1,22 @@
 /**
  * NFTTableRow Web Component
- * 
- * Eine Komponente, die eine einzelne Zeile in einer NFT-Tabelle/Grid darstellt.
- * 
+ *
+ * A component that represents a single row in an NFT table/grid.
+ *
  * @element nft-table-row
- * @fires toggle-status - Wird ausgelöst, wenn sich der Status der Toggle-Schaltfläche ändert
- * @fires offline-click - Wird ausgelöst, wenn im Offline-Status auf die Toggle-Schaltfläche geklickt wird
- * 
- * @attr {string} nft-id - Die ID des NFT
- * @attr {string} nft-type - Der Typ des NFT
- * @attr {string} nft-categories - Kommagetrennte Liste von Kategorien
- * @attr {string} nft-status - Der Status des NFT (active, inactive, offline)
- * 
- * @csspart row-container - Der Container der Zeile
- * @csspart cell - Standard-Datenzellen
- * @csspart content-wrapper - Container für Inhalte mit Icons
- * @csspart content-icon - Icons in Zellen
- * @csspart cell-text - Textinhalt in Zellen
+ * @fires toggle-status - Fired when the toggle button status changes
+ * @fires offline-click - Fired when the toggle button is clicked in offline status
+ *
+ * @attr {string} nft-id - The ID of the NFT
+ * @attr {string} nft-type - The type of the NFT
+ * @attr {string} nft-categories - Comma-separated list of categories
+ * @attr {string} nft-status - The status of the NFT (active, inactive, offline)
+ *
+ * @csspart row-container - The row container
+ * @csspart cell - Standard data cells
+ * @csspart content-wrapper - Container for content with icons
+ * @csspart content-icon - Icons in cells
+ * @csspart cell-text - Text content in cells
  */
 export class NFTTableRow extends HTMLElement {
     // Static template for better performance
@@ -54,12 +54,12 @@ export class NFTTableRow extends HTMLElement {
                 gap: 8px;
             }
             
-            /* Hover-Effekt für die Zeile */
+            /* Hover effect for the row */
             :host(:hover) .cell {
                 background-color: var(--nft-row-hover-bg, rgba(52, 152, 219, 0.1));
             }
             
-            /* Status-spezifische Farben */
+            /* Status-specific colors */
             :host([nft-status="active"]) .cell {
                 --cell-status-color: var(--nft-active-color, rgba(46, 204, 113, 0.2));
                 background-color: var(--cell-status-color);
@@ -70,7 +70,7 @@ export class NFTTableRow extends HTMLElement {
                 background-color: var(--cell-status-color);
             }
             
-            /* Responsives Design - wichtige Änderungen hier */
+            /* Responsive design - important changes here */
             @media (max-width: 768px) {
                 :host {
                     display: block; /* Wichtig: Ändert das Display-Modell */
@@ -191,7 +191,7 @@ export class NFTTableRow extends HTMLElement {
     }
     
     /**
-     * Initialisiert die Komponente
+     * Initializes the component
      * @private
      */
     _initialize() {
@@ -209,7 +209,7 @@ export class NFTTableRow extends HTMLElement {
     }
     
     /**
-     * Fügt Event-Listener hinzu
+     * Adds event listeners
      * @private
      */
     _addEventListeners() {
@@ -220,7 +220,7 @@ export class NFTTableRow extends HTMLElement {
     }
     
     /**
-     * Entfernt Event-Listener
+     * Removes event listeners
      * @private
      */
     _removeEventListeners() {
@@ -231,8 +231,8 @@ export class NFTTableRow extends HTMLElement {
     }
     
     /**
-     * Handhabt Toggle-Ereignisse von der Toggle-Schaltfläche
-     * @param {CustomEvent} event - Das Toggle-Ereignis
+     * Handles toggle events from the toggle button
+     * @param {CustomEvent} event - The toggle event
      * @private
      */
     _handleToggleEvent(event) {
@@ -254,8 +254,8 @@ export class NFTTableRow extends HTMLElement {
     }
     
     /**
-     * Handhabt Offline-Click-Ereignisse von der Toggle-Schaltfläche
-     * @param {CustomEvent} event - Das Offline-Click-Ereignis
+     * Handles offline click events from the toggle button
+     * @param {CustomEvent} event - The offline click event
      * @private
      */
     _handleOfflineClick(event) {
@@ -270,7 +270,7 @@ export class NFTTableRow extends HTMLElement {
     }
     
     /**
-     * Rendert die Daten in die Zeilenelemente
+     * Renders the data into the row elements
      * @private
      */
     _renderData() {
@@ -303,7 +303,7 @@ export class NFTTableRow extends HTMLElement {
     }
     
     /**
-     * Wendet datenbezogene Styling-Änderungen an
+     * Applies data-based styling changes
      * @private
      */
     _applyDataBasedStyling() {
@@ -320,8 +320,8 @@ export class NFTTableRow extends HTMLElement {
     }
     
     /**
-     * Gibt das NFT-Datenobjekt zurück
-     * @return {Object} Das NFT-Datenobjekt
+     * Returns the NFT data object
+     * @return {Object} The NFT data object
      */
     get nftData() {
         if (this.#nftData) return this.#nftData;
@@ -336,8 +336,8 @@ export class NFTTableRow extends HTMLElement {
     }
     
     /**
-     * Setzt das NFT-Datenobjekt und aktualisiert die UI
-     * @param {Object} data - Das NFT-Datenobjekt
+     * Sets the NFT data object and updates the UI
+     * @param {Object} data - The NFT data object
      */
     set nftData(data) {
         if (!data) return;
@@ -371,9 +371,9 @@ export class NFTTableRow extends HTMLElement {
     }
     
     /**
-     * Hebt die Zeile für kurze Zeit hervor
-     * @param {string} [highlightColor='rgba(52, 152, 219, 0.4)'] - Die Farbe der Hervorhebung
-     * @param {number} [duration=1500] - Die Dauer der Hervorhebung in Millisekunden
+     * Highlights the row for a short duration
+     * @param {string} [highlightColor='rgba(52, 152, 219, 0.4)'] - The highlight color
+     * @param {number} [duration=1500] - The duration of the highlight in milliseconds
      * @public
      */
     highlight(highlightColor = 'rgba(52, 152, 219, 0.4)', duration = 1500) {
