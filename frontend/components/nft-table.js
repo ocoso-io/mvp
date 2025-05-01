@@ -16,6 +16,9 @@ import './nft-table-row.js';
  * @fires data-loaded - Fired when data has been successfully loaded
  * @fires data-error - Fired when an error occurs while loading data
  * @fires data-filtered - Fired when data is filtered
+ * @fires nft-added - Fired when an NFT is added to the table
+ * @fires nft-removed - Fired when an NFT is removed from the table
+ * @fires nfts-cleared - Fired when all NFTs are cleared from the table
  *
  * @attr {string} src - URL for loading NFT data
  * @attr {string} loading - Indicates whether data is being loaded ('true'/'false')
@@ -129,22 +132,22 @@ export class NFTTable extends HTMLElement {
                     background-color: var(--nft-button-hover-bg, #2980b9);
                 }
                 
-                /* Responsive Design - important change here */
+                /* Responsive Design */
                 @media (max-width: 768px) {
                     .data-grid {
-                        display: block; /* Wichtig: Ändert das Display-Modell */
+                        display: block;
                     }
                     
                     .grid-header {
-                        display: none; /* Header ausblenden bei schmalen Screens */
+                        display: none;
                     }
                     
                     .grid-body {
-                        display: block; /* Block statt contents für korrekte Flussrichtung */
+                        display: block;
                     }
                     
                     .separator {
-                        display: none; /* Separator ausblenden bei schmalen Screens */
+                        display: none;
                     }
                     
                     .grid-footer {
@@ -343,14 +346,7 @@ export class NFTTable extends HTMLElement {
             this.loading = true;
             
             // Clear grid body and show loading message
-            if (this.#gridBody) {
-                this.#gridBody.innerHTML = `
-                    <div part="separator" class="separator"></div>
-                    <div part="loading-message" class="loading-message">
-                        <slot name="loading-text">Loading NFT data...</slot>
-                    </div>
-                `;
-            }
+            this._renderLoadingState();
             
             // Load data with timeout
             const timeoutId = setTimeout(() => {
@@ -364,14 +360,10 @@ export class NFTTable extends HTMLElement {
                 clearTimeout(timeoutId);
                 
                 // Dispatch event that data was loaded
-                this.dispatchEvent(new CustomEvent('data-loaded', {
-                    bubbles: true,
-                    composed: true,
-                    detail: { 
-                        count: this.#nfts.length,
-                        source: this.src
-                    }
-                }));
+                this._dispatchDataEvent('data-loaded', { 
+                    count: this.#nfts.length,
+                    source: this.src
+                });
                 
                 // Render the loaded data
                 this.render();
@@ -385,14 +377,10 @@ export class NFTTable extends HTMLElement {
                 this._renderErrorState(error.message);
                 
                 // Dispatch error event
-                this.dispatchEvent(new CustomEvent('data-error', {
-                    bubbles: true,
-                    composed: true, 
-                    detail: { 
-                        error,
-                        source: this.src
-                    }
-                }));
+                this._dispatchDataEvent('data-error', { 
+                    error,
+                    source: this.src
+                });
             }
             this.loading = false;
         }
@@ -431,6 +419,21 @@ export class NFTTable extends HTMLElement {
     }
 
     /**
+     * Renders a loading state
+     * @private
+     */
+    _renderLoadingState() {
+        if (!this.#gridBody) return;
+        
+        this.#gridBody.innerHTML = `
+            <div part="separator" class="separator"></div>
+            <div part="loading-message" class="loading-message">
+                <slot name="loading-text">Loading NFT data...</slot>
+            </div>
+        `;
+    }
+
+    /**
      * Renders an error state
      * @param {string} message - The error message to display
      * @private
@@ -456,7 +459,47 @@ export class NFTTable extends HTMLElement {
     }
 
     /**
-     * Rendert die komplette Tabelle
+     * Renders the empty state
+     * @private
+     */
+    _renderEmptyState() {
+        if (!this.#gridBody) return;
+        
+        const emptyMessage = document.createElement('div');
+        emptyMessage.setAttribute('part', 'empty-message');
+        emptyMessage.classList.add('empty-message');
+        emptyMessage.innerHTML = '<slot name="empty-text">No NFT data available</slot>';
+        
+        this.#gridBody.appendChild(emptyMessage);
+    }
+
+    /**
+     * Creates a row element for an NFT
+     * @param {Object} nft - The NFT data 
+     * @returns {HTMLElement} The created row element
+     * @private
+     */
+    _createRowElement(nft) {
+        const rowElement = document.createElement('nft-table-row');
+        
+        // Set data through attributes
+        rowElement.setAttribute('nft-id', nft.id || '');
+        rowElement.setAttribute('nft-type', nft.type || '');
+        rowElement.setAttribute('nft-categories', nft.categories?.join(', ') || '');
+        rowElement.setAttribute('nft-status', this._getToggleButtonClass(nft));
+        
+        // Set the full data object
+        rowElement.nftData = nft;
+        
+        // Add event listeners
+        rowElement.addEventListener('toggle-status', this.#boundHandlers.rowToggleStatus);
+        rowElement.addEventListener('offline-click', this.#boundHandlers.rowOfflineClick);
+        
+        return rowElement;
+    }
+
+    /**
+     * Renders the complete table
      */
     render() {
         if (!this.#gridBody) return;
@@ -467,12 +510,7 @@ export class NFTTable extends HTMLElement {
         `;
         
         if (!this.#nfts || this.#nfts.length === 0) {
-            const emptyMessage = document.createElement('div');
-            emptyMessage.setAttribute('part', 'empty-message');
-            emptyMessage.classList.add('empty-message');
-            emptyMessage.innerHTML = '<slot name="empty-text">No NFT data available</slot>';
-            
-            this.#gridBody.appendChild(emptyMessage);
+            this._renderEmptyState();
             return;
         }
         
@@ -481,27 +519,25 @@ export class NFTTable extends HTMLElement {
         
         // Render NFT rows using the NFTTableRow component
         this.#nfts.forEach(nft => {
-            const rowElement = document.createElement('nft-table-row');
-            
-            // Set data through attributes
-            rowElement.setAttribute('nft-id', nft.id || '');
-            rowElement.setAttribute('nft-type', nft.type || '');
-            rowElement.setAttribute('nft-categories', nft.categories?.join(', ') || '');
-            rowElement.setAttribute('nft-status', this._getToggleButtonClass(nft));
-            
-            // Set the full data object
-            rowElement.nftData = nft;
-            
-            // Add event listeners
-            rowElement.addEventListener('toggle-status', this.#boundHandlers.rowToggleStatus);
-            rowElement.addEventListener('offline-click', this.#boundHandlers.rowOfflineClick);
-            
-            // Append to fragment
-            fragment.appendChild(rowElement);
+            fragment.appendChild(this._createRowElement(nft));
         });
         
         // Append all rows at once
         this.#gridBody.appendChild(fragment);
+    }
+    
+    /**
+     * Helper method to dispatch custom events with consistent properties
+     * @param {string} eventName - The name of the event to dispatch
+     * @param {Object} detail - The detail object for the event
+     * @private
+     */
+    _dispatchDataEvent(eventName, detail) {
+        this.dispatchEvent(new CustomEvent(eventName, {
+            bubbles: true,
+            composed: true,
+            detail
+        }));
     }
     
     /**
@@ -555,11 +591,11 @@ export class NFTTable extends HTMLElement {
             this.#nfts[nftIndex] = { ...this.#nfts[nftIndex], status };
             
             // Forward the event
-            this.dispatchEvent(new CustomEvent('toggle-nft-status', {
-                bubbles: true,
-                composed: true,
-                detail: { nftId, status, nft: this.#nfts[nftIndex] }
-            }));
+            this._dispatchDataEvent('toggle-nft-status', { 
+                nftId, 
+                status, 
+                nft: this.#nfts[nftIndex] 
+            });
         }
     }
     
@@ -572,11 +608,7 @@ export class NFTTable extends HTMLElement {
         const { nftId, nft } = event.detail;
         
         // Forward the event
-        this.dispatchEvent(new CustomEvent('create-promotion', {
-            bubbles: true,
-            composed: true,
-            detail: { nftId, nft }
-        }));
+        this._dispatchDataEvent('create-promotion', { nftId, nft });
     }
     
     /**
@@ -591,11 +623,7 @@ export class NFTTable extends HTMLElement {
         const nft = this.#nfts.find(item => item.id === itemId);
         if (!nft) return;
         
-        this.dispatchEvent(new CustomEvent('show-nft', {
-            bubbles: true,
-            composed: true,
-            detail: { nft }
-        }));
+        this._dispatchDataEvent('show-nft', { nft });
     }
     
     /**
@@ -610,11 +638,7 @@ export class NFTTable extends HTMLElement {
         const nft = this.#nfts.find(item => item.id === itemId);
         if (!nft) return;
         
-        this.dispatchEvent(new CustomEvent('edit-nft', {
-            bubbles: true,
-            composed: true,
-            detail: { nft }
-        }));
+        this._dispatchDataEvent('edit-nft', { nft });
     }
     
     /**
@@ -644,7 +668,7 @@ export class NFTTable extends HTMLElement {
         const term = searchTerm.toLowerCase().trim();
         
         const filteredNFTs = this.#nfts.filter(nft => {
-            // Suche in verschiedenen Feldern
+            // Search in different fields
             return (
                 (nft.id && nft.id.toLowerCase().includes(term)) ||
                 (nft.type && nft.type.toLowerCase().includes(term)) ||
@@ -672,23 +696,7 @@ export class NFTTable extends HTMLElement {
             
             // Add filtered rows
             filteredNFTs.forEach(nft => {
-                const rowElement = document.createElement('nft-table-row');
-                
-                // Set data through attributes
-                rowElement.setAttribute('nft-id', nft.id || '');
-                rowElement.setAttribute('nft-type', nft.type || '');
-                rowElement.setAttribute('nft-categories', nft.categories?.join(', ') || '');
-                rowElement.setAttribute('nft-status', this._getToggleButtonClass(nft));
-                
-                // Set the full data object
-                rowElement.nftData = nft;
-                
-                // Add event listeners
-                rowElement.addEventListener('toggle-status', this.#boundHandlers.rowToggleStatus);
-                rowElement.addEventListener('offline-click', this.#boundHandlers.rowOfflineClick);
-                
-                // Append to fragment
-                fragment.appendChild(rowElement);
+                fragment.appendChild(this._createRowElement(nft));
             });
             
             // Append all rows at once
@@ -696,14 +704,10 @@ export class NFTTable extends HTMLElement {
         }
         
         // Dispatch event that data was filtered
-        this.dispatchEvent(new CustomEvent('data-filtered', {
-            bubbles: true,
-            composed: true,
-            detail: { 
-                count: filteredNFTs.length,
-                searchTerm
-            }
-        }));
+        this._dispatchDataEvent('data-filtered', {
+            count: filteredNFTs.length,
+            searchTerm
+        });
     }
     
     /**
@@ -771,30 +775,11 @@ export class NFTTable extends HTMLElement {
                 emptyMessage.remove();
             }
             
-            const rowElement = document.createElement('nft-table-row');
-            
-            // Set data through attributes
-            rowElement.setAttribute('nft-id', nft.id || '');
-            rowElement.setAttribute('nft-type', nft.type || '');
-            rowElement.setAttribute('nft-categories', nft.categories?.join(', ') || '');
-            rowElement.setAttribute('nft-status', this._getToggleButtonClass(nft));
-            
-            // Set the full data object
-            rowElement.nftData = nft;
-            
-            // Add event listeners
-            rowElement.addEventListener('toggle-status', this.#boundHandlers.rowToggleStatus);
-            rowElement.addEventListener('offline-click', this.#boundHandlers.rowOfflineClick);
-            
-            // Append to grid
-            this.#gridBody.appendChild(rowElement);
+            // Create and append the new row
+            this.#gridBody.appendChild(this._createRowElement(nft));
             
             // Dispatch event
-            this.dispatchEvent(new CustomEvent('nft-added', {
-                bubbles: true,
-                composed: true,
-                detail: { nft }
-            }));
+            this._dispatchDataEvent('nft-added', { nft });
         } else {
             // If grid body doesn't exist yet, render the whole grid
             this.render();
@@ -827,23 +812,14 @@ export class NFTTable extends HTMLElement {
             
             // Show empty message if no NFTs left
             if (this.#nfts.length === 0 && this.#gridBody) {
-                const emptyMessage = document.createElement('div');
-                emptyMessage.setAttribute('part', 'empty-message');
-                emptyMessage.classList.add('empty-message');
-                emptyMessage.innerHTML = '<slot name="empty-text">No NFT data available</slot>';
-                
-                this.#gridBody.appendChild(emptyMessage);
+                this._renderEmptyState();
             }
             
             // Dispatch event
-            this.dispatchEvent(new CustomEvent('nft-removed', {
-                bubbles: true,
-                composed: true,
-                detail: { 
-                    nftId,
-                    nft: removedNFT
-                }
-            }));
+            this._dispatchDataEvent('nft-removed', {
+                nftId,
+                nft: removedNFT
+            });
         }
     }
     
@@ -858,16 +834,13 @@ export class NFTTable extends HTMLElement {
             // Clear grid body except for separator
             this.#gridBody.innerHTML = `
                 <div part="separator" class="separator"></div>
-                <div part="empty-message" class="empty-message">
-                    <slot name="empty-text">No NFT data available</slot>
-                </div>
             `;
             
+            // Show empty message
+            this._renderEmptyState();
+            
             // Dispatch event
-            this.dispatchEvent(new CustomEvent('nfts-cleared', {
-                bubbles: true,
-                composed: true
-            }));
+            this._dispatchDataEvent('nfts-cleared', {});
         }
     }
     
