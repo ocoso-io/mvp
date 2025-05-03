@@ -1,0 +1,95 @@
+import { BrowserProvider, Signer } from 'ethers';
+import { WalletProvider } from './wallet-provider.interface';
+import { WalletConnectionError } from '../errors';
+
+export class MetaMaskProvider implements WalletProvider {
+    private provider: BrowserProvider | null = null;
+    private signer: Signer | null = null;
+
+    public isInstalled(): boolean {
+        return typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask;
+    }
+
+    public async connect(): Promise<string | null> {
+        if (!this.isInstalled()) {
+            throw new WalletConnectionError('MetaMask ist nicht installiert');
+        }
+
+        try {
+            const accounts = await window.ethereum.request({
+                method: 'eth_requestAccounts'
+            });
+
+            if (accounts.length === 0) {
+                throw new WalletConnectionError('Keine Konten verfügbar');
+            }
+
+            this.provider = new BrowserProvider(window.ethereum);
+            this.signer = await this.provider.getSigner();
+
+            return accounts[0];
+        } catch (error) {
+            throw new WalletConnectionError(
+                'Fehler bei der Verbindung zu MetaMask',
+                error
+            );
+        }
+    }
+
+    public async disconnect(): Promise<void> {
+        this.provider = null;
+        this.signer = null;
+    }
+
+    public async getAccounts(): Promise<string[]> {
+        if (!this.isInstalled()) {
+            return [];
+        }
+
+        try {
+            return await window.ethereum.request({ method: 'eth_accounts' });
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Konten:', error);
+            return [];
+        }
+    }
+
+    public getProvider(): BrowserProvider | null {
+        return this.provider;
+    }
+
+    public async getSigner(): Promise<Signer | null> {
+        if (!this.signer && this.provider) {
+            try {
+                this.signer = await this.provider.getSigner();
+            } catch (error) {
+                console.error('Fehler beim Abrufen des Signers:', error);
+            }
+        }
+        return this.signer;
+    }
+
+    public async getChainId(): Promise<number | null> {
+        if (!this.provider) return null;
+
+        try {
+            const network = await this.provider.getNetwork();
+            return Number(network.chainId);
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Chain-ID:', error);
+            return null;
+        }
+    }
+
+    public on(event: string, handler: any): void {
+        if (this.isInstalled()) {
+            window.ethereum.on(event, handler);
+        }
+    }
+
+    public off(event: string, handler: any): void {
+        if (this.isInstalled()) {
+            window.ethereum.removeListener(event, handler);
+        }
+    }
+}

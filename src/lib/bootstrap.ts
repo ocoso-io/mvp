@@ -54,7 +54,9 @@ export async function loadLibrary(name: string): Promise<any> {
         // Durchlaufe alle alternativen CDN-Quellen
         for (const alternativeCdn of lib.alternativeCDNs) {
           try {
-            return await import(/* webpackIgnore: true */ alternativeCdn);
+            const imported = await import(/* webpackIgnore: true */ alternativeCdn);
+            console.log(`Alternative CDN "${alternativeCdn}" for "${name}" loaded successfully`);
+            return imported;
           } catch (alternativeCdnError) {
             // Versuche weiter mit der nächsten Alternative
             console.warn(`Alternative CDN ${alternativeCdn} for "${name}" failed`);

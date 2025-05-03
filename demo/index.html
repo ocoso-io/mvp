@@ -31,7 +31,16 @@
       border-radius: 4px;
     }
   </style>
-  <script type="module" src="dist/bundle.js"></script>
+  <script type="module">
+    import "/dist/bundle.js"
+    import {initializeApp} from "/dist/bootstrap.js";
+
+    initializeApp({
+      libraries: ['ethers'],
+      components: ['nft-table']
+    });
+
+  </script>
 </head>
 <body>
 <div class="container">
@@ -49,7 +58,7 @@
 </div>
 
 <script type="module">
-  import { MockDataProvider } from './bundle.js';
+  import { MockDataProvider } from './dist/bundle.js';
 
   document.addEventListener('DOMContentLoaded', () => {
     // Mock-Daten erstellen
