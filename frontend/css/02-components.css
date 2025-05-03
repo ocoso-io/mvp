@@ -426,7 +426,12 @@ body {
   /* Perspektive und Transition */
   cursor: pointer;
   overflow: visible;
-  box-shadow: 0 0 var(--px-80) var(--px-60) rgba(0, 0, 0, 0.5);
+  box-shadow: 
+      calc(-1 * var(--px-80)) 
+      var(--px-80) 
+      var(--px-80) 
+      var(--px-60) 
+      rgba(0, 0, 0, 0.5);
   flex-direction: row;
   flex-wrap: wrap; /* Damit Elemente bei Platzmangel umbrechen */
 }
@@ -1068,6 +1073,11 @@ textarea {
   width: var(--px-40);
   padding: 0 var(--px-10);
 }
+.toggle-cell-marketing {
+  width: var(--px-40);
+  padding: 0;
+  margin-right: var(--px-20);
+}
 .toggle-wrapper {
   width: var(--px-40);
   padding: 0 0;
@@ -1299,7 +1309,7 @@ textarea {
   white-space: nowrap;
 }
 .option-description {
-  margin: 0;
+  margin-top: var(--px-20);
 }
 .upload-section {
   border-radius: var(--px-20);

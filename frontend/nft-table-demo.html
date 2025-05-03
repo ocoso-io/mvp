@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>NFT-Table Demo</title>
+    <link rel="stylesheet" href="css/main.css">
+    <!-- Importieren der erforderlichen Dateien -->
+    <script type="module">
+        // Import der erforderlichen Klassen
+        import { NFTTable } from './components/nft-table.js';
+        import { NFTDataProvider } from './components/nft-data-provider.js';
+        import { NFTStatusMapper } from './components/nft-status-mapper.js';
+
+        // Konfigurieren der Komponenten nach dem Laden der Seite
+        document.addEventListener('DOMContentLoaded', () => {
+            const nftTable = document.querySelector('nft-table');
+            const promoBox = document.querySelector('promotion-info-box');
+            const logEntries = document.getElementById('logEntries');
+            const clearLogBtn = document.getElementById('clearLog');
+            
+            // Datenquelle aus dem src-Attribut der Tabelle extrahieren
+            const dataSource = nftTable.getAttribute('src');
+            
+            // DataProvider und StatusMapper erstellen
+            const dataProvider = new NFTDataProvider(dataSource);
+            const statusMapper = new NFTStatusMapper({
+                // Benutzerdefinierte Status-Mappings, falls benötigt
+                premium: {
+                    class: 'premium',
+                    text: 'Premium'
+                }
+            });
+            
+            // Abhängigkeiten in die Komponente injizieren
+            nftTable.dataProvider = dataProvider;
+            nftTable.statusMapper = statusMapper;
+            
+            // Helper-Funktion zum Loggen von Events
+            function logEvent(eventName, data) {
+                console.log(`Logging event: ${eventName}`, data);
+                
+                const entry = document.createElement('div');
+                entry.className = 'log-entry';
+                
+                const timestamp = new Date().toLocaleTimeString();
+                const eventData = JSON.stringify(data, null, 2);
+                
+                entry.textContent = `[${timestamp}] ${eventName}:\n${eventData}`;
+                logEntries.appendChild(entry);
+                logEntries.scrollTop = logEntries.scrollHeight;
+            }
+            
+            // Clear log button
+            clearLogBtn.addEventListener('click', () => {
+                logEntries.innerHTML = '';
+            });
+            
+            // Event-Listener für Tabellen-Komponente
+            nftTable.addEventListener('show-nft', (event) => {
+                console.log('Received show-nft event', event);
+                const nft = event.detail.nft;
+                logEvent('show-nft', nft);
+                promoBox.show(nft);
+            });
+            
+            nftTable.addEventListener('edit-nft', (event) => {
+                console.log('Received edit-nft event', event);
+                const nft = event.detail.nft;
+                logEvent('edit-nft', nft);
+            });
+            
+            nftTable.addEventListener('toggle-nft-status', (event) => {
+                console.log('Received toggle-nft-status event', event);
+                const { nftId, status } = event.detail;
+                logEvent('toggle-nft-status', { nftId, status });
+            });
+            
+            nftTable.addEventListener('create-promotion', (event) => {
+                console.log('Received create-promotion event', event);
+                const { nftId } = event.detail;
+                logEvent('create-promotion', { nftId });
+            });
+            
+            // Event-Listener für Promotion-Box
+            promoBox.addEventListener('confirm-promotion', (event) => {
+                console.log('Received confirm-promotion event', event);
+                const nft = event.detail.nft;
+                logEvent('confirm-promotion', nft);
+            });
+            
+            // Fügen Sie einen Suchfilter hinzu
+            const searchInput = document.createElement('input');
+            searchInput.type = 'text';
+            searchInput.id = 'nft-search';
+            searchInput.placeholder = 'NFTs durchsuchen...';
+            searchInput.style.marginBottom = '20px';
+            searchInput.style.padding = '8px';
+            searchInput.style.width = '100%';
+            searchInput.style.backgroundColor = '#222';
+            searchInput.style.color = '#fff';
+            searchInput.style.border = '1px solid #444';
+            searchInput.style.borderRadius = '4px';
+            
+            const addNftBtn = document.createElement('button');
+            addNftBtn.id = 'add-nft-button';
+            addNftBtn.textContent = 'Neues NFT hinzufügen';
+            addNftBtn.style.marginBottom = '20px';
+            addNftBtn.style.marginLeft = '10px';
+            addNftBtn.style.padding = '8px 16px';
+            addNftBtn.style.backgroundColor = '#3498db';
+            addNftBtn.style.color = '#fff';
+            addNftBtn.style.border = 'none';
+            addNftBtn.style.borderRadius = '4px';
+            addNftBtn.style.cursor = 'pointer';
+            
+            // Container für Suchfeld und Button erstellen
+            const controlsContainer = document.createElement('div');
+            controlsContainer.style.display = 'flex';
+            controlsContainer.style.justifyContent = 'space-between';
+            controlsContainer.style.alignItems = 'center';
+            controlsContainer.style.marginBottom = '20px';
+            
+            controlsContainer.appendChild(searchInput);
+            controlsContainer.appendChild(addNftBtn);
+            
+            // Controls vor der Tabelle einfügen
+            nftTable.parentNode.insertBefore(controlsContainer, nftTable);
+            
+            // Event-Listener für die Suche
+            searchInput.addEventListener('input', (event) => {
+                const searchTerm = event.target.value;
+                
+                // Daten im Provider filtern
+                const filteredData = dataProvider.filterByTerm(searchTerm);
+                
+                // Event auslösen, dass wir gefiltert haben
+                nftTable.dispatchEvent(new CustomEvent('data-filtered', {
+                    bubbles: true,
+                    composed: true,
+                    detail: { 
+                        count: filteredData.length,
+                        searchTerm
+                    }
+                }));
+                
+                // Tabelle neu rendern, um gefilterte Ergebnisse anzuzeigen
+                nftTable.render();
+            });
+            
+            // Event-Listener für den Hinzufügen-Button
+            addNftBtn.addEventListener('click', () => {
+                const newNft = {
+                    id: `nft-${Date.now()}`,
+                    type: 'Regular',
+                    categories: ['New', 'Featured'],
+                    status: 'inactive'
+                };
+                
+                // Zum DataProvider hinzufügen
+                dataProvider.addItem(newNft);
+                
+                // Die Tabelle aktualisiert sich automatisch aufgrund des data-changed Events
+                logEvent('nft-added', newNft);
+            });
+            
+            // Initialisieren durch Laden der Daten
+            nftTable.loading = true;
+            dataProvider.load()
+                .then(data => {
+                    logEvent('data-loaded', { count: data.length });
+                })
+                .catch(error => {
+                    console.error('Failed to load NFTs:', error);
+                    logEvent('data-error', { message: error.message });
+                })
+                .finally(() => {
+                    nftTable.loading = false;
+                });
+                
+            console.log('Alle Event-Listener für Demo registriert');
+        });
+    </script>
+    <script type="module" src="components/promotion-info-box.js"></script>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: "Avenir Next", -apple-system, Roboto, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .page-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .action-log {
+            margin-top: 40px;
+            padding: 15px;
+            background-color: #222;
+            border-radius: 8px;
+            border-left: 4px solid #82d616;
+        }
+        
+        .log-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .log-entries {
+            height: 200px;
+            overflow-y: auto;
+            background-color: #111;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        
+        .log-entry {
+            margin: 5px 0;
+            padding: 5px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+        
+        .clear-log {
+            margin-top: 10px;
+            background-color: #333;
+            border: none;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .clear-log:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <h1>NFT Table Demo</h1>
+        
+        <!-- NFT Table Component -->
+        <nft-table src="data/nft-table.json"></nft-table>
+        
+        <!-- Promotion Info Box Component -->
+        <promotion-info-box></promotion-info-box>
+        
+        <!-- Action Log Area -->
+        <div class="action-log">
+            <div class="log-title">Event Log:</div>
+            <div class="log-entries" id="logEntries"></div>
+            <button class="clear-log" id="clearLog">Clear Log</button>
+        </div>
+    </div>
+</body>
+</html>

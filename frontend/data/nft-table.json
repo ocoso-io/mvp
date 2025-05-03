@@ -1,0 +1,32 @@
+[
+  {
+    "id": "IP-1234",
+    "type": "Website",
+    "categories": ["Sport", "Lifestyle", "Fitness", "Beauty"],
+    "status": "active"
+  },
+  {
+    "id": "IP-2345",
+    "type": "Website",
+    "categories": ["Sport", "Lifestyle", "Fitness", "Beauty"],
+    "status": "inactive"
+  },
+  {
+    "id": "IP-3456",
+    "type": "Website",
+    "categories": ["Sport", "Lifestyle", "Fitness", "Beauty"],
+    "status": "offline"
+  },
+  {
+    "id": "IP-4567",
+    "type": "Website",
+    "categories": ["Sport", "Lifestyle", "Fitness", "Beauty"],
+    "status": ""
+  },
+  {
+    "id": "IP-5678",
+    "type": "Website",
+    "categories": ["Sport", "Lifestyle", "Fitness", "Beauty"],
+    "status": "active"
+  }
+]

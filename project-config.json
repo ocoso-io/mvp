@@ -1,0 +1,16 @@
+{
+  "self-hosted-libraries": ["effect"],
+  "component-bundles": {
+    "basic": [],
+    "all": []
+  },
+  "library-bundles": {
+    "basic": [],
+    "all": []
+  },
+  "settings": {
+    "logLevel": "info",
+    "useCDNFallback": true,
+    "timeout": 5000
+  }
+}

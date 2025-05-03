@@ -45,6 +45,7 @@
             display: none; /* zunächst unsichtbar */
         }
     </style>
+    <script src="components/nft-table.js"></script>
 </head>
 <body>
 
@@ -345,6 +346,7 @@
                 </h5>
             </section>
 
+            <nft-table></nft-table>
 
             <table class="data-table">
                 <thead class="table-header">
@@ -436,8 +438,8 @@
                         </button>
                     </td>
                     <td class="action-cell">
-                        <button class="toggle-btn offline inactive" aria-label="Toggle row details">
-                            <span class="toggle-indicator"></span>
+                        <button class="toggle-btn offline" aria-label="Toggle row details">
+                            Create
                         </button>
                     </td>
                 </tr>
@@ -500,9 +502,10 @@
             </section>
 
             <div id="promoShowBox" class="promoShowBox">
-                <div style="display:flex; flex-direction: column; margin: auto; align-content: left; justify-content: left; width: 100%, height: 100%; padding-left: var(--px-50); padding-top: var(--px-5); gap: var(--px-25)">
-                    <button id="closeOverlay" style="background: none; border: none; cursor: pointer"><h6
-                            style="width: var(--px-100); text-align: left; margin-left: -5px;">X CLOSE</h6></button>
+                <div style="display:flex; flex-direction: column; margin: auto; align-items: flex-start; justify-content: flex-start; width: 100%; height: 100%; padding-left: var(--px-50); padding-top: var(--px-5); gap: var(--px-25)">
+                    <button id="closeOverlay" style="background: none; border: none; cursor: pointer">
+                        <h6 style="width: var(--px-100); text-align: left; margin-left: -5px;">X CLOSE</h6>
+                    </button>
                     <img src="img/promo-demo.png" alt="promo-demo" style="width: var(--px-300); height: 250px"/>
                 </div>
             </div>
@@ -586,8 +589,6 @@
 
                 <div style="height: var(--px-80)">&nbsp;</div>
 
-                <div style="height: var(--px-80)">&nbsp;</div>
-
                 <section style="display: flex; flex-direction: row; gap: var(--px-50); flex-wrap: wrap">
 
                     <button id="showPromo" class="content-button" aria-label="Infos schließen">
@@ -601,9 +602,9 @@
 
                     <button id="promotionSubmitButton" class="content-button" aria-label="Infos schließen">
                         <img src="img/Arrow-black.png" alt="Schließen" class="content-button-icon"/>
-                        <span class="content-button-text">
-        <br>Push your show. <br>Save It.<br><br>
-      </span>
+                        <span id="promotion-submit-button-content" class="content-button-text">
+                            <br/>Push your show.<br/>Save It.<br/><br/>
+                        </span>
                     </button>
 
 
@@ -640,6 +641,62 @@
 <script src="js/3d-Navigation.js" defer></script>
 
 <script>
+    function createToggleIndicator() {
+        const indicator = document.createElement('span');
+        indicator.className = 'toggle-indicator';
+        return indicator;
+    }
+
+    function createSubmitButtonFragment(...texts) {
+        const fragment = document.createDocumentFragment();
+        texts.forEach(text => {
+            if(!text || text.trim() === '') {
+                fragment.appendChild(document.createElement('br'));
+            } else {
+                fragment.appendChild(document.createTextNode(text));
+            }
+        });
+        return fragment;
+    }
+
+    function createStandardSubmitButtonFragment() {
+        return createSubmitButtonFragment(
+            '',
+            'Push your show.',
+            '',
+            'Save It.',
+            '',
+            ''
+        );
+    }
+
+    function createActivationSubmitButtonFragment() {
+        return createSubmitButtonFragment(
+            'Push your show.',
+            '',
+            'Save It.',
+            '',
+            'Activate It.',
+            ''
+        );
+    }
+
+    function replaceSubmitButtonContent(fragment) {
+        const buttonContent = document.getElementById('promotion-submit-button-content');
+        if(buttonContent) {
+            buttonContent.replaceChildren(fragment);
+        }
+
+    }
+
+    function useStandardSubmitButton() {
+        replaceSubmitButtonContent(createStandardSubmitButtonFragment());
+    }
+
+    function useActivateSubmitButton() {
+        replaceSubmitButtonContent(createActivationSubmitButtonFragment());
+    }
+
     function getPromotionOverlay() {
         return document.getElementById('promoShowBox');
     }
@@ -664,20 +721,47 @@
         return document.getElementById('promotion-info-container');
     }
 
-    function showPromotionInfoContainer() {
-        getPromotionInfoContainer()?.classList.add('is-visible');
+    function getToggleButtonOfRow(row) {
+        if (!row) {
+            return undefined
+        }
+
+        return row.querySelector('.toggle-btn');
+    }
+
+    function changeToggleButtonToToggleIndicatorByRow(row) {
+        const toggleButton = getToggleButtonOfRow(row);
+        if (!toggleButton) return;
+        toggleButton.replaceChildren(createToggleIndicator())
+    }
+
+    function getToggleButtonByPromotionId(promoId) {
+        return getToggleButtonOfRow(findRowByPromoId(promoId))
+    }
+
+    function showPromotionInfoContainer(promoId) {
+        const promotionContainer = getPromotionInfoContainer();
+        if (!!promotionContainer) {
+            setPromotionTitle(promoId);
+            promotionContainer.dataset.promoId = promoId;
+            promotionContainer.classList.add('is-visible');
+        }
     }
 
     function hidePromotionInfoContainer() {
-        getPromotionInfoContainer()?.classList.remove('is-visible');
+        const promotionContainer = getPromotionInfoContainer();
+        if (!!promotionContainer) {
+            promotionContainer.dataset.promoId = '';
+            promotionContainer.classList.remove('is-visible');
+        }
     }
 
     function showPromotionInfoContainerForButton(button) {
         const row = findTableRowForButton(button);
         if (!row) return;
-
-        setPromotionTitle(findIdTextOfRow(row));
-        showPromotionInfoContainer()
+        const promoId = row.dataset.promoId;
+        setPromotionTitle(promoId);
+        showPromotionInfoContainer(promoId);
     }
 
     function findAllToggleButtons() {
@@ -696,8 +780,53 @@
         return button.closest('tr')
     }
 
+    function findPromotionIdForButton(button) {
+        return findTableRowForButton(button)?.dataset.promoId;
+    }
+
     function findIdTextOfRow(row) {
         return row.querySelector('td')?.textContent?.trim() ?? '';
+    }
+
+    function getAllPromoIdsFromDOM() {
+        const rows = document.querySelectorAll('tr[data-promo-id]');
+        return Array.from(rows).map(row => row.dataset.promoId);
+    }
+
+    function findRowByPromoId(id) {
+        return document.querySelector(`tr[data-promo-id="${id}"]`);
+    }
+
+    function getTableDataEntry(rowId) {
+        const row = findRowByPromoId(rowId);
+        if (!row) return undefined;
+        return {
+            id: id,
+            isActive: row.dataset.promoIsActive === 'true',
+            isOffline: row.dataset.promoIsOffline === 'true',
+        }
+    }
+
+    function initializeTableData() {
+        findAllEditButtons().forEach(button => {
+            const row = findTableRowForButton(button);
+            if (!!row) {
+                row.dataset.promoId = findIdTextOfRow(row);
+                row.dataset.promoIsActive = !!row.querySelector('.toggle-btn.active') ? 'true' : 'false';
+                row.dataset.promoIsOffline = !!row.querySelector('.toggle-btn.offline') ? 'true' : 'false';
+            }
+        })
+    }
+
+    function getTableData() {
+        const tableData = []
+
+        getAllPromoIdsFromDOM().forEach(rowId => {
+            const entry = getTableDataEntry(rowId);
+            !!entry && tableData.push(entry);
+        })
+
+        return tableData;
     }
 
     function getPromotionTitleElement() {
@@ -754,9 +883,12 @@
         }
 
         function handleOfflineToggleButton(toggleButton) {
-            toggleButton?.classList.remove('offline');
-            toggleButton?.classList.add('inactive');
-            showPromotionInfoContainerForButton(toggleButton)
+            const row = findTableRowForButton(toggleButton);
+            if (!!row) {
+                if (row.dataset.promoIsOffline === 'true') {
+                    showPromotionInfoContainer(row.dataset.promoId);
+                }
+            }
         }
 
         function isActiveToggleButton(toggleButton) {
@@ -772,10 +904,11 @@
         }
 
         function handleToggleButton(toggleButton) {
-            // Klasse umschalten
             if (isOfflineToggleButton(toggleButton)) {
+                useActivateSubmitButton();
                 handleOfflineToggleButton(toggleButton);
             } else {
+                useStandardSubmitButton();
                 if (isActiveToggleButton(toggleButton)) {
                     handleActiveToggleButton(toggleButton)
                 } else if (isInactiveToggleButton(toggleButton)) {
@@ -807,16 +940,41 @@
     }
 
     function initializePromotionInfoContainer() {
+        function handleCancelButton(cancelButton) {
+            hidePromotionInfoContainer()
+        }
+
+        function handleSubmitButton(submitButton) {
+            const currentPromoId = getPromotionInfoContainer()?.dataset.promoId;
+            if (!!currentPromoId) {
+                const row = findRowByPromoId(currentPromoId);
+                if (!!row) {
+                    console.log("Found row for promoId: ", currentPromoId, row);
+                    row.dataset.promoIsActive = 'true';
+                    row.dataset.promoIsOffline = 'false';
+                    row.classList.remove('offline');
+                    row.classList.add('active');
+                    getToggleButtonOfRow(row)?.classList.remove('offline');
+                    getToggleButtonOfRow(row)?.classList.add('active');
+                    changeToggleButtonToToggleIndicatorByRow(row)
+                }
+            }
+            useStandardSubmitButton()
+            hidePromotionInfoContainer()
+        }
 
         function bindCancelButtons() {
-            getCancelPromotionButton().addEventListener('click', hidePromotionInfoContainer);
+            const cancelButton = getCancelPromotionButton();
+            if (!!cancelButton) {
+                cancelButton.addEventListener('click', () => handleCancelButton(cancelButton));
+            }
         }
 
         function bindSubmitButton() {
-            getPromotionSubmitButton()?.addEventListener('click', () => {
-                hidePromotionInfoContainer();
-                // ... und was passieren soll wenn die Promotion startet
-            });
+            const button = getPromotionSubmitButton();
+            if (!!button) {
+                button.addEventListener('click', () => handleSubmitButton(button));
+            }
         }
 
         function bindPromotionOverlayButtons() {
@@ -830,6 +988,7 @@
     }
 
     function initializePromotionPage() {
+        initializeTableData()
         initializeShowButtons();
         initializeEditButtons();
         initializeToggleButtons();
@@ -838,9 +997,7 @@
 
     document.addEventListener('DOMContentLoaded', initializePromotionPage);
 
-
 </script>
-
 
 </body>
 </html>
