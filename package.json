@@ -4,11 +4,15 @@
   "description": "OCOSO NFT Staking and Token Contracts",
   "main": "index.js",
   "scripts": {
+    "prebuild": "npm run clean && node scripts/create-bootstrap-config.js && node scripts/generate-rollup-config.js",
     "test": "hardhat test",
     "deploy": "hardhat run scripts/deploy.js --network sepolia",
-    "start": "rollup -c -w",
+    "dev": "node create-bootstrap-config.js && rollup -c -w",
+    "start": "npm run dev",
     "build": "rollup -c",
-    "web:test": "web-test-runner --config web-test-runner.config.js"
+    "web:test": "web-test-runner --config web-test-runner.config.js",
+    "clean": "rimraf build dist",
+    "config": "node scripts/create-bootstrap-config.js"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.9.3",
@@ -18,6 +22,8 @@
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
     "@nomicfoundation/hardhat-verify": "^2.0.13",
     "@open-wc/testing": "^4.0.0",
+    "@rollup/plugin-alias": "^5.1.1",
+    "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
@@ -25,7 +31,9 @@
     "@web/test-runner": "^0.20.1",
     "dotenv": "^16.5.0",
     "hardhat": "^2.23.0",
+    "rimraf": "^6.0.1",
     "rollup": "^4.40.1",
+    "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-serve": "^3.0.0",
     "rollup-plugin-visualizer": "^5.14.0",
