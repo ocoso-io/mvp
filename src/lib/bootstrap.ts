@@ -5,6 +5,9 @@ import bootstrapConfig from '@bootstrap-config';
 export type LibrarySource = {
   localPath: string;
   cdnPath: string;
+  alternativeCDNs?: string[];
+  cdnProvider?: string;
+  browserCompatible?: boolean;
   description?: string;
 };
 
@@ -29,15 +32,39 @@ export async function loadLibrary(name: string): Promise<any> {
   const lib = typedConfig.libraries[name];
   if (!lib) throw new Error(`Library "${name}" not configured`);
 
+  // Warnung, falls die Bibliothek möglicherweise nicht Browser-kompatibel ist
+  if (lib.browserCompatible === false) {
+    console.warn(`Library "${name}" might not be fully browser-compatible`);
+  }
+
   try {
+    // Versuche zuerst die lokale Version zu laden
     return await import(/* webpackIgnore: true */ lib.localPath);
-  } catch (e) {
+  } catch (localError) {
     console.warn(`Local library "${name}" failed to load, using CDN fallback`);
+    
     try {
+      // Versuche die primäre CDN-Quelle
       return await import(/* webpackIgnore: true */ lib.cdnPath);
-    } catch (cdnError) {
-      console.error(`Failed to load library "${name}" from CDN`);
-      throw cdnError;
+    } catch (primaryCdnError) {
+      // Falls alternative CDN-Quellen existieren, versuche diese nacheinander
+      if (lib.alternativeCDNs && lib.alternativeCDNs.length > 0) {
+        console.warn(`Primary CDN for "${name}" failed, trying alternative CDNs`);
+        
+        // Durchlaufe alle alternativen CDN-Quellen
+        for (const alternativeCdn of lib.alternativeCDNs) {
+          try {
+            return await import(/* webpackIgnore: true */ alternativeCdn);
+          } catch (alternativeCdnError) {
+            // Versuche weiter mit der nächsten Alternative
+            console.warn(`Alternative CDN ${alternativeCdn} for "${name}" failed`);
+          }
+        }
+      }
+
+      // Wenn alle CDN-Quellen fehlschlagen, wirf einen Fehler
+      console.error(`Failed to load library "${name}" from all sources`);
+      throw primaryCdnError;
     }
   }
 }
