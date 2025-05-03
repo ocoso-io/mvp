@@ -18,12 +18,12 @@
     "config:rollup": "node scripts/generate-rollup-config.js"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.9.3",
     "effect": "^3.14.18"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
     "@nomicfoundation/hardhat-verify": "^2.0.13",
+    "@openzeppelin/contracts": "^4.9.3",
     "@open-wc/testing": "^4.0.0",
     "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-json": "^6.1.0",
