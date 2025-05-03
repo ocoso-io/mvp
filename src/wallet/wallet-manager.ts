@@ -10,7 +10,7 @@ import { MetaMaskProvider } from './provider/metamask-provider';
 import { NetworkValidator } from './service/network-validator';
 
 export class WalletManager {
-    private provider: WalletProvider;
+    private readonly provider: WalletProvider;
     private networkValidator: NetworkValidator;
     private storageService: StorageService;
     private uiService: UIService;

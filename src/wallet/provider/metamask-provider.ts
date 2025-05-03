@@ -1,6 +1,6 @@
-import { BrowserProvider, Signer } from 'ethers';
-import { WalletProvider } from './wallet-provider.interface';
-import { WalletConnectionError } from '../errors';
+import {BrowserProvider, Signer} from 'ethers';
+import {WalletProvider, WalletProviderEventHandler} from './wallet-provider.interface';
+import {WalletConnectionError} from '../errors';
 
 export class MetaMaskProvider implements WalletProvider {
     private provider: BrowserProvider | null = null;
@@ -47,7 +47,7 @@ export class MetaMaskProvider implements WalletProvider {
         }
 
         try {
-            return await window.ethereum.request({ method: 'eth_accounts' });
+            return await window.ethereum.request({method: 'eth_accounts'});
         } catch (error) {
             console.error('Fehler beim Abrufen der Konten:', error);
             return [];
@@ -81,13 +81,13 @@ export class MetaMaskProvider implements WalletProvider {
         }
     }
 
-    public on(event: string, handler: any): void {
+    public on(event: string, handler: WalletProviderEventHandler): void {
         if (this.isInstalled()) {
             window.ethereum.on(event, handler);
         }
     }
 
-    public off(event: string, handler: any): void {
+    public off(event: string, handler: WalletProviderEventHandler): void {
         if (this.isInstalled()) {
             window.ethereum.removeListener(event, handler);
         }
