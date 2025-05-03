@@ -18,6 +18,169 @@ import { loadJsonFile, writeJsonFile } from "./utils/json-handling.js";
 import { ensureDirectoryExists } from "./utils/path-utils.js";
 import { fetchCDNInfo } from "./utils/cdn-resolver.js";
 
+/**
+ * Cache manager für CDN Informationen
+ */
+class CDNInfoCache {
+  /**
+   * Erstellt eine neue Cache-Instanz
+   * @param {string} cacheDir - Pfad zum Cache-Verzeichnis
+   * @param {number} cacheTTL - Cache-Gültigkeit in Millisekunden (default: 7 Tage)
+   */
+  constructor(cacheDir, cacheTTL = 7 * 24 * 60 * 60 * 1000) {
+    this.cacheDir = cacheDir;
+    this.cacheTTL = cacheTTL;
+    this.cacheFile = path.join(cacheDir, 'cdn-info-cache.json');
+    this.cache = this.loadCache();
+    
+    // Cache-Wartung bei jedem Start
+    this.cleanupExpiredEntries();
+  }
+  
+  /**
+   * Lädt den Cache aus der Datei
+   * @returns {Object} Cache-Inhalt
+   */
+  loadCache() {
+    ensureDirectoryExists(this.cacheDir);
+    
+    if (fs.existsSync(this.cacheFile)) {
+      try {
+        const cacheData = JSON.parse(fs.readFileSync(this.cacheFile, 'utf8'));
+        logger.info(`Loaded CDN info cache with ${Object.keys(cacheData).length} entries`);
+        return cacheData;
+      } catch (error) {
+        logger.warn(`Error loading cache file, creating new cache: ${error.message}`);
+        return {};
+      }
+    }
+    
+    logger.info('No CDN info cache found, creating new cache');
+    return {};
+  }
+  
+  /**
+   * Speichert den Cache in die Datei
+   */
+  saveCache() {
+    try {
+      fs.writeFileSync(this.cacheFile, JSON.stringify(this.cache, null, 2));
+    } catch (error) {
+      logger.warn(`Error saving cache file: ${error.message}`);
+    }
+  }
+  
+  /**
+   * Generiert einen Schlüssel für die Cache-Einträge
+   * @param {string} libraryName - Name der Bibliothek
+   * @param {string} version - Version der Bibliothek
+   * @returns {string} Cache-Schlüssel
+   */
+  getCacheKey(libraryName, version) {
+    return `${libraryName}@${version}`;
+  }
+  
+  /**
+   * Prüft ob ein Eintrag im Cache existiert und noch gültig ist
+   * @param {string} libraryName - Name der Bibliothek
+   * @param {string} version - Version der Bibliothek
+   * @returns {boolean} True wenn ein gültiger Eintrag existiert
+   */
+  hasValidEntry(libraryName, version) {
+    const key = this.getCacheKey(libraryName, version);
+    const entry = this.cache[key];
+    
+    if (!entry) return false;
+    
+    const now = Date.now();
+    return entry.timestamp + this.cacheTTL > now;
+  }
+  
+  /**
+   * Holt CDN-Informationen aus dem Cache
+   * @param {string} libraryName - Name der Bibliothek
+   * @param {string} version - Version der Bibliothek
+   * @returns {Object|null} CDN-Informationen oder null wenn nicht im Cache
+   */
+  get(libraryName, version) {
+    const key = this.getCacheKey(libraryName, version);
+    const entry = this.cache[key];
+    
+    if (!entry) return null;
+    
+    const now = Date.now();
+    if (entry.timestamp + this.cacheTTL < now) {
+      // Eintrag ist abgelaufen
+      delete this.cache[key];
+      this.saveCache();
+      return null;
+    }
+    
+    logger.info(`Using cached CDN info for ${key}`);
+    return entry.data;
+  }
+  
+  /**
+   * Speichert CDN-Informationen im Cache
+   * @param {string} libraryName - Name der Bibliothek
+   * @param {string} version - Version der Bibliothek
+   * @param {Object} data - CDN-Informationen
+   */
+  set(libraryName, version, data) {
+    const key = this.getCacheKey(libraryName, version);
+    this.cache[key] = {
+      timestamp: Date.now(),
+      data
+    };
+    
+    this.saveCache();
+    logger.info(`Cached CDN info for ${key}`);
+  }
+  
+  /**
+   * Entfernt abgelaufene Einträge aus dem Cache
+   */
+  cleanupExpiredEntries() {
+    const now = Date.now();
+    let removedCount = 0;
+    
+    for (const key in this.cache) {
+      if (this.cache[key].timestamp + this.cacheTTL < now) {
+        delete this.cache[key];
+        removedCount++;
+      }
+    }
+    
+    if (removedCount > 0) {
+      logger.info(`Removed ${removedCount} expired entries from CDN info cache`);
+      this.saveCache();
+    }
+  }
+}
+
+/**
+ * Holt CDN-Informationen mit Cache-Unterstützung
+ * @param {string} libraryName - Name der Bibliothek
+ * @param {string} version - Version der Bibliothek 
+ * @param {CDNInfoCache} cache - Cache-Instanz
+ * @returns {Promise<Object>} CDN-Informationen
+ */
+async function getCachedCDNInfo(libraryName, version, cache) {
+  // Zuerst im Cache nachsehen
+  if (cache.hasValidEntry(libraryName, version)) {
+    return cache.get(libraryName, version);
+  }
+  
+  // Wenn nicht im Cache, dann von CDN holen
+  logger.info(`Fetching fresh CDN information for ${libraryName}@${version}...`);
+  const cdnInfo = await fetchCDNInfo(libraryName, version);
+  
+  // Im Cache speichern
+  cache.set(libraryName, version, cdnInfo);
+  
+  return cdnInfo;
+}
+
 // Check if configuration has changed
 function configHasChanged(oldConfig, newConfig) {
     // Remove metadata that should not affect comparison
@@ -81,12 +244,18 @@ async function main() {
             "settings": {
                 "logLevel": "info",
                 "useCDNFallback": true,
-                "timeout": 5000
+                "timeout": 5000,
+                "cacheDir": ".cache"
             }
         };
         logger.info("Created new project-config.json with default values");
         writeJsonFile(projectConfigPath, projectConfig);
     }
+
+    // Cache-Konfiguration
+    const cacheDir = projectConfig.settings?.cacheDir || ".cache";
+    const cachePath = path.resolve(process.cwd(), cacheDir);
+    const cdnCache = new CDNInfoCache(cachePath);
 
     // Load existing bootstrap-config.json if it exists in dist directory
     logger.info("Checking for existing bootstrap-config.json...");
@@ -120,9 +289,8 @@ async function main() {
             const version = dependencies[libName].replace(/[^0-9.]/g, '');
             logger.info(`Library '${libName}' found in version ${version}`);
         
-            // CDN-Informationen holen
-            logger.info(`Fetching CDN information for ${libName}@${version}...`);
-            const cdnInfo = await fetchCDNInfo(libName, version);
+            // CDN-Informationen mit Cache-Unterstützung holen
+            const cdnInfo = await getCachedCDNInfo(libName, version, cdnCache);
         
             if (cdnInfo.sources && cdnInfo.sources.length > 0) {
                 logger.success(`Found ${cdnInfo.sources.length} CDN sources for ${libName}`);
@@ -244,7 +412,8 @@ async function main() {
     const settings = projectConfig.settings || {
         logLevel: "info",
         useCDNFallback: true,
-        timeout: 5000
+        timeout: 5000,
+        cacheDir: ".cache"
     };
 
     // 5. Create the new bootstrap config

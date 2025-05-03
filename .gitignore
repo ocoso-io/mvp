@@ -29,3 +29,4 @@ build/
 # Additional parts for local
 .local/
 WEB-INF/
+.cache/
