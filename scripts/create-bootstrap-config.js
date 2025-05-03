@@ -119,23 +119,29 @@ async function main() {
         if (dependencies[libName]) {
             const version = dependencies[libName].replace(/[^0-9.]/g, '');
             logger.info(`Library '${libName}' found in version ${version}`);
-            
+        
             // CDN-Informationen holen
             logger.info(`Fetching CDN information for ${libName}@${version}...`);
-            const cdnSources = await fetchCDNInfo(libName, version);
+            const cdnInfo = await fetchCDNInfo(libName, version);
+        
+            if (cdnInfo.sources && cdnInfo.sources.length > 0) {
+                logger.success(`Found ${cdnInfo.sources.length} CDN sources for ${libName}`);
             
-            if (cdnSources.length > 0) {
-                logger.success(`Found ${cdnSources.length} CDN sources for ${libName}`);
-                
                 foundLibraries[libName] = {
                     localPath: `/lib/${libName}.js`,
                     // Verwende die erste (beste) CDN-URL
-                    cdnPath: cdnSources[0].url,
+                    cdnPath: cdnInfo.sources[0].url,
                     // Speichere alle alternativen CDN-Quellen
-                    alternativeCDNs: cdnSources.slice(1).map(source => source.url),
-                    cdnProvider: cdnSources[0].name,
+                    alternativeCDNs: cdnInfo.sources.slice(1).map(source => source.url),
+                    cdnProvider: cdnInfo.sources[0].name,
                     description: `Automatically configured library from package.json`
                 };
+            
+                // Optional: Zusätzliche Metadaten speichern
+                if (cdnInfo.browserCompatible === false) {
+                    logger.warn(`Library ${libName} might not be fully browser-compatible`);
+                    foundLibraries[libName].browserCompatible = false;
+                }
             } else {
                 logger.warn(`No CDN sources found for ${libName}, using default jsDelivr URL`);
                 foundLibraries[libName] = {
