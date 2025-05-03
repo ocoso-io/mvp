@@ -14,8 +14,9 @@
 import fs from "fs";
 import path from 'path';
 import { logger } from "./utils/logger.js";
-import {loadJsonFile, writeJsonFile} from "./utils/json-handling.js";
-import {ensureDirectoryExists} from "./utils/path-utils.js";
+import { loadJsonFile, writeJsonFile } from "./utils/json-handling.js";
+import { ensureDirectoryExists } from "./utils/path-utils.js";
+import { fetchCDNInfo } from "./utils/cdn-resolver.js";
 
 // Check if configuration has changed
 function configHasChanged(oldConfig, newConfig) {
@@ -113,15 +114,37 @@ async function main() {
     // Process dependencies from package.json
     const dependencies = { ...packageJson.dependencies, ...packageJson.devDependencies };
 
+    // Für jede selbst-gehostete Bibliothek
     for (const libName of selfHostedLibraries) {
         if (dependencies[libName]) {
             const version = dependencies[libName].replace(/[^0-9.]/g, '');
-            logger.success(`Library '${libName}' found in version ${version}`);
-            foundLibraries[libName] = {
-                localPath: `/lib/${libName}.js`,
-                cdnPath: `https://cdn.jsdelivr.net/npm/${libName}@${version}/dist/index.min.js`,
-                description: `Automatically configured library from package.json`
-            };
+            logger.info(`Library '${libName}' found in version ${version}`);
+            
+            // CDN-Informationen holen
+            logger.info(`Fetching CDN information for ${libName}@${version}...`);
+            const cdnSources = await fetchCDNInfo(libName, version);
+            
+            if (cdnSources.length > 0) {
+                logger.success(`Found ${cdnSources.length} CDN sources for ${libName}`);
+                
+                foundLibraries[libName] = {
+                    localPath: `/lib/${libName}.js`,
+                    // Verwende die erste (beste) CDN-URL
+                    cdnPath: cdnSources[0].url,
+                    // Speichere alle alternativen CDN-Quellen
+                    alternativeCDNs: cdnSources.slice(1).map(source => source.url),
+                    cdnProvider: cdnSources[0].name,
+                    description: `Automatically configured library from package.json`
+                };
+            } else {
+                logger.warn(`No CDN sources found for ${libName}, using default jsDelivr URL`);
+                foundLibraries[libName] = {
+                    localPath: `/lib/${libName}.js`,
+                    cdnPath: `https://cdn.jsdelivr.net/npm/${libName}@${version}`,
+                    cdnProvider: 'jsdelivr-fallback',
+                    description: `Automatically configured library from package.json (no CDN info found)`
+                };
+            }
         } else {
             logger.warn(`Library '${libName}' specified in project-config.json but not found in package.json!`);
         }

@@ -44,6 +44,8 @@ const production = !process.env.ROLLUP_WATCH;
 
 // Base configuration
 const baseConfig = {
+  context: 'this',
+  external: ['ws', 'ws/wrapper.mjs'],
   plugins: [
     alias({
       entries: [
