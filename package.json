@@ -3,16 +3,19 @@
   "version": "1.0.0",
   "description": "OCOSO NFT Staking and Token Contracts",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "prebuild": "npm run clean && node scripts/create-bootstrap-config.js && node scripts/generate-rollup-config.js",
+    "prebuild": "npm run clean && npm run config",
     "test": "hardhat test",
     "deploy": "hardhat run scripts/deploy.js --network sepolia",
-    "dev": "node create-bootstrap-config.js && rollup -c -w",
+    "dev": "npm run clean && npm run config && rollup -c -w",
     "start": "npm run dev",
     "build": "rollup -c",
     "web:test": "web-test-runner --config web-test-runner.config.js",
     "clean": "rimraf build dist",
-    "config": "node scripts/create-bootstrap-config.js"
+    "config": "npm run config:bootstrap && npm run config:rollup",
+    "config:bootstrap": "node scripts/create-bootstrap-config.js",
+    "config:rollup": "node scripts/generate-rollup-config.js"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.9.3",

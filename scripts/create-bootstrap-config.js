@@ -11,79 +11,11 @@
  * It runs automatically before each build to ensure configuration is up-to-date.
  */
 
-const fs = require('fs');
-const path = require('path');
-
-// Determine if running in a CI environment
-const isCI = process.env.CI === 'true';
-
-// Colored console output for better readability (disabled in CI environments)
-const colors = {
-    reset: isCI ? '' : "\x1b[0m",
-    bright: isCI ? '' : "\x1b[1m",
-    dim: isCI ? '' : "\x1b[2m",
-    red: isCI ? '' : "\x1b[31m",
-    green: isCI ? '' : "\x1b[32m",
-    yellow: isCI ? '' : "\x1b[33m",
-    blue: isCI ? '' : "\x1b[34m",
-    magenta: isCI ? '' : "\x1b[35m",
-    cyan: isCI ? '' : "\x1b[36m"
-};
-
-// Logger for better console output
-const logger = {
-    info: (msg) => console.log(`${colors.blue}INFO:${colors.reset} ${msg}`),
-    success: (msg) => console.log(`${colors.green}SUCCESS:${colors.reset} ${msg}`),
-    warn: (msg) => console.log(`${colors.yellow}WARNING:${colors.reset} ${msg}`),
-    error: (msg) => console.log(`${colors.red}ERROR:${colors.reset} ${msg}`),
-    heading: (msg) => console.log(`\n${colors.bright}${colors.cyan}${msg}${colors.reset}`),
-    separator: () => console.log("----------------------------------------")
-};
-
-// Ensure a directory exists
-function ensureDirectoryExists(dirPath) {
-    if (!fs.existsSync(dirPath)) {
-        try {
-            fs.mkdirSync(dirPath, { recursive: true });
-            logger.info(`Created directory: ${dirPath}`);
-        } catch (error) {
-            logger.error(`Failed to create directory ${dirPath}: ${error.message}`);
-            process.exit(1);
-        }
-    }
-}
-
-// Function to load and parse JSON files
-function loadJsonFile(filePath) {
-    try {
-        const fileContent = fs.readFileSync(filePath, 'utf8');
-        return JSON.parse(fileContent);
-    } catch (error) {
-        if (error.code === 'ENOENT') {
-            logger.info(`File ${filePath} doesn't exist. A new one will be created.`);
-            return null;
-        }
-        logger.error(`Error loading ${filePath}: ${error.message}`);
-        process.exit(1);
-    }
-}
-
-// Function to write to JSON files
-function writeJsonFile(filePath, data) {
-    try {
-        // Ensure the directory exists
-        const dirPath = path.dirname(filePath);
-        ensureDirectoryExists(dirPath);
-        
-        const jsonContent = JSON.stringify(data, null, 2);
-        fs.writeFileSync(filePath, jsonContent, 'utf8');
-        logger.success(`File ${filePath} successfully written`);
-        return true;
-    } catch (error) {
-        logger.error(`Error writing ${filePath}: ${error.message}`);
-        process.exit(1);
-    }
-}
+import fs from "fs";
+import path from 'path';
+import { logger } from "./utils/logger.js";
+import {loadJsonFile, writeJsonFile} from "./utils/json-handling.js";
+import {ensureDirectoryExists} from "./utils/path-utils.js";
 
 // Check if configuration has changed
 function configHasChanged(oldConfig, newConfig) {
