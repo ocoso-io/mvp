@@ -6,7 +6,7 @@ import { StorageService } from './service/storage-service';
 import { UIService } from './service/ui-service';
 import { EventService } from './service/event-service';
 import { WalletProvider } from './provider/wallet-provider.interface';
-import { MetaMaskProvider } from './provider/metamask-provider';
+import { MetaMaskProvider } from './provider/MetaMaskProvider';
 import { NetworkValidator } from './service/network-validator';
 
 export class WalletManager {
