@@ -110,11 +110,11 @@
   --color-text-inverse rgba (255, 255, 0, 1);
   --color-text-secondary rgba (255, 255, 0, 1);
   --color-text-strong rgba (255, 255, 0, 1);
-  --font-size-body: 200rem;
-  --font-size-body-bold: 200rem;
-  --font-size-small: 200rem;
-  --font-size-small:-bold 200rem;
-  --font-weight-bold: 200rem;
+  --font-size-body: 1.5rem;
+  --font-size-body-bold: 1.5rem;
+  --font-size-small: 0.875rem;
+  --font-size-small:-bold 0.875rem;
+  --font-weight-bold: 800;
   --max-width: 2000rem;
   --shadow-sm: 0 var(--px-2) var(--px-5) rgba(0, 0, 0, 0.2);
 }

@@ -126,6 +126,38 @@
   .mobile-dropdown-icon{margin-left:.5rem; width:1rem; height:1rem;}
  
  
+ 
+ 
+   /* greift nur im Mobil-Overlay */
+  .mobile-flag-nav .flag-item.active-li > a {
+    position: relative;                     /* Anker für ::after */
+    background: #ffef00;                /* Gelb entfernen, sonst verdeckt! */
+    transition: box-shadow 0.2s ease;      /* smoother hover-Switch */
+  }
+ 
+ /* Ganzer Verlauf auf aktivem List-Item */
+.mobile-flag-nav .flag-item.active-li{
+  position: relative;        /* Anker für ::before */
+}
+
+/* Verlauf (liegt unter Click-Layer, über Hintergrund) */
+.mobile-flag-nav .flag-item.active-li > a::after{
+  content:'';
+  position:absolute; inset:0;
+  background: linear-gradient(90deg,#ffef00 50%,#ffffff 100%), #ffef00;
+  box-shadow: inset var(--px-2) var(--px-2) var(--px-1) #ffffff;
+  opacity:0;                               /* Start: unsichtbar */
+  transition:opacity .2s ease;             /* 0,2 s Fade */
+  z-index:0;
+  pointer-events:none;                    /* Kein Klick-Abfang */
+}
+
+/* Aktiv – Overlay wird eingeblendet */
+.mobile-flag-nav .flag-item.active-li > a::after{
+  opacity:0.8;                              /* Ziel-Deckkraft */
+}
+ 
+ 
 </style>
 
 <!-- Hamburger-Button -->
@@ -140,71 +172,71 @@
     <li class="flag-wrapper hidden">
       <ul class="flag-list">
         <li class="flag-item hidden">
-			<a href="content-creator.html"><h3 class="text-box-wide">Creators</h3><img src="img/Arrow-Down.png" alt="" class="mobile-dropdown-icon"/></a>
+			<a href="content-creator.html"><h3 style="color: black">Creators</h3><img src="img/Arrow-Down.png" alt="" class="mobile-dropdown-icon"/></a>
           <ul>
             <li class="flag-item hidden">
-              <a href="content-mint.html"><h3 class="text-box-wide">Mint</h3></a>
+              <a href="content-mint.html"><h3 style="color: black">Mint</h3></a>
             </li>
             <li class="flag-item hidden">
-				<a href="content-provide.html"><h3 class="text-box-wide">Provide</h3><img src="img/Arrow-Down.png" alt="" class="mobile-dropdown-icon"/></a>
+				<a href="content-provide.html"><h3 style="color: black">Provide</h3><img src="img/Arrow-Down.png" alt="" class="mobile-dropdown-icon"/></a>
               <ul>
                 <li class="flag-item hidden">
-                  <a href="content-promote.html"><h3 class="text-box-wide">Promote</h3></a>
+                  <a href="content-promote.html"><h3 style="color: black">Promote</h3></a>
                 </li>
                 <li class="flag-item hidden">
-                  <a href="content-monetize.html"><h3 class="text-box-wide">Monetize</h3><img src="img/Arrow-Down.png" alt="" class="mobile-dropdown-icon"/></a>
+                  <a href="content-monetize.html"><h3 style="color: black">Monetize</h3><img src="img/Arrow-Down.png" alt="" class="mobile-dropdown-icon"/></a>
                   <ul>
                     <li class="flag-item hidden">
-                      <a href="content-marketing.html"><h3 class="text-box-wide">Marketing</h3></a>
+                      <a href="content-marketing.html"><h3 style="color: black">Marketing</h3></a>
                     </li>
                     <li class="flag-item hidden">
-                      <a href="content-licencing.html"><h3 class="text-box-wide">Licencing</h3></a>
+                      <a href="content-licencing.html"><h3 style="color: black">Licencing</h3></a>
                     </li>
                     <li class="flag-item hidden">
-                      <a href="content-subscribers.html"><h3 class="text-box-wide">Subscribers</h3></a>
+                      <a href="content-subscribers.html"><h3 style="color: black">Subscribers</h3></a>
                     </li>
                   </ul>
                 </li>
                 <li class="flag-item hidden">
-                  <a href="content-trade.html"><h3 class="text-box-wide">Trade</h3></a>
+                  <a href="content-trade.html"><h3 style="color: black">Trade</h3></a>
                 </li>
               </ul>
             </li>
             <li class="flag-item hidden">
-              <a href="content-insights.html"><h3 class="text-box-wide">Insights</h3></a>
+              <a href="content-insights.html"><h3 style="color: black">Insights</h3></a>
             </li>
           </ul>
         </li>
         <li class="flag-item hidden">
-          <a href="investor.html"><h3 class="text-box-wide">Investors</h3><img src="img/Arrow-Down.png" alt="" class="mobile-dropdown-icon"/></a>
+          <a href="investor.html"><h3 style="color: black">Investors</h3><img src="img/Arrow-Down.png" alt="" class="mobile-dropdown-icon"/></a>
           <ul>
             <li class="flag-item hidden">
-              <a href="investor-market.html"><h3 class="text-box-wide">Market</h3><img src="img/Arrow-Down.png" alt="" class="mobile-dropdown-icon"/></a>
+              <a href="investor-market.html"><h3 style="color: black">Market</h3><img src="img/Arrow-Down.png" alt="" class="mobile-dropdown-icon"/></a>
               <ul>
                 <li class="flag-item hidden">
-                  <a href="investor-market-overview.html"><h3 class="text-box-wide">Overview</h3></a>
+                  <a href="investor-market-overview.html"><h3 style="color: black">Overview</h3></a>
                 </li>
                 <li class="flag-item hidden">
-                  <a href="investor-market-invest.html"><h3 class="text-box-wide">Invest + Trade</h3></a>
+                  <a href="investor-market-invest.html"><h3 style="color: black">Invest + Trade</h3></a>
                 </li>
                 <li class="flag-item hidden">
-                  <a href="investor-market-results.html"><h3 class="text-box-wide">Your Results</h3></a>
+                  <a href="investor-market-results.html"><h3 style="color: black">Your Results</h3></a>
                 </li>
               </ul>
             </li>
             <li class="flag-item hidden">
-                <a href="investor-trends.html"><h3 class="text-box-wide">Trends</h3></a>
+                <a href="investor-trends.html"><h3 style="color: black">Trends</h3></a>
             </li>
             <li class="flag-item hidden">
-              <a href="investor-partizipation.html"><h3 class="text-box-wide">Partizipate</h3></a>
+              <a href="investor-partizipation.html"><h3 style="color: black">Partizipate</h3></a>
             </li>
           </ul>
         </li>
         <li class="flag-item hidden">
-          <a href="advertiser.html"><h3 class="text-box-wide">Advertisers</h3></a>
+          <a href="advertiser.html"><h3 style="color: black">Advertisers</h3></a>
         </li>
         <li class="flag-item hidden">
-			<a href="user.html"><h3 class="text-box-wide">Users</h3></a>
+			<a href="user.html"><h3 style="color: black">Users</h3></a>
         </li>
       </ul>
     </li>

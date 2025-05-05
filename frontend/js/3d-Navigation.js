@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 	
-const stylesheetHref = "../styleV033-kartennavigation.css";
+//const stylesheetHref = "../styleV033-kartennavigation.css";
+const stylesheetHref = "css/02-components.css";
 
 function waitForStylesheet(href, callback) {
   const link = Array.from(document.styleSheets)

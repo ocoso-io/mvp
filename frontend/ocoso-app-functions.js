@@ -45,7 +45,8 @@ function updateCardStackVisibility(){
 function handleResize() {
   const hb   = document.querySelector('.hamburger-button');
   const main = document.querySelector('.main-navigation');
-  const mob  = isMobileDevice(); /*const mob  = window.matchMedia('(max-width: 991px)').matches;*/
+  const mob  = isMobileDevice()
+               || window.matchMedia('(max-width: 991px)').matches;
 
   if (hb && main) {
     hb.style.display   = mob ? 'flex' : 'none';
@@ -421,6 +422,67 @@ function initializeFlagNav(containerElement) {
             wrapperLi.classList.remove('hidden');
             wrapperLi.classList.add('visible');
             setTimeout(() => { animateOpen(wrapperLi); }, 50);
+            
+            
+/* ==========================================================
+   Auto-Open → öffnet Vorfahren in Reihenfolge
+   -------------------------------------------------------- */
+
+/* 1 · Pfad normalisieren */
+const canon = p => p.replace(/\/?(index\.html)?\/?$/, '');
+
+/* 2 · Aktiven Link finden */
+const current = [...nav.querySelectorAll('a[href]')]
+                  .find(a => canon(a.pathname) === canon(location.pathname));
+if (!current) { console.warn('kein aktiver Link'); }
+
+/* 3 · Trail außen→innen */
+const trail = [];
+let li = current?.closest('li.flag-item');
+while (li && !li.classList.contains('flag-wrapper')) {
+  trail.unshift(li);
+  li = li.parentElement.closest('li.flag-item, .flag-wrapper');
+}
+
+/* 4 · Helper – wartet nur auf **einen** height-End */
+function waitHeight(ul){
+  return new Promise(res=>{
+    const h = e=>{
+      if (e.target === ul && e.propertyName === 'height'){
+        ul.removeEventListener('transitionend', h);
+        res();
+      }
+    };
+    ul.addEventListener('transitionend', h);
+  });
+}
+
+/* 5 · Öffnet ein <li> + wartet */
+async function openLi(li){
+  const ul = li.querySelector(':scope > ul');
+  if (!ul || li.classList.contains('expanded')) return;
+
+  const p = waitHeight(ul);
+  animateOpen(li);
+  await p;                       // erst weiter, wenn fertig
+}
+
+/* 6 · Warte, bis Root-<ul> aufgeklappt ist */
+const rootUl = wrapperLi.querySelector(':scope > ul');
+(async ()=>{
+  if (rootUl) await waitHeight(rootUl);   // Root-Animation abwarten
+
+  for (const step of trail) await openLi(step);
+
+  /* Finishing */
+  current?.classList.add('active');
+  current?.closest('li.flag-item')?.classList.add('active-li');
+  current?.scrollIntoView({block:'center', behavior:'smooth'});
+})();
+            
+            
+            
+            
         } else { console.warn('Flag wrapper not found inside nav.'); }
     });
 
@@ -510,11 +572,11 @@ function initializeFlagNav(containerElement) {
 } // --- End of initializeFlagNav function ---
 
 
-/* ========== 12. Demo-Fetch JSON ========== */
+/* ========== 12. Demo-Fetch JSON ========== 
 fetch('/data/ipnft_dashboard_data.json')
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
   .then(d => console.log('Erste Kategorie:', d.kategorien?.[0]))
-  .catch(console.error);
+  .catch(console.error);*/
 
 /* ========== 13. DOMContentLoaded bootstrap ========== */
 document.addEventListener('DOMContentLoaded', () => {
