@@ -24,7 +24,7 @@ function waitForStylesheet(href, callback) {
 waitForStylesheet(stylesheetHref, () => {
   console.log("Stylesheet geladen – Script startet.");
   
-   window.scrollTo(0, 1); // 🔁 Initialer Scroll zur Aktivierung
+   // window.scrollTo(0, 1); 🔁 Initialer Scroll zur Aktivierung
 
     const cards   = document.querySelectorAll('.card');
     const stack = document.querySelector('.card-stack');
