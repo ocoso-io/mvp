@@ -249,11 +249,31 @@ body {
   max-width: var(--px-600);
   align-items: flex-start;
   gap: var(--px-10);
-  color: #252f40;
+  color: #f00;
   text-transform: uppercase;
   /*flex-wrap: wrap;*/
   justify-content: space-around;
 }
+/* Unterpunkt im Dropdown */
+.main-navigation a.active-link{
+  background:#ffef00;
+  color:#000;
+}
+
+/* Haupt-Menü-Button */
+.main-navigation .nav-button.active-link{
+  background:#ffef00;
+  color:#000;
+}
+
+/* Gelber Hintergrund */
+.main-navigation a.active-link,
+.main-navigation .nav-button.active-link{
+  background:#ffef00;
+  color:#000;
+}
+
+
 .nav-item-wrapper {
   display: flex;
   overflow: hidden;

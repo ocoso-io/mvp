@@ -13,7 +13,7 @@
         <div class="nav-item-wrapper">
           <div data-submenu="submenuCreators" class="nav-item-container">
             <a href="content-creator.html"><button class="nav-button">
-              <span class="nav-text">CREATORS</span>
+              <span class="nav-text">CREATORS!</span>
               <img
                 src="img/Arrow-Down.png"
                 alt="Dropdown indicator"
@@ -107,56 +107,3 @@
     </div>
   </div>
 </header>
-
-
-
-<!-- Navigation-spezifisches Script -->
-<script>
-	
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('Navigation DOMContentLoaded reached');
-  
-  // Setze das Flag, damit globale Hover-Funktionen deaktiviert werden.
-  window.disableGlobalNavHover = true;
-  console.log('++++++++++++ Navigations-Script executed');
-  
-  const navItems = document.querySelectorAll('.nav-item-container[data-submenu]');
-  navItems.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-      showSubmenuForItem(item);
-    });
-    item.addEventListener('mouseleave', () => {
-      setTimeout(() => {
-        if (!document.getElementById('overlaySubMenu').matches(':hover')) {
-          hideSubmenu();
-        }
-      }, 200);
-    });
-  });
-  
-  const overlay = document.getElementById('overlaySubMenu');
-  overlay.addEventListener('mouseleave', hideSubmenu);
-  overlay.addEventListener('mouseenter', () => {
-    overlay.style.display = 'block';
-  });
-  
-  function showSubmenuForItem(item) {
-    const submenuId = item.getAttribute('data-submenu');
-    const submenuElem = document.getElementById(submenuId);
-    if (!submenuElem) { return; }
-    const overlay = document.getElementById('overlaySubMenu');
-    overlay.innerHTML = submenuElem.innerHTML;
-    overlay.style.display = 'block';
-    // Positioniere das Overlay var(--px-20) unterhalb des nav-item-container
-    const rect = item.getBoundingClientRect();
-    overlay.style.left = rect.left + 'px';
-    overlay.style.top  = (rect.bottom + 20) + 'px';
-  }
-  
-  function hideSubmenu() {
-    document.getElementById('overlaySubMenu').style.display = 'none';
-  }
-});
-	
-//# sourceURL=navigation.html.script.js
-</script>
