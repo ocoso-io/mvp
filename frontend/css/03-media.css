@@ -80,9 +80,7 @@
      /* sehr kleine Geräte → horizontales Scroll-Fallback */
     display:block; 
     overflow-x:auto; 
-  } 
-  
-  
+  }   
 }
 
 @media (max-width: 768px) { /* Kept as pixels */
@@ -208,6 +206,10 @@
   }
   .card-stack-wrapper {
     display: none !important;
+  }
+  .starttext-block {
+    width: 100%;
+    padding: 0 0 var(--px-20) 0;
   }
 }
 
