@@ -1,13 +1,13 @@
-// src/wallet-manager.ts
+// src/WalletManager.ts
 import { BrowserProvider, Signer } from 'ethers';
 import { WalletManagerConfig, WalletEvent, WalletState } from './types';
 import { NetworkValidationError } from './errors';
-import { StorageService } from './service/storage-service';
-import { UIService } from './service/ui-service';
-import { EventService } from './service/event-service';
-import { WalletProvider } from './provider/wallet-provider.interface';
+import { StorageService } from './service/StorageService';
+import { UIService } from './service/UIService';
+import { EventService } from './service/EventService';
+import { WalletProvider } from './provider/WalletProvider.interface';
 import { MetaMaskProvider } from './provider/MetaMaskProvider';
-import { NetworkValidator } from './service/network-validator';
+import { NetworkValidator } from './service/NetworkValidator';
 
 export class WalletManager {
     private readonly provider: WalletProvider;

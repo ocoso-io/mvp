@@ -1,5 +1,5 @@
 import {BrowserProvider, Signer} from 'ethers';
-import {WalletProvider, WalletProviderEventHandler} from './wallet-provider.interface';
+import {WalletProvider, WalletProviderEventHandler} from './WalletProvider.interface';
 import {WalletConnectionError} from '../errors';
 
 export class MetaMaskProvider implements WalletProvider {

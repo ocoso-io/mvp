@@ -1,5 +1,5 @@
 import { type BrowserProvider, type Signer } from 'ethers';
-import { type WalletProvider, type WalletProviderEventHandler } from './wallet-provider.interface';
+import { type WalletProvider, type WalletProviderEventHandler } from './WalletProvider.interface';
 
 /**
  * An empty wallet provider that implements the WalletProvider interface
