@@ -191,8 +191,7 @@ export class NFTTable extends HTMLElement {
             return;
         }
 
-        const rowsHtml = data.map(nft => this.renderRow(nft)).join('');
-        this.gridBodyElement.innerHTML = rowsHtml;
+        this.gridBodyElement.innerHTML = data.map(nft => this.renderRow(nft)).join('');
 
         // Event-Listener für Action-Buttons hinzufügen
         const actionButtons = this.gridBodyElement.querySelectorAll('.nft-action-button');
