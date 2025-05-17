@@ -16,9 +16,9 @@
     "config": "npm run config:bootstrap && npm run config:rollup",
     "config:bootstrap": "node scripts/create-bootstrap-config.js",
     "config:rollup": "node scripts/generate-rollup-config.js",
-    "lint": "eslint . --ext .ts",
+    "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
-    "lint:watch": "esw . --ext .ts,tsx --watch"
+    "lint:watch": "esw . --ext .ts,.tsx --watch"
   },
   "dependencies": {
     "effect": "^3.14.18",
