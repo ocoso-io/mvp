@@ -1,13 +1,14 @@
 // src/WalletManager.ts
-import { BrowserProvider, Signer } from 'ethers';
-import { WalletManagerConfig, WalletEvent, WalletState } from './types';
-import { NetworkValidationError } from './errors';
-import { StorageService } from './service/StorageService';
-import { UIService } from './service/UIService';
-import { EventService } from './service/EventService';
-import { WalletProvider } from './provider/WalletProvider.interface';
-import { MetaMaskProvider } from './provider/MetaMaskProvider';
-import { NetworkValidator } from './service/NetworkValidator';
+import {BrowserProvider, Signer} from 'ethers';
+
+import {NetworkValidationError} from './errors';
+import {MetaMaskProvider} from './provider/MetaMaskProvider';
+import {WalletProvider} from './provider/WalletProvider.interface';
+import {EventService} from './service/EventService';
+import {NetworkValidator} from './service/NetworkValidator';
+import {StorageService} from './service/StorageService';
+import {UIService} from './service/UIService';
+import {WalletEvent, WalletManagerConfig, WalletState} from './types';
 
 export class WalletManager {
     private readonly provider: WalletProvider;
@@ -71,7 +72,9 @@ export class WalletManager {
             this.setState(WalletState.CONNECTED);
 
             // Event auslösen
-            this.eventService.dispatchEvent(WalletEvent.CONNECTED, { account: this.currentAccount });
+            this.eventService.dispatchEvent(
+                WalletEvent.CONNECTED, {account: this.currentAccount}
+            );
 
             return this.currentAccount;
         } catch (error) {
@@ -108,10 +111,11 @@ export class WalletManager {
         }
 
         // Desktop-Benutzer zur Download-Seite leiten
-        const shouldInstall = confirm('MetaMask ist nicht installiert. Möchtest du es jetzt installieren?');
-        if (shouldInstall) {
-            window.open('https://metamask.io/download/', '_blank');
-        }
+        this.uiService.showNotification(
+            'MetaMask ist nicht installiert. Du wirst zur Download-Seite weitergeleitet.',
+            'info'
+        );
+        window.open('https://metamask.io/download/', '_blank');
 
         return false;
     }
@@ -139,7 +143,9 @@ export class WalletManager {
     private handleConnectionError(error: unknown): void {
         if (error instanceof Error) {
             // Benutzerabbruch nicht als Fehler behandeln
-            if (error.message.includes('user rejected') || error.message.includes('User rejected')) {
+            if (error.message.includes('user rejected')
+                || error.message.includes('User rejected')
+            ) {
                 console.warn('Benutzer hat die Verbindung abgelehnt');
                 this.setState(WalletState.DISCONNECTED);
                 return;
@@ -152,23 +158,25 @@ export class WalletManager {
         }
 
         console.error('Fehler bei der Verbindung zur Wallet:', error);
-        this.uiService.showNotification('Verbindung zur Wallet fehlgeschlagen. Bitte versuche es erneut.', 'error');
+        this.uiService.showNotification(
+            'Verbindung zur Wallet fehlgeschlagen. Bitte versuche es erneut.',
+            'error'
+        );
         this.setState(WalletState.ERROR);
     }
 
-    // Status ändern
     private setState(newState: WalletState): void {
         const oldState = this.state;
         this.state = newState;
 
-        // Event auslösen bei Statusänderung, wenn sich der Status tatsächlich geändert hat
         if (oldState !== newState) {
-            this.eventService.dispatchEvent(WalletEvent.CHAIN_CHANGED, { oldState, newState });
+            this.eventService.dispatchEvent(WalletEvent.CHAIN_CHANGED, {oldState, newState});
         }
     }
 
     // Kontoänderungen verarbeiten
-    private handleAccountsChanged = async (accounts: string[]): Promise<void> => {
+    private handleAccountsChanged = async (args: unknown): Promise<void> => {
+        const accounts = args as string[];
         if (accounts.length === 0) {
             // Benutzer hat seine Wallet getrennt
             await this.disconnectWallet();
@@ -178,12 +186,12 @@ export class WalletManager {
             this.uiService.updateWalletButton(accounts[0]);
 
             // Event auslösen
-            this.eventService.dispatchEvent(WalletEvent.ACCOUNTS_CHANGED, { account: accounts[0] });
+            this.eventService.dispatchEvent(WalletEvent.ACCOUNTS_CHANGED, {account: accounts[0]});
         }
     };
 
     // Netzwerkwechsel verarbeiten
-    private handleChainChanged = async (): Promise<void> => {
+    private handleChainChanged = async (_args: unknown): Promise<void> => {
         // Bei Netzwerkwechsel die Seite neu laden
         window.location.reload();
     };
@@ -231,8 +239,11 @@ export class WalletManager {
                     await this.validateCurrentNetwork();
                     this.uiService.updateWalletButton(this.currentAccount);
                     this.setState(WalletState.CONNECTED);
-                    this.eventService.dispatchEvent(WalletEvent.CONNECTED, { account: this.currentAccount });
-                } catch (error) {
+                    this.eventService.dispatchEvent(
+                        WalletEvent.CONNECTED,
+                        {account: this.currentAccount}
+                    );
+                } catch {
                     this.storageService.saveItem('connected', false);
                 }
             } else {

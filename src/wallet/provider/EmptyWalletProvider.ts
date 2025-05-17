@@ -1,4 +1,5 @@
 import { type BrowserProvider, type Signer } from 'ethers';
+
 import { type WalletProvider, type WalletProviderEventHandler } from './WalletProvider.interface';
 
 /**

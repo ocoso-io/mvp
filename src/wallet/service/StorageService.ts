@@ -1,7 +1,7 @@
 export class StorageService {
     private prefix = 'wallet_v1_';
 
-    public saveItem(key: string, value: any): void {
+    public saveItem(key: string, value: unknown): void {
         try {
             const storageKey = this.prefix + key;
             const valueToStore = typeof value === 'string' ? value : JSON.stringify(value);

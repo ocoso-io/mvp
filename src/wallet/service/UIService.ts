@@ -15,8 +15,7 @@ export class UIService {
 
         if (account) {
             // Adresse für die Anzeige kürzen
-            const truncatedAddress = `${account.slice(0, 6)}...${account.slice(-4)}`;
-            buttonText.textContent = truncatedAddress;
+            buttonText.textContent = `${account.slice(0, 6)}...${account.slice(-4)}`;
             button.classList.add('connected');
         } else {
             buttonText.textContent = 'WALLET VERBINDEN';

@@ -1,5 +1,5 @@
 // Export der Singleton-Instanz
-import {WalletManager} from "./WalletManager";
+import {WalletManager} from './WalletManager';
 
 export const walletManager = new WalletManager();
 

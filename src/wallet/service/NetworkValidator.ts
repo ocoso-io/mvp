@@ -1,5 +1,5 @@
-import { NetworkInfo, NETWORK_INFO } from '../networks';
 import { NetworkValidationError } from '../errors';
+import { NetworkInfo, NETWORK_INFO } from '../networks';
 
 export class NetworkValidator {
     private supportedChainIds: number[];

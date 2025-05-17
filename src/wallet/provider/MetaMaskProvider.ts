@@ -1,6 +1,8 @@
 import {BrowserProvider, Signer} from 'ethers';
-import {WalletProvider, WalletProviderEventHandler} from './WalletProvider.interface';
+
 import {WalletConnectionError} from '../errors';
+
+import {WalletProvider, WalletProviderEventHandler} from './WalletProvider.interface';
 
 export class MetaMaskProvider implements WalletProvider {
     private provider: BrowserProvider | null = null;
@@ -20,14 +22,14 @@ export class MetaMaskProvider implements WalletProvider {
                 method: 'eth_requestAccounts'
             });
 
-            if (accounts.length === 0) {
+            if (!Array.isArray(accounts) || accounts.length === 0) {
                 throw new WalletConnectionError('Keine Konten verfügbar');
             }
 
             this.provider = new BrowserProvider(window.ethereum);
             this.signer = await this.provider.getSigner();
 
-            return accounts[0];
+            return accounts[0] as string;
         } catch (error) {
             throw new WalletConnectionError(
                 'Fehler bei der Verbindung zu MetaMask',
@@ -47,7 +49,7 @@ export class MetaMaskProvider implements WalletProvider {
         }
 
         try {
-            return await window.ethereum.request({method: 'eth_accounts'});
+            return await window.ethereum.request({method: 'eth_accounts'}) as string[];
         } catch (error) {
             console.error('Fehler beim Abrufen der Konten:', error);
             return [];
