@@ -5,7 +5,7 @@ export interface NFTData {
   type: string;
   categories?: string[];
   status?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface DataProviderEventDetail {

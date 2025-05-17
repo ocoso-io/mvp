@@ -1,4 +1,4 @@
-export {walletManager} from './wallet/index'
-export {WalletManager} from './wallet/WalletManager'
+export {walletManager} from './wallet/index';
+export {WalletManager} from './wallet/WalletManager';
 
-console.log('wallet loaded.')
+console.log('wallet loaded.');
