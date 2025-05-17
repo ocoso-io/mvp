@@ -16,7 +16,8 @@ export class NetworkValidator {
         if (!this.isChainIdSupported(chainId)) {
             const supportedNetworks = this.getSupportedNetworkNames();
             throw new NetworkValidationError(
-                `Nicht unterstütztes Netzwerk. Bitte wechsle zu einem der folgenden Netzwerke: ${supportedNetworks}`,
+                `Nicht unterstütztes Netzwerk.
+                Bitte wechsle zu einem der folgenden Netzwerke: ${supportedNetworks}`,
                 chainId
             );
         }
