@@ -16,7 +16,7 @@ export type BootstrapConfig = {
   components: Record<string, string>;
   componentGroups: Record<string, string[]>;
   libraryGroups: Record<string, string[]>;
-  settings?: Record<string, any>;
+  settings?: Record<string, unknown>;
 };
 
 // Make configuration type-safe
@@ -28,7 +28,7 @@ function getConfig(): BootstrapConfig {
 }
 
 // Dynamic loading of libraries with fallback
-export async function loadLibrary(name: string): Promise<any> {
+export async function loadLibrary(name: string): Promise<unknown> {
   const lib = typedConfig.libraries[name];
   if (!lib) throw new Error(`Library "${name}" not configured`);
 
@@ -40,7 +40,7 @@ export async function loadLibrary(name: string): Promise<any> {
   try {
     // Versuche zuerst die lokale Version zu laden
     return await import(/* webpackIgnore: true */ lib.localPath);
-  } catch (localError) {
+  } catch {
     console.warn(`Local library "${name}" failed to load, using CDN fallback`);
     
     try {
@@ -54,10 +54,12 @@ export async function loadLibrary(name: string): Promise<any> {
         // Durchlaufe alle alternativen CDN-Quellen
         for (const alternativeCdn of lib.alternativeCDNs) {
           try {
-            const imported = await import(/* webpackIgnore: true */ alternativeCdn);
+            const imported: unknown = await import(
+                /* webpackIgnore: true */ alternativeCdn
+                );
             console.log(`Alternative CDN "${alternativeCdn}" for "${name}" loaded successfully`);
             return imported;
-          } catch (alternativeCdnError) {
+          } catch {
             // Versuche weiter mit der nächsten Alternative
             console.warn(`Alternative CDN ${alternativeCdn} for "${name}" failed`);
           }
@@ -104,7 +106,7 @@ export async function loadLibraries(...names: string[]): Promise<void> {
 }
 
 // Load a component
-export async function loadComponent(name: string): Promise<any> {
+export async function loadComponent(name: string): Promise<unknown> {
   const componentPath = typedConfig.components[name];
   if (!componentPath) throw new Error(`Component "${name}" not configured`);
 
@@ -191,6 +193,6 @@ export function getLibraryGroups(): Record<string, string[]> {
   return typedConfig.libraryGroups;
 }
 
-export function getSettings(): Record<string, any> {
+export function getSettings(): Record<string, unknown> {
   return typedConfig.settings || {};
 }
