@@ -181,12 +181,28 @@ function loadNavigation() {
     .then(html => {
       ph.innerHTML = html;
       console.log('Navigation loaded');
+      highlightActivePage(); 
       handleResize();
       setupWrapperLinks();
       loadAndInitWallet();
     })
     .catch(() => ph.innerHTML = '<p>Error loading navigation.</p>');
 }
+
+function highlightActivePage() {
+  const cur = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+
+  document.querySelectorAll('.main-navigation a[href]').forEach(a => {
+    const linkFile = a.href.split('/').pop().toLowerCase();
+    if (linkFile === cur) {
+      a.classList.add('active-link');                      // Unterpunkt
+      a.closest('.nav-item-wrapper')
+       ?.querySelector('.nav-button')
+       ?.classList.add('active-link');                     // Hauptbutton
+    }
+  });
+}
+
 
 function loadOverlayMenu() {
   const ph = document.getElementById('overlay-menu-placeholder');

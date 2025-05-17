@@ -4,6 +4,54 @@
     <meta charset="utf-8">
     <title>OCOSO MVP - Full Layout</title>
     <link href="css/main.css" rel="stylesheet">
+    
+    <style>
+    
+    /* Grundlayout: Mobile / ≤ 991 px */
+.block-tools{
+  display:flex;
+  flex-direction:column;      /* Bild oben */
+  gap:var(--px-30);
+}
+
+.tools-img{
+  width:100%;
+  height:auto;
+  object-fit:cover;
+  border-radius:20px;          /* optisch */
+  border: var(--px-5) solid black;
+}
+
+.media-img{
+  flex:0 0 100%;             /* 30 % Breite  */
+  max-width:100%;
+  object-fit:cover;
+  border-radius:20px;          /* optisch */
+  border: var(--px-5) solid black;
+}
+
+
+/* Desktop / > 991 px */
+@media (min-width:992px){
+  .block-tools{
+    flex-direction:row;       /* Bild links  */
+    align-items:flex-start;
+  }
+
+  .tools-img{
+    flex:0 0 30%;             /* 30 % Breite  */
+    max-width:30%;
+    margin-right:var(--px-40);
+  }
+  
+
+  
+  .content-submission{
+    flex:1;                   /* Restbreite   */
+  }
+}
+    
+    </style>
 </head>
 <body>
 
@@ -11,25 +59,30 @@
 <div id="overlay-menu-placeholder"></div>
 
 <section class="hero">
-    <div class="hero-container"
-         style="background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/4691e67e3b75d917f12dc87357c5328ca76244d9');">
-        <div class="hero-content-wrapper">
-            <h1 class="main-heading">CONTENT…</h1>
-            <p></p>
-            <p class="hero-description">
-                Yes, it's still content. Created by humans. Protected by code. Powered
-                by community. Not fed into a feed. Not buried by algorithms. It's not
-                just what you post — it's what you own. Content is the asset class of
-                the open web3. Make it work. Make it last.
-            </p>
+    <div class="hero-container" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+									 radial-gradient(circle at 50% 50%, 
+                                     rgba(0, 0, 0, 0)  60%,    
+                                     rgba(0, 0, 0, 1)  100%), 
+									 url('img/head-creator-cmyk.jpg'); 
+									 background-position: center;">
+
+        <div style="display: flex; flex-direction: column; width: 80%;">
+            <div class="hero-content-wrapper" style="flex-direction: flex-start; justify-content: top;">
+                <div class="main-heading" style="min-height: var(--px-300);   margin-left: var(--px-50)"><h1
+                        class="text-box-wide">You Create. Together we Amplify.</h1>
+                </div>
+                <div class="hero-description" style=" margin-left: 25%"><h5 class="text-box-wide">
+                    Your voice is value. No filters. Only your rules. Grab the reach, the rights and the return.
+                </h5></div>
+            </div>
         </div>
         <div class="cta-section">
             <div class="button-group">
                 <div class="button-wrapper">
-                    <button aria-label="Login" class="action-button">
+                    <button class="action-button" aria-label="Login">
                         <span class="button-text">Login</span>
                     </button>
-                    <button aria-label="Register" class="action-button">
+                    <button class="action-button" aria-label="Register">
                         <span class="button-text">Register</span>
                     </button>
                 </div>
@@ -40,7 +93,75 @@
 
 <div class="card-stack-wrapper">
     <nav class="card-stack" id="stack">
+    
+        <div class="card">
+            <div class="wrapper">
+                <div class="responsive" data-link="content-creator.html">
+                    <div class="image-container" style="background-image: url('img/zielgruppe-creator.jpg');">
+                    </div>
+                    <div class="content-block">
+                        <div class="content-text">
+                            <h2 class="title">Creator</h2>
+                            <p class="description">
+                                Track performance. Compare verticals. Make informed moves in the IP economy.
+                            </p>
+                        </div>
+                        <button class="action-button" aria-label="Stake Your Claim">
+                            <img
+                                    src="img/Arrow.png"
+                                    alt=""
+                                    class="button-icon"
+                                    aria-hidden="true"
+                            />
+                            <span class="button-text">Enter the Market</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
+            <div class="wrapper-reduced">
+
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="investor.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">Investor</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">Follow the Signal</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="advertiser.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">Advertiser</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">Join the Table</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
         <div class="card">
             <div class="wrapper">
                 <div class="responsive-narrow" data-link="content-mint.html">
@@ -117,95 +238,186 @@
 
 <main class="main">
     <div class="page-wrapper">
-
         <div style="height: var(--px-40)">&nbsp;</div>
 
-        <article class="card-content-wide">
-            <div class="wrapper">
-                <div class="responsive-narrow" data-link="content-mint.html">
-                    <div class="content-block-narrow"
-                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/Minten.jpg');">
-                        <div class="content-text">
-                            <h2 class="title">Mint</h2>
-                            <p class="description">
-                                Protect your work at the source. Minting makes your content yours — forever, on-chain.
-                            </p>
-                        </div>
-                        <button aria-label="Stake Your Claim" class="action-button">
-                            <img
-                                    alt=""
-                                    aria-hidden="true"
-                                    class="button-icon"
-                                    src="img/Arrow.png"
-                            />
-                            <span class="button-text">Stake Your Claim</span>
-                        </button>
+        <center class="content-frame">
+                
+            
+            <section class="block-tools">
+              <img src="img/creator-surfer.jpg" alt="Visual Tools"
+                   class="tools-img">
+            
+              <div class="content-submission">
+                <h2 class="submission-title">You’re done being used?</h2>
+                <h6 class="submission-subtitle">You create to express. Not to feed a system.</h6>
+                <p>You didn’t start to go viral. You started to say something true.</p>
+                <p>But now your work lives in someone else’s house. Your words. Your images. Your voice. Mined for data. Monetized by strangers. You get likes. They get billions.</p>
+                <div style="height: var(--px-20)">&nbsp;</div>
+                <h6>OCOSO ends that.</h6>
+                <div style="height: var(--px-20)">&nbsp;</div>
+                <p>We don’t sell reach. We give it back.</p>
+                <p>OCOSO is for creators who don’t just publish — but stand for something.</p>
+                <div style="height: var(--px-20)">&nbsp;</div>
+                <p>If you’ve felt the system steal your impact, you’re not wrong. You’re just early.</p>
+                <p>Your creation is capital. Your voice is not a commodity. OCOSO puts it back in your hands.</p>
+              </div>
+            </section>
+
+            <div style="height:160px">&nbsp;</div>
+
+            <section class="block-tools">
+              <img src="img/creator-mint-protect.jpg" alt="Visual Tools"
+                   class="tools-img">
+            
+              <div class="content-submission">
+                <h2 class="submission-title">Mint It. Share It. Own It. Always.</h2>
+                <h6 class="submission-subtitle">Your work becomes a NFT. It stays yours. It earns. It can’t be stolen.</h6>
+                <p>Mint your work as a NFT. Make it immutable & yours forever.</p>
+            	<p>Monetize through Vaults – curated clusters with revenue sharing.</p>
+            	<p>Let supporters back you – no middlemen.</p>
+            	<p>Earn Tokens for visibility, access & growth.</p>
+            	<p>Retain control. Always. Trade your stake, grow your community, scale your work.</p>
+              </div>
+            </section>
+            
+           <div style="height:160px">&nbsp;</div>
+
+            <section class="block-tools">
+              <img src="img/creator-amplify.jpg" alt="Visual Tools"
+                   class="tools-img">
+            
+              <div class="content-submission">
+                <h2 class="submission-title">Tools for Real Reach. And Real Return.</h2>
+                <h6 class="submission-subtitle">The Framework that scales your voice. Get discovered through the Vaults. You grow with every backer. Your visibility is not rented — it’s earned.</h6>
+                <div style="height: var(--px-40)">&nbsp;</div>
+                <h6>C-NFT Minting</h6>
+                <p>Bold ownership. Immutable proof. Real monetization.</p>
+                <div style="height: var(--px-20)">&nbsp;</div>
+                <h6>Vault System</h6>
+                <p>Reach with fairness. Shared value. No middlemen.</p>
+                <div style="height: var(--px-20)">&nbsp;</div>
+                <h6>F-NFT Support</h6>
+                <p>Micro-investment. Direct backing. No gatekeepers.</p>
+                <div style="height: var(--px-20)">&nbsp;</div>
+                <h6>OCO Tokens</h6>
+                <p>Access. Visibility. Earning. Powered by your action.</p>
+                <div style="height: var(--px-20)">&nbsp;</div>
+                <h6>Buyback Rights</h6>
+                <p>You stay in control. Always.</p>
+                <div style="height: var(--px-20)">&nbsp;</div>
+                <h6>DAO Governance (optional)</h6>
+                <p>Shape the system that showcases your voice.</p>
+              </div>
+            </section>
+
+            <div style="height:160px">&nbsp;</div>
+            
+            <section class="content-submission">
+                <h2 class="submission-title">THE TRUST GAP</h2>
+                <h1 style="line-height: 1">74 % don’t trust traditional media anymore.</h1>
+                <h6 class="submission-subtitle">
+                    It’s not a crisis of attention, but people reject manipulation. Authority is no longer owned — it’s
+                    earned.
+                </h6>
+                <p style="width: 100%; text-align: right">(Source: Edelman Trust Barometer)</p>
+            </section>
+
+            <div style="height: 60px">&nbsp;</div>
+            
+            <section>
+                <div class="starttext-row">
+                    <div class="starttext-block" style="gap: var(--px-10)">
+                        <img src="img/creator-reactance.jpg" alt="Visual Tools" class="media-img">
+                        <div style="height: var(--px-20)">&nbsp;</div>
+                        <h4>People don’t want polish. They want truth.</h4>
+                        <p>The world doesn’t need more media. It needs more honesty. As trust collapses, new voices rise. Not from studios. From real creators.</p>
+                        <p>That’s the opening: The problem isn’t attention — it’s credibility. People are done with narratives designed by profit. They want real voices. Unfiltered. That means: they want you.</p>
+                    </div>
+                    <div class="starttext-block" style="gap: var(--px-10)">
+                        <img src="img/creator-movement.jpg" alt="Visual Tools" class="media-img">
+                        <div style="height: var(--px-20)">&nbsp;</div>
+                        <h4>This is your audience. It’s your moment.</h4>
+                        <p>Creators aren’t just content makers — they’re the last credible source. When institutions fail, individuals lead. You don’t need a studio to speak truth. Just a platform that won’t silence you. That’s what OCOSO gives you.</p>
+                    </div>
+                    <div class="starttext-block" style="gap: var(--px-10)">
+                        <img src="img/creator-join-movement.jpg" alt="Visual Tools" class="media-img">
+                        <div style="height: var(--px-20)">&nbsp;</div>
+                        <h4>Go beond publishing. Join the movement.</h4>
+                        <p>OCOSO is where creators take back the narrative. Where your voice is protected — and your reach amplified. Where the crowd supports, not exploits. You’ve waited for a fair system. Now it waits for you.</p>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="wrapper">
-                <div class="responsive-narrow" data-link="content-provide.html">
-                    <div class="content-block-narrow"
-                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/Provide.jpg');">
-                        <div class="content-text">
-                            <h2 class="title">Provide</h2>
-                            <p class="description">
-                                Put your content in the market — on your terms. Offer it, own it, earn from it.
-                                Directly.
-                            </p>
-                        </div>
-                        <button aria-label="Stake Your Claim" class="action-button">
-                            <img
-                                    alt=""
-                                    aria-hidden="true"
-                                    class="button-icon"
-                                    src="img/Arrow.png"
-                            />
-                            <span class="button-text">Turn Visibility Into Value</span>
-                        </button>
+            <div style="height:160px">&nbsp;</div>
+
+            <section class="block-tools">
+           
+              <div class="content-submission">
+                <h1 class="submission-title">READY TO CLAIM?</h1>
+                <h2 class="submission-subtitle">No contracts that hold you.<br>
+                Just commitments that lift you.</h2>
+                
+                <div style="height: var(--px-40)">&nbsp;</div>
+                <h4>Join the Network — Free & Instant</h4>
+                <div style="height: var(--px-20)">&nbsp;</div>
+                <p>Sign up. You’re now part of the OCOSO creator community. No hidden fees. No obligations. Just opportunity.</p>
+            	<p>You become visible.<br>
+                You get a voice in something bigger.</p>
+                
+                <div style="height: var(--px-60)">&nbsp;</div>
+                <h4>Earn Money — without Losing Control</h4>
+                <div style="height: var(--px-20)">&nbsp;</div>
+                <p>Once your content is minted, you can:</p>
+                <div style="height: var(--px-20)">&nbsp;</div>
+                <p>
+            	•	Place ads (you decide formats)<br>
+            	•	Get approached by brands (cooperation system coming)<br>
+            	•	Apply to existing brand campaigns</p>
+                <div style="height: var(--px-20)">&nbsp;</div>
+            	<p>You earn from traffic and relevance.<br>
+                Your work stays yours. Always.</p>
+                
+                <div style="height: var(--px-60)">&nbsp;</div>
+                <h4>Your Result?</h4>
+                <div style="height: var(--px-20)">&nbsp;</div>
+                <p>	•	Constant exposure<br>
+                	•	Earned revenue<br>
+                	•	gOCO tokens that grow your influence<br>
+                	•	Respect in a system that actually sees you</p>
+                
+                <div style="height: var(--px-80)">&nbsp;</div>
+            	<h2>Join. Mint. Earn.</h2>
+            	<h4>Stay free. Grow with the network.<br>
+            	Own more — the longer you stand.</h4>
+                <div style="height: var(--px-20)">&nbsp;</div>
+                
+                <section class="content-submission" style="display: flex; flex-direction: row; gap: var(--px-50);">
+                    <div>
+                    	<h2>It starts with you.</h2>
                     </div>
-                </div>
-            </div>
-            <div class="wrapper">
-                <div class="responsive-narrow" data-link="content-insights.html">
-                    <div class="content-block-narrow"
-                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/insights.jpg');">
-                        <div class="content-text">
-                            <h2 class="title">Insights</h2>
-                            <p class="description">
-                                See what matters — not just what clicks. Track real-time performance of your content,
-                                your way.
-                            </p>
-                        </div>
-                        <button aria-label="Stake Your Claim" class="action-button">
-                            <img
-                                    alt=""
-                                    aria-hidden="true"
-                                    class="button-icon"
-                                    src="img/Arrow.png"
-                            />
-                            <span class="button-text">Reveal Your Reach</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </article>
-
-        <div style="height: var(--px-10)">&nbsp;</div>
-
-
-        <div style="height: var(--px-160)">&nbsp;</div>
-
-
-        <div style="height: var(--px-80)">&nbsp;</div>
-
-    </div>
-
+                    <button class="content-button" aria-label="Content navigation button">
+                        <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon"/>
+                        <span class="content-button-text">Join now! </span>
+                    </button>
+                </section>
+                
+                
+                
+                
+              </div>
+            </section>
+            
+            
+            <div style="height:160px">&nbsp;</div>
+    
+        </center>
+   </div>
 </main>
 
+<div style="height:160px">&nbsp;</div>
+
 <div id="footer-placeholder"></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
 <script defer src="ocoso-app-functions.js"></script>
