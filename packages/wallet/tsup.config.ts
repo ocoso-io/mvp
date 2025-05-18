@@ -7,10 +7,18 @@ export default defineConfig((options) => {
         dts: {
             compilerOptions: {
                 incremental: false,
+            },
+            resolve: true,
+            entry: {
+                index: {
+                    import: 'src/index.ts',
+                    require: 'src/index.ts'
+                },
             }
         },
-        splitting: false,
-        sourcemap: true,
+        splitting: true,
+        sourcemap: !options.minify,
+        treeshake: true,
         clean: true,
         minify: options.minify,
         external: ['react', 'react-dom'],
