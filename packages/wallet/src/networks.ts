@@ -10,18 +10,18 @@ export const NETWORK_INFO: Record<number, NetworkInfo> = {
         name: 'Ethereum Mainnet',
         chainId: 1,
         blockExplorer: 'https://etherscan.io',
-        currencySymbol: 'ETH'
+        currencySymbol: 'ETH',
     },
     5: {
         name: 'Goerli Testnet',
         chainId: 5,
         blockExplorer: 'https://goerli.etherscan.io',
-        currencySymbol: 'GoerliETH'
+        currencySymbol: 'GoerliETH',
     },
-    11155111: {
+    11_155_111: {
         name: 'Sepolia Testnet',
-        chainId: 11155111,
+        chainId: 11_155_111,
         blockExplorer: 'https://sepolia.etherscan.io',
-        currencySymbol: 'SepoliaETH'
-    }
+        currencySymbol: 'SepoliaETH',
+    },
 };

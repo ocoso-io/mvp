@@ -1,6 +1,6 @@
 export interface EthereumProvider {
     isMetaMask: boolean;
-    request: (request: { method: string; params?: unknown[] }) => Promise<unknown>;
+    request: (request: {method: string; params?: unknown[]}) => Promise<unknown>;
     on: (eventName: string, handler: (...args: unknown[]) => void) => void;
     removeListener: (eventName: string, handler: (...args: unknown[]) => void) => void;
 }
@@ -22,7 +22,7 @@ export enum WalletEvent {
     CONNECTED = 'wallet-connected',
     DISCONNECTED = 'wallet-disconnected',
     CHAIN_CHANGED = 'wallet-chain-changed',
-    ACCOUNTS_CHANGED = 'wallet-accounts-changed'
+    ACCOUNTS_CHANGED = 'wallet-accounts-changed',
 }
 
 export enum WalletState {
@@ -30,5 +30,5 @@ export enum WalletState {
     CONNECTING = 'connecting',
     CONNECTED = 'connected',
     ERROR = 'error',
-    NETWORK_MISMATCH = 'network_mismatch'
+    NETWORK_MISMATCH = 'network_mismatch',
 }

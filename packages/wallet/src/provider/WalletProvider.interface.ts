@@ -1,4 +1,4 @@
-import { BrowserProvider, Signer } from 'ethers';
+import {BrowserProvider, Signer} from 'ethers';
 
 /**
  * Type representing a wallet provider event handler.

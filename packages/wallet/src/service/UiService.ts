@@ -1,6 +1,6 @@
-export class UIService {
-    private buttonWrapperSelector: string;
-    private buttonTextSelector: string;
+export class UiService {
+    private readonly buttonWrapperSelector: string;
+    private readonly buttonTextSelector: string;
 
     constructor(buttonWrapperSelector: string, buttonTextSelector: string) {
         this.buttonWrapperSelector = buttonWrapperSelector;
@@ -8,8 +8,8 @@ export class UIService {
     }
 
     public updateWalletButton(account: string | null): void {
-        const button = document.querySelector(this.buttonWrapperSelector) as HTMLElement | null;
-        const buttonText = document.querySelector(this.buttonTextSelector) as HTMLElement | null;
+        const button = document.querySelector(this.buttonWrapperSelector);
+        const buttonText = document.querySelector(this.buttonTextSelector);
 
         if (!button || !buttonText) return;
 
@@ -28,7 +28,7 @@ export class UIService {
         const alertTypes = {
             success: 'Erfolg: ',
             error: 'Fehler: ',
-            info: 'Info: '
+            info: 'Info: ',
         };
 
         alert(alertTypes[type] + message);

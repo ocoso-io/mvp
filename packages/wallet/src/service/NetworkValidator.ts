@@ -1,5 +1,5 @@
-import { NetworkValidationError } from '../errors';
-import { NetworkInfo, NETWORK_INFO } from '../networks';
+import {NetworkValidationError} from '../errors';
+import {NetworkInfo, NETWORK_INFO} from '../networks';
 
 export class NetworkValidator {
     private supportedChainIds: number[];
@@ -29,7 +29,7 @@ export class NetworkValidator {
 
     private getSupportedNetworkNames(): string {
         return this.supportedChainIds
-            .map(id => {
+            .map((id) => {
                 const info = this.getNetworkInfo(id);
                 return info ? info.name : `Chain ID ${id}`;
             })

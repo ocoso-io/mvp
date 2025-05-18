@@ -1,9 +1,9 @@
-import { WalletEvent } from '../types';
+import {WalletEvent} from '../types';
 
 export class EventService {
     public dispatchEvent(eventName: WalletEvent, detail?: unknown): void {
         const event = new CustomEvent(eventName, {
-            detail: detail || {}
+            detail: detail || {},
         });
         document.dispatchEvent(event);
     }

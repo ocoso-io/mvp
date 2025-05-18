@@ -1,6 +1,6 @@
-import { type BrowserProvider, type Signer } from 'ethers';
+import {type BrowserProvider, type Signer} from 'ethers';
 
-import { type WalletProvider, type WalletProviderEventHandler } from './WalletProvider.interface';
+import {type WalletProvider, type WalletProviderEventHandler} from './WalletProvider.interface';
 
 /**
  * An empty wallet provider that implements the WalletProvider interface
@@ -31,7 +31,7 @@ export class EmptyWalletProvider implements WalletProvider {
      */
     public async disconnect(): Promise<void> {
         console.info('EmptyWalletProvider: Disconnection simulated.');
-        return Promise.resolve();
+        return;
     }
 
     /**
@@ -73,8 +73,7 @@ export class EmptyWalletProvider implements WalletProvider {
      * @param {string} _event The event name
      * @param {WalletProviderEventHandler} _handler The event handler
      */
-    public on(_event: string, _handler: WalletProviderEventHandler): void {
-    }
+    public on(_event: string, _handler: WalletProviderEventHandler): void {}
 
     /**
      * Removes an event handler from internal storage.
@@ -82,6 +81,5 @@ export class EmptyWalletProvider implements WalletProvider {
      * @param {string} _event The event name
      * @param {WalletProviderEventHandler} _handler The handler to remove
      */
-    public off(_event: string, _handler: WalletProviderEventHandler): void {
-    }
+    public off(_event: string, _handler: WalletProviderEventHandler): void {}
 }

@@ -9,7 +9,7 @@ export class MetaMaskProvider implements WalletProvider {
     private signer: Signer | null = null;
 
     public isInstalled(): boolean {
-        return typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask;
+        return globalThis.ethereum !== undefined && (globalThis.ethereum.isMetaMask as boolean);
     }
 
     public async connect(): Promise<string | null> {
@@ -18,23 +18,20 @@ export class MetaMaskProvider implements WalletProvider {
         }
 
         try {
-            const accounts = await window.ethereum.request({
-                method: 'eth_requestAccounts'
+            const accounts = await globalThis.ethereum.request({
+                method: 'eth_requestAccounts',
             });
 
             if (!Array.isArray(accounts) || accounts.length === 0) {
                 throw new WalletConnectionError('Keine Konten verfügbar');
             }
 
-            this.provider = new BrowserProvider(window.ethereum);
+            this.provider = new BrowserProvider(globalThis.ethereum);
             this.signer = await this.provider.getSigner();
 
             return accounts[0] as string;
         } catch (error) {
-            throw new WalletConnectionError(
-                'Fehler bei der Verbindung zu MetaMask',
-                error
-            );
+            throw new WalletConnectionError('Fehler bei der Verbindung zu MetaMask', error);
         }
     }
 
@@ -49,7 +46,7 @@ export class MetaMaskProvider implements WalletProvider {
         }
 
         try {
-            return await window.ethereum.request({method: 'eth_accounts'}) as string[];
+            return (await globalThis.ethereum.request({method: 'eth_accounts'})) as string[];
         } catch (error) {
             console.error('Fehler beim Abrufen der Konten:', error);
             return [];
@@ -85,13 +82,13 @@ export class MetaMaskProvider implements WalletProvider {
 
     public on(event: string, handler: WalletProviderEventHandler): void {
         if (this.isInstalled()) {
-            window.ethereum.on(event, handler);
+            globalThis.ethereum.on(event, handler);
         }
     }
 
     public off(event: string, handler: WalletProviderEventHandler): void {
         if (this.isInstalled()) {
-            window.ethereum.removeListener(event, handler);
+            globalThis.ethereum.removeListener(event, handler);
         }
     }
 }

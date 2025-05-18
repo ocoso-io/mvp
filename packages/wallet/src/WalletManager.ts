@@ -7,14 +7,14 @@ import {WalletProvider} from './provider/WalletProvider.interface';
 import {EventService} from './service/EventService';
 import {NetworkValidator} from './service/NetworkValidator';
 import {StorageService} from './service/StorageService';
-import {UIService} from './service/UIService';
+import {UiService} from './service/UiService';
 import {WalletEvent, WalletManagerConfig, WalletState} from './types';
 
 export class WalletManager {
     private readonly provider: WalletProvider;
     private networkValidator: NetworkValidator;
     private storageService: StorageService;
-    private uiService: UIService;
+    private uiService: UiService;
     private eventService: EventService;
 
     private currentAccount: string | null = null;
@@ -26,15 +26,15 @@ export class WalletManager {
             buttonSelector: '.wallet-button',
             buttonWrapperSelector: '.wallet-button-wrapper',
             buttonTextSelector: '.wallet-button-text',
-            supportedChainIds: [1, 5, 11155111], // Mainnet, Goerli, Sepolia
-            ...config
+            supportedChainIds: [1, 5, 11_155_111], // Mainnet, Goerli, Sepolia
+            ...config,
         };
 
         // Initialisiere die Dienste
         this.provider = new MetaMaskProvider();
         this.networkValidator = new NetworkValidator(this.config.supportedChainIds);
         this.storageService = new StorageService();
-        this.uiService = new UIService(
+        this.uiService = new UiService(
             this.config.buttonWrapperSelector,
             this.config.buttonTextSelector
         );
@@ -72,9 +72,7 @@ export class WalletManager {
             this.setState(WalletState.CONNECTED);
 
             // Event auslösen
-            this.eventService.dispatchEvent(
-                WalletEvent.CONNECTED, {account: this.currentAccount}
-            );
+            this.eventService.dispatchEvent(WalletEvent.CONNECTED, {account: this.currentAccount});
 
             return this.currentAccount;
         } catch (error) {
@@ -105,7 +103,7 @@ export class WalletManager {
 
         // Auf mobilen Geräten zum MetaMask-Browser wechseln
         if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-            const dappUrl = window.location.href;
+            const dappUrl = globalThis.location.href;
             window.open(`https://metamask.app.link/dapp/${dappUrl}`, '_blank');
             return false;
         }
@@ -143,8 +141,9 @@ export class WalletManager {
     private handleConnectionError(error: unknown): void {
         if (error instanceof Error) {
             // Benutzerabbruch nicht als Fehler behandeln
-            if (error.message.includes('user rejected')
-                || error.message.includes('User rejected')
+            if (
+                error.message.includes('user rejected') ||
+                error.message.includes('User rejected')
             ) {
                 console.warn('Benutzer hat die Verbindung abgelehnt');
                 this.setState(WalletState.DISCONNECTED);
@@ -193,7 +192,7 @@ export class WalletManager {
     // Netzwerkwechsel verarbeiten
     private handleChainChanged = async (_args: unknown): Promise<void> => {
         // Bei Netzwerkwechsel die Seite neu laden
-        window.location.reload();
+        globalThis.location.reload();
     };
 
     // Event-Listener initialisieren
@@ -214,7 +213,7 @@ export class WalletManager {
 
     // Wallet-Verbindung initialisieren
     public initWalletConnection(): void {
-        const button = document.querySelector(this.config.buttonSelector) as HTMLElement | null;
+        const button = document.querySelector(this.config.buttonSelector);
         if (button) {
             button.addEventListener('click', () => this.connectWallet());
         }
@@ -239,10 +238,9 @@ export class WalletManager {
                     await this.validateCurrentNetwork();
                     this.uiService.updateWalletButton(this.currentAccount);
                     this.setState(WalletState.CONNECTED);
-                    this.eventService.dispatchEvent(
-                        WalletEvent.CONNECTED,
-                        {account: this.currentAccount}
-                    );
+                    this.eventService.dispatchEvent(WalletEvent.CONNECTED, {
+                        account: this.currentAccount,
+                    });
                 } catch {
                     this.storageService.saveItem('connected', false);
                 }
