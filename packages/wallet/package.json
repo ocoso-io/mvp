@@ -26,10 +26,11 @@
     "dev": "tsup src/index.ts --format cjs,esm --watch",
     "lint": "NODE_NO_WARNINGS=1 eslint 'src/**/*.{js,ts,tsx}'",
     "lint:fix": "NODE_NO_WARNINGS=1 eslint 'src/**/*.{js,ts,tsx}' --fix",
-    "test": "",
+    "test": "jest",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
     "@typescript-eslint/parser": "^8.32.1",
     "eslint": "^9.27.0",
@@ -40,7 +41,9 @@
     "eslint-plugin-sonarjs": "^3.0.2",
     "eslint-plugin-unicorn": "^59.0.1",
     "globals": "^16.1.0",
+    "jest": "^29.7.0",
     "prettier": "^3.5.3",
+    "ts-jest": "^29.3.4",
     "tslib": "^2.8.1",
     "tsup": "^8.5.0",
     "typescript": "^5.8.3"
