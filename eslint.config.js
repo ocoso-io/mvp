@@ -74,6 +74,9 @@ export default [
                 'alphabetize': {'order': 'asc', 'caseInsensitive': true}
             }],
         },
+        extends: [
+            'plugin:@next/next/recommended',
+        ],
     },
     {
         // Konfiguration für .tsx Dateien (separat für JSX-Support)
@@ -133,6 +136,9 @@ export default [
                 'alphabetize': {'order': 'asc', 'caseInsensitive': true}
             }],
         },
+        extends: [
+            'plugin:@next/next/recommended',
+        ],
     },
     {
         // Grundlegende Konfiguration für JavaScript-Dateien
