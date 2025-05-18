@@ -1,4 +1,4 @@
-import {defineConfig} from 'tsup';
+import {defineConfig, Options} from 'tsup';
 
 export default defineConfig((options) => {
     return {
@@ -10,10 +10,7 @@ export default defineConfig((options) => {
             },
             resolve: true,
             entry: {
-                index: {
-                    import: 'src/index.ts',
-                    require: 'src/index.ts'
-                },
+                'index': 'src/index.ts'
             }
         },
         splitting: true,
