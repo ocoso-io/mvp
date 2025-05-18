@@ -9,7 +9,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup --minify",
+    "build:dev": "tsup",
     "dev": "tsup src/index.ts --format cjs,esm --watch",
     "lint": "NODE_NO_WARNINGS=1 eslint 'src/**/*.{js,ts,tsx}'",
     "lint:fix": "NODE_NO_WARNINGS=1 eslint 'src/**/*.{js,ts,tsx}' --fix",
