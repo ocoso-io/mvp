@@ -1,7 +1,7 @@
 // tests/unit/setup.ts
 import '@testing-library/jest-dom';
 
-// Globale Mocks für Unit-Tests
+// Mocks
 jest.mock('next/navigation', () => ({
   usePathname: () => '/',
   useRouter: () => ({

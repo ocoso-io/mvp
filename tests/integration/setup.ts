@@ -1,16 +1,17 @@
 // tests/integration/setup.ts
 import '@testing-library/jest-dom';
 
-// Erweiterte Erwartungen für Integrationstests
-expect.extend({
-    // Benutzerdefinierte Matcher hier
-});
+// Globale Hilfsfunktionen
+declare global {
+  function setupTestDatabase(): Promise<void>;
+  function teardownTestDatabase(): Promise<void>;
+}
 
-// Globale Test-Umgebungskonfiguration für Integrationstests
-global.setupTestDatabase = async () => {
-    // Datenbank-Setup-Logik hier
+// Implementierung der globalen Funktionen
+global.setupTestDatabase = async (): Promise<void> => {
+  console.log('Setting up test database...');
 };
 
-global.teardownTestDatabase = async () => {
-    // Datenbank-Teardown-Logik hier
+global.teardownTestDatabase = async (): Promise<void> => {
+  console.log('Tearing down test database...');
 };
