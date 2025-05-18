@@ -2,161 +2,76 @@ import { resolve } from 'path';
 import tseslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import importPlugin from 'eslint-plugin-import';
+import nextPlugin from '@next/eslint-plugin-next';
 
 const projectRoot = resolve(import.meta.dirname);
 
 export default [
-    {
-        ignores: [
-            'node_modules/**',
-            'dist/**',
-            'docs/**',
-            'build/**',
-            'coverage/**',
-            'frontend/**',
-        ]
+  {
+    ignores: [
+      'node_modules/**',
+      '.next/**',
+      'packages/*/dist/**',
+      'packages/*/node_modules/**'
+    ]
+  },
+  {
+    // Konfiguration für TypeScript-Dateien
+    files: ['**/*.ts', '**/*.tsx'],
+    settings: {
+      'import/resolver': {
+        typescript: {
+          project: resolve(projectRoot, './tsconfig.json'),
+        },
+      },
     },
-    {
-        // Konfiguration für .ts Dateien
-        files: ['**/*.ts'],
-        settings: {
-            'import/resolver': {
-                typescript: {
-                    project: resolve(projectRoot, './tsconfig.json'),
-                },
-            },
-        },
-        languageOptions: {
-            parser: tsParser,
-            parserOptions: {
-                project: './tsconfig.json',
-                tsconfigRootDir: import.meta.dirname,
-                ecmaVersion: 2020,
-                sourceType: 'module',
-            },
-        },
-        plugins: {
-            '@typescript-eslint': tseslint,
-            'import': importPlugin,
-        },
-        rules: {
-            // Basis-Regeln
-            'no-console': ['warn', {allow: ['warn', 'error']}],
-            'no-debugger': 'error',
-            'no-alert': 'error',
-            'semi': ['error', 'always'],
-            'quotes': ['error', 'single', {'avoidEscape': true}],
-            'max-len': ['error', {'code': 100}],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: './tsconfig.json',
+        tsconfigRootDir: import.meta.dirname,
+        ecmaVersion: 2020,
+        sourceType: 'module',
+        jsx: true,
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tseslint,
+      'import': importPlugin,
+      '@next/next': nextPlugin
+    },
+    rules: {
+      'no-console': ['warn', {allow: ['warn', 'error']}],
+      'no-debugger': 'error',
+      'semi': ['error', 'always'],
+      'quotes': ['error', 'single', {'avoidEscape': true}],
+      'max-len': ['error', {'code': 100}],
 
-            // TypeScript-Regeln
-            '@typescript-eslint/explicit-function-return-type': ['error', {
-                allowExpressions: true,
-                allowTypedFunctionExpressions: true,
-                allowHigherOrderFunctions: true,
-                allowDirectConstAssertionInArrowFunctions: true,
-                allowConciseArrowFunctionExpressionsStartingWithVoid: true,
-            }],
-            '@typescript-eslint/no-explicit-any': 'error',
-            '@typescript-eslint/no-unused-vars': ['error', {argsIgnorePattern: '^_'}],
-            '@typescript-eslint/no-unsafe-assignment': 'error',
-            '@typescript-eslint/no-unsafe-call': 'error',
-            '@typescript-eslint/no-unsafe-member-access': 'error',
-            '@typescript-eslint/no-unsafe-return': 'error',
+      '@typescript-eslint/explicit-function-return-type': ['error', {
+        allowExpressions: true,
+        allowTypedFunctionExpressions: true,
+        allowHigherOrderFunctions: true,
+      }],
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-unused-vars': ['error', {argsIgnorePattern: '^_'}],
 
-            // Import-Regeln
-            'import/no-unresolved': 'error',
-            'import/named': 'error',
-            'import/default': 'error',
-            'import/namespace': 'error',
-            'import/order': ['error', {
-                'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-                'newlines-between': 'always',
-                'alphabetize': {'order': 'asc', 'caseInsensitive': true}
-            }],
-        },
-        extends: [
-            'plugin:@next/next/recommended',
-        ],
+      'import/order': ['error', {
+        'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+        'newlines-between': 'always',
+        'alphabetize': {'order': 'asc', 'caseInsensitive': true}
+      }],
     },
-    {
-        // Konfiguration für .tsx Dateien (separat für JSX-Support)
-        files: ['**/*.tsx'],
-        settings: {
-            'import/resolver': {
-                typescript: {
-                    project: resolve(projectRoot, './tsconfig.json'),
-                },
-            },
-        },
-        languageOptions: {
-            parser: tsParser,
-            parserOptions: {
-                project: './tsconfig.json',
-                tsconfigRootDir: import.meta.dirname,
-                ecmaVersion: 2020,
-                sourceType: 'module',
-                jsxPragma: 'React', // JSX-Support für TypeScript
-                jsxFragmentName: 'React.Fragment',
-            },
-        },
-        plugins: {
-            '@typescript-eslint': tseslint,
-            'import': importPlugin,
-        },
-        // Die gleichen Regeln wie für .ts Dateien
-        rules: {
-            'no-console': ['warn', {allow: ['warn', 'error']}],
-            'no-debugger': 'error',
-            'no-alert': 'error',
-            'semi': ['error', 'always'],
-            'quotes': ['error', 'single', {'avoidEscape': true}],
-            'max-len': ['error', {'code': 100}],
-
-            '@typescript-eslint/explicit-function-return-type': ['error', {
-                allowExpressions: true,
-                allowTypedFunctionExpressions: true,
-                allowHigherOrderFunctions: true,
-                allowDirectConstAssertionInArrowFunctions: true,
-                allowConciseArrowFunctionExpressionsStartingWithVoid: true,
-            }],
-            '@typescript-eslint/no-explicit-any': 'error',
-            '@typescript-eslint/no-unused-vars': ['error', {argsIgnorePattern: '^_'}],
-            '@typescript-eslint/no-unsafe-assignment': 'error',
-            '@typescript-eslint/no-unsafe-call': 'error',
-            '@typescript-eslint/no-unsafe-member-access': 'error',
-            '@typescript-eslint/no-unsafe-return': 'error',
-
-            'import/no-unresolved': 'error',
-            'import/named': 'error',
-            'import/default': 'error',
-            'import/namespace': 'error',
-            'import/order': ['error', {
-                'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-                'newlines-between': 'always',
-                'alphabetize': {'order': 'asc', 'caseInsensitive': true}
-            }],
-        },
-        extends: [
-            'plugin:@next/next/recommended',
-        ],
+  },
+  {
+    // JavaScript-Dateien
+    files: ['**/*.js', '**/*.jsx'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      sourceType: 'module',
+      jsx: true,
     },
-    {
-        // Grundlegende Konfiguration für JavaScript-Dateien
-        files: ['**/*.js'],
-        languageOptions: {
-            ecmaVersion: 2020,
-            sourceType: 'module',
-        },
+    plugins: {
+      '@next/next': nextPlugin
     },
-    {
-        // Konfiguration für JSX-Dateien
-        files: ['**/*.jsx'],
-        languageOptions: {
-            ecmaVersion: 2020,
-            sourceType: 'module',
-            parserOptions: {
-                jsx: true, // JSX für JavaScript-Dateien aktivieren
-            },
-        },
-    },
+  }
 ];
