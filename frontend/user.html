@@ -4,6 +4,111 @@
     <meta charset="utf-8">
     <title>OCOSO MVP - Full Layout</title>
     <link rel="stylesheet" href="css/main.css">
+    <style>
+    
+.comic-block-carousel {
+  position:relative;
+  width: var(--px-460);
+  height: var(--px-650);
+  border-radius: var(--px-20);
+  padding: 0 var(--px-20) var(--px-20) var(--px-20);
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  flex:0 0 100%;
+
+  padding: 0; 
+  justify-content: flex-start;
+  background: no-repeat top cover; 
+  background-color: black;
+}
+
+.comic-image-carousel {
+  width: var(--px-650);
+  height: 100%;
+  border-radius: var(--px-20);
+  margin: 0 0 var(--px-7) 0;
+  border: black var(--px-5) solid;
+  box-sizing: border-box;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/user-comic-search_01.jpg');    
+  background-color: red;
+  overflow: visible;
+}
+
+.comic-text-carousel {
+  position: absolute;
+  left:40%;                     /* startet bei der Mitte            */
+  top:0;
+  width:55%;                    /* bis ganz rechts                  */
+  height:100%;
+  padding:var(--px-40);
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  z-index:2;                    /* vor dem Bild                     */
+  color:#fff;                   /* Kontrast auf dem Bild            */
+}
+
+
+/* ------------- comic-carousel.css ------------- */
+.comic-carousel{
+  position:relative;
+  height:auto;
+  overflow:hidden;
+}
+
+.carousel-track{
+  display:flex;
+  height:100%;
+  will-change:transform;      /* glatter */
+  /*  KEIN transition mehr  */
+  gap: var(--px-20);
+    touch-action:pan-y;       /* nur vertikale native Gesten erlauben */
+}
+
+.comic-block-wide{
+  flex:0 0 100%;
+  box-sizing:border-box;
+  padding:var(--px-40);
+}
+
+
+
+
+
+.comic-row{
+  position:relative;
+  height:650px;
+  width:100%;          /* <— Breite erzwingen */
+  overflow:visible;
+}
+
+.comic-block{
+  position:absolute;      /* stapeln */
+  top:0; left:0;
+  transform-origin:top left;
+  transition:transform .3s ease;   /* Fallback für Resize */
+}
+
+/* fixe Stapel-Versätze */
+:root{ --step-x:20px; --step-y:-20px; }
+
+
+/* ↓ kommt in dein CSS (z. B. unter die .comic-carousel-Regeln) */
+#why-carousel{
+  touch-action:none;          /* Browser-Scrolling vollständig abschalten,
+                                 damit wirklich jedes PointerMove ankommt   */
+                                
+}
+
+
+
+
+    </style>
 </head>
 <body>
 
@@ -51,6 +156,83 @@
 
         <div class="card">
             <div class="wrapper">
+              <div class="tilt-inner">
+                <div class="responsive-narrow" data-link="content-creator.html">
+                    <div class="content-block-narrow"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/zielgruppe-creator.jpg');">
+                        <div class="content-text">
+                            <h2 class="title">Creator</h2>
+                            <p class="description">
+                                Track performance. Compare verticals. Make informed moves in the IP economy.
+                            </p>
+                        </div>
+                        <button class="action-button" aria-label="Stake Your Claim">
+                            <img
+                                    src="img/Arrow.png"
+                                    alt=""
+                                    class="button-icon"
+                                    aria-hidden="true"
+                            />
+                            <span class="button-text">Enter the Market</span>
+                        </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="wrapper">
+              <div class="tilt-inner">
+                <div class="responsive-narrow" data-link="investor.html">
+                    <div class="content-block-narrow"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends.jpg');">
+                        <div class="content-text">
+                            <h2 class="title">Investor</h2>
+                            <p class="description">
+                                From creator tokens to content DAOs — discover where capital meets culture
+                            </p>
+                        </div>
+                        <button class="action-button" aria-label="Stake Your Claim">
+                            <img
+                                    src="img/Arrow.png"
+                                    alt=""
+                                    class="button-icon"
+                                    aria-hidden="true"
+                            />
+                            <span class="button-text">Follow the Signal</span>
+                        </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="wrapper">
+              <div class="tilt-inner">
+                <div class="responsive-narrow" data-link="advertiser.html">
+                    <div class="content-block-narrow"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/advertiser.jpg');">
+                        <div class="content-text">
+                            <h2 class="title">Advertiser</h2>
+                            <p class="description">
+                                Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+                            </p>
+                        </div>
+                        <button class="action-button" aria-label="Stake Your Claim">
+                            <img
+                                    src="img/Arrow.png"
+                                    alt=""
+                                    class="button-icon"
+                                    aria-hidden="true"
+                            />
+                            <span class="button-text">Join the Table</span>
+                        </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="wrapper">
+              <div class="tilt-inner">
                 <div class="responsive-narrow" data-link="investor-market.html">
                     <div class="content-block-narrow"
                          style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-market.jpg');">
@@ -71,9 +253,11 @@
                         </button>
                     </div>
                 </div>
+                </div>
             </div>
 
             <div class="wrapper">
+              <div class="tilt-inner">
                 <div class="responsive-narrow" data-link="investor-trends.html">
                     <div class="content-block-narrow"
                          style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends.jpg');">
@@ -94,8 +278,10 @@
                         </button>
                     </div>
                 </div>
+                </div>
             </div>
             <div class="wrapper">
+              <div class="tilt-inner">
                 <div class="responsive-narrow" data-link="investor-partizipation.html">
                     <div class="content-block-narrow"
                          style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-partizipation.jpg');">
@@ -116,12 +302,9 @@
                         </button>
                     </div>
                 </div>
+                </div>
             </div>
-
-
         </div>
-
-
     </nav>
 </div>
 
@@ -134,6 +317,7 @@
 
         <article class="card-content-wide">
             <div class="wrapper">
+              <div class="tilt-inner">
                 <div class="responsive-narrow" data-link="investor-market.html">
                     <div class="content-block-narrow"
                          style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-market.jpg');">
@@ -154,9 +338,11 @@
                         </button>
                     </div>
                 </div>
+                </div>
             </div>
 
             <div class="wrapper">
+              <div class="tilt-inner">
                 <div class="responsive-narrow" data-link="investor-trends.html">
                     <div class="content-block-narrow"
                          style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends.jpg');">
@@ -177,8 +363,10 @@
                         </button>
                     </div>
                 </div>
+                </div>
             </div>
             <div class="wrapper">
+              <div class="tilt-inner">
                 <div class="responsive-narrow" data-link="investor-partizipation.html">
                     <div class="content-block-narrow"
                          style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-partizipation.jpg');">
@@ -199,28 +387,268 @@
                         </button>
                     </div>
                 </div>
+                </div>
             </div>
 
         </article>
 
-        <div style="height: var(--px-10)">&nbsp;</div>
-
-
         <div style="height: var(--px-160)">&nbsp;</div>
 
 
-        <div style="height: var(--px-80)">&nbsp;</div>
+        <center class="content-frame">
+
+
+            <div style="height:40px">&nbsp;</div>
+
+
+            <section class="content-submission">
+                <h1 class="submission-title">Why are you here?</h1>
+                <h6 class="submission-subtitle">
+                    tbd</h6>
+                    
+                <div style="height: var(--px-80)">&nbsp;</div>
+            </section>
+                
+            <section class="comic-carousel" id="why-carousel">
+            
+              <div class="carousel-track">                
+                <div class="comic-block-carousel">
+                  <div class="comic-image-carousel"
+                       style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/user-comic-search_01.jpg');">
+                      <div style="height: 460px;">&nbsp;</div>
+                  </div>
+                  <div class="comic-text-carousel">
+                    <h2><span class="text-box-wide">you’re tired of guessing what’s real.</span></h2>
+                  </div>
+                </div>
+                
+                <div class="comic-block-carousel">
+                  <div class="comic-image-carousel"
+                       style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/user-comic-search_02.jpg');">
+                      <div style="height: 460px;">&nbsp;</div>
+                  </div>
+                  <div class="comic-text-carousel">
+                    <h2><span class="text-box-wide">you don’t want to be fed content...</span></h2>
+                  </div>
+                </div>
+                
+                <div class="comic-block-carousel">
+                  <div class="comic-image-carousel"
+                       style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/user-comic-story_03.jpg');">
+                      <div style="height: 460px;">&nbsp;</div>
+                  </div>
+                  <div class="comic-text-carousel">
+                    <h2><span class="text-box-wide">...you want to find it.</span></h2>
+                  </div>
+                </div>
+                
+                <div class="comic-block-carousel">
+                  <div class="comic-image-carousel"
+                       style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/user-comic-search_03.jpg');">
+                      <div style="height: 460px;">&nbsp;</div>
+                  </div>
+                  <div class="comic-text-carousel">
+                    <h2><span class="text-box-wide">you believe independent creators deserve attention</span></h2>
+                  </div>
+                </div>
+                
+                <div class="comic-block-carousel">
+                  <div class="comic-image-carousel"
+                       style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/user-comic-search_04.jpg');">
+                      <div style="height: 460px;">&nbsp;</div>
+                  </div>
+                  <div class="comic-text-carousel">
+                    <h2><span class="text-box-wide">you think truth isn’t optional</span></h2>
+                  </div>
+                </div>
+              </div>
+              
+            </section>
+
+            <section class="content-submission">
+                <div style="height: var(--px-160)">&nbsp;</div>
+                <h1>OCOSO is a gateway</h1>
+                <h2>to what others don’t show you.</h2>
+                <h6>
+                    Not curated by algorithms —
+                    but by people who care about what they create.
+                </h6>
+            </section>
+            
+            <div style="height: var(--px-160)">&nbsp;</div>
+            
+            <section class="content-submission">
+                <h2>OCOSO shows you free, independent, direct content</h2>
+                    <h1>by real creators, backed by real supporters.</h1>
+                <h6> You can explore by topic.
+                    Ask questions.
+                    Get matched with vaults.
+                    And if you want — you can help grow what you believe in.
+                </h6>
+            </section>
+            
+            <div style="height: var(--px-160)">&nbsp;</div>
+            
+            <section class="content-submission">
+                <h1>It's Free for all</h1>
+                    <h2 class="submission-title">You only support what matters. There is no subscription.</h2>
+                    <h6 class="submission-subtitle">
+                        Free for all Users – And we don't sell any data</h6>
+                <div style="height: var(--px-160)">&nbsp;</div>
+                <h1>What you get...</h1>
+                <div style="height: var(--px-80)">&nbsp;</div>
+             </section>   
+                    
+             <section class="comic-row">
+                <div class="comic-block">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/user-comic-what_01.jpg');">
+                        <div style="height: 300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">Access to all free content across OCOSO</span></h5>
+                    <p>tbd</p></div>
+                <div class="comic-block" style="width: 250; height: auto">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/user-comic-what_02.jpg');">
+                        <div style="height:300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">Ask your own questions via AI-Prompt</span></h5>
+                    <p>tbd</p></div>
+                <div class="comic-block" style="width: 250; height: auto">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/user-comic-what_03.jpg');">
+                        <div style="height:300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">Engage with creators through likes, follows, comments</span></h5>
+                    <p>tbd</p></div>
+                <div class="comic-block" style="width: 250: height: auto">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/user-comic-what_04.jpg');">
+                        <div style="height:300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">Discover new vaults by topic, tag, or prompt</span></h5>
+                    <p>tbd</p></div>
+                <div class="comic-block" style="width: 250; height: auto">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/user-comic-what_05.jpg');">
+                        <div style="height:300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">Be part of a noise-free experience</span></h5>
+                    <p>tbd</p></div>
+                <div class="comic-block">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/user-comic-what_06.jpg');">
+                        <div style="height: 300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">Choose a vertical (e.g. Journalism, Music, Culture)</span></h5>
+                    <p>tbd</p></div>
+                <div class="comic-block" style="width: 250; height: auto">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/user-comic-what_07.jpg');">
+                        <div style="height:300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">Support the creators behind it</span></h5>
+                    <p>tbd</p></div>
+                <div class="comic-block" style="width: 250; height: auto">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/user-comic-what_08.jpg');">
+                        <div style="height:300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">Get access to exclusive posts, early content, or community perks</span></h5>
+                    <p>tbd</p></div>
+                <div class="comic-block" style="width: 250: height: auto">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/user-comic-what_09.jpg');">
+                        <div style="height:300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">Earn gOCO for active participation & influence</span></h5>
+                    <p>tbd</p></div>
+                <div class="comic-block" style="width: 250; height: auto">
+                    <div class="comic-image"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/user-comic-what_10.jpg');">
+                        <div style="height:300px;">&nbsp;</div>
+                    </div>
+                    <h5><span class="text-box">Help decide what gets seen more</span></h5>
+                    <p>tbd</p></div>
+            </section>
+                    
+            <div style="height: var(--px-160)">&nbsp;</div>
+            
+            <section class="content-submission">
+                <h1 class="submission-title">And now?</h1>
+                <h2 class="submission-subtitle">
+                    See what others skip.
+                    Support what others ignore.
+                    Start where it actually begins.
+                </h2>
+             </section>   
+ 
+            <div style="height: var(--px-160)">&nbsp;</div>
+                
+            <section class="content-submission" style="display: flex; flex-direction: row; gap: var(--px-50);">
+                <div>
+                	<h2>It starts with you.</h2>
+                </div>
+                <button class="content-button" aria-label="Content navigation button">
+                    <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon"/>
+                    <span class="content-button-text">Explore OCOSO</span>
+                </button>
+                
+                <button class="content-button" aria-label="Content navigation button">
+                    <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon"/>
+                    <span class="content-button-text">Become a Supporter</span>
+                </button>
+            </section>
+                              
+            <div style="height: var(--px-160)">&nbsp;</div>
+
+            <section class="content-submission">
+                <h2 class="submission-title">JOIN THE FUTURE OF CONTENT</h2>
+                <h6 class="submission-subtitle">
+                    Not just another platform. A system. A movement. A chance.
+                </h6>
+            </section>
+
+            <p>OCOSO is where ideas take shape, value is recognized, and ownership finally belongs to the creators.
+                No more middlemen. No more closed doors. Just the tools, the network, and the freedom you need to
+                thrive.</p>
+            <div style="height: var(--px-80)">&nbsp;</div>
+            <h3><span class="text-box-wide" style="margin-left: var(--px-50)">Start Creating</span></h3>
+            <div style="height: var(--px-20)">&nbsp;</div>
+            <h3><span class="text-box-wide" style="margin-left: var(--px-100)">Claim Your Content</span></h3>
+            <div style="height: var(--px-20)">&nbsp;</div>
+            <h3><span class="text-box-wide" style="margin-left: var(--px-150)">Enter the Network</span></h3>
+            <div style="height: var(--px-20)">&nbsp;</div>
+            <h3><span class="text-box-wide" style="margin-left: var(--px-200)">Get Early Access</span></h3>
+
+            <div style="height: var(--px-160)">&nbsp;</div>
+
+
+        </center>
+
+
+        <div style="height: var(--px-160)">&nbsp;</div>
 
     </div>
 </main>
 
 
 <div id="footer-placeholder"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+
+
+<!--<script type="module" src="js/cardTilt.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>-->
+
 <script src="ocoso-app-functions.js" defer></script>
 <script src="js/wallet.js" defer></script>
 <script src="js/3d-Navigation.js" defer></script>
+<script src="js/comicCarousel.js" defer></script>
+<script src="js/cardTilt.js" defer></script>
+<script src="js/cardStack.js" defer></script>
+
+
+
 
 </body>
 </html>

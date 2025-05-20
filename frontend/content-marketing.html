@@ -42,6 +42,53 @@
             border: none;
         }
 
+
+    
+/*.wrapper{
+  position:relative;        
+  transform-style:preserve-3d;
+  cursor:pointer;
+  transition:transform .3s ease-out; 
+}*/
+
+
+.wrapper canvas{display:block}    
+    
+/* Container der Karte */
+.wrapper{
+  perspective: 900px;                 /* Tiefe der Raumwirkung     */
+  display:inline-block;               /* behält Flow-Größe         */
+}
+
+/* eigentliche Karte */
+.wrapper .tilt-inner{
+  transition: transform .3s ease;     /* weiches Zurückfedern      */
+  will-change: transform;             /* Hint für Browser-Cache    */
+  transform-style:preserve-3d;
+}   
+
+/* Flag-Navigation: solange zu → keine Maus-Events abfangen  */
+#mobileFlagNav{             /*  oder .mobile-flag-nav, je nach Mark-up   */
+  pointer-events:none;      /*  unsichtbar UND nicht anklickbar          */
+}
+
+#mobileFlagNav.open{        /*  wird in JS beim Öffnen gesetzt           */
+  pointer-events:auto;      /*  jetzt wieder klickbar                    */
+}
+
+/* 1. gesamte Stack-Fläche nimmt KEINE Events mehr an */
+.card-stack{
+  pointer-events:none;          /* Overlay wird „durchlässig“ */
+}
+
+/* 2. die Karten selbst bleiben klick-/hoverbar            */
+.card-stack .card{
+  pointer-events:auto;          /* nur die sichtbaren Flächen reagieren */
+}
+
+
+
+
     </style>
 </head>
 <body>
@@ -1240,11 +1287,13 @@
 </main>
 
 <div id="footer-placeholder"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>-->
 <script src="ocoso-app-functions.js" defer></script>
 <script src="js/wallet.js" defer></script>
 <script src="js/3d-Navigation.js" defer></script>
+<script src="js/cardTilt.js" defer></script>
+
 
 
 <script>

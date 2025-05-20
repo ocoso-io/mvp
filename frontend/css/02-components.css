@@ -10,8 +10,9 @@ main-navigation.comic-row {
   box-sizing: border-box;
 }
 .comic-block {
-  width: var(--px-300);
-  height: var(--px-450);
+  flex:0 0 var(--px-300);                /* min 300 px, Rest teilen */
+  width: var(--px-300); 
+  min-height:var(--px-450);              /* darf höher werden       */
   padding: 0 var(--px-20) var(--px-20) var(--px-20);
   border-radius: var(--px-20);
   box-sizing: border-box;
@@ -37,7 +38,7 @@ main-navigation.comic-row {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
+  align-items:stretch; 
   gap: var(--px-20);
   margin: 0 auto;
   padding: 0;
@@ -2250,4 +2251,43 @@ canvas.three-canvas {
 /* Default: auf Desktop ausblenden */
 .hamburger-button {
   display: none !important;
+}
+
+
+
+
+
+
+.wrapper canvas{display:block}    
+    
+/* Container der Karte */
+.wrapper{
+  perspective: 900px;                 /* Tiefe der Raumwirkung     */
+  display:inline-block;               /* behält Flow-Größe         */
+}
+
+/* eigentliche Karte */
+.wrapper .tilt-inner{
+  transition: transform .3s ease;     /* weiches Zurückfedern      */
+  will-change: transform;             /* Hint für Browser-Cache    */
+  transform-style:preserve-3d;
+}   
+
+/* Flag-Navigation: solange zu → keine Maus-Events abfangen  */
+#mobileFlagNav{             /*  oder .mobile-flag-nav, je nach Mark-up   */
+  pointer-events:none;      /*  unsichtbar UND nicht anklickbar          */
+}
+
+#mobileFlagNav.open{        /*  wird in JS beim Öffnen gesetzt           */
+  pointer-events:auto;      /*  jetzt wieder klickbar                    */
+}
+
+/* 1. gesamte Stack-Fläche nimmt KEINE Events mehr an */
+.card-stack{
+  pointer-events:none;          /* Overlay wird „durchlässig“ */
+}
+
+/* 2. die Karten selbst bleiben klick-/hoverbar            */
+.card-stack .card{
+  pointer-events:auto;          /* nur die sichtbaren Flächen reagieren */
 }
