@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>OCOSO MVP - Full Layout</title>
+    <link href="css/main.css" rel="stylesheet">
+    
+    <style>
+    
+    /* Grundlayout: Mobile / ≤ 991 px */
+.block-tools{
+  display:flex;
+  flex-direction:column;      /* Bild oben */
+  gap:var(--px-30);
+}
+
+.tools-img{
+  width:100%;
+  height:auto;
+  object-fit:cover;
+  border-radius: var(--px-20);          /* optisch */
+  border: var(--px-5) solid black;
+}
+
+/* === Wrapper ==================================================== */
+.media-img-wrap{
+  position: relative;
+  border-radius: var(--px-20);
+  overflow: hidden;               /* ⇢ Schatten & Bild werden sauber beschnitten */
+}
+
+/* === eigentliche Bildfläche ===================================== */
+.media-img-wrap img{
+  display: block;                 /* entfernt Lücke unter Inline-Images */
+  width: 100%;
+  height: 100%;
+  border-radius: var(--px-20);
+  object-fit: cover;
+}
+
+/* === innerer Schatten =========================================== */
+.media-img-wrap::after{
+  content: "";
+  position: absolute;
+  inset: 0;                       /* füllt den ganzen Wrapper */
+  pointer-events: none;           /* Shadow lässt Klicks durch */
+  border-radius: inherit;         /* übernimmt Radius des Wrappers */
+  box-shadow: inset 0 0 var(--px-80) var(--px-40) rgba(0,0,0,.8);
+}
+
+
+/* Desktop / > 991 px */
+@media (min-width:992px){
+  .block-tools{
+    flex-direction:row;       /* Bild links  */
+    align-items:flex-start;
+  }
+
+  .tools-img{
+    flex:0 0 30%;             /* 30 % Breite  */
+    max-width:30%;
+    margin-right:var(--px-40);
+  }
+  
+  .content-submission{
+    flex:1;                   /* Restbreite   */
+  }
+}
+    
+    </style>
+</head>
+<body>
+
+<div id="navigation-placeholder"></div>
+<div id="overlay-menu-placeholder"></div>
+
+<section class="hero">
+    <div class="hero-container" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+									 radial-gradient(circle at 50% 50%, 
+                                     rgba(0, 0, 0, 0)  60%,    
+                                     rgba(0, 0, 0, 1)  100%), 
+									 url('img/head-network2.jpg'); 
+									 background-position: center;">
+
+        <div style="display: flex; flex-direction: column; width: 80%;">
+            <div class="hero-content-wrapper" style="flex-direction: flex-start; justify-content: top;">
+                <div class="main-heading" style="min-height: var(--px-300);   margin-left: var(--px-50)"><h1
+                        class="text-box-wide">You Create. Together we Amplify.</h1>
+                </div>
+                <div class="hero-description" style=" margin-left: 25%"><h5 class="text-box-wide">
+                    Your voice is value. No filters. Only your rules. Grab the reach, the rights and the return.
+                </h5></div>
+            </div>
+        </div>
+        <div class="cta-section">
+            <div class="button-group">
+                <div class="button-wrapper">
+                    <button class="action-button" aria-label="Login">
+                        <span class="button-text">Login</span>
+                    </button>
+                    <button class="action-button" aria-label="Register">
+                        <span class="button-text">Register</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="card-stack-wrapper">
+    <nav class="card-stack" id="stack">
+    
+        <div class="card">
+            <div class="wrapper">
+                <div class="responsive" data-link="content-creator.html">
+                    <div class="image-container" style="background-image: url('img/zielgruppe-creator.jpg');">
+                    </div>
+                    <div class="content-block">
+                        <div class="content-text">
+                            <h2 class="title">Creator</h2>
+                            <p class="description">
+                                Track performance. Compare verticals. Make informed moves in the IP economy.
+                            </p>
+                        </div>
+                        <button class="action-button" aria-label="Stake Your Claim">
+                            <img
+                                    src="img/Arrow.png"
+                                    alt=""
+                                    class="button-icon"
+                                    aria-hidden="true"
+                            />
+                            <span class="button-text">Enter the Market</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrapper-reduced">
+
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="investor.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">Investor</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">Follow the Signal</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="advertiser.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">Advertiser</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">Join the Table</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="card">
+        
+            
+            <div class="wrapper">
+                <div class="responsive-narrow" data-link="content-network.html">
+                    <div class="content-block-narrow"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/creators_join-the-tribe.jpg');">
+                        <div class="content-text">
+                            <h2 class="title">Network</h2>
+                            <p class="description">
+                                Join the creator web that grows with you. Here, visibility is shared — and power is distributed.
+                            </p>
+                        </div>
+                        <button aria-label="Stake Your Claim" class="action-button">
+                            <img
+                                    alt=""
+                                    aria-hidden="true"
+                                    class="button-icon"
+                                    src="img/Arrow.png"
+                            />
+                            <span class="button-text">Enter the Movement</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrapper-reduced">
+             
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="content-how-to-join.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">Get Started</h2>
+                            </div>
+                            <button class="action-button" aria-label="Get Started">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">How to install the Plugin</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>  
+
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="content-mint.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">Mint</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">Stake Your Claim</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="content-provide.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">PROVIDE</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">TURN VISIBILITY INTO VALUE</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="content-insights.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">Insights</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">Reveal Your Reach</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+</div>
+
+<main class="main">
+  <div class="page-wrapper">
+  
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+              <div class="headline-left-inner">
+                  <header>
+                      <h2>You don’t need permission to matter. You just need the right Network.</h2>
+                  </header>
+                  <section>
+                      <h5>
+                          You publish. But the system isn’t built for you.
+                      </h5>
+                  </section>
+                  <section>
+                      <p>
+                          It was built to extract attention. To shape content that fits the profit curve of platforms. The algorithms decide what's worth saying - tell you what works. How to speak. What to avoid. To optimize what you make — for someone else's gain.<br>
+                          OCOSO changes the equation. You create. You keep the value. You build the network that builds you back.
+                      </p>
+                  </section>
+              </div>
+          </div>
+      </article>
+
+      <div style="height: var(--px-80)">&nbsp;</div>    
+
+      <center class="content-frame">
+            
+        <section class="block-tools">
+
+          <div class="content-submission">
+          
+            <div class="media-img-wrap">
+              <img src="img/creator_team-together.jpg" alt="Visual Tools">
+            </div>
+            
+            <div style="height: var(--px-80)">&nbsp;</div>
+            
+            <h1 class="submission-title">Together we ignite a movement.</h1>
+            <h2 class="submission-subtitle">You are invited. You are essential.</h2>
+        
+            <div style="height: var(--px-40)">&nbsp;</div>
+        
+            <h4>OCOSO is not a platform. It’s a network — built by creators, for creators.</h4>
+            <div style="height: var(--px-20)">&nbsp;</div>
+            <p>You’re not here to feed another feed. You’re here to amplify what matters — yours and others'.</p>
+            <p>Every new creator makes the network louder, stronger, smarter. Including you.</p>
+        
+            <div style="height: var(--px-40)">&nbsp;</div>
+        
+            <h4>This is not extraction. This is exponential.</h4>
+            <div style="height: var(--px-20)">&nbsp;</div>
+            <p>We don’t take your content. We multiply its reach.</p>
+            <p>No algorithm stands between your message and your audience.</p>
+            <p>OCOSO is built so your voice lifts others — and theirs lift you.</p>
+        
+            <div style="height: var(--px-40)">&nbsp;</div>
+        
+            <h4>The rules are simple:</h4>
+            <div style="height: var(--px-20)">&nbsp;</div>
+            <p>
+              • Your content is yours — always.<br>
+              • You help others get seen — and they help you.<br>
+              • The more you participate, the more visible you become.<br>
+              • You’re not competing. You’re co-creating.
+            </p>
+        
+            <div style="height: var(--px-160)">&nbsp;</div>
+            
+            <div class="media-img-wrap">
+              <img src="img/creator_join-the-network.jpg" alt="Visual Tools">
+            </div>
+                        
+            <div style="height: var(--px-80)">&nbsp;</div>
+        
+            <h2>OCOSO is the network that sees you.<br>Because it’s made of us.</h2>
+            <h1>What can we build together?</h1>
+        	      <div style="height: var(--px-20)">&nbsp;</div>
+            <p>
+            We can build reach that doesn’t depend on platforms — but on people.  
+            A system where your visibility scales as others rise beside you.  
+            Not clicks. Not tricks. Just real momentum — powered by shared intent.
+            </p>
+            
+            <div style="height: var(--px-20)">&nbsp;</div>
+            
+            <p>
+            We can build a network that doesn’t feed on your content — it feeds your growth.  
+            Where ownership is the default, not the exception.  
+            Where every creation echoes beyond its origin — into collective momentum.
+            </p>
+            
+            <div style="height: var(--px-20)">&nbsp;</div>
+            
+            <p>
+            We can build a web where creators lead — not follow the code of outdated platforms.  
+            Where tools serve people. Where trust is built, and creativity isn’t mined.  
+            We’re not here to go viral. We’re here to become vital — together.
+            </p>
+            
+            <div style="height: var(--px-80)">&nbsp;</div>
+        
+            <h4>Join the movement. Shape the system.</h4>
+        	  <h2>Build the web you wish existed.</h2>
+            <h4>It starts with one voice — but many build a new world.</h4>
+        
+            <div style="height: var(--px-80)">&nbsp;</div>
+        
+            <section class="content-submission" style="display: flex; flex-direction: row; gap: var(--px-50);">
+              <div>
+                <h2>It begins with you.</h2>
+              </div>
+              <a href="content-how-to-join.html">
+                <button class="content-button" aria-label="Content navigation button">
+                  <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon"/>
+                  <span class="content-button-text">Start Your<br>OCOSO Journey</span>
+                </button>
+              </a>
+            </section>
+          </div>
+        </section>
+			
+        <div style="height: var(--px-160)">&nbsp;</div>			
+			
+        <section class="block-tools">
+        
+          <div class="content-submission">
+          
+            <div class="media-img-wrap">
+              <img src="img/creator_into-the-light.jpg" alt="Visual Tools">
+            </div>          
+
+            <div style="height: var(--px-80)">&nbsp;</div>
+            <h1 class="submission-title">READY TO BECOME VISIBLE?</h1>
+            <h2 class="submission-subtitle">No gatekeepers. No friction. Just a new way forward.</h2>
+        
+            <div style="height: var(--px-40)">&nbsp;</div>
+                  
+            <section>
+              <div class="starttext-row">
+                  <div class="starttext-block" style="gap: var(--px-10)">
+                    <h4>Join the Network in 4 Simple Steps</h4>
+                    <div style="height: var(--px-20)">&nbsp;</div>
+                    
+                    <p><strong>1] Install</strong> the OCOSO Plugin on your WordPress site</p>
+                    <div style="height: var(--px-10)">&nbsp;</div>
+                    
+                  	<p><strong>2] Create</strong> your profile — in seconds</p>
+                    <div style="height: var(--px-10)">&nbsp;</div>
+                    
+                  	<p><strong>3] Place</strong> the OCOSO Container on any of your pages</p>
+                    <div style="height: var(--px-10)">&nbsp;</div>
+                    
+                  	<p><strong>4] Start</strong> promoting your content — on your terms</p>
+                  	
+                    <div style="height: var(--px-60)">&nbsp;</div>
+                  </div>
+                  <div class="starttext-block" style="gap: var(--px-10)">
+                    <h4>What happens then?</h4>
+                    <div style="height: var(--px-20)">&nbsp;</div>
+                    
+                    <p>Your content gets promoted by OCOSO. Your reach expands.  
+                    You earn visibility and respect — without giving up control.</p>
+                    <div style="height: var(--px-20)">&nbsp;</div>
+                    
+                	  <p>Behind the scenes, your content is secured for you using blockchain technology.  
+                    Why? Because it’s independent, transparent, and immune to takedowns or gatekeepers.  
+                    You own what you publish — and no one can change that.</p>
+                    <div style="height: var(--px-20)">&nbsp;</div>
+                    
+                    <p>But you don’t need to understand blockchain today — or even have your own wallet.  
+                    OCOSO handles everything for you, from protection to setup.</p>
+                    <div style="height: var(--px-20)">&nbsp;</div>
+                    
+                    <p>When you're ready, you can take full ownership and step into Web3 at your pace.  
+                    And we’ll be there — guiding you every step of the way.</p>
+                    
+                    <div style="height: var(--px-60)">&nbsp;</div>
+                  </div>
+              </div>
+            </section>          
+        
+            <h4>OCOSO works for you — before you even notice.</h4>
+            <div style="height: var(--px-20)">&nbsp;</div>
+            
+            <p>As you publish, the system sets things in motion:  
+            Promotion. Proof of ownership. Future rewards.  
+            All taken care of — no extra effort.</p>
+            
+            <div style="height: var(--px-60)">&nbsp;</div>        
+            
+            <section class="content-submission" style="display: flex; flex-direction: row; gap: var(--px-50);">
+              <div>
+                <h2>Your voice.<br>Center stage.</h2>
+              </div>
+              <a href="content-how-to-join.html">
+                <button class="content-button" aria-label="Content navigation button">
+                  <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon"/>
+                  <span class="content-button-text">Step Up &<br>Sign In</span>
+                </button>
+              </a>
+            </section>     
+                    
+            <div style="height: var(--px-160)">&nbsp;</div>
+            <div style="height: var(--px-160)">&nbsp;</div>
+                        
+            <h2>How OCOSO uses blockchain for your protection</h2>
+        
+            <div style="height: var(--px-60)">&nbsp;</div>
+        
+            <div id="blockchain">
+ 
+               <section class="block-tools">
+  
+                <img src="img/creator-mint-protect.jpg" alt="Visual Tools"
+                     class="tools-img">
+              
+                <div class="content-submission">
+                  <h4 class="submission-title">Mint It. Share It. Own It. Always.</h2>
+                  <h6 class="submission-subtitle">Your work becomes a NFT. It stays yours. It earns. It can’t be stolen.</h4>
+                  <p>Mint your work as a NFT. Make it immutable & yours forever.</p>
+              	<p>Monetize through Vaults – curated clusters with revenue sharing.</p>
+              	<p>Let supporters back you – no middlemen.</p>
+              	<p>Earn Tokens for visibility, access & growth.</p>
+              	<p>Retain control. Always. Trade your stake, grow your community, scale your work.</p>
+                </div>
+              </section>
+              
+             <div style="height: var(--px-60)">&nbsp;</div>
+              <section class="block-tools">
+                <img src="img/creator-amplify.jpg" alt="Visual Tools"
+                     class="tools-img">
+              
+                <div class="content-submission">
+                  <h4 class="submission-title">Tools for Reach And Real Return.</h4>
+                  <h6 class="submission-subtitle">The Framework that scales your voice. Get discovered through the Vaults. You grow with every backer. Your visibility is not rented — it’s earned.</h6>
+                  <h6>C-NFT Minting</h6>
+                  <p>Bold ownership. Immutable proof. Real monetization.</p>
+                  <div style="height: var(--px-20)">&nbsp;</div>
+                  <h6>Vault System</h6>
+                  <p>Reach with fairness. Shared value. No middlemen.</p>
+                  <div style="height: var(--px-20)">&nbsp;</div>
+                  <h6>F-NFT Support</h6>
+                  <p>Micro-investment. Direct backing. No gatekeepers.</p>
+                  <div style="height: var(--px-20)">&nbsp;</div>
+                  <h6>OCO Tokens</h6>
+                  <p>Access. Visibility. Earning. Powered by your action.</p>
+                  <div style="height: var(--px-20)">&nbsp;</div>
+                  <h6>Buyback Rights</h6>
+                  <p>You stay in control. Always.</p>
+                  <div style="height: var(--px-20)">&nbsp;</div>
+                  <h6>DAO Governance (optional)</h6>
+                  <p>Shape the system that showcases your voice.</p>
+                </div>
+              </section>
+            </div>
+        
+            <div style="height: var(--px-80)">&nbsp;</div>
+        
+            <h2>Start simple. Grow big. Stay independent.</h2>
+            <h4>You don't need to understand the tech.  
+            You just need to keep creating. We handle the rest.</h4>
+        
+            <div style="height: var(--px-80)">&nbsp;</div>
+        
+            <section class="content-submission" style="display: flex; flex-direction: row; gap: var(--px-50);">
+              <div>
+                <h2>Plug into Web3 — or take your time?</h2>
+                <h4>Nothing lost. But everything yours.</h4>
+              </div>
+              <a href="content-how-to-join.html">
+                <button class="content-button" aria-label="Content navigation button">
+                  <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon"/>
+                  <span class="content-button-text">Take the<br>First Step</span>
+                </button>
+              </a>
+            </section>
+            
+          </div>
+        </section>			
+      
+        <div style="height: var(--px-160)">&nbsp;</div>
+      </center>
+   </div>
+</main>
+
+<div style="height: var(--px-160)">&nbsp;</div>
+
+<div id="footer-placeholder"></div>
+
+<script defer src="ocoso-app-functions.js"></script>
+<script defer src="js/wallet.js"></script>
+<script defer src="js/3d-Navigation.js"></script>
+<script src="js/cardTilt.js" defer></script>
+
+
+</body>
+</html>
