@@ -148,7 +148,7 @@ body {
   font-size: 0.9rem; /* Kept as rem */
 }
 .footer-container {
-  max-width: 1200px; /* Kept as pixels */
+  max-width: 900px; /* Kept as pixels */
   margin: 0 auto;
   display: flex;
   gap: 2rem; /* Kept as rem */
@@ -157,7 +157,7 @@ body {
   flex-wrap: wrap;
   border-left: var(--px-1) solid #333;
   border-right: var(--px-1) solid #333;
-  height: var(--px-200);
+  /*height: var(--px-200);*/
 }
 .footer-column {
   flex: 1;
@@ -203,7 +203,6 @@ body {
 .site-header {
   justify-content: center;
   align-items: center;
-  border: var(--px-1) solid var(--White, #fff);
   background-color: #fff;
   display: flex;
   gap: var(--px-20);
@@ -230,7 +229,7 @@ body {
 .site-logo {
   object-fit: contain;
   object-position: center;
-  width: 250px; /* No variable match */
+  width: var(--px-250); /* No variable match */
   align-self: stretch;
   margin-block: auto;
   flex-shrink: 0;
@@ -625,6 +624,7 @@ body {
   height: auto;
   width: auto;
   min-height: var(--px-200);
+      background-color: yellow;
 }
 .hero-container {
   display: flex;
@@ -642,14 +642,14 @@ body {
 .hero-content-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 0; /* Kein Abstand zwischen Kind-Elementen */
   width: auto;
   height: auto;
-  min-width: var(--px-450);
   position: relative;
   overflow: hidden;
   z-index: 1;
+
 }
 .cta-section {
   display: flex;
@@ -740,7 +740,7 @@ body {
   font-family: "Avenir Next", sans-serif;
   font-size: var(--px-18);
   width: 100%;
-  min-width: var(--px-400);
+  min-width: var(--px-200);
 }
 textarea {
   background-color: black;
@@ -763,15 +763,6 @@ textarea {
   background-color: #f8f9fa;
   border: none;
   cursor: pointer;
-  /* Typography */
-  font-family: var(--main-font-family), sans-serif;
-  font-size: var(--px-20);
-  font-weight: 900;
-  line-height: var(--px-20);
-  letter-spacing: 0.2px; /* No variable match */
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: #000;
   transition: transform 0.2s ease;
 }
 .content-button:hover {
@@ -796,6 +787,23 @@ textarea {
   flex-grow: 1; /* Nimmt den gesamten verfügbaren Raum ein */
   text-align: left; /* Links ausrichten */
   margin: 0; /* Entfernt ungewollte Abstände */
+/* Typography */
+  font-family: var(--main-font-family), sans-serif;
+  font-size: var(--px-20);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 0.2px; /* No variable match */
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #000;
+  white-space: normal;   /* erlaubt Umbrüche, Standardwert     */
+  overflow-wrap: break-word; /* bricht auch sehr lange Wörter   */
+  /* in Flex-Containern zusätzlich */
+    min-width: 0;  /* überschreibt auto-Mindestbreite           */
+}
+  
+  
+  
 }
 .caroussel-button-icon {
   aspect-ratio: 1;
@@ -847,7 +855,7 @@ textarea {
   flex-direction: column;
   align-items: flex-start;
   flex: 1;
-  min-width: var(--px-300);
+  min-width: var(--px-200);
 }
 .insight-subtitle {
   width: 100%;
@@ -981,9 +989,8 @@ textarea {
   justify-content: flex-start; /* Positioniert Inhalte nach links */
   text-align: left;
   width: 100%;
-  min-width: var(--px-400);
   box-sizing: content-box;
-  margin: 0 0 0 -20px; /* Negative value kept */
+  margin: 0 0 0 0px; /* Negative value kept */
   /* Spacing */
   padding: var(--px-40) var(--px-40) var(--px-40) var(--px-40);
   /* Visual */

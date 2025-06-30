@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- unbedingt VOR dem ersten Stylesheet -->
   <title>OCOSO MVP - Full Layout</title>
   <link href="css/main.css" rel="stylesheet">
   
@@ -46,12 +49,17 @@
         flex:1;                   /* Restbreite   */
       }
     }
+    
+html {
+  -webkit-text-size-adjust: 100%;   /* 100 % = keinerlei Auto-Zoom      */
+      text-size-adjust: 100%;
+}    
   </style>
 </head>
 <body>
 
 <div id="navigation-placeholder"></div>
-<div id="overlay-menu-placeholder"></div>
+<div id="overlay-menu-placeholder" style="z-index: 2500; background-color: yellow;")></div>
 
 <section class="hero">
     <div class="hero-container" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
@@ -62,16 +70,16 @@
 									 background-position: center;">
 
         <div style="display: flex; flex-direction: column; width: 80%;">
-            <div class="hero-content-wrapper" style="flex-direction: flex-start; justify-content: top;">
-                <div class="main-heading" style="min-height: var(--px-300);   margin-left: var(--px-50)"><h1
-                        class="text-box-wide">You Create. Together we Amplify.</h1>
+            <div class="hero-content-wrapper">
+                <div class="main-heading">
+                <h1 class="text-box-wide">You Create. Together we Amplify.</h1>
                 </div>
-                <div class="hero-description" style=" margin-left: 25%"><h5 class="text-box-wide">
+                <div class="hero-description"><h5 class="text-box-wide">
                     Your voice is value. No filters. Only your rules. Grab the reach, the rights and the return.
                 </h5></div>
             </div>
         </div>
-        <div class="cta-section">
+        <!-- <div class="cta-section">
             <div class="button-group">
                 <div class="button-wrapper">
                     <button class="action-button" aria-label="Login">
@@ -82,7 +90,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
 
@@ -277,7 +285,7 @@
     </nav>
 </div>
 
-<main class="main">
+<main class="main"> <!-- kein Style -->
   <div class="page-wrapper">
   
       <div style="height: var(--px-80)">&nbsp;</div>
@@ -285,15 +293,10 @@
       <article class="headline-left-wrapper">
           <div class="healine-left-container">
               <div class="headline-left-inner">
-                  <header>
                       <h2>Your creativity deserves to thrive. Together, we make it unstoppable.</h2>
-                  </header>
-                  <section>
                       <h5>
                           When creators unite, they outgrow any platform.
                       </h5>
-                  </section>
-                  <section>
                     <p>
                         Create freely. Connect deeply. Earn fairly. That’s what OCOSO is made for. The public doesn’t want polish. They want truth. And that doesn’t come from institutions. It comes from creators.<br><br>
     
@@ -330,11 +333,11 @@
             
         <section class="content-submission">
           <h2 class="submission-title">THE TRUST GAP</h2>
-          <h1 style="line-height: 1">74 % don’t trust traditional media anymore.</h1>
-          <h6 class="submission-subtitle">
+          <h1 style="line-height: 1">74 % don’t trust tradi tional media anymore.</h1>
+          <h5 class="submission-subtitle">
               It’s not a crisis of attention, but people reject manipulation. Authority is no longer owned — it’s
               earned.
-          </h6>
+          </h5>
           <p style="width: 100%; text-align: right">(Source: Edelman Trust Barometer)</p>
         </section>
 
@@ -415,8 +418,7 @@
               <span class="content-button-text">Start Your OCOSO<br>Journey</span>
             </button>
           </a>
-        </section> 
-        
+        </section>
 
         <div style="height: var(--px-160)">&nbsp;</div>
       </center>
@@ -430,7 +432,7 @@
 <script defer src="ocoso-app-functions.js"></script>
 <script defer src="js/wallet.js"></script>
 <script defer src="js/3d-Navigation.js"></script>
-<script src="js/cardTilt.js" defer></script>
+<script defer src="js/cardTilt.js"></script>
 
 
 </body>

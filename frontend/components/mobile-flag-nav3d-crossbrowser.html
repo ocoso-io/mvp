@@ -1,34 +1,20 @@
 <style>
-   /* ====== Design-Tokens ====== */
-  :root{
-    /* Pixel-Skala */
-    --px-1: .0625rem; --px-2: .125rem; --px-3: .1875rem; --px-4: .25rem;
-    --px-5: .3125rem; --px-6: .375rem; --px-7: .4375rem; --px-8: .5rem;
-    --px-10: .625rem; --px-12: .75rem; --px-16: 1rem; --px-20: 1.25rem;
-    --px-24: 1.5rem; --px-32: 2rem; --px-48: 3rem; --px-9999: 625rem;
-
-    /* Abstände & Radien */
-    --space-xxs: var(--px-4);  --space-xs: var(--px-8);  --space-s:  var(--px-12);
-    --space-m:   var(--px-16); --space-l:  var(--px-24); --space-xl: var(--px-32);
-    --border-radius-s:  var(--px-5);  --border-radius-m: var(--px-10);
-    --border-radius-l:  var(--px-20); --border-radius-full: var(--px-9999);
-
-    /* Typo */
-    --font-sans: "Avenir Next",-apple-system,Roboto,Helvetica,sans-serif;
-
-    /* Viewport */
-    --vh-100: 100vh; --vw-100: 100vw;
-  }
 
   /* ====== Mobile Navigation ====== */
   .mobile-flag-nav{
-    position:fixed; top:0; right:0;
-    height:auto; width:auto;
-    padding-top:var(--space-s);
-    display:none; flex-direction:column; align-items:flex-start;
+    position:fixed; 
+    top:0; 
+    right:0;
+    height:auto; 
+    width:auto;
+    padding-top:var(--px-12);
+    display:none; 
+    flex-direction:column; 
+    align-items:flex-start;
     overflow:visible;                /* Verhindert unnötiges Painten */
     z-index:9900;
   }
+  
   .mobile-flag-nav.open{
     display:flex;
     perspective:1000px;             /* Nur aktiv wenn sichtbar */
@@ -36,9 +22,14 @@
 
   /* Close-Button */
   .mobile-flag-nav .close-btn{
-    background:none; border:none; color:#666;
-    font-size:2rem; padding:0 var(--space-xs);
-    align-self:flex-end; cursor:pointer; z-index:9950;
+    background:none; 
+    border:none; 
+    color:#666;
+    font-size:2rem; 
+    padding:0 var(--px-8);
+    align-self:flex-end; 
+    cursor:pointer; 
+    z-index:9950;
   }
 
   /* ====== Hamburger ====== */
@@ -58,72 +49,110 @@
     box-shadow:var(--px-3) var(--px-3) var(--px-12) rgba(0,0,0,.5);
     padding: var(--px-10);
   }
+  
   .hamburger-button .bar{
-    width:100%; height:var(--px-3, .1875rem);   /* Fallback-Wert */
-    background:#666; border-radius:var(--px-2, .125rem);
+    width:100%; 
+    height:var(--px-3, .1875rem);   /* Fallback-Wert */
+    background:#666; 
+    border-radius:var(--px-2, .125rem);
   }
+  
   .hamburger-button.hidden, .hamburger-hidden,
-  .close-btn.hidden, .close-btn-hidden{display:none!important;}
+  .close-btn.hidden, .close-btn-hidden { 
+    display: none !important; 
+  }
 
   /* ====== Menü-Struktur ====== */
-  .menu-wrapper-outer{list-style:none; margin:0; padding:0; width:100%;}
+  .menu-wrapper-outer {
+    list-style:none; 
+    margin:0; 
+    padding:0; 
+    width:100%;
+  }
 
   .flag-list,
-  .flag-item > ul{
-    list-style:none; margin:0; padding:0;
-    display:flex; flex-direction:column; gap:.25rem;
+  .flag-item > ul {
+    list-style:none; 
+    margin:0; 
+    padding:0;
+    display:flex; 
+    flex-direction:column; gap:.25rem;
   }
 
   /* Ein-/Ausklappen */
-  .flag-item > ul{
-    overflow:hidden; height:0;
+  .flag-item > ul {
+    overflow:hidden; 
+    height:0;
     transition:height .35s ease;
   }
 
   /* ====== Animation: Wrapper ====== */
-  .flag-wrapper{
-    margin:0; padding:0;
-    opacity:0; transform-origin:100% 50%;
+  .flag-wrapper {
+    margin:0; 
+    padding:0;
+    opacity:0; 
+    transform-origin:100% 50%;
     transform:rotateY(-90deg);
     transition:transform .45s ease, opacity .4s ease;
     pointer-events:none;
   }
-  .flag-wrapper.visible{
-    opacity:1; transform:rotateY(0deg); pointer-events:auto;
+  
+  .flag-wrapper.visible {
+    opacity:1; 
+    transform:rotateY(0deg); 
+    pointer-events:auto;
   }
 
   /* ====== Animation: Items ====== */
-  .flag-item{
-    position:relative; margin: .2rem 0 0;
-    opacity:0; transform-origin:100% 0%;
+  .flag-item {
+    position:relative; 
+    margin: .2rem 0 0;
+    opacity:0; 
+    transform-origin:100% 0%;
     transform:rotateY(90deg);
     transition:transform .35s ease, opacity .35s ease;
     pointer-events:none;
     backface-visibility:hidden;     /* Glättet GPU-Ränder */
   }
-  .flag-item.visible{
+  
+  .flag-item.visible {
     opacity:1; transform:rotateY(15deg); pointer-events:auto;
   }
 
   /* Verschachtelte Items */
-  .flag-item > ul > .flag-item{margin-left:1.5rem;}
-  .flag-item > ul > .flag-item.visible{transform:rotateY(15deg);}
+  .flag-item > ul > .flag-item { margin-left:1.5rem; }
+  .flag-item > ul > .flag-item.visible { transform:rotateY(15deg); }
 
   /* ====== Links ====== */
-  .flag-item a{
+  .flag-item a {
     display:flex; align-items:center;
     background:#ffef00;
     padding:.6rem 1rem;
     box-shadow:var(--px-3) 6px 12px rgba(0,0,0,.8);
-    color:#000; text-decoration:none; font:700 1rem/1 var(--font-sans);
-    white-space:nowrap; position:relative;
+    color:#000; 
+    text-decoration:none; 
+    font:700 1rem/1 var(--font-sans);
+    white-space:nowrap; 
+    position:relative;
   }
-  .flag-item a::before{
-    content:""; position:absolute; inset:0;
+  
+  .flag-item a::before {
+    content:""; 
+    position:absolute; 
+    inset:0;
     z-index:1;                         /* Klick-Layer */
   }
-  .flag-item a > *{pointer-events:none; position:relative; z-index:2;}
-  .mobile-dropdown-icon{margin-left:.5rem; width:1rem; height:1rem;}
+  
+  .flag-item a > * {
+    pointer-events:none; 
+    position:relative; z-index:2;
+  }
+  
+  .mobile-dropdown-icon {
+    margin-left:.5rem; 
+    width:1rem; 
+    height:1rem;
+  }
  
  
  
@@ -135,27 +164,27 @@
     transition: box-shadow 0.2s ease;      /* smoother hover-Switch */
   }
  
- /* Ganzer Verlauf auf aktivem List-Item */
-.mobile-flag-nav .flag-item.active-li{
-  position: relative;        /* Anker für ::before */
-}
-
-/* Verlauf (liegt unter Click-Layer, über Hintergrund) */
-.mobile-flag-nav .flag-item.active-li > a::after{
-  content:'';
-  position:absolute; inset:0;
-  background: linear-gradient(90deg,#ffef00 50%,#ffffff 100%), #ffef00;
-  box-shadow: inset var(--px-2) var(--px-2) var(--px-1) #ffffff;
-  opacity:0;                               /* Start: unsichtbar */
-  transition:opacity .2s ease;             /* 0,2 s Fade */
-  z-index:0;
-  pointer-events:none;                    /* Kein Klick-Abfang */
-}
-
-/* Aktiv – Overlay wird eingeblendet */
-.mobile-flag-nav .flag-item.active-li > a::after{
-  opacity:0.8;                              /* Ziel-Deckkraft */
-}
+   /* Ganzer Verlauf auf aktivem List-Item */
+  .mobile-flag-nav .flag-item.active-li{
+    position: relative;        /* Anker für ::before */
+  }
+  
+  /* Verlauf (liegt unter Click-Layer, über Hintergrund) */
+  .mobile-flag-nav .flag-item.active-li > a::after {
+    content:'';
+    position: absolute; inset:0;
+    background: linear-gradient(90deg,#ffef00 50%,#ffffff 100%), #ffef00;
+    box-shadow: inset var(--px-2) var(--px-2) var(--px-1) #ffffff;
+    opacity: 0;                               /* Start: unsichtbar */
+    transition: opacity .2s ease;             /* 0,2 s Fade */
+    z-index: 0;
+    pointer-events:none;                    /* Kein Klick-Abfang */
+  }
+  
+  /* Aktiv – Overlay wird eingeblendet */
+  .mobile-flag-nav .flag-item.active-li > a::after {
+    opacity: 0.8;                              /* Ziel-Deckkraft */
+  }
  
  
 </style>

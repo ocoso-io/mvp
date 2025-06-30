@@ -1,5 +1,3 @@
-@import "/css/00-variables.css";
-
 h1 {
   font-family: var(--main-font-family), 'serif';
   color: #fff;
@@ -8,7 +6,7 @@ h1 {
   line-height: 1.1;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
 }
 
 h2 {
@@ -19,7 +17,7 @@ h2 {
   line-height: 1.1;
   margin: 0;
   text-transform: uppercase;
-    letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
 }
 
 h3 {
@@ -30,7 +28,7 @@ h3 {
   line-height: 1.1;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
 }
 
 h4 {
@@ -41,7 +39,7 @@ h4 {
   line-height: 1.1;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
 }
 
 h5 {
@@ -52,18 +50,18 @@ h5 {
   line-height: 1.4;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
 }
 
 h6 {
   font-family: var(--main-font-family), serif;
   color: #fff;
-  font-size: var(--px-16);
+  font-size: var(--px-18);
   font-weight: 800;
   line-height: 1.4;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
 }
 
 .text-h1 {
@@ -212,7 +210,7 @@ a {
   display: inline-block;
   transform: rotateZ(-10deg);
   transform-origin: left bottom;
-  margin: -40px 0 0 var(--px-20); /* Negative value kept */
+  margin: -var(--px-40) 0 0 var(--px-20); /* Negative value kept */
 }
 
 .text-box {
@@ -235,7 +233,7 @@ a {
   display: inline-block;
   transform: rotateZ(-10deg);
   transform-origin: left bottom;
-  margin: -30px 0 0 var(--px-20); /* Negative value kept */
+  margin: -var(--px-30) 0 0 var(--px-20); /* Negative value kept */
 }
 
 .text-box-wide {
@@ -275,7 +273,7 @@ a {
 .auth-links a,
 .legal-links a {
   display: block;
-  margin-bottom: 0.5rem; /* Kept as rem */
+  margin-bottom: var(--px-8); /* 0.5 rem */
   text-decoration: none;
   color: #aaa;
   text-align: left;
@@ -325,7 +323,7 @@ a {
   font-size: var(--px-36);
   font-weight: 900;
   line-height: 1;
-  letter-spacing: 0.72px; /* No variable match */
+  letter-spacing: var(--px-075);
   text-transform: uppercase;
   margin: 0;
 }
@@ -336,30 +334,20 @@ a {
   font-size: var(--px-16);
   font-weight: 700;
   line-height: 1.4;
-  letter-spacing: 0.32px; /* No variable match */
+  letter-spacing: var(--px-032);
   margin-top: var(--px-20);
   margin-bottom: 0;
 }
 
 .main-heading {
-  color: #fff;
-  font-family: var(--main-font-family), serif;
-  font-size: var(--px-60);
-  font-weight: 900;
-  line-height: 1; /* Reduziert vertikalen Abstand */
-  letter-spacing: 1.2px; /* No variable match */
-  text-transform: uppercase;
   margin: 0; /* Entfernt Standardabstand */
+  margin-left: 25%;
+  min-height: var(--px-300); 
 }
 
 .hero-description {
-  color: #fff;
-  font-family: var(--main-font-family), serif;
-  font-size: var(--px-18);
-  font-weight: 700;
-  line-height: 1.4; /* Reduziert vertikalen Abstand */
-  letter-spacing: 0.36px; /* No variable match */
   margin: 0;
+  margin-left: 25%;
   margin-top: var(--px-20); /* Entfernt Standardabstand */
 }
 
@@ -369,15 +357,10 @@ a {
   font-size: var(--px-18);
   font-weight: 700;
   line-height: 1.4; /* Reduziert vertikalen Abstand */
-  letter-spacing: 0.36px; /* No variable match */
+  letter-spacing: var(--px-036);
   margin: 0;
   margin-top: var(--px-20); /* Entfernt Standardabstand */
 }
-
-/* Three.js Container als Nachfolger-Element */
-/* Duplicated .three-container rule removed */
-
-/* Duplicated canvas.three-canvas rule removed */
 
 .headline-left-wrapper {
   display: flex;
@@ -491,4 +474,13 @@ a {
 .chart-container h3 {
   margin-bottom: var(--space-m);
   text-align: center;
+}
+
+html{
+  -webkit-text-size-adjust:100%; /* WebKit/Blink (iOS & Android)   */
+          text-size-adjust:100%; /* W3C-Alias, von Firefox genutzt */
+}
+
+@media (max-width: 950px) and (min-resolution:192dpi){
+  html{ -webkit-text-size-adjust:none; text-size-adjust:none; }
 }

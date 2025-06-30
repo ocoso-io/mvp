@@ -1,112 +1,152 @@
-/*@import "/css/00-variables.css";*/
+.hamburger-button          { display:flex; }   /* nur Burger zu sehen   */
+.main-navigation           { display:none; }
+.wallet-button-wrapper     { display:none; }   /* Wallet komplett weg   */
 
-@media (max-width: 640px) { /* Kept as pixels */
-  .typography-showcase {
-    padding: var(--px-12);
-  }
-  /* .heading-* classes not used in provided HTML, keeping for reference */
-  .heading-1 {
-    font-size: var(--px-36);
-  }
-  .heading-2 {
-    font-size: var(--px-28);
-  }
-  .heading-3 {
-    font-size: var(--px-24);
-  }
-  .heading-4 {
-    font-size: var(--px-20);
-  }
-  .heading-5 {
-    font-size: var(--px-16);
-  }
-  .hero-container {
-    padding: var(--px-16);
-  }
-  .main-heading {
-    font-size: var(--px-36);
-  }
-  .description { /* Assuming this is hero-description */
-    font-size: var(--px-14);
-  }
-  .headline-left-wrapper {
-    padding: 0 var(--px-16);
-  }
-  .headline-left-inner {
-    padding: 0;
-  }
-  .headline-left-title { /* Assuming class exists */
-    font-size: var(--px-28);
-  }
-  .headline-left-subtitle { /* Assuming class exists */
-    font-size: var(--px-18);
-  }
-  .headline-left-description { /* Assuming class exists */
-    font-size: var(--px-14);
-  }
-  .submission-title, .submission-subtitle {
-    width: 100%;
-  }
-  .url-input-container {
-    min-width: 100%;
-  }
-  .option-title {
-    font-size: var(--px-18);
-  }
-  .option-description {
-    font-size: var(--px-14);
-  }
-  .vertical-funds-grid {
-    grid-template-columns: 1fr; /* Stack cards */
-  }
-  .filter-controls {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .filter-controls select, .filter-controls .filter-button {
-    width: 100%;
-  }
-  .fund-stats {
-    grid-template-columns: 1fr; /* Stack stats */
-  }
-  .fund-card-actions {
-    flex-direction: column;
-  }
-  .content-row {
-    flex-direction: column;
-  }
-  .data-table
-  { 
-     /* sehr kleine Geräte → horizontales Scroll-Fallback */
-    display:block; 
-    overflow-x:auto; 
-  }   
+/* 1 · Basiswert (100 % Wachstum) */
+:root{ --slope-factor: 1 }
+
+/* 2 · Auf kleinen Screens nur 50 % wachsen lassen */
+@media (max-width:991px){
+  :root{ --slope-factor: 0.75 }
+}
+@media (max-width:480px){
+  :root{ --slope-factor: 0.75 }
 }
 
-@media (max-width: 768px) { /* Kept as pixels */
-  .footer-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+@media (prefers-reduced-motion: no-preference) {
+  .step-item {
+    transition: transform 0.2s ease;
   }
-  .footer-column {
-    border-right: none;
-    border-bottom: var(--px-1) solid #333;
-    margin-bottom: 1.5rem; /* Kept as rem */
-    padding-bottom: 1rem; /* Kept as rem */
+  .step-item:hover {
+    transform: scale(1.05);
   }
-  .footer-column:last-child {
-    border-bottom: none;
+}
+
+/* Touch Display immer mit Hamburger */
+@media (hover:none) and (pointer:coarse){
+  .card-stack-wrapper {
+    display:none!important;
   }
+  .hamburger-button {
+    display: flex !important;
+  }
+  .main-navigation {
+    display: none !important;
+  }
+  .wallet-button-wrapper {
+    /*display: block;*/
+    margin-right: var(--px-100);
+  }
+}
+
+
+@media /*(hover:none) and (pointer:coarse),*/ (max-width:991px) {
+  .hamburger-button {
+    display: flex !important;
+  }
+}
+
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  .progress-line {
+    background-color: CanvasText;
+  }
+  .step-indicator {
+    border: var(--px-1) solid CanvasText;
+  }
+  .step-item.active .step-indicator {
+    background-color: CanvasText;
+  }
+  .step-label {
+    color: CanvasText;
+  }
+}
+
+
+@media (min-width: 1100px) { /* Kept as pixels */
   .category-summary-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
   }
   .monetization-summary-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
   }
 }
 
+
+/* 4.  Desktop ≥ 1025 px */
+@media (min-width:1025px){
+  .hamburger-button{display:none}
+  .main-navigation{display:flex}
+  .wallet-button-wrapper{display:flex}
+}
+
+@media (max-width:1024px){
+  .card-stack-wrapper{display:none}
+  
+  .main {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  .main-heading {
+    margin-left: var(--px-50);
+  }
+  
+  .hero-description {
+    margin-left: var(--px-50);
+  }  
+}
+
+@media (min-width: 992px) { /* Kept as pixels */
+  .dashboard-main-content {
+    display: flex; /* Changed to flex */
+    align-items: flex-start; /* Align items to the top (flex) */
+    gap: var(--px-60); /* Use gap for spacing */
+    /* Removed grid-template-columns and column-gap */
+  }
+  .dashboard-highlights {
+    order: -1; /* Move highlights to the left */
+    margin-top: 0; /* Ensure no top margin */
+    flex-basis: var(--px-300); /* Set fixed width for highlights */
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+  .vertical-funds-grid {
+    margin-top: 0; /* Ensure no top margin */
+    flex-grow: 1; /* Allow grid to take remaining space */
+    /* min-width: 0; Optional: prevent content overflow issues in flex */
+  }
+  .dashboard-charts {
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+  }
+  .hamburger-button{display:none}
+}
+
+
+/* 3.  iPad Pro & Co. 992 – 1024 px
+      – Desktop-Navigation + Wallet
+      – Hamburger weg */
+@media (min-width:992px) and (max-width:1024px){
+  .hamburger-button{display:none}
+  .main-navigation{display:flex}
+  .wallet-button-wrapper{display:flex}
+}
+
+
 @media (max-width: 991px) { /* Kept as pixels */
+
+h1 {  font-size: var(--px-48); }
+h2 {  font-size: var(--px-32); }
+h3 {  font-size: var(--px-28); }
+h4 {  font-size: var(--px-22); }
+h5 {  font-size: var(--px-20); }
+h6 {  font-size: var(--px-18); }
+
+
+
+
+
+
   .card-content-wide > .wrapper-reduced {
     flex-direction: column; /* Side-by-side inside reduced wrapper on tablet */
     justify-content: center;
@@ -127,9 +167,6 @@
   }
   .headline-left-wrapper {
     padding: 0 0;
-  }
-  .headline-left-inner {
-    padding: var(--px-24);
   }
   .headline-left-title { /* Assuming class exists */
     font-size: var(--px-32);
@@ -154,7 +191,7 @@
     display: none;
   }
   .hero-container {
-    padding: var(--px-20) var(--px-40);
+    /*padding: var(--px-20) var(--px-40);*/
   }
   .main-heading {
     font-size: var(--px-48);
@@ -211,13 +248,49 @@
     width: 100%;
     padding: 0 0 var(--px-20) 0;
   }
+  .menu-wrapper {
+    display: none;
+  }
+  .card-stack-wrapper {
+    display:none;
+  } 
+  .wallet-button-wrapper{display:flex}
+  
+  .page-wrapper { margin: 0 !important; padding-left: var(--px-50) !important; padding-right: var(--px-50) !important;}
+  .main {margin: 0 !important; width: 100% !important;}
 }
 
-@media (hover:none) and (pointer:coarse), (max-width:991px) {
-  .hamburger-button {
-    display: flex !important;
+
+@media (max-width: 810px) { /* Kept as pixels */
+  .footer-container {
+    width:100%;
+    flex-direction:column;    /* ⇒ Kinder untereinander        */
+    align-items:center;
+    text-align:center;
+    gap:1.5rem;               /* vertikaler Abstand zw. Spalten */
+    height:auto;              /* feste Höhe aufheben            */
+  }
+  .footer-column {
+    flex:0 0 auto;            /* Breite 100 %, Höhe auto        */
+    width:90%;
+    border-right:none;
+    border-bottom:var(--px-1) solid #333;
+    padding-bottom:1rem;
+  }
+  .footer-column:last-child {
+    border-bottom: none;
+  }
+  .category-summary-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  }
+  .monetization-summary-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  }
+  .content-button-text {
+   max-width: 50%;
   }
 }
+
 
 @media (max-width: 800px) { /* Kept as pixels */
   .content-row {
@@ -225,112 +298,177 @@
   }
 }
 
-@media (min-width: 992px) { /* Kept as pixels */
-  .dashboard-main-content {
-    display: flex; /* Changed to flex */
-    align-items: flex-start; /* Align items to the top (flex) */
-    gap: var(--px-60); /* Use gap for spacing */
-    /* Removed grid-template-columns and column-gap */
+/* 2.  Kleine Tablets/Phones quer 768 – 991 px
+      – Hamburger + Wallet (unter der Flag-Nav)
+      – Haupt-Navigation versteckt */
+@media (min-width:768px) and (max-width:991px){
+  .hamburger-button{display:flex}
+  .main-navigation{display:none}
+  .wallet-button-wrapper{display:flex}
+}
+
+
+/* 1.  Smartphones bis 767 px
+      – Hamburger sichtbar
+      – Wallet versteckt (darf erst ab 768 px erscheinen) */
+@media (max-width: 767px){
+  .hamburger-button{display:flex}
+  .main-navigation{display:none}
+  .wallet-button-wrapper{display:none}
+  .card-stack-wrapper{display:none}    /* falls nötig */
+  .cta-section {display: none}
+}
+
+
+
+@media (max-width: 640px) { /* Kept as pixels */
+  .typography-showcase {
+    padding: var(--px-12);
   }
-  .dashboard-highlights {
-    order: -1; /* Move highlights to the left */
-    margin-top: 0; /* Ensure no top margin */
-    flex-basis: var(--px-300); /* Set fixed width for highlights */
-    flex-shrink: 0; /* Prevent shrinking */
+  /* .heading-* classes not used in provided HTML, keeping for reference */
+  .heading-1 {
+    font-size: var(--px-36);
+  }
+  .heading-2 {
+    font-size: var(--px-28);
+  }
+  .heading-3 {
+    font-size: var(--px-24);
+  }
+  .heading-4 {
+    font-size: var(--px-20);
+  }
+  .heading-5 {
+    font-size: var(--px-16);
+  }
+  .main-heading {
+    font-size: var(--px-36);
+  }
+  .description { /* Assuming this is hero-description */
+    font-size: var(--px-14);
+  }
+  .headline-left-wrapper {
+    padding: 0 var(--px-16);
+  }
+  .headline-left-inner {
+    padding: 0;
+  }
+  .headline-left-title { /* Assuming class exists */
+    font-size: var(--px-28);
+  }
+  .headline-left-subtitle { /* Assuming class exists */
+    font-size: var(--px-18);
+  }
+  .headline-left-description { /* Assuming class exists */
+    font-size: var(--px-14);
+  }
+  .submission-title, .submission-subtitle {
+    width: 100%;
+  }
+  .url-input-container {
+    width: 100%;
+  }
+  .option-title {
+    font-size: var(--px-18);
+  }
+  .option-description {
+    font-size: var(--px-14);
   }
   .vertical-funds-grid {
-    margin-top: 0; /* Ensure no top margin */
-    flex-grow: 1; /* Allow grid to take remaining space */
-    /* min-width: 0; Optional: prevent content overflow issues in flex */
+    grid-template-columns: 1fr; /* Stack cards */
   }
-  .dashboard-charts {
-    grid-template-columns: 1fr 1fr; /* Two equal columns */
+  .filter-controls {
+    flex-direction: column;
+    align-items: stretch;
   }
-}
+  .filter-controls select, .filter-controls .filter-button {
+    width: 100%;
+  }
+  .fund-stats {
+    grid-template-columns: 1fr; /* Stack stats */
+  }
+  .fund-card-actions {
+    flex-direction: column;
+  }
+  .content-row {
+    flex-direction: column;
+  }
+  .data-table
+  { 
+     /* sehr kleine Geräte → horizontales Scroll-Fallback */
+    display:block; 
+    overflow-x:auto; 
+  }   
 
-@media (min-width: 1100px) { /* Kept as pixels */
-  .category-summary-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  .main-heading {
+    margin-left: 0;
   }
-  .monetization-summary-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  
+  .cta-section {
+    display: none;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .step-item {
-    transition: transform 0.2s ease;
+  
+  .main {margin: 0 !important; width: 100% !important;}
+  .page-wrapper { margin: 0 !important; width: 100% !important; padding-left: var(--px-20) !important; padding-right: var(--px-20) !important;}
+  
+  .hero-container {
+    padding: var(--px-50) var(--px-50) var(--px-100) var(--px-20);
   }
-  .step-item:hover {
-    transform: scale(1.05);
+  
+  .hero-content-wrapper {
+    width: 90vw;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .step-item {
-    transition: transform 0.2s ease;
+  
+  .hero-description {
+    margin: 0;
+    margin-left: 0;
+    margin-top: var(--px-20); /* Entfernt Standardabstand */
   }
-  .step-item:hover {
-    transform: scale(1.05);
+  
+  .wallet-button-wrapper {
+    display: none;
   }
-}
-
-@media (forced-colors: active) {
-  .progress-line {
-    background-color: CanvasText;
+  
+  .header-container {
+    gap: 0;
+    flex-shrink : 0;
   }
-  .step-indicator {
-    border: var(--px-1) solid CanvasText;
+  
+  .site-logo {
+    width: var(--px-200);
+    padding-left: var(--px-10);
   }
-  .step-item.active .step-indicator {
-    background-color: CanvasText;
+  
+  .menu-wrapper {
+    display: none;
   }
-  .step-label {
-    color: CanvasText;
+  
+  .header-container {
+    flex-shrink: 0;
+    padding: 0;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .step-item {
-    transition: transform 0.2s ease;
+  
+  .site-header {
+    gap: 0;
   }
-
-  .step-item:hover {
-    transform: scale(1.05);
+  
+  .content-frame {
+    padding: 0;
   }
-}
-
-@media (forced-colors: active) {
-  .progress-line {
-    background-color: CanvasText;
+  
+  .headline-left-inner {
+    padding: 0;
   }
-  .step-indicator {
-    border: var(--px-1) solid CanvasText;
+  
+  .headline-left-inner {
+    padding: 0;
   }
-  .step-item.active .step-indicator {
-    background-color: CanvasText;
+  
+  .wallet-button-wrapper {
+    display: none;
   }
-  .step-label {
-    color: CanvasText;
-  }
-}
-
-@media (hover:none) and (pointer:coarse){
-  .card-stack-wrapper{display:none!important;}
-}
-
-/* High contrast mode support */
-@media (forced-colors: active) {
-  .progress-line {
-    background-color: CanvasText;
-  }
-  .step-indicator {
-    border: var(--px-1) solid CanvasText;
-  }
-  .step-item.active .step-indicator {
-    background-color: CanvasText;
-  }
-  .step-label {
-    color: CanvasText;
+  .content-submission {
+    width: 100% !important;
+    max-width: calc(100vw-(var(--px-20))) !important;
   }
 }
