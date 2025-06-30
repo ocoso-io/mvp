@@ -33,6 +33,68 @@ main-navigation.comic-row {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+
+
+.comic-image-stretch-wrapper{
+  position: relative;
+  width: 100%;
+  height: 420px;               /* Wrapper-Höhe nach Wunsch */
+  border-radius: var(--px-20) var(--px-20) 0 0;
+  overflow: hidden;
+}
+
+/* Bild füllt in der Breite, ist aber höher als der Wrapper */
+.comic-image-stretch{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: auto;
+  will-change: transform;      /* flüssigeres Scrollen */
+}
+
+/* z. B. dein dunkler Verlauf */
+.stretch-overlay{
+  position:absolute; inset:0;
+  pointer-events:none;
+  background:
+      linear-gradient(to bottom,
+                      rgba(0,0,0,0) 60%,
+                      rgba(0,0,0,.8) 100%);
+}
+
+
+
+
+
+
+
+
+
+/*.comic-image-stretch {
+  width: 100%;
+  height: auto;
+}*/
+
+
+
+/*.comic-image-stretch-wrapper {
+  width: 100%;
+  height: var(--px-300);
+  max-height: var(--px-300);
+  border-radius: var(--px-20) var(--px-20) 0 0;
+  margin: 0 0 var(--px-7) -20px;*/ /* Negative value kept */
+  /*border: black var(--px-5) solid;
+  box-sizing: border-box;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}*/
+
+
+
 .comic-row {
   display: flex;
   flex-direction: row;
@@ -516,7 +578,7 @@ body {
   aspect-ratio: 1;
   width: var(--px-350); /* Breite des Bildes */
   height: var(--px-350); /* Höhe des Bildes */
-  background-image: url("img/Minten.jpg");
+  background-image: url("img/Minten_color.jpg");
   background-size: 102%; /* Kept as % */
   background-position: center;
   background-repeat: no-repeat;
@@ -562,7 +624,7 @@ body {
   align-items: flex-end;
   margin: 0;
   border-radius: var(--px-15);
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url("img/Minten.jpg");
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url("img/Minten_color.jpg");
   background-size: 102%; /* Kept as % */
   background-position: center;
   background-repeat: no-repeat;
@@ -624,7 +686,7 @@ body {
   height: auto;
   width: auto;
   min-height: var(--px-200);
-      background-color: yellow;
+  background-color: black;
 }
 .hero-container {
   display: flex;

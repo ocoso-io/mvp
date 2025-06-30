@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 	
-//const stylesheetHref = "../styleV033-kartennavigation.css";
 const stylesheetHref = "css/02-components.css";
 
 function waitForStylesheet(href, callback) {
@@ -9,7 +8,7 @@ function waitForStylesheet(href, callback) {
     .find(node => node.tagName === 'LINK' && node.href.includes(href));
 
   if (!link) {
-    console.warn("Stylesheet nicht gefunden:", href);
+    //console.warn("Stylesheet nicht gefunden:", href);
     callback(); // Zur Sicherheit trotzdem starten
     return;
   }

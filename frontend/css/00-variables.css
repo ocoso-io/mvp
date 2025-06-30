@@ -178,8 +178,17 @@
 --px-400:clamp(25rem*var(--slope-factor) , calc((22.5rem + 0.78125vw)*var(--slope-factor)), 37.5rem*var(--slope-factor));
 --px-450:clamp(28.125rem*var(--slope-factor) , calc((25.31239rem + 0.87894vw)*var(--slope-factor)), 42.188rem*var(--slope-factor));
 --px-460:clamp(28.75rem*var(--slope-factor) , calc((25.87499rem + 0.89844vw)*var(--slope-factor)), 43.125rem*var(--slope-factor));
+--px-500:clamp(31.25rem*var(--slope-factor) , calc((28.12501rem + 0.97656vw)*var(--slope-factor)), 46.875rem*var(--slope-factor));
+--px-550:clamp(34.375rem*var(--slope-factor) , calc((30.9374rem + 1.07425vw)*var(--slope-factor)), 51.563rem*var(--slope-factor));
 --px-600:clamp(37.5rem*var(--slope-factor) , calc((33.74998rem + 1.17188vw)*var(--slope-factor)), 56.25rem*var(--slope-factor));
 --px-650:clamp(40.625rem*var(--slope-factor) , calc((36.56241rem + 1.26956vw)*var(--slope-factor)), 60.938rem*var(--slope-factor));
+--px-700:clamp(43.75rem*var(--slope-factor) , calc((39.37499rem + 1.36719vw)*var(--slope-factor)), 65.625rem*var(--slope-factor));
+--px-750:clamp(46.875rem*var(--slope-factor) , calc((42.18738rem + 1.46488vw)*var(--slope-factor)), 70.313rem*var(--slope-factor));
+--px-800:clamp(50rem*var(--slope-factor) , calc((45rem + 1.5625vw)*var(--slope-factor)), 75rem*var(--slope-factor));
+--px-850:clamp(53.125rem*var(--slope-factor) , calc((47.81239rem + 1.66019vw)*var(--slope-factor)), 79.688rem*var(--slope-factor));
+
+
+
 
   /* unbegrenzt groß → bleibt fix */
   --px-9999   : 624.9375rem;
