@@ -17,6 +17,22 @@
 </head>
 <body>
 
+
+<!-- Overlay zum Aktivieren neuer Member -->
+<div id="app-overlay" class="overlay-backdrop" hidden aria-hidden="true">
+  <div class="overlay-modal" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
+    <button class="overlay-close" type="button" aria-label="Schließen">×</button>
+    <header class="overlay-header">
+      <h2 id="overlay-title" style="color: black">Waitlist Registration</h2>
+    </header>
+    <section class="overlay-body"><!-- Inhalt wird per JS gesetzt --></section>
+    <!-- optional: Fußbereich
+    <footer class="overlay-footer"></footer> -->
+  </div>
+</div>
+
+
+
 <div id="navigation-placeholder"></div>
 <div id="overlay-menu-placeholder" style="z-index: 2500;")></div>
 
@@ -384,6 +400,7 @@
   <script src="js/chart-definitions.js" defer></script>
   <script type="module" src="js/dashboard.js"></script>
   <script type="module" src="js/dashboard-table-flex.js"></script>
+  <script src="js/waitlist-overlay.js" defer></script>
     
     
     

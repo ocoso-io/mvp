@@ -220,6 +220,22 @@
 </head>
 <body>
 
+
+<!-- Overlay zum Aktivieren neuer Member -->
+<div id="app-overlay" class="overlay-backdrop" hidden aria-hidden="true">
+  <div class="overlay-modal" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
+    <button class="overlay-close" type="button" aria-label="Schließen">×</button>
+    <header class="overlay-header">
+      <h2 id="overlay-title" style="color: black">Waitlist Registration</h2>
+    </header>
+    <section class="overlay-body"><!-- Inhalt wird per JS gesetzt --></section>
+    <!-- optional: Fußbereich
+    <footer class="overlay-footer"></footer> -->
+  </div>
+</div>
+
+
+
 <!-- Overlay-Box für das Diagramm -->
 <div id="chartOverlay">
     <canvas id="chartCanvas" width="450" height="300"></canvas>
@@ -662,6 +678,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="js/3d-Navigation.js" defer></script>
 <script src="js/cardTilt.js" defer></script>
+<script src="js/waitlist-overlay.js" defer></script>
 
 
 <!-- JavaScript: Filter, Sortierung, Tabelle und Chart-Overlay -->
