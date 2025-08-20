@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- unbedingt VOR dem ersten Stylesheet -->
+  <title>OCOSO MVP - Full Layout</title>
+  <link href="css/main.css" rel="stylesheet">
+  
+  <style>
+    /* Grundlayout: Mobile / ≤ 991 px */
+    .block-tools{
+      display:flex;
+      flex-direction:column;      /* Bild oben */
+      gap:var(--px-30);
+    }
+    
+    .tools-img{
+      width:100%;
+      height:auto;
+      object-fit:cover;
+      border-radius: var(--px-20);          /* optisch */
+      border: var(--px-5) solid black;
+    }
+    
+    .media-img{
+      flex:0 0 100%;             /* 30 % Breite  */
+      max-width:100%;
+      object-fit:cover;
+      border-radius: var(--px-20);          /* optisch */
+      border: var(--px-5) solid black;
+    }
+    
+    /* Desktop / > 991 px */
+    @media (min-width:992px){
+      .block-tools{
+        flex-direction:row;       /* Bild links  */
+        align-items:flex-start;
+      }
+    
+      .tools-img{
+        flex:0 0 30%;             /* 30 % Breite  */
+        max-width:30%;
+        margin-right:var(--px-40);
+      }
+      
+      .content-submission{
+        flex:1;                   /* Restbreite   */
+      }
+    }
+    
+html {
+  -webkit-text-size-adjust: 100%;   /* 100 % = keinerlei Auto-Zoom      */
+      text-size-adjust: 100%;
+}    
+  </style>
+</head>
+<body>
+
+<div id="navigation-placeholder"></div>
+<div id="overlay-menu-placeholder" style="z-index: 2500; background-color: yellow;")></div>
+
+<section class="hero">
+    <div class="hero-container" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+									 radial-gradient(circle at 50% 50%, 
+                                     rgba(0, 0, 0, 0)  60%,    
+                                     rgba(0, 0, 0, 1)  100%), 
+									 url('img/head-creator_color.jpg'); 
+									 background-position: center;">
+
+        <div style="display: flex; flex-direction: column; width: 80%;">
+            <div class="hero-content-wrapper">
+                <div class="main-heading">
+                <h1 class="text-box-wide">Welcome to the Movement</h1>
+                </div>
+                <div class="hero-description"><h5 class="text-box-wide">
+                    We’re beyond excited that you’ve joined as a Founding Member.
+                </h5></div>
+            </div>
+        </div>
+        <!-- <div class="cta-section">
+            <div class="button-group">
+                <div class="button-wrapper">
+                    <button class="action-button" aria-label="Login">
+                        <span class="button-text">Login</span>
+                    </button>
+                    <button class="action-button" aria-label="Register">
+                        <span class="button-text">Register</span>
+                    </button>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</section>
+
+<div class="card-stack-wrapper">
+    <nav class="card-stack" id="stack">
+    
+        <div class="card">
+            <div class="wrapper">
+                <div class="responsive" data-link="content-creator.html">
+                    <div class="image-container" style="background-image: url('img/Zielgruppe-Creator_nav_color.jpg');">
+                    </div>
+                    <div class="content-block">
+                        <div class="content-text">
+                            <h2 class="title">Creator</h2>
+                            <p class="description">
+                                Track performance. Compare verticals. Make informed moves in the IP economy.
+                            </p>
+                        </div>
+                        <button class="action-button" aria-label="Stake Your Claim">
+                            <img
+                                    src="img/Arrow.png"
+                                    alt=""
+                                    class="button-icon"
+                                    aria-hidden="true"
+                            />
+                            <span class="button-text">Enter the Market</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrapper-reduced">
+            
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="investor.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">Investor</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">Follow the Signal</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="advertiser.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">Advertiser</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">Join the Table</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </nav>
+</div>
+
+<main class="main"> <!-- kein Style -->
+  <div class="page-wrapper">
+  
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+              <div class="headline-left-inner">
+                <h2>From this moment, you’re part of a community</h2>
+                <h4>The network that refuses to let creators be ignored, silenced, or exploited. </h4>
+                <div style="height: var(--px-20)">&nbsp;</div>   
+                <p>Together, we’re building a future where voices carry further, rights are protected, and value flows directly to those who create.</p>
+                <p>
+                 So thank you, truly. It feels like standing at the edge of something huge — like putting a dent in the universe, together.<br>
+                  We’ll keep you updated as we move toward launch — and you’ll be the first to know when the doors open. </p>
+                <div style="height: var(--px-80)">&nbsp;</div>
+                <h5>The whole OCOSO team is fired up for the amazing things we will achieve together.</h5>
+                  
+                <div style="height: var(--px-20)">&nbsp;</div>   
+                                         
+                <p>
+                  OCOSO runs on Web3 — not for the hype, but for the freedom.<br>
+                  No gatekeepers. No lock-ins. No silent censorship.<br><br>
+                  
+                  You own your voice. You earn your impact. And you decide how far you want to go.<br>
+                  With or without crypto knowledge. With full control — at your own pace.
+                </p>
+                  
+                <div style="height: var(--px-40)">&nbsp;</div>
+                  
+                <h2>This isn’t the next trend. It's the next level.</h2>
+              </div>
+          </div>
+      </article>
+
+      <div style="height: var(--px-80)">&nbsp;</div>    
+
+      <center class="content-frame">
+      <p></p>
+      </center>
+   </div>
+</main>
+
+<div style="height: var(--px-160)">&nbsp;</div>
+
+<div id="footer-placeholder"></div>
+
+<script defer src="ocoso-app-functions.js"></script>
+<script defer src="js/wallet.js"></script>
+<script defer src="js/3d-Navigation.js"></script>
+<script defer src="js/cardTilt.js"></script>
+
+
+</body>
+</html>
