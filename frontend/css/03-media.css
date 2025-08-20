@@ -120,6 +120,10 @@
     grid-template-columns: 1fr 1fr; /* Two equal columns */
   }
   .hamburger-button{display:none}
+  
+  .content-submission{
+    flex:1;                   /* Restbreite   */
+  }
 }
 
 
@@ -130,6 +134,22 @@
   .hamburger-button{display:none}
   .main-navigation{display:flex}
   .wallet-button-wrapper{display:flex}
+  
+  //.block-tools{
+  //  flex-direction:row;       /* Bild links  */
+  //  align-items:flex-start;
+  //}
+
+  //.tools-img{
+  //  flex:0 0 30%;             /* 30 % Breite  */
+  //  max-width:30%;
+  //  margin-right:var(--px-40);
+  //}
+  
+  .content-submission{
+    flex:1;                   /* Restbreite   */
+  }
+  
 }
 
 
@@ -260,7 +280,17 @@ h6 {  font-size: var(--px-18); }
   .main {margin: 0 !important; width: 100% !important;}
 }
 
-
+@media (max-width: 909px){
+  .dashboard-element-one-two{
+    aspect-ratio:1/1;
+    grid-column:span 1;
+  }
+  
+  .sankey-add {
+    display: none;
+  }
+}
+    
 @media (max-width: 810px) { /* Kept as pixels */
   .footer-container {
     width:100%;

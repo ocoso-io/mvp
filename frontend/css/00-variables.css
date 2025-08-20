@@ -56,6 +56,33 @@
   --max-width: 2000rem;
   --shadow-sm: 0 var(--px-2) var(--px-5) rgba(0, 0, 0, 0.2);
 
+  /* OCOSO Farben -------------------------------------- */
+  --Rot: rgba(226, 45, 54, 1);
+  --Gelb: rgba(226, 165, 23, 1);
+  --Gruen: rgba(120, 188, 36, 1);
+  --Tuerkis: rgba(51, 170, 77, 1);
+  --Cyan: rgba(22, 156, 147, 1);
+  --Blau: rgba(61, 111, 235, 1);
+  --Violett: rgba(143, 51, 255, 1);
+  --Pink: rgba(191, 37, 160, 1);
+  
+  --Rot-Dunkel: rgba(163, 32, 38, 1);
+  --Gelb-Dunkel: rgba(145, 111, 29, 1);
+  --Gruen-Dunkel: rgba(83, 130, 26, 1);
+  --Tuerkis-Dunkel: rgba(26, 128, 47, 1);
+  --Cyan-Dunkel: rgba(0, 112, 106, 1);
+  --Blau-Dunkel: rgba(35, 78, 179, 1);
+  --Violett-Dunkel: rgba(100, 35, 179, 1);
+  --Pink-Dunkel: rgba(138, 27, 115, 1);
+  
+  
+  --blue-grey-100: rgba(20, 22, 24, 1);
+  --blue-grey-75:  rgba(30, 33, 36, 1);
+  --blue-grey-50:  rgba(40, 44, 48, 1);
+  --blue-grey-25:  rgba(50, 56, 60, 1);
+
+  --gap: clamp(.75rem,2vw,1.25rem);
+
   /*  --px-032   : clamp(0.02rem     , calc(0.016rem  + 0.00125vw) , 0.04rem);
   --px-036   : clamp(0.0225rem   , calc(0.018rem  + 0.00141vw) , 0.045rem);
   --px-075   : clamp(0.047rem    , calc(0.0376rem + 0.00294vw) , 0.094rem);

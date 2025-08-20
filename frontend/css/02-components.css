@@ -1,3 +1,8 @@
+html {
+  -webkit-text-size-adjust: 100%;   /* 100 % = keinerlei Auto-Zoom      */
+      text-size-adjust: 100%;
+}    
+
 main-navigation.comic-row {
   display: flex;
   flex-direction: row;
@@ -67,34 +72,6 @@ main-navigation.comic-row {
 
 
 
-
-
-
-
-
-
-/*.comic-image-stretch {
-  width: 100%;
-  height: auto;
-}*/
-
-
-
-/*.comic-image-stretch-wrapper {
-  width: 100%;
-  height: var(--px-300);
-  max-height: var(--px-300);
-  border-radius: var(--px-20) var(--px-20) 0 0;
-  margin: 0 0 var(--px-7) -20px;*/ /* Negative value kept */
-  /*border: black var(--px-5) solid;
-  box-sizing: border-box;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}*/
-
-
-
 .comic-row {
   display: flex;
   flex-direction: row;
@@ -107,27 +84,35 @@ main-navigation.comic-row {
   box-sizing: border-box;
 }
 .comic-row-wide {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
+  /* statt flex-box */
+  display:grid;
+
+  /* beliebig viele 360 px-Karten in einer Zeile;
+     bei Platzmangel umbrechen  */
+  grid-template-columns: repeat(auto-fit, minmax(var(--px-360), 1fr));
+
   gap: var(--px-20);
-  margin: 0 auto;
-  padding: 0;
-  box-sizing: border-box;
+  justify-items:center;          /* mittig im Grid-Slot */
+  margin:0 auto;
+  padding:0;
+  box-sizing:border-box;
+
+  /* ► alle Zeilen gleich hoch  ◄ */
+  grid-auto-rows:1fr;
 }
 .comic-block-wide {
-  width: var(--px-460);
-  height: var(--px-650);
-  border-radius: var(--px-20);
-  padding: 0 var(--px-20) var(--px-20) var(--px-20);
-  box-sizing: border-box;
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  background: no-repeat top cover;
+  width:100%;          /* darf die ganze Spalte nutzen           */
+  /* KEINE fixe Höhe mehr → die Karte wächst mit dem höchsten     */
+  /* Element der Zeile, weil grid-auto-rows:1fr sie streckt       */
+  height:auto;
+
+  border-radius:var(--px-20);
+  padding:0 var(--px-20) var(--px-20);
+  box-sizing:border-box;
+
+  background:#000 no-repeat top/cover;
+  display:flex;                       /* Bild + Text senkrecht   */
+  flex-direction:column;
 }
 .comic-image-wide {
   width: var(--px-460);
@@ -217,9 +202,6 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  border-left: var(--px-1) solid #333;
-  border-right: var(--px-1) solid #333;
-  /*height: var(--px-200);*/
 }
 .footer-column {
   flex: 1;
@@ -866,6 +848,142 @@ textarea {
   
   
   
+  
+/* Overlay ****************************/  
+  
+  
+:root{
+  /* Maximal-/Minimalgrößen & Abstände */
+  --overlay-max-w: 960px;
+  --overlay-max-h: 90vh;
+  --overlay-min-w: 320px;     /* Mobile-Mindestbreite */
+  --overlay-min-h: 60vh;      /* Mobile-Mindesthöhe   */
+  --overlay-pad:   2rem;
+}
+
+/* Seite blockieren, wenn Overlay offen */
+html.modal-open, body.modal-open { overflow: hidden; }
+
+.overlay-backdrop{
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,.6);
+  display: none;                 /* via .is-open sichtbar */
+  align-items: center;
+  justify-content: center;
+  padding: clamp(var(--px-12), 4vw, var(--px-30));
+}
+
+.overlay-backdrop::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);             /* etwas transparenter, weil Blur abdunkelt */
+  pointer-events: none;                     /* Klicks gehen an #appOverlay */
+  opacity: 1;
+  /* Blur + leichte Sättigung (schöner Look) */
+  -webkit-backdrop-filter: blur(var(--px-12)) saturate(120%);
+  backdrop-filter: blur(var(--px-12)) saturate(120%);
+  will-change: backdrop-filter;
+}
+
+/* Wenn der Browser backdrop-filter kann, dunkeln wir den Fallback-Hintergrund des Containers etwas weniger ab */
+@supports ((-webkit-backdrop-filter: blur(var(--px-1))) or (backdrop-filter: blur(var(--px-1)))){
+  .overlay-backdrop{ background: rgba(0,0,0,.15); }
+}
+
+.overlay-backdrop.is-open{ display:flex; }
+
+.overlay-modal{
+  /* Responsive Box: orientiert sich an Viewport, hält Min/Max ein */
+  width:  clamp(var(--overlay-min-w), 92vw, var(--overlay-max-w));
+  height: auto; /*clamp(var(--overlay-min-h), 92vh, var(--overlay-max-h));*/
+  max-height: min(92vh, var(--overlay-max-h));/* ← deckelt nach oben */
+  background: #ffef00;
+  color: #000;
+  border-radius: var(--px-20);
+  box-shadow: 0 var(--px-10) var(--px-40) rgba(0,0,0,.45);
+
+  /* Layout innen: Header fix, Body scrollt 
+  display: flex; flex-direction: column;
+  overflow: hidden; /* Scroll nur im Body */
+  /*position: relative;*/
+  
+    /* statt Flex → Grid, damit nur der Body schrumpft/scrollt */
+  display: grid;
+  grid-template-rows: auto minmax(0,1fr) auto; /* Header | Body | Footer */
+  overflow: hidden;
+  position: relative;
+}
+
+.overlay-header{
+  padding: var(--overlay-pad) var(--overlay-pad) 0 var(--overlay-pad);
+  min-height: 0;   /* wichtig, damit Grid-Reihe schrumpfen darf */
+  border-bottom: var(--px-2) solid rgba(255,255,255,.08);
+}
+
+.overlay-body{
+  padding: 0 var(--overlay-pad) var(--overlay-pad) var(--overlay-pad);
+  flex: 1 1 auto;
+  min-height: 0;        /* wichtig für korrektes Scrollen */
+  overflow: auto;       /* Inhalt scrollbar */
+}
+
+.overlay-footer{
+  padding: var(--overlay-pad);
+  border-top: var(--px-2) solid rgba(255,255,255,.08);
+}
+
+/* Schließen-Button */
+.overlay-close{
+  position: absolute;
+  top: var(--px-10); right: var(--px-10);
+  width: var(--px-40); height: var(--px-40);
+  border-radius: 50%;
+  background: rgba(0,0,0,1);
+  color: #fff;
+  border: 0;
+  font-size: var(--px-24); line-height: 1;
+  cursor: pointer;
+}
+.overlay-close:hover{ background: rgba(0,0,0,.8); }
+
+.overlay-modal p,
+.overlay-modal h1,
+.overlay-modal h2,
+.overlay-modal h3,
+.overlay-modal h4,
+.overlay-modal h5,
+.overlay-modal h6,
+.overlay-modal ul,
+.overlay-modal li {
+color: black !important;
+}
+
+/* einfache Consent-Zeile */
+.overlay-consent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+.overlay-consent input[type="checkbox"] {
+  width: 18px; height: 18px;
+}
+
+/* Deaktivierter Button (sichtbar & unclickable) */
+.content-button[disabled],
+.content-button[aria-disabled="true"] {
+  opacity: .5;
+  cursor: not-allowed;
+}
+.content-button[disabled] .content-button-icon {
+  filter: grayscale(1) opacity(.7);
+}
+
+
+
+  
+  
 }
 .caroussel-button-icon {
   aspect-ratio: 1;
@@ -1057,7 +1175,7 @@ textarea {
   padding: var(--px-40) var(--px-40) var(--px-40) var(--px-40);
   /* Visual */
   border-radius: var(--px-20);
-  background-color: #141618;
+  background-color: var(--blue-grey-100);
   background-image: url('../img/Hintergrundmuster.png');
   box-shadow: inset 0 0 var(--px-160) var(--px-80) rgba(0, 0, 0, 1);
 }
@@ -1086,7 +1204,23 @@ textarea {
   box-sizing: border-box;
   padding: 0;
 }
-/* Bei zu geringer Breite: alle Elemente untereinander */
+
+
+/* Basis – gilt immer 
+.data-table{
+  table-layout: fixed;        
+  width: 100%;
+}*/
+
+/*.data-table th,
+.data-table td{
+  overflow: hidden;
+  font-size: var(--px-14);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}*/
+
+
 .data-table {
   border-radius: var(--px-15);
   box-shadow: 0 var(--px-4) var(--px-12) rgba(0, 0, 0, 0.15);
@@ -1097,32 +1231,253 @@ textarea {
   font-size: var(--px-18);
   font-weight: 400;
   line-height: 1.2;
-  width: 100%; /* zwingt gleiche Spaltenbreiten */
-  border-collapse: collapse;
-}
-.data-table th, .data-table td {
-  /* kein width hier! */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding: var(--px-10) var(--px-20);
-}
-
-
-/* Basis – gilt immer */
-.data-table{
-  table-layout: fixed;          /* feste Breite pro Spalte   */
   width: 100%;
+  table-layout:auto;          /* Inhalt bestimmt Breite */
+  border-collapse:collapse;   /* opt. engeres Layout      */
 }
 
+/* Header und Zellen: kein Umbruch, kleineres Padding */
 .data-table th,
 .data-table td{
-  padding: var(--px-6) var(--px-10);
-  font-size: var(--px-14);
-  white-space: nowrap;          /* EINZEILIG                 */
-  overflow: hidden;
-  text-overflow: ellipsis;      /* „…“ bei zu langem Inhalt   */
+  white-space:nowrap;
 }
+
+.data-table td.wrap{
+  white-space:normal;      /* nur gezielt auf Problemzelle */
+  word-break:break-all;
+}
+
+.header-row {
+  background:
+      linear-gradient(
+          180deg,
+          rgba(56,64,72,0.5) 0%,
+          rgba(56,64,72,1)    100%
+      ),
+      #202224;
+}
+
+.header-cell {
+    margin: var(--px-5);
+    padding: var(--px-10) var(--px-10) var(--px-10) var(--px-10);
+    font-size: var(--px-15);
+    border-bottom: var(--px-2) solid #222;
+    background: 
+      linear-gradient(
+          90deg,
+          rgba(28,32,36,0.3) 0%,
+          rgba(28,32,36,0)    50%
+      );
+}
+
+.tr-data{
+  background:
+      linear-gradient(
+          0deg,
+          rgba(255,22,24,0) 0%,
+          rgba(20,22,24,0.5)    100%
+      ),
+      #283236;
+}
+
+
+.td-data {
+  vertical-align: middle; 
+  padding: var(--px-5) var(--px-10) var(--px-3) var(--px-20);
+  font-size: var(--px-15);
+  border-bottom: var(--px-2) solid #222;
+  background: 
+    linear-gradient(
+        120deg,
+        rgba(20,22,24,0.7) 0%,
+        rgba(20,22,24,0)    15%
+    ),
+    linear-gradient(
+          180deg,
+          rgba(56,64,72,0.2) 0%,
+          rgba(56,64,72,0.4)    100%
+      ),
+      #202224;
+}
+
+.table-footer{
+  background: 
+      linear-gradient(
+          180deg,
+          rgba(56,64,72,0.2) 0%,
+          rgba(56,64,72,0.4)    100%
+      ),
+      #202224;
+  height: var(--px-10);
+}
+.table-footer td,
+.table-footer tr {
+  background:
+      linear-gradient(
+          180deg,
+          rgba(56,64,72,.2) 0%,
+          rgba(56,64,72,.4) 100%
+      ),
+      #202224;
+  height: var(--px-10);
+}
+
+
+.pager, .diagram-header {
+  font: var(--main-font-family), sans-serif;
+  display:flex; 
+  gap:var(--px-20); 
+  align-items:center;
+  justify-content:flex-start; 
+  color:#fff; 
+  margin-top:var(--px-20);
+}
+
+.pager button, .diagram-header button, .tr-prev, .tr-next {
+  background:rgba(56,64,72,1);
+  border:none;
+  padding:var(--px-4) var(--px-8);
+  font-size:var(--px-18);
+  border-radius:var(--px-5);
+  color:#fff;
+  cursor:pointer;
+}
+
+.pager button:hover, .diagram-header button:hover, .tr-prev:hover, .tr-next:hover {
+  background: rgba(30,33,36,1); 
+  outline:var(--px-2) solid rgba(255,255,255,1); 
+}
+
+.pager button[disabled], .diagram-header button[disabled] {
+  opacity:0.4;
+  cursor:default;
+}
+
+.pager select, .diagram-header select, .tr-prev select, .tr-next select {
+  background:rgba(56,64,72,1);
+  color:#fff;
+  border:none;
+  padding:var(--px-4) var(--px-6);
+  border-radius:var(--px-5);
+  font-size:var(--px-18);
+}
+
+.pager select:hover, .diagram-header select:hover {   
+  background: rgba(30,33,36,1); 
+  outline:var(--px-2) solid rgba(255,255,255,1); 
+}
+
+.pager select:focus, .diagram-header select:focus {   
+  background: rgba(30,33,36,1); 
+  outline:var(--px-2) solid rgba(255,255,255,1); 
+}
+
+.pager select:focus-visible, .diagram-header select:focus-visible {   
+  background: rgba(30,33,36,1); 
+  outline:var(--px-2) solid rgba(255,255,255,1); 
+}
+
+.pager select:disabled, .diagram-header select:disabled { 
+  opacity:.5; 
+  cursor:not-allowed; 
+}
+
+.pager select:invalid, .diagram-header select:invalid { 
+  border-color: rgba(20,22,24,1); 
+}
+
+.tr-info {
+  font-family: var(--main-font-family), serif;
+  color: #fff;
+  font-size: var(--px-18);
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+  display: flex;           /* Flexbox aktivieren   */
+  justify-content: center; /* horizontal zentrieren*/
+  align-items:    center;  /* vertikal   zentrieren*/
+}
+
+.selector {
+  /*width: 
+  height: */
+  padding: var(--px-4) var(--px-5) var(--px-4) var(--px-5);
+  outline: none; /*var(--px-2) solid rgba(255,255,255,.5); */
+  /*border-color: rgba(255,255,255,.5);*/
+  border-radius: var(--px-5); 
+  font: var(--main-font-family), sans-serif;
+  color: white;
+  background: rgba(56,64,72,1); /*rgba(20,22,24,1);*/
+}
+
+.selector:hover {   
+  background: rgba(30,33,36,1); 
+  outline:var(--px-2) solid rgba(255,255,255,1); 
+}
+
+.selector:focus {   
+  background: rgba(30,33,36,1); 
+  outline:var(--px-2) solid rgba(255,255,255,1); 
+}
+
+.selector:focus-visible {   
+  background: rgba(30,33,36,1); 
+  outline:var(--px-2) solid rgba(255,255,255,1); 
+}
+
+.selector:disabled { 
+  opacity:.5; 
+  cursor:not-allowed; 
+}
+
+.selector:invalid { 
+  border-color: rgba(20,22,24,1); 
+}
+
+
+
+
+
+.chartOverlayStyle{
+  z-index:20000;           /* sicher ganz oben         */
+}
+
+/*.chartOverlayStyle canvas{    
+  width:100%;         
+  height:100%;        
+  border-radius: var(--px-20);
+}*/
+
+/* Overlay-Box für Diagramm */
+#chartOverlay {
+    display: none;
+    position: absolute;
+    background:  radial-gradient( 
+              ellipse farthest-corner at 80% 80%,
+              rgba(20, 22, 24, 0.5)    0%,  
+              rgba(20, 22, 24, 0.4)    20%,  
+              rgba(20, 22, 24, 0.35)    30%,
+              rgba(20, 22, 24, 0.1)    50%,
+              rgba(56,64,72,0.8)     100%),   
+              rgba(20,22,24,0.1);
+    border-top: var(--px-1) solid rgba(255,255,255,0.8);
+    border-left: var(--px-1) solid rgba(255,255,255,0.6);
+    border-right: var(--px-1) solid rgba(255,255,255,0.3);
+    border-bottom: var(--px-1) solid rgba(255,255,255,0.2);
+    padding: var(--px-10);
+    z-index: 9999;
+    box-shadow: 0 var(--px-4) var(--px-12) rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(var(--px-12)) saturate(120%);
+    backdrop-filter: blur(var(--px-12)) saturate(120%);
+    border-radius: var(--px-20);
+    width: 400px;
+    height: 300px;
+}
+
+
+
+
+
 
 
 
@@ -1273,6 +1628,218 @@ textarea {
   height: var(--px-10);
   border-radius: 0 0 var(--px-10) var(--px-10);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.dashboard-wrapper{
+  width: 100%;
+}
+
+.dashboard-menu{
+  width: 100%;
+  display: grid;
+  gap:var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  grid-auto-flow:dense;
+}
+
+.dashboard-content{
+  width: 100%;
+  display: grid;
+  gap:var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  grid-auto-flow:dense;
+}
+    
+/* ----------------------  1 : 1-Kachel (quadratisch) ---------------------- */
+.dashboard-element-one-one{
+  aspect-ratio:1/1;
+  grid-column:span 1;
+  display: flex;             
+  flex-direction: column;
+  position:relative;
+  overflow: hidden;
+
+  background:#283236;
+
+  background:
+      url('../img/Hintergrundmuster.png'), 
+      radial-gradient( 
+              ellipse farthest-corner at 50% 50%,
+              rgba(20, 22, 24, 1)    0%,  
+              rgba(20, 22, 24, 0.9)    30%,  
+              rgba(20, 22, 24, 0.7)    50%,
+              rgba(20, 22, 24, 0.2)    80%,
+              rgba(0, 0, 0, 0)     100%), 
+
+      #283236;     
+                        
+  border-radius:var(--px-20);
+  box-shadow:
+      inset 0 0 var(--px-80) var(--blue-grey-50),
+      0 var(--px-3) var(--px-6) rgba(0,0,0,1);
+}
+
+/* ---------- 2 : 1-Kachel (rechteckig) ----------------------- */
+.dashboard-element-one-two{
+  aspect-ratio:2/1;
+  grid-column:span 2;
+  display: flex;             
+  flex-direction: column;
+  position:relative;
+  overflow: hidden;
+  background:#283236;
+
+  background:
+      url('../img/Hintergrundmuster.png'), 
+      radial-gradient( 
+              ellipse farthest-corner at 50% 50%,
+              rgba(20, 22, 24, 1)    0%,  
+              rgba(20, 22, 24, 0.9)    30%,  
+              rgba(20, 22, 24, 0.7)    50%,
+              rgba(20, 22, 24, 0.2)    80%,
+              rgba(0, 0, 0, 0)     100%), 
+
+      #283236;     
+                        
+  border-radius:var(--px-20);
+  box-shadow:
+      inset 0 0 var(--px-80) var(--blue-grey-50),
+      0 var(--px-3) var(--px-6) rgba(0,0,0,1);
+}
+        
+.dashboard-element-one-one canvas{    /* Canvas füllt Fläche */
+  position:absolute;
+  inset:0;            /* top/right/bottom/left = 0 */
+  width:100%;         /* passt sich Breite an */
+  height:100%;        /* passt sich Höhe an */
+  display:block;
+}
+
+.dashboard-element-one-two canvas{    /* Canvas füllt Fläche */
+  position:absolute;
+  inset:0;            /* top/right/bottom/left = 0 */
+  width:100%;         /* passt sich Breite an */
+  height:100%;        /* passt sich Höhe an */
+  display:block;
+}
+
+
+
+
+
+/* ----------------------  Diagramme Styles ---------------------- */
+
+.diagram-header {
+  padding: 0 0;
+  align-items:center
+}
+
+canvas {
+  display:block;
+  margin:1rem auto;
+  max-width: none;
+  margin: 0;
+}
+
+/* Chart-Canvas eindeutig markieren */
+.chart-fill{
+  position:absolute; 
+  inset:0;
+  width:100%; 
+  height:100%;
+  display:block; 
+  max-width:none;         /* überschreibt alte 960 px */
+  box-sizing: border-box;
+  padding: var(--px-20) 0 var(--px-20) var(--px-30);
+}
+
+.chart-header {
+  position: absolute;
+  inset-block-start:0;
+  inset-inline:0;
+  width: 100%;
+  height:var(--px-120);
+  z-index:2;
+  box-sizing: border-box;
+  padding: var(--px-30) var(--px-30);
+}
+
+.chart-frame, .chart-frame-text {
+  position:absolute;
+  inset-block-start:var(--px-120);
+  inset-inline:0;
+  inset-block-end:0;      
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  overflow:hidden;     /* optional: nichts ragt heraus */
+  padding: var(--px-10) var(--px-20) 0 var(--px-20);
+}
+
+.chart-frame-text {
+  padding: var(--px-10) var(--px-30) var(--px-10) var(--px-30);
+}
+
+.chart-frame canvas{
+  position:absolute;
+  inset:0;             /* top/right/bottom/left = 0 */
+  width:100%;
+  height:100%;
+}
+
+.sankey-add {
+  display: initial;
+}
+
+#sankeyChart{
+  width:100%;
+  height:100%;
+}
+
+.time-filter {
+  display:flex;
+  gap:.4rem;
+  margin-left:auto
+}
+
+.tf-btn.active {
+  background: var(--Gelb)
+}      /* Farbe nach Geschmack */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .mini-gallery {
   display: flex;
   padding: 0;
@@ -1308,6 +1875,41 @@ textarea {
 .gallery-item-caroussel.active {
   border: solid var(--px-3) #fff;
 }
+
+/* Die Sprechblase ordentlich einbinden */
+.speech-bubble-warning {
+  display: flex;
+  width: var(--px-300);
+  height: auto;
+  padding: var(--px-20);
+  background-color: #fe0;
+  border-radius: var(--px-20)
+}
+.speech-container {
+  position: absolute;
+  top: -120px; /* Negative value kept */
+  left: var(--px-40);
+  width: var(--px-300);
+  transform: translateX(0%);
+  z-index: 30;
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.speech-bubble-warning {
+  display: flex;
+  width: fit-content;
+  padding: var(--px-20);
+  background-color: #fe0;
+  border-radius: var(--px-20);
+}
+.speech-icon {
+  /* Optional: Weitere Styling-Anpassungen */
+  margin-top: -10px; /* Negative value kept */
+}
+
+
+
 /* Tooltip: standardmäßig unsichtbar */
 .gallery-item-caroussel .tooltip {
   position: absolute;
@@ -1340,6 +1942,56 @@ textarea {
   opacity: 1;
   pointer-events: auto;
 }
+
+.addition-information{
+  position: relative;
+}
+
+/* Tooltip: standardmäßig unsichtbar */
+.addition-information .tooltip {
+  position: absolute;
+  top: 0; /* Wert anpassen */
+  left: 0;
+  transform: translateX(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+/* Beim Hover über dem übergeordneten Element */
+.addition-information:hover .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+}
+.speech-container-wide {
+  position: absolute;
+  top: -120px; /* Negative value kept */
+  left: var(--px-40);
+  width: 100% !important;
+  transform: translateX(0%);
+  z-index: 30;
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.speech-bubble-warning-wide {
+  display: block;
+  width: var(--px-400);
+  padding: var(--px-20);
+  background-color: #fe0;
+  border-radius: var(--px-20);
+}
+.speech-bubble-warning-wide ul {
+  color: black;
+  font-family: var(--main-font-family), serif;
+  font-size: var(--px-18);
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+}
+.speech-bubble-warning-wide p {
+  color: black;
+}
 .gallery-image-container {
   border-radius: var(--px-20);
   background-color: rgb(248, 249, 250);
@@ -1361,37 +2013,7 @@ textarea {
   border-radius: var(--px-15);
   border: solid var(--px-5) black;
 }
-/* Die Sprechblase ordentlich einbinden */
-.speech-bubble-warning {
-  display: flex;
-  width: var(--px-300);
-  height: auto;
-  padding: var(--px-20);
-  background-color: #fe0;
-  border-radius: var(--px-20)
-}
-.speech-container {
-  position: absolute;
-  top: -120px; /* Negative value kept */
-  left: var(--px-40);
-  width: var(--px-300);
-  transform: translateX(0%);
-  z-index: 30;
-  opacity: 1;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-.speech-bubble-warning {
-  display: flex;
-  width: fit-content;
-  padding: var(--px-20);
-  background-color: #fe0;
-  border-radius: var(--px-20);
-}
-.speech-icon {
-  /* Optional: Weitere Styling-Anpassungen */
-  margin-top: -10px; /* Negative value kept */
-}
+
 .marketing-options {
   display: flex;
   flex-direction: column;
