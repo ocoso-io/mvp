@@ -640,3 +640,63 @@ document.addEventListener('DOMContentLoaded', () => {
   /*const csObs = new MutationObserver(updateCardStackVisibility);*/
   /*csObs.observe(document.body, { childList: true, subtree: true });*/
 });
+
+
+
+
+/* Minimaler Overlay-Controller */
+(function(){
+  const root   = document.getElementById('app-overlay');
+  const modal  = root.querySelector('.overlay-modal');
+  const bodyEl = root.querySelector('.overlay-body');
+  const titleEl= root.querySelector('#overlay-title');
+  const btnX   = root.querySelector('.overlay-close');
+
+  function open({ title = '', html = '', onClose = null } = {}){
+    if (title) titleEl.textContent = title;
+    bodyEl.innerHTML = html;
+
+    root.hidden = false;
+    root.classList.add('is-open');
+    document.documentElement.classList.add('modal-open');
+    document.body.classList.add('modal-open');
+
+    // esc + backdrop
+    root.addEventListener('click', onBackdrop);
+    document.addEventListener('keydown', onEsc);
+    btnX.addEventListener('click', close);
+
+    // Fokus ins Modal
+    btnX.focus();
+
+    // Callback merken
+    root._onClose = onClose || null;
+  }
+
+  function close(){
+    root.classList.remove('is-open');
+    root.hidden = true;
+    document.documentElement.classList.remove('modal-open');
+    document.body.classList.remove('modal-open');
+
+    root.removeEventListener('click', onBackdrop);
+    document.removeEventListener('keydown', onEsc);
+    btnX.removeEventListener('click', close);
+
+    if (typeof root._onClose === 'function') {
+      const cb = root._onClose; root._onClose = null;
+      try { cb(); } catch(e){ console.error(e); }
+    }
+  }
+
+  function onBackdrop(e){
+    // nur schließen, wenn außerhalb der Box geklickt wurde
+    if (e.target === root) close();
+  }
+  function onEsc(e){
+    if (e.key === 'Escape') close();
+  }
+
+  // API global bereitstellen
+  window.Overlay = { open, close };
+})();
