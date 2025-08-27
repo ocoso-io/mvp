@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Country Lookup – Demo</title>
+  <link rel="stylesheet" href="./app.css">
+  <script src="./ocoso-country-lookup.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>🌍 Country Lookup</h1>
+    <p class="lead">Choose a destination country. Results are populated from the table. Multiple columns are merged automatically.</p>
+    <div class="lookup-card">
+      <ocoso-country-lookup
+        data-json-src="ipr-tool/laenderuebersicht.cleaned.json"
+        css-href="./ocoso-country-lookup.css"
+        rec-mode="text"
+        src-mode="links"></ocoso-country-lookup>
+    </div>
+  </div>
+</body>
+</html>

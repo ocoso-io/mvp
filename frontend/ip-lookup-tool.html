@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:title" content="Does Your Country Protect Your Rights?">
+  <meta property="og:description" content="AI is rewriting the rules. Different laws apply everywhere. Use the IP Lookup Tool by OCOSO to see your country’s situation — and how you can take action.">
+  <meta property="og:image" content="https://app.ocoso.io/img/head-ip-situation.jpg">
+  <meta property="og:image:secure_url" content="https://app.ocoso.io/assets/ip-lookup-hero.jpg">
+  <meta property="og:image:width" content="1536">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="Illustration of a creator looking up IP laws in front of a globe, symbolizing global differences in content protection.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IP Lookup Tool by OCOSO.io – The OC-Network">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Does Your Country Protect Your Rights?">
+  <meta name="twitter:description" content="See your country’s IP & TDM status — and what you can do.">
+  <meta name="twitter:image" content="https://app.ocoso.io/assets/ip-lookup-hero.jpg">
+  <!-- unbedingt VOR dem ersten Stylesheet -->
+  <title>IP Lookup Tool by OCOSO.io – The OC-Network</title>
+  <link href="css/main.css" rel="stylesheet">
+  <link rel="stylesheet" href="ipr-tool/app.css">
+  
+  <style>
+    /* Grundlayout: Mobile / ≤ 991 px */
+    .block-tools{
+      display:flex;
+      flex-direction:column;      /* Bild oben */
+      gap:var(--px-30);
+    }
+    
+    .tools-img{
+      width:100%;
+      height:auto;
+      object-fit:cover;
+      border-radius: var(--px-20);          /* optisch */
+      border: var(--px-5) solid black;
+    }
+    
+    .media-img{
+      flex:0 0 100%;             /* 30 % Breite  */
+      max-width:100%;
+      object-fit:cover;
+      border-radius: var(--px-20);          /* optisch */
+      border: var(--px-5) solid black;
+    }
+    
+    /* Desktop / > 991 px */
+    @media (min-width:992px){
+      .block-tools{
+        flex-direction:row;       /* Bild links  */
+        align-items:flex-start;
+      }
+    
+      .tools-img{
+        flex:0 0 30%;             /* 30 % Breite  */
+        max-width:30%;
+        margin-right:var(--px-40);
+      }
+      
+      .content-submission{
+        flex:1;                   /* Restbreite   */
+      }
+    }
+    
+html {
+  -webkit-text-size-adjust: 100%;   /* 100 % = keinerlei Auto-Zoom      */
+      text-size-adjust: 100%;
+}    
+  </style>
+</head>
+<body>
+
+
+<!-- Overlay zum Aktivieren neuer Member -->
+<div id="app-overlay" class="overlay-backdrop" hidden aria-hidden="true">
+  <div class="overlay-modal" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
+    <button class="overlay-close" type="button" aria-label="Schließen">×</button>
+    <header class="overlay-header">
+      <h2 id="overlay-title" style="color: black">Waitlist Registration</h2>
+    </header>
+    <section class="overlay-body"><!-- Inhalt wird per JS gesetzt --></section>
+    <!-- optional: Fußbereich
+    <footer class="overlay-footer"></footer> -->
+  </div>
+</div>
+
+
+
+
+<div id="navigation-placeholder"></div>
+<div id="overlay-menu-placeholder" style="z-index: 2500; background-color: yellow;")></div>
+
+<section class="hero">
+    <div class="hero-container" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+									 radial-gradient(circle at 50% 50%, 
+                                     rgba(0, 0, 0, 0)  60%,    
+                                     rgba(0, 0, 0, 1)  100%), 
+									 url('img/head-ip-situation.jpg'); 
+									 background-position: center;">
+
+        <div style="display: flex; flex-direction: column; width: 80%;">
+            <div class="hero-content-wrapper">
+                <div class="main-heading">
+                <h1 class="text-box-wide">IP Lookup Tool</h1>
+                </div>
+                <div class="hero-description"><h5 class="text-box-wide">
+                    See how protected your intellectual properties in your country are
+                </h5></div>
+            </div>
+        </div>
+        <div class="cta-section">
+            <div class="button-group">
+                <div class="button-wrapper">
+                    <button class="action-button" aria-label="Login">
+                        <span class="button-text">Login</span>
+                    </button>
+                    <button class="action-button" aria-label="Register">
+                        <span class="button-text">Register</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="card-stack-wrapper">
+    <nav class="card-stack" id="stack">
+    
+        <div class="card">
+            <div class="wrapper">
+                <div class="responsive" data-link="content-creator.html">
+                    <div class="image-container" style="background-image: url('img/Zielgruppe-Creator_nav_color.jpg');">
+                    </div>
+                    <div class="content-block">
+                        <div class="content-text">
+                            <h2 class="title">Creator</h2>
+                            <p class="description">
+                                Track performance. Compare verticals. Make informed moves in the IP economy.
+                            </p>
+                        </div>
+                        <button class="action-button" aria-label="Stake Your Claim">
+                            <img
+                                    src="img/Arrow.png"
+                                    alt=""
+                                    class="button-icon"
+                                    aria-hidden="true"
+                            />
+                            <span class="button-text">Enter the Market</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrapper-reduced">
+            
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="investor.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">Investor</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">Follow the Signal</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="advertiser.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">Advertiser</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">Join the Table</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </nav>
+</div>
+
+<main class="main"> <!-- kein Style -->
+  <div class="page-wrapper">
+  
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+              <div class="headline-left-inner">
+                <h2>Know Your Rights. Protect Your Content.</h2>
+                <h4>Every country, every law – one tool to see where you stand.</h4>
+                <div style="height: var(--px-20)">&nbsp;</div>   
+                <p>The rules of AI scraping and text-and-data mining (TDM) are not the same everywhere. Some countries grant commercial users broad exceptions, others require explicit licenses, and many leave creators in legal grey zones. That means your protection — and your risk — depends on where you publish from.<br>
+                <br>
+                OCOSO built this tool to cut through the complexity. Enter your country, and you’ll see in seconds: whether machine-readable opt-outs protect you, which specific limitations apply, what countermeasures we recommend, and the original sources of law and guidance.<br>
+                <br>
+                Our goal: transparency, clarity, and actionable steps so creators worldwide can defend their work.
+                  We’ll keep you updated as we move toward launch — and you’ll be the first to know when the doors open. Just register today.</a></p>
+              </div>
+          </div>
+      </article>
+
+      <div style="height: var(--px-80)">&nbsp;</div>    
+      
+      <center class="content-frame">
+        <div class="container">
+          <h1>Country Lookup</h1>
+          <div style="height: var(--px-20)">&nbsp;</div>
+          <div class="lookup-card">
+            <ocoso-country-lookup
+              data-json-src="ipr-tool/laenderuebersicht.cleaned.json"
+              css-href="ipr-tool/ocoso-country-lookup.css"
+              rec-mode="text"
+              src-mode="links"></ocoso-country-lookup>
+          </div>
+        </div>
+        <div style="height: var(--px-160)">&nbsp;</div> 
+  
+        <h4>Ready to protect your creation and grow your audience?</h4>       
+        <h1>Start now</h1>   
+                
+        <section class="content-submission" style="display: flex; flex-direction: row; gap: var(--px-50);">
+          <div>
+            <h2>Protect. Promote. Profit. <br>
+            <!-- Join thousands of creators who’ve taken control — and --> earn from what you love to write.</h2>
+            <div style="height: var(--px-20)">&nbsp;</div>
+          </div>
+          <button id="openOverlayBtn" class="content-button" aria-label="Content navigation button">
+            <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon"/>
+            <span class="content-button-text">Put your name on the waitlist</span>
+          </button>
+        </section> 
+        <div style="height: var(--px-160)">&nbsp;</div> 
+      </center>
+   </div>
+</main>
+
+<div style="height: var(--px-160)">&nbsp;</div>
+
+<div id="footer-placeholder"></div>
+
+<script defer src="ocoso-app-functions.js"></script>
+<script defer src="js/wallet.js"></script>
+<script defer src="js/3d-Navigation.js"></script>
+<script defer src="js/cardTilt.js"></script>
+<script defer src="ipr-tool/ocoso-country-lookup.js"></script>
+<script src="js/waitlist-overlay.js" defer></script>
+
+</body>
+</html>

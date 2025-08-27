@@ -1,0 +1,44 @@
+
+:root {
+  --bg: #0b0d10;
+  --fg: #e8eef3;
+  --card: #12161b;
+  --border: #22303b;
+}
+
+/* html, body { 
+  height: 100%; 
+}*/
+
+body { 
+/*  margin: 0; 
+  background: var(--bg); 
+  color: var(--fg); */
+  font-family: var(--main-font-family), serif;
+  color: #fff;
+  font-size: var(--px-18);
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+} 
+
+.container { 
+  /*max-width: 1100px; */
+  width: 100%;
+  margin: 28px auto; 
+  padding: 0; 
+}
+
+/* h1 { f
+  ont-size: 22px; 
+  margin: 0 0 14px; 
+} */
+
+.lead { 
+  color: #8aa1b1; 
+  margin: 0 0 18px; 
+}
+
+.lookup-card { 
+  padding: 0; 
+}
