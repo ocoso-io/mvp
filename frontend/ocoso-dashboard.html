@@ -17,22 +17,6 @@
 </head>
 <body>
 
-
-<!-- Overlay zum Aktivieren neuer Member -->
-<div id="app-overlay" class="overlay-backdrop" hidden aria-hidden="true">
-  <div class="overlay-modal" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
-    <button class="overlay-close" type="button" aria-label="Schließen">×</button>
-    <header class="overlay-header">
-      <h2 id="overlay-title" style="color: black">Waitlist Registration</h2>
-    </header>
-    <section class="overlay-body"><!-- Inhalt wird per JS gesetzt --></section>
-    <!-- optional: Fußbereich
-    <footer class="overlay-footer"></footer> -->
-  </div>
-</div>
-
-
-
 <div id="navigation-placeholder"></div>
 <div id="overlay-menu-placeholder" style="z-index: 2500;")></div>
 
@@ -46,11 +30,11 @@
                                      rgba(0, 0, 0, 1)  100%), 
 									url('img/users-auditorium_wide_color.jpg'); 
 									 background-position: center;">
-          
+
         <div style="display: flex; flex-direction: column; width: 80%;">
             <div class="hero-content-wrapper">
                 <div class="main-heading">
-                <h1 class="text-box-wide">Invest Dashboard</h1>
+                <h1 class="text-box-wide">OCOSO Dashboard</h1>
                 </div>
                 <div class="hero-description"><h5 class="text-box-wide">
                     The outlines and numbers of the network and community.
@@ -74,33 +58,31 @@
 
   <main class="main"> <!-- kein Style -->
     <div class="page-wrapper" style="max-width: 5000px; /* Kept as pixels */">
-      
-      <div style="height: var(--px-80)">&nbsp;</div>
-        
-      <article class="headline-left-wrapper">
-        <div class="healine-left-container">
-          <div class="headline-left-inner">
-            <h2>Headline</h2>
-            <h5>Subheadline</h5>
-            <p>Text</p>  
-            <div style="height: var(--px-20)">&nbsp;</div> 
-            <h5>Subheadline</h5>
-            <div style="height: var(--px-20)">&nbsp;</div>                            
-            <p>Text</p>  
-            <div style="height: var(--px-20)">&nbsp;</div>
-            <h5>Subheadline</h5>
-          </div>
-        </div>
-      </article>
-        
-      <div style="height: var(--px-80)">&nbsp;</div>    
-          
+    
+        <div style="height: var(--px-80)">&nbsp;</div>
+  
+        <article class="headline-left-wrapper">
+            <div class="healine-left-container">
+                <div class="headline-left-inner">
+                      <h2>Headline</h2>
+                      <h5>Subheadline</h5>
+                      <p>Text</p>  
+                      <div style="height: var(--px-20)">&nbsp;</div> 
+                      <h5>Subheadline</h5>
+                      <div style="height: var(--px-20)">&nbsp;</div>                            
+                      <p>Text</p>  
+                      <div style="height: var(--px-20)">&nbsp;</div>
+                      <h5>Subheadline</h5>
+                </div>
+            </div>
+        </article>
+  
+        <div style="height: var(--px-80)">&nbsp;</div>    
+  
         <center class="content-frame">
               
-              
-              
           <section class="content-submission">
-            
+  
             <article class="dashboard-wrapper">
               <article class="dashboard-menu">
                 <div class="healine-left-container">
@@ -111,12 +93,9 @@
                   </div>
                 </div>
               </article>
-                
+              
               <div style="height: var(--px-80)">&nbsp;</div>   
-                
-              <div style="height: var(--px-80)">&nbsp;</div>   
-                
-                
+                                              
               <!-- ───────── Dashboard Container ────────────────────────────────────────────────────────────────────────────────────────── -->
               <article class="dashboard-content">
                                               
@@ -129,7 +108,7 @@
                       <h6>The foundation of all value</h6>
                     </div>
                   </div>
-                    
+                  
                   <div class="chart-frame-text">
                     <section class="poster">2.5M</section>
                     <div style="height: var(--px-10)">&nbsp;</div>
@@ -164,16 +143,13 @@
                       <h6>Content connections in Web3</h6>
                     </div>
                   </div>
-                    
+                  
                   <div class="chart-frame-text">
                     <section class="poster">73.5M</section>
                     <div style="height: var(--px-10)">&nbsp;</div>
                     <p>Additional information if needed. This Area is for complete usage and can be filled with different types and numbers as any other element on a page.</p>             
                   </div>                
                 </div>
-                  
-                  
-                  
                                 
                 <!-- ───────── Sankey-Diagram Tier-Volume-Ring ───────── -->
                 <div class="dashboard-element-one-one">
@@ -191,12 +167,12 @@
                 </div>
                                 
                 <div class="dashboard-element-one-two">
-                  
+                
                   <div class="chart-header">
                     <h2>Traffic by Topic</h2>
-                      
+                    
                     <div style="height: var(--px-10)">&nbsp;</div>
-                      
+
                     <div class="diagram-header" style="margin-top: var(--px-15)">
                       <button id="homeBtn">Start</button>
                       <button id="backSankey">Back</button>
@@ -216,7 +192,7 @@
                       </select>
                     </div>
                   </div>
-                    
+                  
                   <div class="chart-frame">
                     <canvas id="sankeyChart"  class="chart-fill"></canvas>                
                   </div>
@@ -242,12 +218,12 @@
                       </div>
                     </div>
                   </div>
-                    
+                
                   <div class="chart-frame">
                     <canvas id="lineChart" class="chart-fill"></canvas>
                   </div>
                 </div>
-                  
+                            
                 <!-- ───────── Minted-Pages-Linie ───────── -->
                 <div class="dashboard-element-one-two">
                   <div class="chart-header">
@@ -268,12 +244,12 @@
                       </div>
                     </div>
                   </div>
-                    
+                
                   <div class="chart-frame">
                     <canvas id="lineChartPages" class="chart-fill"></canvas>
                   </div>
                 </div>
-                  
+                
                 <!-- ───────── Minted-Pages-Total-Linie ───────── -->
                 <div class="dashboard-element-one-two">
                   <div class="chart-header">
@@ -294,12 +270,12 @@
                       </div>
                     </div>
                   </div>
-                    
+                
                   <div class="chart-frame">
                     <canvas id="lineChartPagesTotal" class="chart-fill"></canvas>
                   </div>
                 </div>
-                  
+                
                 <!-- ───────── Creator-Count-Linie ───────── -->
                 <div class="dashboard-element-one-two">
                   <div class="chart-header">
@@ -320,30 +296,139 @@
                       </div>
                     </div>
                   </div>
-                    
+                
                   <div class="chart-frame">
                     <canvas id="lineChartCreator" class="chart-fill"></canvas>
                   </div>
                 </div>
-                  
+                
                 <div class="dashboard-element-one-two"></div>
               </article>
             </article>
           </section>
-          
-          
-          
+                
+        
+        
           <div style="height: var(--px-160)">&nbsp;</div>   
           
-          
-          
-         
-          <div class="dt-wrapper" data-source="ipnft_einzelwerte-auto.json">
-            <table class="data-table">
-              <tbody></tbody>
-              <tfoot></tfoot>
+          <table class="data-table">
+              <thead class="table-header">
+                <tr class="header-row">
+                  <th class="header-cell" data-sort-key="Asset_ID">
+                    <span style="display:inline-flex; align-items:center; gap:10px; white-space:nowrap;">
+                      <span class="sort-icon-container">
+                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+                      </span>
+                      <label for="filterType"><span style="white-space: nowrap;">C-NFT #</span></label>
+                    </span>
+                  </th>
+                  <th class="header-cell" data-sort-key="Type">
+                    <span style="display:inline-flex; align-items:center; gap:10px; white-space:nowrap;">
+                      <span class="sort-icon-container">
+                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+                      </span>
+                      <label for="filterType"><span style="white-space: nowrap;">Type</span></label>
+                    </span>
+                    <div style="height: var(--px-10)">&nbsp;</div>
+                    <select class="selector" id="filterType">
+                      <option value="">All</option>
+                    </select>
+                  </th>
+                  <th class="header-cell" data-sort-key="Topics">
+                    <span style="display:inline-flex; align-items:center; gap:10px; white-space:nowrap;">
+                      <span class="sort-icon-container">
+                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+                      </span>
+                      <label for="filterTopic">
+                        <span style="white-space: nowrap;">Topics</span>
+                      </label>
+                    </span>
+                    <div style="height: var(--px-10)">&nbsp;</div>
+                    <select class="selector" id="filterTopic">
+                        <option value="">All</option>
+                    </select>
+                  </th>
+                  <th class="header-cell" data-sort-key="Monetization">
+                    <span style="display:inline-flex; align-items:center; gap:10px; white-space:nowrap;">
+                      <span class="sort-icon-container">
+                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+                      </span>
+                      <label for="filterMonetization">
+                        <span style="white-space: nowrap;">Monetization</span>
+                      </label>
+                    </span>
+                    <div style="height: var(--px-10)">&nbsp;</div>
+                    <select class="selector" id="filterMonetization">
+                        <option value="">All</option>
+                    </select>
+                  </th>
+                  <th class="header-cell" data-sort-key="Start_Date">
+                    <span style="display:inline-flex; align-items:center; gap:10px; white-space:nowrap;">
+                      <span class="sort-icon-container">
+                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+                      </span>
+                      Start-Date
+                    </span>
+                  </th>
+                  <th class="header-cell" data-sort-key="Volume">
+                    <span style="display:inline-flex; align-items:center; gap:10px; white-space:nowrap;">
+                      <span class="sort-icon-container">
+                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+                      </span>
+                      Volume
+                    </span>
+                  </th>
+                  <th class="header-cell">Tools</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="tr-data">
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                </tr>
+                <tr class="tr-data">
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                </tr>
+                <tr class="tr-data">
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                    <td class="td-data">Spacer</td>
+                </tr>
+              </tbody>
+              <tfoot class="table-footer">
+                <tr>
+                    <td colspan="7" class="footer-cell"></td>
+                </tr>
+              </tfoot>
             </table>
-              
+            
             <!-- Pagination -------------------------------------------------->
             <div id="pager" class="pager">
               <button id="pagePrev" aria-label="vorherige Seite">⟨</button>
@@ -357,17 +442,15 @@
                 <option value="100">100</option>
               </select>
             </div>
-              
+            
             <!-- Overlay-Box für das Diagramm -->
-            <div id="chartOverlay2" class="chartOverlayStyle" style="z-index:20000;">
-                <canvas id="chartCanvas2"></canvas>
-            </div> 
-          </div> <!-- Wrapper End -->          
+            <div id="chartOverlay" class="chartOverlayStyle">
+                <canvas id="chartCanvas"></canvas>
+            </div>
+            
+            <div style="height: var(--px-160)">&nbsp;</div>        
+     
           
-            
-          <div style="height: var(--px-160)">&nbsp;</div>              
-            
-            
           <section class="content-submission" style="display: flex; flex-direction: row; gap: var(--px-50);">
             <div>
               <h2>You want change?</h2>
@@ -382,19 +465,19 @@
           </section>           
               
           <div style="height: var(--px-60)">&nbsp;</div>                        
-          
+  
         </center>
      </div>
   </main>
-    
+
   <div style="height: var(--px-160)">&nbsp;</div>
-    
+  
   <div id="footer-placeholder"></div>
-    
+  
   <script defer src="ocoso-app-functions.js"></script>
   <script defer src="js/wallet.js"></script>
   <script defer src="js/cardTilt.js"></script>
-    
+
   <!-- ───────────────── Scripts für Diagramme ───────────────── -->
   <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>     
   <script type="module" src="https://cdn.jsdelivr.net/npm/chartjs-chart-sankey@0.14.0/dist/chartjs-chart-sankey.min.js"></script>
@@ -402,10 +485,9 @@
   <script type="module" src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
   <script src="js/chart-definitions.js" defer></script>
   <script type="module" src="js/dashboard.js"></script>
-  <script type="module" src="js/dashboard-table-flex.js"></script>
-  <script src="js/waitlist-overlay.js" defer></script>
-    
-    
-    
+  <script src="js/dashboard-table.js" defer></script>
+
+
+
 </body>
 </html>

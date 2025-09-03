@@ -7,234 +7,229 @@
 
     <title>OCOSO MVP - Full Layout</title>
     <link rel="stylesheet" href="css/main.css">
+
     <style>
+    
+      :root{
+        --gap:clamp(.75rem,2vw,1.25rem);
+        
+        --Rot: rgba(226, 45, 54, 1);
+        --Gelb: rgba(226, 165, 23, 1);
+        --Gruen: rgba(120, 188, 36, 1);
+        --Tuerkis: rgba(51, 170, 77, 1);
+        --Cyan: rgba(22, 156, 147, 1);
+        --Blau: rgba(61, 111, 235, 1);
+        --Violett: rgba(143, 51, 255, 1);
+        --Pink: rgba(191, 37, 160, 1);
+        
+        --Rot-Dunkel: rgba(163, 32, 38, 1);
+        --Gelb-Dunkel: rgba(145, 111, 29, 1);
+        --Gruen-Dunkel: rgba(83, 130, 26, 1);
+        --Tuerkis-Dunkel: rgba(26, 128, 47, 1);
+        --Cyan-Dunkel: rgba(0, 112, 106, 1);
+        --Blau-Dunkel: rgba(35, 78, 179, 1);
+        --Violett-Dunkel: rgba(100, 35, 179, 1);
+        --Pink-Dunkel: rgba(138, 27, 115, 1);      
+        
+      }
+      
+      .sort-icons {
+          margin-left: var(--px-5);
+      }
 
-        .sort-icons {
-            margin-left: var(--px-5);
-        }
+      .arrow {
+          width: var(--px-10);
+          height: var(--px-10);
+      }
 
-        .arrow {
-            width: var(--px-10);
-            height: var(--px-10);
-        }
+      .arrow.inactive {
+          display: none;
+      }
 
-        .arrow.inactive {
-            display: none;
-        }
-
-        .arrow.active {
-            display: block;
-        }
-
-
-        .sort-icon-container img {
-            margin: -2px 0px;
-            height: var(--px-15);
-            width: var(--px-15);
-        }
-
-        /* Overlay-Box für Diagramm */
-        #chartOverlay {
-            display: none;
-            position: fixed;
-            background: #fff;
-            border: var(--px-1) solid #ccc;
-            padding: var(--px-10);
-            z-index: 9999;
-            box-shadow: 0 0 var(--px-10) rgba(0, 0, 0, 0.3);
-            border-radius: var(--px-4);
-        }
-
-        .tr-data {
-            background-color: #424242;
-        }
-
-        .td-data {
-            margin: var(--px-5);
-            padding: var(--px-3) 0px var(--px-3) var(--px-15);
-            font-size: var(--px-15);
-            border-bottom: var(--px-2) solid #222;
-        }
-
-        .donut-row {
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            gap: 20px;
-            width: 100%;
-            box-sizing: border-box;
-            justify-content: flex-start;
-        }
-
-        .donut-container {
-            display;
-            flex;
-            flex-shrink: 1 1 50%;
-            height: var(--px-300);
-            /* moderner Weg */
-            background-color: black;
-            position: relative;
-        }
-
-        .donut-container canvas {
-            background-color: aqua;
-        }
+      .arrow.active {
+          display: block;
+      }
 
 
-        .donut-row {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
+      .sort-icon-container img {
+          margin: -2px 0px;
+          height: var(--px-15);
+          width: var(--px-15);
+      }
 
-        }
+      /* Overlay-Box für Diagramm */
+      #chartOverlay {
+          display: none;
+          position: fixed;
+          background: #fff;
+          border: var(--px-1) solid #ccc;
+          padding: var(--px-10);
+          z-index: 9999;
+          box-shadow: 0 0 var(--px-10) rgba(0, 0, 0, 0.3);
+          border-radius: var(--px-4);
+      }
 
-        .donut‑block {
-            display: flex;
-            align‑items: center;
-            gap: 30px; /* Abstand zwischen Donut und Legend */
-            margin‑bottom: var(--px-20);
-            height: var(--px-300);
-            width: 500px;
-        }
+      .donut-row {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          gap: 20px;
+          width: 100%;
+          box-sizing: border-box;
+          justify-content: flex-start;
+      }
 
-        .donut‑canvas‑wrapper {
-            width: var(--px-200); /* passt zum Radius unten (2x100px) */
-            height: var(--px-200);
-        }
+      .donut-container {
+          display: flex;
+          flex-shrink: 1 1 50%;
+          height: var(--px-300);
+          /* moderner Weg */
+          background-color: black;
+          position: relative;
+      }
 
-        .donut‑canvas‑wrapper canvas {
-            width: 100% !important;
-            height: 100% !important;
-        }
-
-        .donut-title {
-            font-family: "Avenir Next", -apple-system, Roboto, Helvetica, sans-serif;
-            text-align: center;
-            font-size: 24px;
-            font-weight: 800;
-            line-height: 1.2;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 0.72px;
-            margin-bottom: 8px;
-            color: #fff; /* oder Deine Wunsch‑Farbe */
-            padding: 0 0 0 var(--px-10);
-            white-space: nowrap;
-        }
-
-        .donut‑html‑legend {
-            font‑size: 14px;
-            color: #fff;
-            margin-top: var(--px-40);
-        }
-
-        .donut‑html‑legend ul {
-            font-family: "Avenir Next", -apple-system, Roboto, Helvetica, sans-serif;
-            text-align: center;
-            font-size: 18px;
-            font-weight: 400;
-            line-height: 1.2;
-            letter-spacing: 0.72px;
-            text-align: left;
-            margin-bottom: 8px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .donut‑html‑legend li {
-            display: flex;
-            align‑items: center;
-            margin-bottom: var(--px-4);
-            text-align: left;
-
-        }
-
-        .donut‑html‑legend span.dot {
-            display: inline‑block;
-            width: var(--px-15);
-            height: var(--px-15);
-            margin-top: var(--px-3);
-            margin-right: var(--px-10);
-            border‑radius: 50%;
-            text-align: left;
-        }
+      .donut-container canvas {
+          background-color: aqua;
+      }
 
 
-        #stacked-chart-widget {
-            background: #2a2a2a;
-            padding: var(--px-20);
-            border-radius: 8px;
-            color: #fff;
-            font-family: "Avenir Next", sans-serif;
-            max-width: 800px;
-            margin: 0 auto var(--px-40);
-        }
+      .donut-row {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
 
-        .widget-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-        }
+      }
 
-        .widget-title {
-            font-family: "Avenir Next", -apple-system, Roboto, Helvetica, sans-serif;
-            text-align: center;
-            font-size: 24px;
-            font-weight: 800;
-            line-height: 1.2;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 0.72px;
-            margin-bottom: 8px;
-            color: #fff; /* oder Deine Wunsch‑Farbe */
-            padding: 0 0 0 var(--px-10);
-            white-space: nowrap;
+      .donut‑block {
+          display: flex;
+          align‑items: center;
+          gap: 30px; /* Abstand zwischen Donut und Legend */
+          margin‑bottom: var(--px-20);
+          height: var(--px-300);
+          width: 500px;
+      }
 
-        }
+      .donut‑canvas‑wrapper {
+          width: var(--px-200); /* passt zum Radius unten (2x100px) */
+          height: var(--px-200);
+      }
 
-        .widget-select {
-            background: #444;
-            color: #fff;
-            border: none;
-            padding: 6px var(--px-10);
-            border-radius: var(--px-4);
-            font-weight: 400;
-            font-size: 1rem;
-        }
+      .donut‑canvas‑wrapper canvas {
+          width: 100% !important;
+          height: 100% !important;
+      }
 
-        .widget-body {
-            position: relative;
-            height: var(--px-300);
-        }
+      .donut-title {
+          font-family: "Avenir Next", -apple-system, Roboto, Helvetica, sans-serif;
+          text-align: center;
+          font-size: 24px;
+          font-weight: 800;
+          line-height: 1.2;
+          margin: 0;
+          text-transform: uppercase;
+          letter-spacing: 0.72px;
+          margin-bottom: 8px;
+          color: #fff; /* oder Deine Wunsch‑Farbe */
+          padding: 0 0 0 var(--px-10);
+          white-space: nowrap;
+      }
 
-        /* Canvas füllt den Container */
-        #stackedChart {
-            width: 100% !important;
-            height: 100% !important;
-        }
+      .donut‑html‑legend {
+          font‑size: 14px;
+          color: #fff;
+          margin-top: var(--px-40);
+      }
 
+      .donut‑html‑legend ul {
+          font-family: "Avenir Next", -apple-system, Roboto, Helvetica, sans-serif;
+          text-align: center;
+          font-size: 18px;
+          font-weight: 400;
+          line-height: 1.2;
+          letter-spacing: 0.72px;
+          text-align: left;
+          margin-bottom: 8px;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+      }
+
+      .donut‑html‑legend li {
+          display: flex;
+          align‑items: center;
+          margin-bottom: var(--px-4);
+          text-align: left;
+
+      }
+
+      .donut‑html‑legend span.dot {
+          display: inline‑block;
+          width: var(--px-15);
+          height: var(--px-15);
+          margin-top: var(--px-3);
+          margin-right: var(--px-10);
+          border‑radius: 50%;
+          text-align: left;
+      }
+
+
+      #stacked-chart-widget {
+          background: #2a2a2a;
+          padding: var(--px-20);
+          border-radius: 8px;
+          color: #fff;
+          font-family: "Avenir Next", sans-serif;
+          max-width: 800px;
+          margin: 0 auto var(--px-40);
+      }
+
+      .widget-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 12px;
+      }
+
+      .widget-title {
+          font-family: "Avenir Next", -apple-system, Roboto, Helvetica, sans-serif;
+          text-align: center;
+          font-size: 24px;
+          font-weight: 800;
+          line-height: 1.2;
+          margin: 0;
+          text-transform: uppercase;
+          letter-spacing: 0.72px;
+          margin-bottom: 8px;
+          color: #fff; /* oder Deine Wunsch‑Farbe */
+          padding: 0 0 0 var(--px-10);
+          white-space: nowrap;
+
+      }
+
+      .widget-select {
+          background: #444;
+          color: #fff;
+          border: none;
+          padding: 6px var(--px-10);
+          border-radius: var(--px-4);
+          font-weight: 400;
+          font-size: 1rem;
+      }
+
+      .widget-body {
+          position: relative;
+          height: var(--px-300);
+      }
+
+      /* Canvas füllt den Container */
+      #stackedChart {
+          width: 100% !important;
+          height: 100% !important;
+      }
 
     </style>
 </head>
 <body>
-
-
-<!-- Overlay zum Aktivieren neuer Member -->
-<div id="app-overlay" class="overlay-backdrop" hidden aria-hidden="true">
-  <div class="overlay-modal" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
-    <button class="overlay-close" type="button" aria-label="Schließen">×</button>
-    <header class="overlay-header">
-      <h2 id="overlay-title" style="color: black">Waitlist Registration</h2>
-    </header>
-    <section class="overlay-body"><!-- Inhalt wird per JS gesetzt --></section>
-    <!-- optional: Fußbereich
-    <footer class="overlay-footer"></footer> -->
-  </div>
-</div>
-
-
 
 <!-- Overlay-Box für das Diagramm -->
 <div id="chartOverlay">
@@ -244,7 +239,6 @@
 <div id="navigation-placeholder"></div>
 <div id="overlay-menu-placeholder"></div>
 
-
 <section class="hero">
     <div class="hero-container" style="background-image: 
                   linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
@@ -253,15 +247,18 @@
 									radial-gradient(circle at 50% 50%, 
                                      rgba(0, 0, 0, 0)  60%,    
                                      rgba(0, 0, 0, 1)  100%), 
-									url('img/head-invest-trends2_color.jpg'); 
-									 background-position: bottom center;">
+									url('img/head-invest-ownership_color.jpg'); 
+									 background-position: center;">
 
         <div style="display: flex; flex-direction: column; width: 80%;">
             <div class="hero-content-wrapper">
                 <div class="main-heading"><h1
-                        class="text-box-wide">WATCH WHAT’S MOVING</h1></div>
+                        class="text-box-wide">Investor</h1></div>
                 <div class="hero-description" style=" margin-left: 25%"><h5 class="text-box-wide">
-                    WEB3 MOVES FAST. STAY AHEAD OF NARRATIVES, VERTICALS, AND ASSET-CLASS EVOLUTION.
+                    It’s not just capital. It’s conviction. You’re not buying ads — you’re backing ideas. No brokers. No
+                    bias. Just code, ownership, and upside. This isn’t Wall Street in disguise — it’s a network where
+                    your stake shapes the story. Invest in attention. Invest in impact. And hold the proof in your
+                    wallet.
                 </h5></div>
             </div>
         </div>
@@ -353,15 +350,17 @@
         </div>
 
         <div class="card">
+
+
             <div class="wrapper">
-                <div class="responsive" data-link="investor-trends.html">
-                    <div class="image-container" style="background-image: url('img/invest-trends_color.jpg');">
+                <div class="responsive" data-link="investor-market.html">
+                    <div class="image-container" style="background-image: url('img/invest-market_color.jpg');">
                     </div>
                     <div class="content-block">
                         <div class="content-text">
-                            <h2 class="title">TRENDS</h2>
+                            <h2 class="title">Market</h2>
                             <p class="description">
-                                From creator tokens to content DAOs — discover where capital meets culture
+                                Track performance. Compare verticals. Make informed moves in the IP economy.
                             </p>
                         </div>
                         <button class="action-button" aria-label="Stake Your Claim">
@@ -371,7 +370,7 @@
                                     class="button-icon"
                                     aria-hidden="true"
                             />
-                            <span class="button-text">FOLLOW THE SIGNAL</span>
+                            <span class="button-text">ENTER THE MARKET</span>
                         </button>
                     </div>
                 </div>
@@ -380,10 +379,10 @@
             <div class="wrapper-reduced">
 
                 <div class="wrapper">
-                    <div class="responsive-reduced" data-link="investor-market.html">
+                    <div class="responsive-reduced" data-link="investor-trends.html">
                         <div class="content-block-reduced">
                             <div class="content-text-reduced">
-                                <h2 class="title">Market</h2>
+                                <h2 class="title">TRENDS</h2>
                             </div>
                             <button class="action-button" aria-label="Stake Your Claim">
                                 <img
@@ -392,7 +391,7 @@
                                         class="button-icon"
                                         aria-hidden="true"
                                 />
-                                <span class="button-text">ENTER THE MARKET</span>
+                                <span class="button-text">FOLLOW THE SIGNAL</span>
                             </button>
                         </div>
                     </div>
@@ -422,12 +421,82 @@
 
         </div>
 
+        <div class="card">
+
+
+            <div class="wrapper">
+                <div class="responsive" data-link="investor-market-invest.html">
+                    <div class="image-container" style="background-image: url('img/invest-ownership_color.jpg');">
+                    </div>
+                    <div class="content-block">
+                        <div class="content-text">
+                            <h2 class="title">INVEST &amp; TRADE</h2>
+                            <p class="description">
+                                See what moves the market. Compare verticals. Spot performance across the chain.
+                            </p>
+                        </div>
+                        <button class="action-button" aria-label="Stake Your Claim">
+                            <img
+                                    src="img/Arrow.png"
+                                    alt=""
+                                    class="button-icon"
+                                    aria-hidden="true"
+                            />
+                            <span class="button-text">VIEW YOUR PORTFOLIO</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrapper-reduced">
+
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="investor-market-overview.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">OVERVIEW</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">EXPLORE THE INDEX</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="investor-market-results.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">YOUR RESULTS</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">VIEW YOUR PORTFOLIO</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
 
     </nav>
 </div>
 
 <main class="main">
-
 
     <div class="page-wrapper">
 
@@ -435,22 +504,22 @@
         <div style="height: var(--px-80)">&nbsp;</div>
 
 
-        <article class="headline-left-wrapper">
-            <div class="healine-left-container">
-                <div class="headline-left-inner">
+        <article class="headline-right-wrapper">
+            <div class="healine-right-container">
+                <div class="headline-right-inner">
                     <header>
-                        <h2>Watch What’s Moving — Before It Moves the Market</h2>
+                        <h2>Turn Belief into Stake</h2>
                     </header>
                     <section>
-                        <h5>
-                            Web3 moves fast. Stay ahead of narratives, verticals, and asset-class evolution.
-                        </h5>
+                        <h4 style="text-align: right">
+                            Buy into potential. Exit on returns. Make every bet a bet on meaning.
+                        </h4>
                     </section>
                     <section>
                         <p>
-                            This is where intuition meets intelligence. New asset classes emerge. Protocols shift. Token
-                            models evolve. Trends reveal where belief turns into demand — and where early entries pay
-                            off. Stay sharp. Read the signs. And position before the herd moves.
+                            You’re not just trading numbers. You’re backing creativity. With every trade, you help shape
+                            what the internet values — and get your share of the upside. Welcome to the IP marketplace.
+                            No gatekeepers. No speculation without signal.
                         </p>
                     </section>
                 </div>
@@ -533,70 +602,88 @@
             <div style="height: var(--px-160)">&nbsp;</div>
 
             <table class="data-table">
-                <thead class="table-header">
+              <thead class="table-header">
                 <tr class="header-row">
-                    <th class="header-cell" data-sort-key="Asset_ID">
-        <span style="white-space: nowrap;"><span class="sort-icon-container">
-          <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
-          <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
-          <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
-        </span>
-        IP-NFT</span>
-                    </th>
-                    <th class="header-cell" data-sort-key="Type">
-        <span class="sort-icon-container">
-          <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
-          <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
-          <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
-        </span>
-                        <label for="filterType"><span style="white-space: nowrap;">Type<br></span></label>
-                        <select id="filterType">
-                            <option value="">Alle</option>
-                        </select>
-                    </th>
-                    <th class="header-cell" data-sort-key="Topics">
-        <span class="sort-icon-container">
-          <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
-          <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
-          <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
-        </span>
-                        <label for="filterTopic"><span style="white-space: nowrap;">Topics<br></span></label>
-                        <select id="filterTopic">
-                            <option value="">Alle</option>
-                        </select>
-                    </th>
-                    <th class="header-cell" data-sort-key="Monetization">
-        <span class="sort-icon-container">
-          <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
-          <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
-          <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
-        </span>
-                        <label for="filterMonetization"><span
-                                style="white-space: nowrap;">Monetization<br></span></label>
-                        <select id="filterMonetization">
-                            <option value="">Alle</option>
-                        </select>
-                    </th>
-                    <th class="header-cell" data-sort-key="Start_Date">
-        <span style="white-space: nowrap;"><span class="sort-icon-container">
-          <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
-          <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
-          <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
-        </span>
-        Start-Date</span>
-                    </th>
-                    <th class="header-cell" data-sort-key="Volume">
-        <span style="white-space: nowrap;"><span class="sort-icon-container">
-          <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
-          <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
-          <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
-        </span>
-        Volume</span>
-                    </th>
-                    <th class="header-cell">Aktionen</th>
+                  <th class="header-cell" data-sort-key="Asset_ID">
+                    <span style="white-space: nowrap;">
+                      <span class="sort-icon-container">
+                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+                      </span>
+                      <label for="filterType"><span style="white-space: nowrap;">C-NFT #</span></label>
+                    </span>
+                  </th>
+                  <th class="header-cell" data-sort-key="Type">
+                    <span style="white-space: nowrap;">
+                      <span class="sort-icon-container">
+                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+                      </span>
+                      <label for="filterType"><span style="white-space: nowrap;">Type</span></label>
+                    </span>
+                    <div style="height: var(--px-10)">&nbsp;</div>
+                    <select class="selector" id="filterType">
+                      <option value="">All</option>
+                    </select>
+                  </th>
+                  <th class="header-cell" data-sort-key="Topics">
+                    <span style="white-space: nowrap;">
+                      <span class="sort-icon-container">
+                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+                      </span>
+                      <label for="filterTopic">
+                        <span style="white-space: nowrap;">Topics</span>
+                      </label>
+                    </span>
+                    <div style="height: var(--px-10)">&nbsp;</div>
+                    <select class="selector" id="filterTopic">
+                        <option value="">All</option>
+                    </select>
+                  </th>
+                  <th class="header-cell" data-sort-key="Monetization">
+                    <span style="white-space: nowrap;">
+                      <span class="sort-icon-container">
+                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+                      </span>
+                      <label for="filterMonetization">
+                        <span style="white-space: nowrap;">Monetization</span>
+                      </label>
+                    </span>
+                    <div style="height: var(--px-10)">&nbsp;</div>
+                    <select class="selector" id="filterMonetization">
+                        <option value="">All</option>
+                    </select>
+                  </th>
+                  <th class="header-cell" data-sort-key="Start_Date">
+                    <span style="white-space: nowrap;">
+                      <span class="sort-icon-container">
+                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+                      </span>
+                      Start-Date
+                    </span>
+                  </th>
+                  <th class="header-cell" data-sort-key="Volume">
+                    <span style="white-space: nowrap;">
+                      <span class="sort-icon-container">
+                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+                      </span>
+                      Volume
+                    </span>
+                  </th>
+                  <th class="header-cell">Aktionen</th>
                 </tr>
-                </thead>
-                <tbody>
+              </thead>
+              <tbody>
                 <tr class="tr-data">
                     <td class="td-data">Spacer</td>
                     <td class="td-data">Spacer</td>
@@ -624,14 +711,27 @@
                     <td class="td-data">Spacer</td>
                     <td class="td-data">Spacer</td>
                 </tr>
-                </tbody>
-                <tfoot class="table-footer">
+              </tbody>
+              <tfoot class="table-footer">
                 <tr>
                     <td colspan="7" class="footer-cell"></td>
                 </tr>
-                </tfoot>
+              </tfoot>
             </table>
-
+            
+            <!-- Pagination -------------------------------------------------->
+            <div id="pager" class="pager">
+              <button id="pagePrev" aria-label="vorherige Seite">⟨</button>
+              <span class="text-body" id="pageInfo">1 – 20</span>
+              <button id="pageNext" aria-label="nächste Seite">⟩</button>
+            <div style="width: var(--px-50)">&nbsp;</div>
+              <label class="text-body" for="rowsPerPage">Rows:</label>
+              <select id="rowsPerPage">
+                <option value="20" selected>20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </div>
 
             <div style="height: var(--px-160)">&nbsp;</div>
 
@@ -639,25 +739,25 @@
             <div style="height: var(--px-40)">&nbsp;</div>
 
             <section class="content-submission" style="display: flex; flex-direction: row; gap: var(--px-50);">
-                <h6 class="submission-subtitle" style="display: flex; width: auto">
-                    Select your minted draft. Only minted NFTs are promotable. <br>Haven't minted yet? Go claim your
-                    content.
-                </h6>
-                <button class="content-button" aria-label="Content navigation button">
-                    <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon"/>
-                    <span class="content-button-text">
-        Mint It 
-      </span>
-                </button>
+              <h6 class="submission-subtitle" style="display: flex; width: auto">
+                  Select your minted draft. Only minted NFTs are promotable. <br>Haven't minted yet? Go claim your
+                  content.
+              </h6>
+              <button class="content-button" aria-label="Content navigation button">
+                <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon"/>
+                <span class="content-button-text">
+                  Mint It 
+                </span>
+              </button>
             </section>
 
             <div style="height: var(--px-80)">&nbsp;</div>
 
             <section class="content-submission">
-                <h2 class="submission-title">Display</h2>
-                <h6 class="submission-subtitle">
-                    Your NFT as a signal. Loud, proud, everywhere.
-                </h6>
+              <h2 class="submission-title">Display</h2>
+              <h6 class="submission-subtitle">
+                Your NFT as a signal. Loud, proud, everywhere.
+              </h6>
             </section>
 
             <div style="height: var(--px-80)">&nbsp;</div>
@@ -669,10 +769,9 @@
 
     </div>
 
-    <div id="footer-placeholder"></div>
-
-
 </main>
+
+<div id="footer-placeholder"></div>
 
 
 
@@ -681,8 +780,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="js/3d-Navigation.js" defer></script>
 <script src="js/cardTilt.js" defer></script>
-<script src="js/waitlist-overlay.js" defer></script>
-
+<script type="module" src="js/dashboard.js"></script>
+<script src="js/dashboard-table.js" defer></script>
 
 <!-- JavaScript: Filter, Sortierung, Tabelle und Chart-Overlay -->
 <script>
@@ -913,154 +1012,8 @@
         }
 
     });
-
-
-    document.addEventListener('DOMContentLoaded', function () {
-        let sortState = {key: null, direction: 0};
-        let globalData = [], filteredData = [];
-
-        fetch('ipnft_einzelwerte.json')
-            .then(r => r.json())
-            .then(data => {
-                globalData = prepareData(data);
-                buildFilterOptions(globalData);
-                filteredData = [...globalData];
-                renderTable(filteredData);
-            })
-            .catch(e => console.error('Lade-Fehler:', e));
-
-        function prepareData(data) {
-            const grouped = {};
-            data.forEach(record => {
-                const typeValue = record.Type || 'n/a';
-                const key = `${record.Asset_ID}_${record.Category}_${record.Monetization}_${typeValue}`;
-                const revKeys = Object.keys(record).filter(k => k.startsWith('Rev_')).sort();
-                if (!grouped[key]) {
-                    grouped[key] = {
-                        Asset_ID: record.Asset_ID,
-                        Topics: record.Category,
-                        Monetization: record.Monetization,
-                        Type: typeValue,
-                        Start_Date: null,
-                        Volume: 0,
-                        revenueSeries: revKeys.map(k => ({
-                            date: k.replace('Rev_', ''),
-                            value: Number(record[k])
-                        }))
-                    };
-                }
-                revKeys.forEach(k => {
-                    const v = Number(record[k]);
-                    const d = k.replace('Rev_', '');
-                    if (v > 0 && (!grouped[key].Start_Date || d < grouped[key].Start_Date)) {
-                        grouped[key].Start_Date = d;
-                    }
-                    grouped[key].Volume += v;
-                });
-            });
-            return Object.values(grouped);
-        }
-
-        function buildFilterOptions(data) {
-            const topics = [...new Set(data.map(d => d.Topics))].sort();
-            const monets = [...new Set(data.map(d => d.Monetization))].sort();
-            const types = [...new Set(data.map(d => d.Type))].sort();
-            const byId = id => document.getElementById(id);
-            topics.forEach(t => byId('filterTopic').append(new Option(t, t)));
-            monets.forEach(m => byId('filterMonetization').append(new Option(m, m)));
-            types.forEach(tp => byId('filterType').append(new Option(tp, tp)));
-            ['filterTopic', 'filterMonetization', 'filterType']
-                .forEach(id => byId(id).addEventListener('change', filterAndRender));
-
-
-            //document.querySelectorAll('th[data-sort-key]')
-            //.forEach(th=> th.addEventListener('click', ()=>{ toggleSort(th.dataset.sortKey); applySort(); }));
-
-            // Statt auf das ganze <th> nur auf das Icon-Container-Element lauschen:
-            document.querySelectorAll('th[data-sort-key] .sort-icon-container')
-                .forEach(iconWrap => {
-                    iconWrap.style.cursor = 'pointer';
-                    iconWrap.addEventListener('click', e => {
-                        const th = iconWrap.closest('th[data-sort-key]');
-                        toggleSort(th.dataset.sortKey);
-                        applySort();
-                        e.stopPropagation(); // verhindert andere Listener
-                    });
-                });
-
-        }
-
-        function filterAndRender() {
-            const v = id => document.getElementById(id).value;
-            filteredData = globalData.filter(d =>
-                (!v('filterTopic') || d.Topics === v('filterTopic')) &&
-                (!v('filterMonetization') || d.Monetization === v('filterMonetization')) &&
-                (!v('filterType') || d.Type === v('filterType'))
-            );
-            applySort();
-        }
-
-        function toggleSort(key) {
-            if (sortState.key === key) {
-                sortState.direction = sortState.direction === 1 ? -1 : 0;
-                if (sortState.direction === 0) sortState.key = null;
-            } else {
-                sortState.key = key;
-                sortState.direction = 1;
-            }
-            updateSortIcons();
-        }
-
-        function updateSortIcons() {
-            document.querySelectorAll('th[data-sort-key]').forEach(th => {
-                const [neutral, up, down] = th.querySelectorAll('img.sort-icon');
-                if (sortState.key === th.dataset.sortKey) {
-                    neutral.style.display = 'none';
-                    up.style.display = sortState.direction === 1 ? 'inline' : 'none';
-                    down.style.display = sortState.direction === -1 ? 'inline' : 'none';
-                } else {
-                    neutral.style.display = 'inline';
-                    up.style.display = down.style.display = 'none';
-                }
-            });
-        }
-
-        function applySort() {
-            if (sortState.key && sortState.direction) {
-                filteredData.sort((a, b) => {
-                    const A = a[sortState.key], B = b[sortState.key];
-                    if (sortState.key === 'Volume') return sortState.direction * (A - B);
-                    if (sortState.key === 'Start_Date') return sortState.direction * (A?.localeCompare(B) || 0);
-                    return sortState.direction * (('' + A).localeCompare('' + B));
-                });
-            }
-            renderTable(filteredData);
-        }
-
-        function renderTable(data) {
-            const tbody = document.querySelector('.data-table tbody');
-            tbody.innerHTML = '';
-            data.forEach(item => {
-                const tr = document.createElement('tr');
-                tr.classList.add('tr-data');
-                tr.dataset.assetKey = `${item.Asset_ID}_${item.Topics}_${item.Monetization}_${item.Type}`;
-                tr.innerHTML = `
-        <td class="td-data">${item.Asset_ID}</td>
-        <td class="td-data">${item.Type}</td>
-        <td class="td-data">${item.Topics}</td>
-        <td class="td-data">${item.Monetization}</td>
-        <td class="td-data">${item.Start_Date || '---'}</td>
-        <td class="td-data">${item.Volume.toFixed(2)}</td>
-        <td class="td-data">
-          <img src="img/icon-eye.png"  class="action-icon chart-trigger" />
-          <img src="img/icon-edit.png" class="action-icon" />
-          <img src="img/icon-trash.png"class="action-icon" />
-        </td>`;
-                tbody.append(tr);
-            });
-            attachChartEvents();
-        }
-
+        
+document.addEventListener('DOMContentLoaded', function () {
         function attachChartEvents() {
             document.querySelectorAll('.chart-trigger').forEach(icon => {
                 icon.addEventListener('mouseover', showChartOverlay);
