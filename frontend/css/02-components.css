@@ -89,7 +89,7 @@ main-navigation.comic-row {
 
   /* beliebig viele 360 px-Karten in einer Zeile;
      bei Platzmangel umbrechen  */
-  grid-template-columns: repeat(auto-fit, minmax(var(--px-400), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(var(--px-360), 1fr));
 
   gap: var(--px-20);
   justify-items:center;          /* mittig im Grid-Slot */
