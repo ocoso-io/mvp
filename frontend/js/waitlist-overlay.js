@@ -91,9 +91,11 @@
     });
   }
 
-  // Trigger registrieren
-  document.getElementById('openOverlayBtn')
-    ?.addEventListener('click', openWaitlistOverlay);
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('[id^="openOverlayBtn"]');
+  if (!btn) return;
+  openWaitlistOverlay(e);
+});
 
   // Zusätzlich: alle Buttons mit aria-label="Register"
   document.querySelectorAll('.action-button[aria-label="Register"]')
