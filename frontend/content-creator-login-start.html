@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>OCOSO MVP - Full Layout</title>
+    <link rel="stylesheet" href="css/main.css">
+    
+    <style>
+    /* Container: links erster Block, rechts letzter Block */
+.diagram-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between; /* links | rechts */
+  gap: var(--px-20);
+  margin-top: var(--px-15);
+  flex-wrap: wrap;               /* darf umbrechen */
+}
+
+/* Linke Seite: Buttons + Select + Hinweis */
+.diagram-left{
+  display:flex;
+  align-items:center;
+  gap: var(--px-10);
+  min-width: 0;
+}
+
+/* Rechte Seite: „Show“-Select rechts kleben */
+.diagram-right{
+  display:flex;
+  align-items:center;
+  gap: var(--px-10);
+  margin-left:auto;              /* schiebt nach rechts */
+  margin-right: var(--px-12);
+  min-width: 0;
+}
+
+/* Kleines Viewport-Feintuning */
+@media (max-width: 640px){
+  .diagram-header{ gap: var(--px-12); }
+  .diagram-right{ justify-content:flex-end; } /* neue Zeile, rechtsbündig */
+  .diagram-left .sankey-add{ display:none; }              /* optional: Hinweis ausblenden, falls eng */
+}
+    </style>
+</head>
+<body>
+
+
+<!-- Overlay zum Aktivieren neuer Member -->
+<div id="app-overlay" class="overlay-backdrop" hidden aria-hidden="true">
+  <div class="overlay-modal" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
+    <button class="overlay-close" type="button" aria-label="Schließen">×</button>
+    <header class="overlay-header">
+      <h2 id="overlay-title" style="color: black">Waitlist Registration</h2>
+    </header>
+    <section class="overlay-body"><!-- Inhalt wird per JS gesetzt --></section>
+    <!-- optional: Fußbereich
+    <footer class="overlay-footer"></footer> -->
+  </div>
+</div>
+
+
+
+<div id="navigation-placeholder"></div>
+<div id="overlay-menu-placeholder"></div>
+
+<section class="hero">
+    <div class="hero-container" style="background-image: 
+                  linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+                  linear-gradient(to right, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+                  linear-gradient(to left, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+									radial-gradient(circle at 50% 50%, 
+                                     rgba(0, 0, 0, 0)  60%,    
+                                     rgba(0, 0, 0, 1)  100%), 
+									url('img/head-invest-market_color.jpg'); 
+									 background-position: center;">
+
+        <div style="display: flex; flex-direction: column; width: 80%;">
+            <div class="hero-content-wrapper">
+                <div class="main-heading"><h1
+                        class="text-box-wide">Creator</h1></div>
+                <div class="hero-description" style=" margin-left: 25%"><h5 class="text-box-wide">
+                    hgjghfjghjghjghjghj
+                </h5></div>
+            </div>
+        </div>
+        <div class="cta-section">
+            <div class="button-group">
+                <div class="button-wrapper">
+                    <button class="action-button" aria-label="Login">
+                        <span class="button-text">Login</span>
+                    </button>
+                    <button class="action-button" aria-label="Register">
+                        <span class="button-text">Register</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="card-stack-wrapper">
+    <nav class="card-stack" id="stack">
+    
+        <div class="card">
+            <div class="wrapper">
+                <div class="responsive" data-link="content-creator.html">
+                    <div class="image-container" style="background-image: url('img/Zielgruppe-Creator_nav_color.jpg');">
+                    </div>
+                    <div class="content-block">
+                        <div class="content-text">
+                            <h2 class="title">Creator</h2>
+                            <p class="description">
+                                Track performance. Compare verticals. Make informed moves in the IP economy.
+                            </p>
+                        </div>
+                        <button class="action-button" aria-label="Stake Your Claim">
+                            <img
+                                    src="img/Arrow.png"
+                                    alt=""
+                                    class="button-icon"
+                                    aria-hidden="true"
+                            />
+                            <span class="button-text">Enter the Market</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrapper-reduced">
+            
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="investor.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">Investor</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">Follow the Signal</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="advertiser.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">Advertiser</h2>
+                            </div>
+                            <button class="action-button" aria-label="Stake Your Claim">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">Join the Table</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="card">
+                   
+            <div class="wrapper">
+                <div class="responsive-narrow" data-link="content-ai-situation.html">
+                    <div class="content-block-narrow"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/creator-ai-situation.jpg');">
+                        <div class="content-text">
+                            <h2 class="title">Gain AI Reach</h2>
+                            <p class="description">
+                                Make your content visible to AI Agents — discoverable, attributable, and rewarded.
+                            </p>
+                        </div>
+                        <button aria-label="Stake Your Claim" class="action-button">
+                            <img
+                                    alt=""
+                                    aria-hidden="true"
+                                    class="button-icon"
+                                    src="img/Arrow.png"
+                            />
+                            <span class="button-text">Be Found</span>
+                        </button>
+                    </div>
+                </div>
+            </div>  
+
+            <div class="wrapper">
+                <div class="responsive-narrow" data-link="content-network.html">
+                    <div class="content-block-narrow"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/creators_join-the-tribe_color.jpg');">
+                        <div class="content-text">
+                            <h2 class="title">OC Network</h2>
+                            <p class="description">
+                                Join the creator web that grows with you. Here, visibility is shared — and power is distributed.
+                            </p>
+                        </div>
+                        <button aria-label="Stake Your Claim" class="action-button">
+                            <img
+                                    alt=""
+                                    aria-hidden="true"
+                                    class="button-icon"
+                                    src="img/Arrow.png"
+                            />
+                            <span class="button-text">Enter the Movement</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="wrapper">
+                <div class="responsive-narrow" data-link="content-how-to-join.html">
+                    <div class="content-block-narrow"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/creator-join-network_color.jpg');">
+                        <div class="content-text">
+                            <h2 class="title">Get Started</h2>
+                            <p class="description">
+                                Download the OCOSO plugin and unlock the OC Network. Installation takes 3 minutes — results last.
+                            </p>
+                        </div>
+                        <button aria-label="Stake Your Claim" class="action-button">
+                            <img
+                                    alt=""
+                                    aria-hidden="true"
+                                    class="button-icon"
+                                    src="img/Arrow.png"
+                            />
+                            <span class="button-text">How to install the Plugin</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="wrapper">
+                <div class="responsive-narrow" data-link="ip-lookup-tool.html">
+                    <div class="content-block-narrow"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/thumbnail-ip-situation.jpg');">
+                        <div class="content-text">
+                            <h2 class="title">IP Lookup Tool</h2>
+                            <p class="description">
+                                Check the legal status of IP and rights protection in your country.
+                            </p>
+                        </div>
+                        <button aria-label="Stake Your Claim" class="action-button">
+                            <img
+                                    alt=""
+                                    aria-hidden="true"
+                                    class="button-icon"
+                                    src="img/Arrow.png"
+                            />
+                            <span class="button-text">How to Protect</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+<main class="main">
+
+    <div class="page-wrapper">
+
+
+        <div style="height: var(--px-80)">&nbsp;</div>
+
+
+        <article class="headline-left-wrapper">
+            <div class="healine-left-container">
+                <div class="headline-left-inner">
+                    <header>
+                        <h2>TBD</h2>
+                    </header>
+                    <section>
+                        <h5>
+                            TBD
+                        </h5>
+                    </section>
+                    <section>
+                        <p>
+                            TBD
+                        </p>
+                    </section>
+                </div>
+            </div>
+        </article>
+
+        <div style="height: var(--px-80)">&nbsp;</div>
+        <div style="height: var(--px-80)">&nbsp;</div>
+
+
+				<center class="content-frame">
+              
+          <section class="content-submission">
+  
+            <article class="dashboard-wrapper">
+              <article class="dashboard-menu">
+                <div class="healine-left-container">
+                  <div class="headline-left-inner">
+                    <h2>Navigation</h2>
+                    <h5>Navigation Subline</h5>
+                    <p>Hier steht die Navigation und Optionen zum Dashboard.</p>
+                  </div>
+                </div>
+              </article>
+              
+              <div style="height: var(--px-80)">&nbsp;</div>   
+                                              
+              <!-- ───────── Dashboard Container ────────────────────────────────────────────────────────────────────────────────────────── -->
+              <article class="dashboard-content">
+                                              
+                <!-- ───────── Value Prompt Publisher ───────── -->
+                <div class="dashboard-element-one-one">
+                  <div class="chart-header">
+                    <h2>Visitors</h2> 
+                    <div style="height: var(--px-5)">&nbsp;</div>
+                    <div class="diagram-header">
+                      <h6>The foundation of all value</h6>
+                    </div>
+                  </div>
+                  
+                  <div class="chart-frame-text">
+                    <section class="poster">2.5M</section>
+                    <div style="height: var(--px-10)">&nbsp;</div>
+                    <p>Additional information if needed. This Area is for complete usage and can be filled with different types and numbers as any other element on a page.</p>             
+                  </div>                
+                </div>
+                                                                
+                <!-- ───────── Value Prompt C-NFT ───────── -->
+                <div class="dashboard-element-one-one">
+                  <div class="chart-header">
+                    <h2>Page Views</h2> 
+                    <div style="height: var(--px-5)">&nbsp;</div>
+                    <div class="diagram-header">
+                      <h6>By Celo Blockchain protected content</h6>
+                    </div>
+                  </div>
+                  
+                  <div class="chart-frame-text">
+                    <section class="poster">25M</section>
+                    <div style="height: var(--px-10)">&nbsp;</div>
+                    <p>Additional information if needed. This Area is for complete usage and can be filled with different types and numbers as any other element on a page.</p>             
+                  </div>                
+                </div>
+                                
+                                
+                <!-- ───────── Value Prompt Promotion ───────── -->
+                <div class="dashboard-element-one-one">
+                  <div class="chart-header">
+                    <h2>Promotions</h2> 
+                    <div style="height: var(--px-5)">&nbsp;</div>
+                    <div class="diagram-header">
+                      <h6>Content connections in Web3</h6>
+                    </div>
+                  </div>
+                  
+                  <div class="chart-frame-text">
+                    <section class="poster">73.5M</section>
+                    <div style="height: var(--px-10)">&nbsp;</div>
+                    <p>Additional information if needed. This Area is for complete usage and can be filled with different types and numbers as any other element on a page.</p>             
+                  </div>                
+                </div>
+                                
+                <!-- ───────── Sankey-Diagram Tier-Volume-Ring ───────── -->
+                <div class="dashboard-element-one-one">
+                  <div class="chart-header">
+                    <h2>C-NFT Volume by Tiers</h2>
+                    <div style="height: var(--px-5)">&nbsp;</div>
+                    <div class="diagram-header">
+                      <h6>A 5-level tier system organizes all topics</h6>
+                    </div>
+                  </div>
+                
+                  <div class="chart-frame">
+                    <canvas id="ringChart" class="chart-fill"></canvas>
+                  </div>
+                </div>
+                                
+                <div class="dashboard-element-one-two" style="height:70vh; width: 100%;"">
+                
+									<div class="chart-header">
+									  <h2>Traffic by Topic</h2>
+									
+									  <div class="diagram-header">
+									    <div class="diagram-left">
+									      <button id="homeBtn">Start</button>
+									      <button id="backSankey">Back</button>
+									
+									      <label>
+									        <select id="tierSel"></select>
+									      </label>
+									
+									      <p id="append" class="sankey-add">... or click</p>
+									    </div>
+									
+									    <div class="diagram-right">
+									      <label for="depthSel" class="text-body">Show:</label>
+									      <select id="depthSel">
+									        <option value="1">1</option>
+									        <option value="2" selected>2</option>
+									        <option value="3">3</option>
+									        <option value="4">4</option>
+									        <option value="5">5</option>
+									        <option value="6">6</option>
+									      </select>
+									    </div>
+									  </div>
+								</div>
+                  
+                  <div class="chart-frame">
+                    <canvas id="sankeyChart"  class="chart-fill"></canvas>                
+                  </div>
+                </div>
+                                
+                <!-- ───────── Revenue-Linie ───────── -->
+                <div class="dashboard-element-one-two">
+                  <div class="chart-header">
+                    <h2>C-NFT Monetization</h2>
+                    <div style="height: var(--px-5)">&nbsp;</div>
+                    <div class="diagram-header">
+                      <h6>Revenue each day in period</h6>
+                      <!-- Zeitfilter nur für dieses Chart -->
+                      <div class="time-filter">
+                        <button class="tf-btn" data-days="7">7 days</button>
+                        <button class="tf-btn" data-days="30">30 days</button>
+                        <button class="tf-btn active" data-days="all">Total</button>
+                        <!-- Pfeil-Pager -->
+                        <div style="width: var(--px-20)">&nbsp;</div>
+                        <button   id="ppPrev" class="tr-prev" aria-label="previous period">⟨</button>
+                        <span     id="ppInfo" class="tr-info" ></span>        <!-- bleibt leer -->
+                        <button   id="ppNext" class="tr-next" aria-label="next period">⟩</button>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="chart-frame">
+                    <canvas id="lineChart" class="chart-fill"></canvas>
+                  </div>
+                </div>
+                            
+                <!-- ───────── Minted-Pages-Linie ───────── -->
+                <div class="dashboard-element-one-two">
+                  <div class="chart-header">
+                    <h2>Daily Minted Pages</h2>
+                    <div style="height: var(--px-5)">&nbsp;</div>
+                    <div class="diagram-header">
+                      <h6>Daily numbers in period in Time</h6>
+                      <!-- Zeitfilter nur für dieses Chart -->
+                      <div class="time-filter">
+                        <button class="tf-btn" data-days="7">7 days</button>
+                        <button class="tf-btn" data-days="30">30 days</button>
+                        <button class="tf-btn active" data-days="all">Total</button>
+                        <!-- Pfeil-Pager -->
+                        <div style="width: var(--px-20)">&nbsp;</div>
+                        <button   id="ppPrev" class="tr-prev" aria-label="previous period">⟨</button>
+                        <span     id="ppInfo" class="tr-info" ></span>        <!-- bleibt leer -->
+                        <button   id="ppNext" class="tr-next" aria-label="next period">⟩</button>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="chart-frame">
+                    <canvas id="lineChartPages" class="chart-fill"></canvas>
+                  </div>
+                </div>
+                
+                <!-- ───────── Minted-Pages-Total-Linie ───────── -->
+                <div class="dashboard-element-one-two">
+                  <div class="chart-header">
+                    <h2>Total Minted Pages</h2>
+                    <div style="height: var(--px-5)">&nbsp;</div>
+                    <div class="diagram-header">
+                      <h6>All minted pages at date</h6>
+                      <!-- Zeitfilter nur für dieses Chart -->
+                      <div class="time-filter">
+                        <button class="tf-btn" data-days="7">7 days</button>
+                        <button class="tf-btn" data-days="30">30 days</button>
+                        <button class="tf-btn active" data-days="all">Total</button>
+                        <!-- Pfeil-Pager -->
+                        <div style="width: var(--px-20)">&nbsp;</div>
+                        <button   id="ppPrev" class="tr-prev" aria-label="previous period">⟨</button>
+                        <span     id="ppInfo" class="tr-info" ></span>        <!-- bleibt leer -->
+                        <button   id="ppNext" class="tr-next" aria-label="next period">⟩</button>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="chart-frame">
+                    <canvas id="lineChartPagesTotal" class="chart-fill"></canvas>
+                  </div>
+                </div>
+                
+                <!-- ───────── Creator-Count-Linie ───────── -->
+                <div class="dashboard-element-one-two">
+                  <div class="chart-header">
+                    <h2>Publisher</h2>
+                    <div style="height: var(--px-5)">&nbsp;</div>
+                    <div class="diagram-header">
+                      <h6>Total numbers at date over time</h6>
+                      <!-- Zeitfilter nur für dieses Chart -->
+                      <div class="time-filter">
+                        <button class="tf-btn" data-days="7">7 days</button>
+                        <button class="tf-btn" data-days="30">30 days</button>
+                        <button class="tf-btn active" data-days="all">Total</button>
+                        <!-- Pfeil-Pager -->
+                        <div style="width: var(--px-20)">&nbsp;</div>
+                        <button   id="ppPrev" class="tr-prev" aria-label="previous period">⟨</button>
+                        <span     id="ppInfo" class="tr-info" ></span>        <!-- bleibt leer -->
+                        <button   id="ppNext" class="tr-next" aria-label="next period">⟩</button>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="chart-frame">
+                    <canvas id="lineChartCreator" class="chart-fill"></canvas>
+                  </div>
+                </div>
+              </article>
+            </article>
+          </section>
+                
+        
+        
+          <div style="height: var(--px-160)">&nbsp;</div>   
+          
+          <div style="position:relative; overflow-x:auto; -webkit-overflow-scrolling:touch; min-width:0; width:100%;">
+	          <table class="data-table">
+	              <thead class="table-header">
+	                <tr class="header-row">
+	                  <th class="header-cell" data-sort-key="Asset_ID">
+	                    <span style="display:inline-flex; align-items:center; gap:10px; white-space:nowrap;">
+	                      <span class="sort-icon-container">
+	                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+	                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+	                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+	                      </span>
+	                      <label for="filterType"><span style="white-space: nowrap;">C-NFT #</span></label>
+	                    </span>
+	                  </th>
+	                  <th class="header-cell" data-sort-key="Type">
+	                    <span style="display:inline-flex; align-items:center; gap:10px; white-space:nowrap;">
+	                      <span class="sort-icon-container">
+	                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+	                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+	                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+	                      </span>
+	                      <label for="filterType"><span style="white-space: nowrap;">Type</span></label>
+	                    </span>
+	                    <div style="height: var(--px-10)">&nbsp;</div>
+	                    <select class="selector" id="filterType">
+	                      <option value="">All</option>
+	                    </select>
+	                  </th>
+	                  <th class="header-cell" data-sort-key="Topics">
+	                    <span style="display:inline-flex; align-items:center; gap:10px; white-space:nowrap;">
+	                      <span class="sort-icon-container">
+	                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+	                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+	                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+	                      </span>
+	                      <label for="filterTopic">
+	                        <span style="white-space: nowrap;">Topics</span>
+	                      </label>
+	                    </span>
+	                    <div style="height: var(--px-10)">&nbsp;</div>
+	                    <select class="selector" id="filterTopic">
+	                        <option value="">All</option>
+	                    </select>
+	                  </th>
+	                  <th class="header-cell" data-sort-key="Monetization">
+	                    <span style="display:inline-flex; align-items:center; gap:10px; white-space:nowrap;">
+	                      <span class="sort-icon-container">
+	                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+	                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+	                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+	                      </span>
+	                      <label for="filterMonetization">
+	                        <span style="white-space: nowrap;">Monetization</span>
+	                      </label>
+	                    </span>
+	                    <div style="height: var(--px-10)">&nbsp;</div>
+	                    <select class="selector" id="filterMonetization">
+	                        <option value="">All</option>
+	                    </select>
+	                  </th>
+	                  <th class="header-cell" data-sort-key="Start_Date">
+	                    <span style="display:inline-flex; align-items:center; gap:10px; white-space:nowrap;">
+	                      <span class="sort-icon-container">
+	                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+	                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+	                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+	                      </span>
+	                      Start-Date
+	                    </span>
+	                  </th>
+	                  <th class="header-cell" data-sort-key="Volume">
+	                    <span style="display:inline-flex; align-items:center; gap:10px; white-space:nowrap;">
+	                      <span class="sort-icon-container">
+	                        <img src="img/sort-icons-white-inactive.png" alt="Nicht sortiert" class="sort-icon neutral"/>
+	                        <img src="img/sort-icons-white-down.png" alt="Aufsteigend" class="sort-icon up" style="display:none"/>
+	                        <img src="img/sort-icons-white-up.png" alt="Absteigend" class="sort-icon down" style="display:none"/>
+	                      </span>
+	                      Volume
+	                    </span>
+	                  </th>
+	                  <th class="header-cell" style="padding-top: var(--px-14); text-align: center;">
+                      <label for="filterTools">
+                        <span style="white-space: nowrap;">Tools</span>
+                      </label>
+	                  </th>
+	                </tr>
+	              </thead>
+	              <tbody>
+	                <tr class="tr-data">
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                </tr>
+	                <tr class="tr-data">
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                </tr>
+	                <tr class="tr-data">
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                    <td class="td-data">Spacer</td>
+	                </tr>
+	              </tbody>
+	              <tfoot class="table-footer">
+	                <tr>
+	                    <td colspan="7" class="footer-cell"></td>
+	                </tr>
+	              </tfoot>
+	            </table>
+	            
+	            <!-- Pagination -------------------------------------------------->
+	            <div id="pager" class="pager">
+	              <button id="pagePrev" aria-label="vorherige Seite">⟨</button>
+	              <span class="text-body" id="pageInfo">1 – 20</span>
+	              <button id="pageNext" aria-label="nächste Seite">⟩</button>
+	              <div style="width: var(--px-50)">&nbsp;</div>
+	              <label class="text-body" for="rowsPerPage">Rows:</label>
+	              <select id="rowsPerPage">
+	                <option value="20" selected>20</option>
+	                <option value="50">50</option>
+	                <option value="100">100</option>
+	              </select>
+	            </div>
+	            
+	            <!-- Overlay-Box für das Diagramm -->
+	            <div id="chartOverlay" class="chartOverlayStyle">
+	                <canvas id="chartCanvas"></canvas>
+	            </div>
+            </div>
+            
+            <div style="height: var(--px-160)">&nbsp;</div>        
+          
+          <section class="content-submission" style="display: flex; flex-direction: row; gap: var(--px-50);">
+            <div>
+              <h2>You want change?</h2>
+              <h1>Join now.</h1>
+            </div>
+            <a href="content-how-to-join_color.html">
+              <button class="content-button" aria-label="Content navigation button">
+                <img src="img/Arrow-black.png" alt="Navigation icon" class="content-button-icon"/>
+                <span class="content-button-text">Start Your OCOSO<br>Journey</span>
+              </button>
+            </a>
+          </section>           
+              
+          <div style="height: var(--px-60)">&nbsp;</div>                        
+  
+        </center>
+
+
+        <div style="height: var(--px-160)">&nbsp;</div>
+        <div style="height: var(--px-80)">&nbsp;</div>
+
+    </div>
+
+</main>
+
+<div id="footer-placeholder"></div>
+<script src="ocoso-app-functions.js" defer></script>
+<script src="js/wallet.js" defer></script>
+<script src="js/3d-Navigation.js" defer></script>
+<script src="js/cardTilt.js" defer></script>
+<script src="js/waitlist-overlay.js" defer></script>
+<script src="js/css-reload.js" defer></script>
+
+<!-- ───────────────── Scripts für Diagramme ───────────────── -->
+<script type="module" src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>     
+<script type="module" src="https://cdn.jsdelivr.net/npm/chartjs-chart-sankey@0.14.0/dist/chartjs-chart-sankey.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
+<script src="js/chart-definitions.js" defer></script>
+<script type="module" src="js/dashboard.js"></script>
+<script type="module" src="js/dashboard-linecharts.js"></script>
+<script src="js/dashboard-table.js" defer></script>
+
+
+
+</body>
+</html>
