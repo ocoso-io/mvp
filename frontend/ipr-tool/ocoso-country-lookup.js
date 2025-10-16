@@ -63,7 +63,7 @@
                 <datalist id="country-list"></datalist>
               </div>
               <div class="flex">
-                <button id="pick" class="btn">Accept</button>
+                <button id="pick" class="btn">Show Results</button>
                 <button id="clear" class="btn">Reset</button>
                 <div id="status" class="muted">Choose a country.</div>
               </div>
