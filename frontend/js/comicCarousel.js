@@ -101,7 +101,7 @@
       track.style.gap = `${gap}px`;
       
     /*let max   = (cards.length - 1) * (cardW + gap);*/
-    let max = cards.length * (cardW + gap) - zone.getBoundingClientRect().width - gap;
+	    max = cards.length * (cardW + gap) - zone.getBoundingClientRect().width - gap;
     
       SCROLLSTEP = cardW / STEP;
       target = clamp(target, 0, max);
