@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>OCOSO MVP - Full Layout</title>
+  <link rel="stylesheet" href="css/main.css">
+
+  <style>
+    /* Base paragraph without columns – clean & accessible */
+    p{
+      margin-top: var(--px-20);
+      hyphens: auto;
+    }
+
+    a{ color:#fffe00 !important; }
+
+    /* Two-column container – apply only where needed */
+    .two-col{
+      column-count: 2;
+      column-gap: 1.5rem;
+      column-rule: 1px solid #333; /* optional */
+    }
+    /* Keep paragraphs intact across columns */
+    .two-col p{
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+      margin-top: var(--px-20);
+    }
+    .two-col p:first-child { margin-top: 0; }
+
+    /* Blocks that must not split (addresses, grouped items, etc.) */
+    .keep-block{
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .headline-left-wrapper { margin-bottom: var(--px-20); }
+    h4 { margin-bottom: var(--px-20); }
+
+    /* Mobile: single column */
+    @media (max-width: 760px){
+      .two-col{
+        column-count: 1;
+        column-rule: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Overlay for activating new members -->
+<div id="app-overlay" class="overlay-backdrop" hidden aria-hidden="true">
+  <div class="overlay-modal" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
+    <button class="overlay-close" type="button" aria-label="Schließen">×</button>
+    <header class="overlay-header">
+      <h2 id="overlay-title" style="color: black">Waitlist Registration</h2>
+    </header>
+    <section class="overlay-body"><!-- Content set via JS --></section>
+    <!-- optional: footer
+    <footer class="overlay-footer"></footer> -->
+  </div>
+</div>
+
+<div id="navigation-placeholder"></div>
+<div id="overlay-menu-placeholder"></div>
+
+<section class="hero" style="min-height: var(--px-600)">
+  <div class="hero-container" style="min-height: var(--px-600);background-image:
+                  linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+                  linear-gradient(to right, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+                  linear-gradient(to left, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+                  radial-gradient(circle at 50% 50%,
+                                   rgba(0, 0, 0, 0)  60%,
+                                   rgba(0, 0, 0, 1)  100%),
+                  url('img/header-start2_color.jpg');
+                  background-position: center;">
+
+    <div style="display:flex; flex-direction:column; width:80%;">
+      <div class="hero-content-wrapper" style="flex-direction:flex-start; justify-content:top;">
+        <div class="main-heading">
+          <h1 class="text-box-wide">
+            Privacy Policy
+          </h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <div class="button-group">
+        <div class="button-wrapper">
+          <button class="action-button" aria-label="Login">
+            <span class="button-text">Login</span>
+          </button>
+          <button class="action-button" aria-label="Register">
+            <span class="button-text">Register</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="card-stack-wrapper">
+  <nav class="card-stack" id="stack">
+    <div class="card">
+      <div class="wrapper">
+        <div class="responsive-narrow" data-link="content-creator.html">
+          <div class="content-block-narrow"
+               style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/Zielgruppe-Creator_nav_color.jpg');">
+            <div class="content-text">
+              <h2 class="title">Creator</h2>
+              <p class="description">
+                Track performance. Compare verticals. Make informed moves in the IP economy.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img src="img/Arrow.png" alt="" class="button-icon" aria-hidden="true" />
+              <span class="button-text">Enter the Market</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="responsive-narrow" data-link="investor.html">
+          <div class="content-block-narrow"
+               style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends_color.jpg');">
+            <div class="content-text">
+              <h2 class="title">Investor</h2>
+              <p class="description">
+                From creator tokens to content DAOs — discover where capital meets culture
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img src="img/Arrow.png" alt="" class="button-icon" aria-hidden="true" />
+              <span class="button-text">Follow the Signal</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="responsive-narrow" data-link="advertiser.html">
+          <div class="content-block-narrow"
+               style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/advertiser_color.jpg');">
+            <div class="content-text">
+              <h2 class="title">Advertiser</h2>
+              <p class="description">
+                Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img src="img/Arrow.png" alt="" class="button-icon" aria-hidden="true" />
+              <span class="button-text">Join the Table</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<main class="main">
+  <div class="page-wrapper">
+    <div style="height: var(--px-80)">&nbsp;</div>
+
+    <center class="content-frame">
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <div><h4>Liability for Content</h4></div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>Pursuant to Art. 4(1) of Regulation (EU) 2016/679, the General Data Protection Regulation (“GDPR”), “processing” means any operation or set of operations performed on personal data, with or without the aid of automated procedures, such as collection, recording, organisation, structuring, storage, adaptation or alteration, retrieval, consultation, use, disclosure by transmission, dissemination or otherwise making available, alignment or combination, restriction, erasure or destruction.</p>
+              <p>With the following privacy notice, we inform you in particular about the nature, scope, purposes, duration and legal bases of the processing of personal data, insofar as we alone or jointly with others decide on the purposes and means of processing. We also inform you below about third-party components we use for optimisation purposes and to enhance the quality of use, insofar as third parties thereby process data under their own responsibility.</p>
+              <p>Our privacy notice is structured as follows:</p>
+              <p>I. Information about us as controller</p>
+              <p>II. Rights of users and data subjects</p>
+              <p>III. Information on data processing</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <div><h4>I. Information about us as Controller</h4></div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>The controller responsible for this website within the meaning of data protection law is:</p>
+              <p>OCOSO.io</p>
+              <p>represented by:</p>
+              <div class="keep-block">
+                <p>Torsten Gebert</p>
+                <p>Sebastian Rohleder</p>
+              </div>
+              <div class="keep-block">
+                <p>Rosa-Luxemburg-Str. 12</p>
+                <p>18055 Rostock</p>
+                <p>Germany</p>
+              </div>
+              <p><a href="mailto:kontakt@ocoso.io?subject=Kontaktanfrage">kontakt@ocoso.io</a></p>
+              <p>The provider’s data protection officer is: <strong>Torsten Gebert</strong></p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <div><h4>II. Rights of Users and Data Subjects</h4></div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>With regard to the data processing described in more detail below, users and data subjects have the right to obtain confirmation as to whether personal data concerning them are being processed, access to the data processed, further information about the data processing, and copies of the data (see Art. 15 GDPR).</p>
+              <p>To rectification or completion of inaccurate or incomplete data (see Art. 16 GDPR).</p>
+              <p>To the immediate erasure of data concerning them (see Art. 17 GDPR) or, alternatively, where further processing is necessary within the meaning of Art. 17(3) GDPR, to restriction of processing pursuant to Art. 18 GDPR.</p>
+              <p>To receive the data concerning them which they have provided and to transmit those data to other controllers (see Art. 20 GDPR).</p>
+              <p>To lodge a complaint with the supervisory authority if they believe that the data concerning them are processed by the provider in breach of data protection law (see Art. 77 GDPR).</p>
+              <p>In addition, the provider is obliged to inform all recipients to whom data have been disclosed of any rectification or erasure of data or restriction of processing carried out pursuant to Articles 16, 17(1), or 18 GDPR. This obligation does not exist insofar as such notification proves impossible or involves a disproportionate effort. Notwithstanding the foregoing, the user has a right to information about these recipients.</p>
+              <p>Users and data subjects also have the right, under Art. 21 GDPR, to object at any time to the future processing of data concerning them where the data are processed by the provider on the basis of Art. 6(1)(f) GDPR. In particular, an objection to processing for the purposes of direct marketing is permitted.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <div><h4>III. Information on Data Processing</h4></div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>Data processed in connection with the use of our website will be deleted or blocked as soon as the purpose of storage ceases to apply, provided that no statutory retention obligations oppose deletion and unless otherwise stated for specific processing operations below.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>Server Data</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>For technical reasons—particularly to ensure a secure and stable website—data are transmitted by your internet browser to us and/or to our web space provider. These so-called server log files include, inter alia, the type and version of your internet browser, the operating system, the website from which you arrived at our website (referrer URL), the web pages of our site that you visit, the date and time of each access, and the IP address of the internet connection from which our website is accessed.</p>
+              <p>The data collected in this way are stored temporarily, but not together with other personal data.</p>
+              <p>The legal basis for this storage is Art. 6(1)(f) GDPR. Our legitimate interest lies in improving the stability, functionality and security of our website.</p>
+              <p>As a rule, the data are deleted after seven days at the latest unless further storage is required for evidentiary purposes. In that case, the data are wholly or partially excluded from deletion until the incident has been finally clarified.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>Cookies</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p><strong>a) Session cookies</strong><br>
+                We use cookies on our website. Cookies are small text files or other storage technologies placed and stored on your device by your internet browser. Through these cookies, certain information is processed, such as your browser and location data and your IP address, to an individual extent.</p>
+              <p>Processing via cookies makes our website more user-friendly, effective and secure, e.g., by enabling the display of our website in different languages or a shopping basket function.</p>
+              <p>The legal basis is Art. 6(1)(b) GDPR insofar as cookies process data for the initiation or performance of a contract.</p>
+              <p>If processing does not serve contractual purposes, our legitimate interest lies in improving the functionality of our website. In that case, the legal basis is Art. 6(1)(f) GDPR.</p>
+              <p>Session cookies are deleted when you close your browser.</p>
+
+              <p><strong>b) Third-party cookies</strong><br>
+                Our website may also use cookies from partner companies with whom we cooperate for advertising, analytics or functional purposes.</p>
+              <p>Details, in particular regarding the purposes and legal bases of such third-party cookie processing, can be found below in this privacy notice.</p>
+
+              <p><strong>c) Options to remove cookies</strong><br>
+                You can prevent or restrict the installation of cookies by adjusting your browser settings. You can also delete stored cookies at any time. The steps and measures required for this depend on the specific browser you are using. If you have questions, please use the browser’s help function or documentation, or contact the manufacturer or support. Processing of so-called Flash cookies cannot be prevented via the browser settings. Instead, you must change your Flash player settings. The necessary steps and measures depend on the Flash player you use; please refer to the help or documentation of your Flash player or contact the manufacturer or user support.</p>
+              <p>If you prevent or restrict the installation of cookies, not all functions of our website may be fully usable.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>Newsletter</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col keep-block">
+              <p>If you sign up for our free newsletter, the data requested from you for this purpose—i.e., your email address and, optionally, your name and postal address—will be transmitted to us. At the same time, we store the IP address of the internet connection you use to access our website as well as the date and time of your registration. In the further registration process, we will obtain your consent to the sending of the newsletter, describe the content specifically, and refer to this privacy notice. The data collected will be used exclusively for sending the newsletter and will not, in particular, be passed on to third parties.</p>
+              <p>The legal basis is Art. 6(1)(a) GDPR.</p>
+              <p>You may revoke your consent to receive the newsletter at any time with effect for the future pursuant to Art. 7(3) GDPR. To do so, simply notify us of your revocation or use the unsubscribe link contained in every newsletter.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>Contact Requests / Contact Options</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>If you contact us via contact form or email, the data you provide will be used to process your request. Providing the data is necessary to process and answer your request; without it we cannot respond, or can only respond to a limited extent.</p>
+              <p>The legal basis for this processing is Art. 6(1)(b) GDPR. Your data will be deleted once your request has been finally answered and provided that no statutory retention obligations oppose deletion, e.g., in the event of a subsequent contract processing.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>Subscription to Posts</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>If you follow posts on our website, we additionally offer you the option to subscribe to follow-up posts. To inform you by email about such follow-up posts, we process your email address.</p>
+              <p>The legal basis is Art. 6(1)(a) GDPR. You may revoke your consent to this subscription at any time with effect for the future pursuant to Art. 7(3) GDPR. To do so, simply notify us of your revocation or use the unsubscribe link contained in the respective email.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>Google Analytics</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>We use Google Analytics on our website. This is a web analytics service provided by Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043 USA (“Google”).</p>
+              <p>Through certification under the EU-US Privacy Shield,
+                <a href="https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active" target="_blank" rel="noopener">privacyshield.gov</a>,
+                Google guarantees that EU data protection requirements are also met when processing data in the USA.</p>
+              <p>Google Analytics is used to analyse usage behaviour on our website. The legal basis is Art. 6(1)(f) GDPR. Our legitimate interest lies in the analysis, optimisation, and economic operation of our website.</p>
+              <p>Usage and user-related information—such as IP address, location, time or frequency of visits to our website—are transmitted to a Google server in the USA and stored there. We use Google Analytics with IP anonymisation, whereby Google truncates the IP address within the EU or EEA.</p>
+              <p>The data collected are used by Google to provide us with reports on visits to our website and the usage activities there, and to provide other services related to website usage and internet usage.</p>
+              <p>According to Google, your IP address will not be combined with other data. Google also provides further data protection information, including options for preventing data use, at
+                <a href="https://www.google.com/intl/de/policies/privacy/partners" target="_blank" rel="noopener">https://www.google.com/intl/de/policies/privacy/partners</a>.
+              </p>
+              <p>Google additionally offers a browser add-on for deactivation at
+                <a href="https://tools.google.com/dlpage/gaoptout?hl=de" target="_blank" rel="noopener">https://tools.google.com/dlpage/gaoptout?hl=de</a>.
+                This add-on can be installed in common browsers and provides you with further control over the data Google collects when you access our website.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>Google reCAPTCHA</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>We use Google reCAPTCHA on our website to verify and prevent interactions on our site by automated access, e.g., by bots. This is a service of Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043 USA (“Google”).</p>
+              <p>Through certification under the EU-US Privacy Shield
+                <a href="https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active" target="_blank" rel="noopener">https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active</a>,
+                Google guarantees compliance with EU data protection requirements for processing in the USA.</p>
+              <p>This service enables Google to determine from which website a request is sent and from which IP address you use the reCAPTCHA input box. In addition to your IP address, other information necessary to provide and ensure this service may be collected by Google.</p>
+              <p>The legal basis is Art. 6(1)(f) GDPR. Our legitimate interest lies in the security of our website and the defence against unwanted automated access such as spam.</p>
+              <p>Further information on Google’s handling of user data can be found at
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>Google Fonts</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>We use Google Fonts to display external typefaces. This is a service of Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043 USA (“Google”).</p>
+              <p>Through certification under the EU-US Privacy Shield
+                <a href="https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active" target="_blank" rel="noopener">https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active</a>,
+                Google guarantees compliance with EU data protection requirements for processing in the USA.</p>
+              <p>To enable the display of certain typefaces on our website, a connection to Google’s servers in the USA is established when our website is accessed.</p>
+              <p>The legal basis is Art. 6(1)(f) GDPR. Our legitimate interest lies in the optimisation and economic operation of our website.</p>
+              <p>By connecting to Google when our website is accessed, Google can determine from which website your request was sent and to which IP address the font is to be transmitted.</p>
+              <p>Further information and, in particular, options to prevent data use are available from Google at
+                <a href="https://adssettings.google.com/authenticated" target="_blank" rel="noopener">https://adssettings.google.com/authenticated</a>
+                and
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>“Facebook” Social Plug-in</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>We use the plug-in of the Facebook social network. Facebook is a service of Facebook Inc., 1601 S. California Ave, Palo Alto, CA 94304, USA. In the EU, the service is operated by Facebook Ireland Limited, 4 Grand Canal Square, Dublin 2, Ireland (together “Facebook”).</p>
+              <p>Through certification under the EU-US Privacy Shield
+                <a href="https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active" target="_blank" rel="noopener">https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active</a>,
+                Facebook guarantees compliance with EU data protection requirements for processing in the USA.</p>
+              <p>The legal basis is Art. 6(1)(f) GDPR. Our legitimate interest lies in the quality improvement of our website.</p>
+              <p>Further information about available plug-ins and their functions is provided by Facebook at
+                <a href="https://developers.facebook.com/docs/plugins/" target="_blank" rel="noopener">https://developers.facebook.com/docs/plugins/</a>.
+              </p>
+              <p>If the plug-in is embedded on a page you visit, your browser downloads its representation from Facebook’s servers in the USA. For technical reasons, Facebook processes your IP address; the date and time of your visit may also be recorded.</p>
+              <p>If you are logged in to Facebook while visiting a page containing the plug-in, Facebook can recognise the information collected by the plug-in as relating to your specific visit and assign it to your personal user account. If you wish to prevent this, log out of Facebook before visiting our website or block the loading of the plug-in using a browser add-on.</p>
+              <p>Further information:
+                <a href="https://www.facebook.com/policy.php" target="_blank" rel="noopener">https://www.facebook.com/policy.php</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>“X” Social Plug-in</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>We use the plug-in of the social network X (formerly Twitter). This is a service of X Corp., 1355 Market Street, Suite 900, San Francisco, CA 94103, USA (“X”).</p>
+              <p>Through certification under the EU-US Privacy Shield
+                <a href="https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active" target="_blank" rel="noopener">https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active</a>,
+                X guarantees compliance with EU data protection requirements for processing in the USA.</p>
+              <p>The legal basis is Art. 6(1)(f) GDPR. Our legitimate interest lies in the quality improvement of our website.</p>
+              <p>If the plug-in is embedded on one of our pages, your browser downloads a representation of the plug-in from X’s servers in the USA. In doing so, X processes your IP address and the date and time of your visit.</p>
+              <p>If you are logged in to X, X may attribute your visit to your user account. Please log out before visiting or adjust your account settings if you want to prevent this.</p>
+              <p>Privacy information from X:
+                <a href="https://twitter.com/privacy" target="_blank" rel="noopener">https://twitter.com/privacy</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>YouTube</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>We use YouTube, a video portal operated by YouTube LLC., 901 Cherry Ave., 94066 San Bruno, CA, USA (“YouTube”).</p>
+              <p>YouTube is a subsidiary of Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043 USA (“Google”).</p>
+              <p>Through certification under the EU-US Privacy Shield
+                <a href="https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active" target="_blank" rel="noopener">https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active</a>,
+                Google (and thus YouTube) guarantees compliance with EU data protection requirements.</p>
+              <p>We use YouTube in “enhanced privacy mode”. The legal basis is Art. 6(1)(f) GDPR (quality improvement of our website). According to YouTube, data are transmitted only when a video is actually started.</p>
+              <p>Without enhanced privacy mode, a connection to YouTube/DoubleClick would already be established upon page load.</p>
+              <p>Further information:
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>Web Analytics – etracker</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>We use etracker, a web analytics service provided by etracker GmbH, Erste Brunnenstr. 1, 20459 Hamburg.</p>
+              <p>etracker helps us analyse usage behaviour. Legal basis: Art. 6(1)(f) GDPR (analysis, optimisation, economic operation).</p>
+              <p>etracker stores cookies and creates pseudonymous usage profiles. Identification is not performed without your separate consent; there is no combination with other personal data.</p>
+              <p>You can disable cookies in your browser (see “Cookies”). Opt-out:
+                <a href="http://www.etracker.de/privacy?et=V23Jbb" target="_blank" rel="noopener">http://www.etracker.de/privacy?et=V23Jbb</a>
+                (set again if you delete cookies).</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>MailChimp – Newsletter</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>We offer you the option to sign up for our free newsletter via our website. For sending newsletters, we use MailChimp, a service of The Rocket Science Group, LLC, 512 Means Street, Suite 404, Atlanta, GA 30318, USA.</p>
+              <p>Through certification under the EU-US Privacy Shield
+                <a href="https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active" target="_blank" rel="noopener">https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active</a>,
+                The Rocket Science Group guarantees compliance with EU data protection requirements. Further information:
+                <a href="http://mailchimp.com/legal/privacy/" target="_blank" rel="noopener">http://mailchimp.com/legal/privacy/</a>.
+              </p>
+              <p>When you register, MailChimp processes the data requested during registration (email address and, optionally, name and postal address), your IP address, and the date/time of registration. Your consent is documented.</p>
+              <p>The newsletter contains a tracking pixel (web beacon) that allows us to determine whether and when you read our newsletter and whether you followed links contained therein (to improve the quality and attractiveness of our newsletter offering).</p>
+              <p>Legal basis: Art. 6(1)(a) GDPR. You may revoke your consent to receiving the newsletter at any time with effect for the future (e.g., via the unsubscribe link).</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>Jetpack – WordPress Stats</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>We use Jetpack with the “WordPress Stats” extension (Automattic Inc., 132 Hawthorne Street, San Francisco, CA 94107, USA).</p>
+              <p>Through certification under the EU-US Privacy Shield
+                <a href="https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active" target="_blank" rel="noopener">https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active</a>,
+                Automattic guarantees compliance with EU requirements.</p>
+              <p>Purpose: analysis of usage behaviour (Art. 6(1)(f) GDPR). Cookies record your IP address, the pages you visit on our site, the referrer URL, your dwell time, and the frequency of access. Storage occurs on servers in the USA; your IP address is anonymised promptly after processing and before storage.</p>
+              <p>You may object via your browser settings (see “Cookies”).</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>Google Ads with Conversion Tracking</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>We use Google Ads (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043 USA) with conversion tracking.</p>
+              <p>EU-US Privacy Shield:
+                <a href="https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active" target="_blank" rel="noopener">Link</a>
+              </p>
+              <p>Purpose: targeted promotion of our offering (Art. 6(1)(f) GDPR). After you click an ad, conversion tracking places a cookie on your device. These conversion cookies expire after 30 days and are not used to identify you personally. If the cookie is still valid and you visit a specific page of our website, both we and Google can recognise that you clicked one of our ads and were redirected to our website.</p>
+              <p>We receive statistics about visits to our website and about the number of users who clicked our ad(s) as well as the subsequent pages accessed. Neither we nor other Google Ads users can identify you in this way.</p>
+              <p>You can manage cookies via your browser (see “Cookies”). More information:
+                <a href="https://services.google.com/sitestats/de.html" target="_blank" rel="noopener">Site Stats</a>,
+                <a href="http://www.google.com/policies/technologies/ads/" target="_blank" rel="noopener">Technologies/Ads</a>,
+                <a href="http://www.google.de/policies/privacy/" target="_blank" rel="noopener">Privacy</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>Google AdSense</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>We use Google AdSense to integrate advertisements (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043 USA).</p>
+              <p>EU-US Privacy Shield:
+                <a href="https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active" target="_blank" rel="noopener">Link</a>
+              </p>
+              <p>AdSense stores cookies and web beacons via your browser. The information collected (including IP address and ad formats displayed) is transmitted to Google in the USA and stored there; information may also be shared with contractual partners. According to Google, your IP address is not combined with other data.</p>
+              <p>Legal basis: Art. 6(1)(f) GDPR. You can disable cookies in your browser (see “Cookies”). More information:
+                <a href="http://www.google.de/policies/privacy/" target="_blank" rel="noopener">Privacy</a>,
+                <a href="https://adssettings.google.com/authenticated" target="_blank" rel="noopener">Ads Settings</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>Google Remarketing / “Similar Audiences”</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>We use the Remarketing / “Similar Audiences” function of Google (Google LLC).</p>
+              <p>EU-US Privacy Shield:
+                <a href="https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active" target="_blank" rel="noopener">Link</a>
+              </p>
+              <p>Purpose: interest-based, personalised advertising on third-party websites within the Google advertising network (Art. 6(1)(f) GDPR). To enable this, Google stores a cookie with a sequence of numbers on your device during your visit to our website. This cookie records, in anonymised form, your visit and use of our website. No personal data are shared.</p>
+              <p>Deactivation options: Browser plugin
+                <a href="https://www.google.com/settings/ads/plugin" target="_blank" rel="noopener">https://www.google.com/settings/ads/plugin</a>,
+                opt-out pages
+                <a href="http://www.youronlinechoices.com/uk/your-ad-choices" target="_blank" rel="noopener">YourOnlineChoices</a>,
+                <a href="http://www.networkadvertising.org/choices/" target="_blank" rel="noopener">NAI</a>.
+              </p>
+              <p>Through cross-device marketing, Google may be able to track your usage behaviour across multiple devices, meaning you may be shown personalised advertising even when you switch devices. This presupposes that you have consented to linking your browser history with your Google account.</p>
+              <p>Further information on Google Remarketing:
+                <a href="http://www.google.com/privacy/ads/" target="_blank" rel="noopener">http://www.google.com/privacy/ads/</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner"><h5>Prize Draw / Contest</h5></div>
+        </div>
+      </article>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>We offer you the opportunity to participate in prize draws via our website. If you take part, the data you enter for participation will be processed, without further consent, solely for the purpose of conducting and handling the respective prize draw.</p>
+              <p>For handling the prize draw, we pass your data to the transport company commissioned with the delivery or to a financial services provider insofar as this is necessary for the delivery or payout of your prize. If your data are published in the event of a win, you will be informed of this as part of the consent declaration.</p>
+              <p>The legal basis for transferring the data is Art. 6(1)(b) GDPR.</p>
+              <p>You may revoke your consent to the processing of data for participation in our prize draws at any time with effect for the future pursuant to Art. 7(3) GDPR. To do so, simply notify us of your revocation.</p>
+              <p><em>Sample privacy policy by the law firm Weiß &amp; Partner</em></p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <div style="height: var(--px-160)">&nbsp;</div>
+    </center>
+  </div>
+
+  <div style="height: var(--px-160)">&nbsp;</div>
+</main>
+
+<div id="footer-placeholder"></div>
+<script src="ocoso-app-functions.js" defer></script>
+<script src="js/wallet.js" defer></script>
+<script src="js/3d-Navigation.js" defer></script>
+<script src="js/cardTilt.js" defer></script>
+<script src="js/waitlist-overlay.js" defer></script>
+<script src="js/css-reload.js" defer></script>
+
+</body>
+</html>

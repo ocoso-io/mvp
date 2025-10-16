@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>OCOSO MVP - Full Layout</title>
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+
+      p {
+        margin-top: var(--px-20);
+        column-count: 2;            /* Anzahl der Spalten */
+        column-gap: 1.5rem;         /* Abstand zwischen den Spalten */
+        column-rule: 1px solid #333;/* (optional) Trennlinie */
+        hyphens: auto;              /* (optional) Silbentrennung */
+      }
+      
+      a{
+        color: #fffe00;
+      }
+      
+      /* Mobil einspaltig */
+      @media (max-width: 760px){
+        p{ column-count: 1; }
+      }
+.keep{
+  display: inline-block;   /* macht daraus eine unteilbare Box */
+  break-inside: avoid;     /* verhindert Spaltenumbruch innerhalb */
+  margin-bottom: var(--px-20);
+}
+    </style>
+</head>
+<body>
+
+
+<!-- Overlay zum Aktivieren neuer Member -->
+<div id="app-overlay" class="overlay-backdrop" hidden aria-hidden="true">
+  <div class="overlay-modal" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
+    <button class="overlay-close" type="button" aria-label="Schließen">×</button>
+    <header class="overlay-header">
+      <h2 id="overlay-title" style="color: black">Waitlist Registration</h2>
+    </header>
+    <section class="overlay-body"><!-- Inhalt wird per JS gesetzt --></section>
+    <!-- optional: Fußbereich
+    <footer class="overlay-footer"></footer> -->
+  </div>
+</div>
+
+
+<div id="navigation-placeholder"></div>
+<div id="overlay-menu-placeholder"></div>
+
+
+<section class="hero" style="min-height: var(--px-600)">
+    <div class="hero-container" style="min-height: var(--px-600);background-image:  
+                  linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+                  linear-gradient(to right, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+                  linear-gradient(to left, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+									radial-gradient(circle at 50% 50%, 
+                                     rgba(0, 0, 0, 0)  60%,    
+                                     rgba(0, 0, 0, 1)  100%), 
+									url('img/header-start2_color.jpg'); 
+									 background-position: center;">
+
+        <div style="display: flex; flex-direction: column; width: 80%;">
+            <div class="hero-content-wrapper" style="flex-direction: flex-start; justify-content: top;">
+                <div class="main-heading"><h1
+                        class="text-box-wide">Let every
+                </span>
+                <br>
+                <span class="keep">AI access
+                </span>
+                <br>
+                <span class="keep">pay off</h1>
+                </div>
+                <div class="hero-description" style=" margin-left: 25%"><h5 class="text-box-wide">
+                    The new Creator Economy is AI Powered – Let AI become your messenger
+                </h5></div>
+            </div>
+        </div>
+        <div class="cta-section">
+            <div class="button-group">
+                <div class="button-wrapper">
+                    <button class="action-button" aria-label="Login">
+                        <span class="button-text">Login</span>
+                    </button>
+                    <button class="action-button" aria-label="Register">
+                        <span class="button-text">Register</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="card-stack-wrapper">
+    <nav class="card-stack" id="stack">
+
+        <div class="card">
+            <div class="wrapper">
+                <div class="responsive-narrow" data-link="content-creator.html">
+                    <div class="content-block-narrow"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/Zielgruppe-Creator_nav_color.jpg');">
+                        <div class="content-text">
+                            <h2 class="title">Creator</h2>
+                            <p class="description">
+                                Track performance. Compare verticals. Make informed moves in the IP economy.
+                            </span></p>
+                        </div>
+                        <button class="action-button" aria-label="Stake Your Claim">
+                            <img
+                                    src="img/Arrow.png"
+                                    alt=""
+                                    class="button-icon"
+                                    aria-hidden="true"
+                            />
+                            <span class="button-text">Enter the Market</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrapper">
+                <div class="responsive-narrow" data-link="investor.html">
+                    <div class="content-block-narrow"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends_color.jpg');">
+                        <div class="content-text">
+                            <h2 class="title">Investor</h2>
+                            <p class="description">
+                                From creator tokens to content DAOs — discover where capital meets culture
+                            </span></p>
+                        </div>
+                        <button class="action-button" aria-label="Stake Your Claim">
+                            <img
+                                    src="img/Arrow.png"
+                                    alt=""
+                                    class="button-icon"
+                                    aria-hidden="true"
+                            />
+                            <span class="button-text">Follow the Signal</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="responsive-narrow" data-link="advertiser.html">
+                    <div class="content-block-narrow"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/advertiser_color.jpg');">
+                        <div class="content-text">
+                            <h2 class="title">Advertiser</h2>
+                            <p class="description">
+                                Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+                            </span></p>
+                        </div>
+                        <button class="action-button" aria-label="Stake Your Claim">
+                            <img
+                                    src="img/Arrow.png"
+                                    alt=""
+                                    class="button-icon"
+                                    aria-hidden="true"
+                            />
+                            <span class="button-text">Join the Table</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </nav>
+</div>
+
+<main class="main">
+    <div class="page-wrapper">
+    
+        <div style="height: var(--px-80)">&nbsp;</div>
+
+        <center class="content-frame">
+        
+          <div style="margin: 0px; padding-top: 8rem">
+            <h1>
+                Datenschutz-Erklärung
+            </h1>
+          </div>
+    
+          <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    
+          <!-- Haupt Text -->
+          <div>
+            <h4>
+              Haftung für Inhalte
+            </h4>
+          </div>
+          
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+              Gemäß Art. 4 Ziffer 1. der Verordnung (EU) 2016/679, also der Datenschutz-Grundverordnung (nachfolgend nur „DSGVO“ genannt), gilt als „Verarbeitung“ jeder mit oder ohne Hilfe automatisierter Verfahren ausgeführter Vorgang oder jede solche Vorgangsreihe im Zusammenhang mit personenbezogenen Daten, wie das Erheben, das Erfassen, die Organisation, das Ordnen, die Speicherung, die Anpassung oder Veränderung, das Auslesen, das Abfragen, die Verwendung, die Offenlegung durch Übermittlung, Verbreitung oder eine andere Form der Bereitstellung, den Abgleich oder die Verknüpfung, die Einschränkung, das Löschen oder die Vernichtung.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Mit der nachfolgenden Datenschutzerklärung informieren wir Sie insbesondere über Art, Umfang, Zweck, Dauer und Rechtsgrundlage der Verarbeitung personenbezogener Daten, soweit wir entweder allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung entscheiden. Zudem informieren wir Sie nachfolgend über die von uns zu Optimierungszwecken sowie zur Steigerung der Nutzungsqualität eingesetzten Fremdkomponenten, soweit hierdurch Dritte Daten in wiederum eigener Verantwortung verarbeiten.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Unsere Datenschutzerklärung ist wie folgt gegliedert:
+                </span>
+                <br>
+                <span class="keep">
+              
+              I. Informationen über uns als Verantwortliche
+                </span>
+                <br>
+                <span class="keep">
+              
+              II. Rechte der Nutzer und Betroffenen
+                </span>
+                <br>
+                <span class="keep">
+              
+              III. Informationen zur Datenverarbeitung</span></p>
+            </div>
+          </div>
+        </article>       		
+    		
+          <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    
+          <!-- Haupt Text -->
+          <div>
+              <h4>
+    
+                I. Informationen über uns als Verantwortliche
+    
+              </h4>
+          </div>
+          
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+        			Verantwortlicher Anbieter dieses Internetauftritts im datenschutzrechtlichen Sinne ist:
+                </span>
+                <br>
+                <span class="keep">
+  			
+              OCOSO.io
+                </span>
+                <br>
+                <span class="keep">
+        			vertreten durch: 
+                </span>
+                <br>
+                <span class="keep">
+        			Torsten Gebert,<br>
+        			Sebastian Rohleder
+                </span>
+                <br>
+                <span class="keep">
+              Rosa-Luxemburg-Str. 12<br>
+              18055 Rostock<br>
+              Deutschland
+                </span>
+                <br>
+                <span class="keep">
+              
+              <a href="mailto:kontakt@ocoso.io?subject=Kontaktanfrage">kontakt@ocoso.io</a>
+                </span>
+                <br>
+                <span class="keep">
+        			Datenschutzbeauftragte/r beim Anbieter ist: <strong>Torsten Gebert</strong></span></p>
+            </div>
+          </div>
+        </article>    
+           		
+          <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    
+          <!-- Haupt Text -->
+          <div>
+            <h4>
+    
+              II. Rechte der Nutzer und Betroffenen
+    
+              </h4>
+          </div>
+          
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+              Mit Blick auf die nachfolgend noch näher beschriebene Datenverarbeitung haben die Nutzer und Betroffenen das Recht
+    
+              auf Bestätigung, ob sie betreffende Daten verarbeitet werden, auf Auskunft über die verarbeiteten Daten, auf weitere Informationen über die Datenverarbeitung sowie auf Kopien der Daten (vgl. auch Art. 15 DSGVO);
+                </span>
+                <br>
+                <span class="keep">
+    
+              auf Berichtigung oder Vervollständigung unrichtiger bzw. unvollständiger Daten (vgl. auch Art. 16 DSGVO);
+                </span>
+                <br>
+                <span class="keep">
+    
+              auf unverzügliche Löschung der sie betreffenden Daten (vgl. auch Art. 17 DSGVO), oder, alternativ, soweit eine weitere Verarbeitung gemäß Art. 17 Abs. 3 DSGVO erforderlich ist, auf Einschränkung der Verarbeitung nach Maßgabe von Art. 18 DSGVO;
+                </span>
+                <br>
+                <span class="keep">
+    
+              auf Erhalt der sie betreffenden und von ihnen bereitgestellten Daten und auf Übermittlung dieser Daten an andere Anbieter/Verantwortliche (vgl. auch Art. 20 DSGVO);
+                </span>
+                <br>
+                <span class="keep">
+    
+              auf Beschwerde gegenüber der Aufsichtsbehörde, sofern sie der Ansicht sind, dass die sie betreffenden Daten durch den Anbieter unter Verstoß gegen datenschutzrechtliche Bestimmungen verarbeitet werden (vgl. auch Art. 77 DSGVO).
+                </span>
+                <br>
+                <span class="keep">
+    
+              Darüber hinaus ist der Anbieter dazu verpflichtet, alle Empfänger, denen gegenüber Daten durch den Anbieter offengelegt worden sind, über jedwede Berichtigung oder Löschung von Daten oder die Einschränkung der Verarbeitung, die aufgrund der Artikel 16, 17 Abs. 1, 18 DSGVO erfolgt, zu unterrichten. Diese Verpflichtung besteht jedoch nicht, soweit diese Mitteilung unmöglich oder mit einem unverhältnismäßigen Aufwand verbunden ist. Unbeschadet dessen hat der Nutzer ein Recht auf Auskunft über diese Empfänger.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Ebenfalls haben die Nutzer und Betroffenen nach Art. 21 DSGVO das Recht auf Widerspruch gegen die künftige Verarbeitung der sie betreffenden Daten, sofern die Daten durch den Anbieter nach Maßgabe von Art. 6 Abs. 1 lit. f) DSGVO verarbeitet werden. Insbesondere ist ein Widerspruch gegen die Datenverarbeitung zum Zwecke der Direktwerbung statthaft.</span></p>
+            </div>
+          </div>
+        </article>   
+            
+          <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		    	  
+          <!-- Haupt Text -->
+          <div>
+            <h4>
+    
+              III. Informationen zur Datenverarbeitung
+    
+              </h4>
+          </div>
+          
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+              Ihre bei Nutzung unseres Internetauftritts verarbeiteten Daten werden gelöscht oder gesperrt, sobald der Zweck der Speicherung entfällt, der Löschung der Daten keine gesetzlichen Aufbewahrungspflichten entgegenstehen und nachfolgend keine anderslautenden Angaben zu einzelnen Verarbeitungsverfahren gemacht werden.
+            </span></p>
+            </div>
+          </div>
+        </article>       		
+    		
+          <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> Serverdaten</h5>
+            </div>
+          </div>
+        </article>   
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+        			Aus technischen Gründen, insbesondere zur Gewährleistung eines sicheren und stabilen Internetauftritts, werden Daten durch Ihren Internet-Browser an uns bzw. an unseren Webspace-Provider übermittelt. Mit diesen sog. Server-Logfiles werden u.a. Typ und Version Ihres Internetbrowsers, das Betriebssystem, die Website, von der aus Sie auf unseren Internetauftritt gewechselt haben (Referrer URL), die Website(s) unseres Internetauftritts, die Sie besuchen, Datum und Uhrzeit des jeweiligen Zugriffs sowie die IP-Adresse des Internetanschlusses, von dem aus die Nutzung unseres Internetauftritts erfolgt, erhoben.
+            </span>
+            <br>
+            <span class="keep">
+              Diese so erhobenen Daten werden vorrübergehend gespeichert, dies jedoch nicht gemeinsam mit anderen Daten von Ihnen.
+            </span>
+            <br>
+            <span class="keep">
+              Diese Speicherung erfolgt auf der Rechtsgrundlage von Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Verbesserung, Stabilität, Funktionalität und Sicherheit unseres Internetauftritts.
+            </span>
+            <br>
+            <span class="keep">
+              Die Daten werden spätestens nach sieben Tage wieder gelöscht, soweit keine weitere Aufbewahrung zu Beweiszwecken erforderlich ist. Andernfalls sind die Daten bis zur endgültigen Klärung eines Vorfalls ganz oder teilweise von der Löschung ausgenommen.</span></p>
+            </div>
+          </div>
+        </article>     
+          		
+          <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> Cookies</h5>
+            </div>
+          </div>
+        </article>   
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+        			a) Sitzungs-Cookies/Session-Cookies<br>
+  
+              Wir verwenden mit unserem Internetauftritt sog. Cookies. Cookies sind kleine Textdateien oder andere Speichertechnologien, die durch den von Ihnen eingesetzten Internet-Browser auf Ihrem Endgerät ablegt und gespeichert werden. Durch diese Cookies werden im individuellen Umfang bestimmte Informationen von Ihnen, wie beispielsweise Ihre Browser- oder Standortdaten oder Ihre IP-Adresse, verarbeitet.
+            </span>
+            <br>
+            <span class="keep">
+              Durch diese Verarbeitung wird unser Internetauftritt benutzerfreundlicher, effektiver und sicherer, da die Verarbeitung bspw. die Wiedergabe unseres Internetauftritts in unterschiedlichen Sprachen oder das Angebot einer Warenkorbfunktion ermöglicht.
+            </span>
+            <br>
+            <span class="keep">
+              Rechtsgrundlage dieser Verarbeitung ist Art. 6 Abs. 1 lit b.) DSGVO, sofern diese Cookies Daten zur Vertragsanbahnung oder Vertragsabwicklung verarbeitet werden.
+            </span>
+            <br>
+            <span class="keep">
+              Falls die Verarbeitung nicht der Vertragsanbahnung oder Vertragsabwicklung dient, liegt unser berechtigtes Interesse in der Verbesserung der Funktionalität unseres Internetauftritts. Rechtsgrundlage ist in dann Art. 6 Abs. 1 lit. f) DSGVO.
+            </span>
+            <br>
+            <span class="keep">
+              Mit Schließen Ihres Internet-Browsers werden diese Session-Cookies gelöscht.
+            </span>
+            <br>
+            <span class="keep">
+              b) Drittanbieter-Cookies<br>
+  
+              Gegebenenfalls werden mit unserem Internetauftritt auch Cookies von Partnerunternehmen, mit denen wir zum Zwecke der Werbung, der Analyse oder der Funktionalitäten unseres Internetauftritts zusammenarbeiten, verwendet.
+            </span>
+            <br>
+            <span class="keep">
+              Die Einzelheiten hierzu, insbesondere zu den Zwecken und den Rechtsgrundlagen der Verarbeitung solcher Drittanbieter-Cookies, entnehmen Sie bitte den nachfolgenden Informationen.
+            </span>
+            <br>
+            <span class="keep">
+              c) Beseitigungsmöglichkeit<br>
+  
+              Sie können die Installation der Cookies durch eine Einstellung Ihres Internet-Browsers verhindern oder einschränken. Ebenfalls können Sie bereits gespeicherte Cookies jederzeit löschen. Die hierfür erforderlichen Schritte und Maßnahmen hängen jedoch von Ihrem konkret genutzten Internet-Browser ab. Bei Fragen benutzen Sie daher bitte die Hilfefunktion oder Dokumentation Ihres Internet-Browsers oder wenden sich an dessen Hersteller bzw. Support. Bei sog. Flash-Cookies kann die Verarbeitung allerdings nicht über die Einstellungen des Browsers unterbunden werden. Stattdessen müssen Sie insoweit die Einstellung Ihres Flash-Players ändern. Auch die hierfür erforderlichen Schritte und Maßnahmen hängen von Ihrem konkret genutzten Flash-Player ab. Bei Fragen benutzen Sie daher bitte ebenso die Hilfefunktion oder Dokumentation Ihres Flash-Players oder wenden sich an den Hersteller bzw. Benutzer-Support.
+            </span>
+            <br>
+            <span class="keep">
+              Sollten Sie die Installation der Cookies verhindern oder einschränken, kann dies allerdings dazu führen, dass nicht sämtliche Funktionen unseres Internetauftritts vollumfänglich nutzbar sind.</span></p>
+            </div>
+          </div>
+        </article>  
+             
+         <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> Newsletter</h5>
+            </div>
+          </div>
+        </article>   
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+              <p>
+                <span class="keep">
+              Falls Sie sich für unseren kostenlosen Newsletter anmelden, werden die von Ihnen hierzu abgefragten Daten, also Ihre E-Mail-Adresse sowie – optional – Ihr Name und Ihre Anschrift, an uns übermittelt. Gleichzeitig speichern wir die IP-Adresse des Internetanschlusses von dem aus Sie auf unseren Internetauftritt zugreifen sowie Datum und Uhrzeit Ihrer Anmeldung. Im Rahmen des weiteren Anmeldevorgangs werden wir Ihre Einwilligung in die Übersendung des Newsletters einholen, den Inhalt konkret beschreiben und auf diese Datenschutzerklärung verwiesen. Die dabei erhobenen Daten verwenden wir ausschließlich für den Newsletter-Versand – sie werden deshalb insbesondere auch nicht an Dritte weitergegeben.
+                </span>
+                <br>
+                <span class="keep">
+              Rechtsgrundlage hierbei ist Art. 6 Abs. 1 lit. a) DSGVO.
+                </span>
+                <br>
+                <span class="keep">
+              Die Einwilligung in den Newsletter-Versand können Sie gemäß Art. 7 Abs. 3 DSGVO jederzeit mit Wirkung für die Zukunft widerrufen. Hierzu müssen Sie uns lediglich über Ihren Widerruf in Kenntnis setzen oder den in jedem Newsletter enthaltenen Abmeldelink betätigen.
+              </span>
+              </p>
+            </div>
+          </div>
+        </article>  
+    
+         <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> Kontaktanfragen / Kontaktmöglichkeit</h5>
+            </div>
+          </div>
+        </article>     
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+              <p>
+                <span class="keep">
+                  Sofern Sie per Kontaktformular oder E-Mail mit uns in Kontakt treten, werden die dabei von Ihnen angegebenen Daten zur Bearbeitung Ihrer Anfrage genutzt. Die Angabe der Daten ist zur Bearbeitung und Beantwortung Ihre Anfrage erforderlich – ohne deren Bereitstellung können wir Ihre Anfrage nicht oder allenfalls eingeschränkt beantworten.
+                </span>        
+                <br>
+                <span class="keep">
+                  Rechtsgrundlage für diese Verarbeitung ist Art. 6 Abs. 1 lit. b) DSGVO. Ihre Daten werden gelöscht, sofern Ihre Anfrage abschließend beantwortet worden ist und der Löschung keine gesetzlichen Aufbewahrungspflichten entgegenstehen, wie bspw. bei einer sich etwaig anschließenden Vertragsabwicklung.
+                </span>
+              </p>
+            </div>
+          </div>
+        </article>     
+          
+         <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> Abonnement von Beiträgen</h5>
+            </div>
+          </div>
+        </article>    
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+              <p>
+                <span class="keep">
+                  Sofern Sie Beiträge auf unseren Internetseiten verfolgen, bieten wir Ihnen zusätzlich an, etwaige Folgebeiträge zu abonnieren. Um Sie über diese Folgebeiträge per E-Mail informieren zu können, verarbeiten wir Ihre E-Mail-Adresse.
+                </span>
+                <br>
+                <span class="keep">
+                  Rechtsgrundlage hierbei ist Art. 6 Abs. 1 lit. a) DSGVO. Die Einwilligung in dieses Abonnement können Sie gemäß Art. 7 Abs. 3 DSGVO jederzeit mit Wirkung für die Zukunft widerrufen. Hierzu müssen Sie uns lediglich über Ihren Widerruf in Kenntnis setzen oder den in der jeweiligen E-Mail enthaltenen Abmeldelink betätigen.
+                </span>
+              </p>
+            </div>
+          </div>
+        </article>    
+           
+         <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> Google Analytics</h5>
+            </div>
+          </div>
+        </article>     
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+              In unserem Internetauftritt setzen wir Google Analytics ein. Hierbei handelt es sich um einen Webanalysedienst der Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043 USA, nachfolgend nur „Google“ genannt.
+                </span>
+                <br>
+                <span class="keep">
+              
+              Durch die Zertifizierung nach dem EU-US-Datenschutzschild („EU-US Privacy Shield“)
+              
+              <a href="https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active" target="_blank">privacyshield.gov</a>
+              
+              garantiert Google, dass die Datenschutzvorgaben der EU auch bei der Verarbeitung von Daten in den USA eingehalten werden.
+                </span>
+                <br>
+                <span class="keep">
+              
+              Der Dienst Google Analytics dient zur Analyse des Nutzungsverhaltens unseres Internetauftritts. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Analyse, Optimierung und dem wirtschaftlichen Betrieb unseres Internetauftritts.
+                </span>
+                <br>
+                <span class="keep">
+              
+              Nutzungs- und nutzerbezogene Informationen, wie bspw. IP-Adresse, Ort, Zeit oder Häufigkeit des Besuchs unseres Internetauftritts, werden dabei an einen Server von Google in den USA übertragen und dort gespeichert. Allerdings nutzen wir Google Analytics mit der sog. Anonymisierungsfunktion. Durch diese Funktion kürzt Google die IP-Adresse schon innerhalb der EU bzw. des EWR.
+                </span>
+                <br>
+                <span class="keep">
+              
+              Die so erhobenen Daten werden wiederum von Google genutzt, um uns eine Auswertung über den Besuch unseres Internetauftritts sowie über die dortigen Nutzungsaktivitäten zur Verfügung zu stellen. Auch können diese Daten genutzt werden, um weitere Dienstleistungen zu erbringen, die mit der Nutzung unseres Internetauftritts und der Nutzung des Internets zusammenhängen.
+                </span>
+                <br>
+                <span class="keep">
+              
+              Google gibt an, Ihre IP-Adresse nicht mit anderen Daten zu verbinden. Zudem hält Google unter
+              
+              <a href="https://www.google.com/intl/de/policies/privacy/partners" target="_blank">https://www.google.com/intl/de/policies/privacy/partners</a>
+              
+              weitere datenschutzrechtliche Informationen für Sie bereit, so bspw. auch zu den Möglichkeiten, die Datennutzung zu unterbinden.
+                </span>
+                <br>
+                <span class="keep">
+              
+              Zudem bietet Google unter
+              
+              <a href="https://tools.google.com/dlpage/gaoptout?hl=de" target="_blank">https://tools.google.com/dlpage/gaoptout?hl=de</a>
+              
+              ein sog. Deaktivierungs-Add-on nebst weiteren Informationen hierzu an. Dieses Add-on lässt sich mit den gängigen Internet-Browsern installieren und bietet Ihnen weitergehende Kontrollmöglichkeit über die Daten, die Google bei Aufruf unseres Internetauftritts erfasst. Dabei teilt das Add-on dem JavaScript (ga.js) von Google Analytics mit, dass Informationen zum Besuch unseres Internetauftritts nicht an Google Analytics übermittelt werden sollen. Dies verhindert aber nicht, dass Informationen an uns oder an andere Webanalysedienste übermittelt werden. Ob und welche weiteren Webanalysedienste von uns eingesetzt werden, erfahren Sie natürlich ebenfalls in dieser Datenschutzerklärung.</span></p>
+            </div>
+          </div>
+        </article>       	
+    
+         <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> Google reCAPTCHA</h5>
+            </div>
+          </div>
+        </article>   
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+              In unserem Internetauftritt setzen wir Google reCAPTCHA zur Überprüfung und Vermeidung von Interaktionen auf unserer Internetseite durch automatisierte Zugriffe, bspw. durch sog. Bots, ein. Es handelt sich hierbei um einen Dienst der Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043 USA, nachfolgend nur „Google“ genannt.
+                </span>
+                <br>
+                <span class="keep">
+              
+              Durch die Zertifizierung nach dem EU-US-Datenschutzschild („EU-US Privacy Shield“)
+              
+              <a href="https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active" target="_blank">https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active</a>
+              
+              garantiert Google, dass die Datenschutzvorgaben der EU auch bei der Verarbeitung von Daten in den USA eingehalten werden.
+                </span>
+                <br>
+                <span class="keep">
+              
+              Durch diesen Dienst kann Google ermitteln, von welcher Webseite eine Anfrage gesendet wird sowie von welcher IP-Adresse aus Sie die sog. reCAPTCHA-Eingabebox verwenden. Neben Ihrer IP-Adresse werden womöglich noch weitere Informationen durch Google erfasst, die für das Angebot und die Gewährleistung dieses Dienstes notwendig sind.
+                </span>
+                <br>
+                <span class="keep">
+              
+              Rechtsgrundlage ist Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Sicherheit unseres Internetauftritts sowie in der Abwehr unerwünschter, automatisierter Zugriffe in Form von Spam o.ä..
+                </span>
+                <br>
+                <span class="keep">
+              
+              Google bietet unter
+              
+              <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a>
+              
+              weitergehende Informationen zu dem allgemeinen Umgang mit Ihren Nutzerdaten an.</span></p>
+            </div>
+          </div>
+        </article>       	
+    
+         <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> Google Fonts</h5>
+            </div>
+          </div>
+        </article>   
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+              In unserem Internetauftritt setzen wir Google Fonts zur Darstellung externer Schriftarten ein. Es handelt sich hierbei um einen Dienst der Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043 USA, nachfolgend nur „Google“ genannt.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Durch die Zertifizierung nach dem EU-US-Datenschutzschild („EU-US Privacy Shield“)
+    
+              <a href="https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active" target="_blank">https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active</a>
+    
+              garantiert Google, dass die Datenschutzvorgaben der EU auch bei der Verarbeitung von Daten in den USA eingehalten werden.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Um die Darstellung bestimmter Schriften in unserem Internetauftritt zu ermöglichen, wird bei Aufruf unseres Internetauftritts eine Verbindung zu dem Google-Server in den USA aufgebaut.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Rechtsgrundlage ist Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Optimierung und dem wirtschaftlichen Betrieb unseres Internetauftritts.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Durch die bei Aufruf unseres Internetauftritts hergestellte Verbindung zu Google kann Google ermitteln, von welcher Website Ihre Anfrage gesendet worden ist und an welche IP-Adresse die Darstellung der Schrift zu übermitteln ist.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Google bietet unter
+    
+              <a href="https://adssettings.google.com/authenticated" target="_blank">https://adssettings.google.com/authenticated</a>
+    
+                  sowie
+    
+              <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a>
+    
+              weitere Informationen an und zwar insbesondere zu den Möglichkeiten der Unterbindung der Datennutzung.</span></p>
+            </div>
+          </div>
+        </article>      
+         	
+         <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> „Facebook“-Social-Plug-in</h5>
+            </div>
+          </div>
+        </article>    
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+              In unserem Internetauftritt setzen wir das Plug-in des Social-Networks Facebook ein. Bei Facebook handelt es sich um einen Internetservice der facebook Inc., 1601 S. California Ave, Palo Alto, CA 94304, USA. In der EU wird dieser Service wiederum von der Facebook Ireland Limited, 4 Grand Canal Square, Dublin 2, Irland, betrieben, nachfolgend beide nur „Facebook“ genannt.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Durch die Zertifizierung nach dem EU-US-Datenschutzschild („EU-US Privacy Shield“)
+    
+              <a href="https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active" target="_blank">https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active</a>
+    
+              garantiert Facebook, dass die Datenschutzvorgaben der EU auch bei der Verarbeitung von Daten in den USA eingehalten werden.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Rechtsgrundlage ist Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Qualitätsverbesserung unseres Internetauftritts.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Weitergehende Informationen über die möglichen Plug-ins sowie über deren jeweilige Funktionen hält Facebook unter
+    
+              <a href="https://developers.facebook.com/docs/plugins/" target="_blank">https://developers.facebook.com/docs/plugins/</a>
+    
+              für Sie bereit.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Sofern das Plug-in auf einer der von Ihnen besuchten Seiten unseres Internetauftritts hinterlegt ist, lädt Ihr Internet-Browser eine Darstellung des Plug-ins von den Servern von Facebook in den USA herunter. Aus technischen Gründen ist es dabei notwendig, dass Facebook Ihre IP-Adresse verarbeitet. Daneben werden aber auch Datum und Uhrzeit des Besuchs unserer Internetseiten erfasst.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Sollten Sie bei Facebook eingeloggt sein, während Sie eine unserer mit dem Plug-in versehenen Internetseite besuchen, werden die durch das Plug-in gesammelten Informationen Ihres konkreten Besuchs von Facebook erkannt. Die so gesammelten Informationen weist Facebook womöglich Ihrem dortigen persönlichen Nutzerkonto zu. Sofern Sie also bspw. den sog. „Gefällt mir“-Button von Facebook benutzen, werden diese Informationen in Ihrem Facebook-Nutzerkonto gespeichert und ggf. über die Plattform von Facebook veröffentlicht. Wenn Sie das verhindern möchten, müssen Sie sich entweder vor dem Besuch unseres Internetauftritts bei Facebook ausloggen oder durch den Einsatz eines Add-ons für Ihren Internetbrowser verhindern, dass das Laden des Facebook-Plug-in blockiert wird.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Weitergehende Informationen über die Erhebung und Nutzung von Daten sowie Ihre diesbezüglichen Rechte und Schutzmöglichkeiten hält Facebook in den unter
+    
+              <a href="https://www.facebook.com/policy.php" target="_blank">https://www.facebook.com/policy.php</a>
+    
+              abrufbaren Datenschutzhinweisen bereit.</span></p>
+            </div>
+          </div>
+        </article>   
+            
+         <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> „X“-Social-Plug-in</h5>
+          </div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+              In unserem Internetauftritt setzen wir das Plug-in des Social-Networks X ein. Bei TwitXter handelt es sich um einen Internetservice der X Corp., 1355 Market Street, Suite 900, San Francisco, CA 94103, USA, nachfolgend nur „X“ genannt.
+    
+              Durch die Zertifizierung nach dem EU-US-Datenschutzschild („EU-US Privacy Shield“)
+    
+              <a href="https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active" target="_blank">https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active</a>
+    
+              garantiert X, dass die Datenschutzvorgaben der EU auch bei der Verarbeitung von Daten in den USA eingehalten werden.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Rechtsgrundlage ist Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Qualitätsverbesserung unseres Internetauftritts.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Sofern das Plug-in auf einer der von Ihnen besuchten Seiten unseres Internetauftritts hinterlegt ist, lädt Ihr Internet-Browser eine Darstellung des Plug-ins von den Servern von X in den USA herunter. Aus technischen Gründen ist es dabei notwendig, dass X Ihre IP-Adresse verarbeitet. Daneben werden aber auch Datum und Uhrzeit des Besuchs unserer Internetseiten erfasst.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Sollten Sie bei X eingeloggt sein, während Sie eine unserer mit dem Plug-in versehenen Internetseite besuchen, werden die durch das Plug-in gesammelten Informationen Ihres konkreten Besuchs von X erkannt. Die so gesammelten Informationen weist X womöglich Ihrem dortigen persönlichen Nutzerkonto zu. Sofern Sie also bspw. den sog. „Teilen“-Button von X benutzen, werden diese Informationen in Ihrem X-Nutzerkonto gespeichert und ggf. über die Plattform von X veröffentlicht. Wenn Sie das verhindern möchten, müssen Sie sich entweder vor dem Besuch unseres Internetauftritts bei X ausloggen oder die entsprechenden Einstellungen in Ihrem X-Benutzerkonto vornehmen.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Weitergehende Informationen über die Erhebung und Nutzung von Daten sowie Ihre diesbezüglichen Rechte und Schutzmöglichkeiten hält X in den unter
+    
+              <a href="https://twitter.com/privacy" target="_blank">https://twitter.com/privacy</a>
+    
+              abrufbaren Datenschutzhinweisen bereit.</span></p>
+            </div>
+          </div>
+        </article>   
+            	
+         <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> YouTube</h5>
+            </div>
+          </div>
+        </article>     
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+        			In unserem Internetauftritt setzen wir YouTube ein. Hierbei handelt es sich um ein Videoportal der YouTube LLC., 901 Cherry Ave., 94066 San Bruno, CA, USA, nachfolgend nur „YouTube“ genannt.
+                </span>
+                <br>
+                <span class="keep">
+
+              YouTube ist ein Tochterunternehmen der Google LLC., 1600 Amphitheatre Parkway, Mountain View, CA 94043 USA, nachfolgend nur „Google“ genannt.
+                </span>
+                <br>
+                <span class="keep">
+
+              Durch die Zertifizierung nach dem EU-US-Datenschutzschild („EU-US Privacy Shield“)
+
+              <a href="https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active" target="_blank">https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active</a>
+
+              garantiert Google und damit auch das Tochterunternehmen YouTube, dass die Datenschutzvorgaben der EU auch bei der Verarbeitung von Daten in den USA eingehalten werden.
+                </span>
+                <br>
+                <span class="keep">
+
+              Wir nutzen YouTube im Zusammenhang mit der Funktion „Erweiterter Datenschutzmodus“, um Ihnen Videos anzeigen zu können. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Qualitätsverbesserung unseres Internetauftritts. Die Funktion „Erweiterter Datenschutzmodus“ bewirkt laut Angaben von YouTube, dass die nachfolgend noch näher bezeichneten Daten nur dann an den Server von YouTube übermittelt werden, wenn Sie ein Video auch tatsächlich starten.
+                </span>
+                <br>
+                <span class="keep">
+
+              Ohne diesen „Erweiterten Datenschutz“ wird eine Verbindung zum Server von YouTube in den USA hergestellt, sobald Sie eine unserer Internetseiten, auf der ein YouTube-Video eingebettet ist, aufrufen.
+                </span>
+                <br>
+                <span class="keep">
+
+              Diese Verbindung ist erforderlich, um das jeweilige Video auf unserer Internetseite über Ihren Internet-Browser darstellen zu können. Im Zuge dessen wird YouTube zumindest Ihre IP-Adresse, das Datum nebst Uhrzeit sowie die von Ihnen besuchte Internetseite erfassen und verarbeiten. Zudem wird eine Verbindung zu dem Werbenetzwerk „DoubleClick“ von Google hergestellt.
+                </span>
+                <br>
+                <span class="keep">
+
+              Sollten Sie gleichzeitig bei YouTube eingeloggt sein, weist YouTube die Verbindungsinformationen Ihrem YouTube-Konto zu. Wenn Sie das verhindern möchten, müssen Sie sich entweder vor dem Besuch unseres Internetauftritts bei YouTube ausloggen oder die entsprechenden Einstellungen in Ihrem YouTube-Benutzerkonto vornehmen.
+                </span>
+                <br>
+                <span class="keep">
+
+              Zum Zwecke der Funktionalität sowie zur Analyse des Nutzungsverhaltens speichert YouTube dauerhaft Cookies über Ihren Internet-Browser auf Ihrem Endgerät. Falls Sie mit dieser Verarbeitung nicht einverstanden sind, haben Sie die Möglichkeit, die Speicherung der Cookies durch eine Einstellung in Ihrem Internet-Browsers zu verhindern. Nähere Informationen hierzu finden Sie vorstehend unter „Cookies“.
+                </span>
+                <br>
+                <span class="keep">
+
+              Weitergehende Informationen über die Erhebung und Nutzung von Daten sowie Ihre diesbezüglichen Rechte und Schutzmöglichkeiten hält Google in den unter
+
+              <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a>
+
+              abrufbaren Datenschutzhinweisen bereit.</span></p>
+            </div>
+          </div>
+        </article>      
+         	
+         <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> Webanalyse etracker</h5>
+            </div>
+          </div>
+        </article>       
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+    		
+        			In unserem Internetauftritt setzen wir etracker ein. Hierbei handelt es sich um einen Webanalysedienst der etracker GmbH, Erste Brunnenstr. 1, 20459 Hamburg, nachfolgend nur „etracker“ genannt.
+                </span>
+                <br>
+                <span class="keep">
+    
+              etracker dient uns zur Analyse des Nutzungsverhaltens unseres Internetauftritts. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Analyse, Optimierung und dem wirtschaftlichen Betrieb unseres Internetauftritts.
+            </span>
+            <br>
+            <span class="keep">
+              Zur Analyse des Nutzungsverhaltens speichert etracker Cookies über Ihren Internet-Browser auf Ihrem Endgerät und erstellt dabei ein pseudonymes Nutzungsprofil. Die dabei verarbeiteten Daten werden allerdings nicht ohne Ihre gesonderte Zustimmung zu Ihrer persönlichen Identifikation verwendet. Genauso wenig werden diese Daten mit anderen personenbezogenen Daten zusammengeführt.
+            </span>
+            <br>
+            <span class="keep">
+              Falls Sie mit dieser Verarbeitung nicht einverstanden sind, haben Sie die Möglichkeit, die Speicherung des Cookies durch eine Einstellung in Ihrem Internet-Browsers zu verhindern. Nähere Informationen hierzu finden Sie vorstehend unter „Cookies“.
+            </span>
+            <br>
+            <span class="keep">
+              Darüber hinaus haben Sie die Möglichkeit, die Analyse Ihres Nutzungsverhaltens im Wege des sog. Opt-outs zu beenden. Mit dem Bestätigen des Links
+  
+              <a href="https://policies.google.com/privacy" target="_blank">http://www.etracker.de/privacy?et=V23Jbb</a>
+  
+              wird über Ihren Internet-Browser ein Cookie auf Ihrem Endgerät gespeichert, das die weitere Analyse verhindert. Bitte beachten Sie aber, dass Sie den obigen Link erneut betätigen müssen, sofern Sie die auf Ihrem Endgerät gespeicherten Cookies löschen.</span></p>
+            </div>
+          </div>
+        </article>       
+        	
+         <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> MailChimp – Newsletter</h5>
+            </div>
+          </div>
+        </article>     
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+              Wir bieten Ihnen die Möglichkeit an, sich bei uns über unseren Internetauftritt für unsere kostenlosen Newsletter anmelden zu können.
+    
+              Zum Newsletterversand setzen wir MailChimp, einen Dienst der The Rocket Science Group, LLC, 512 Means Street, Suite 404, Atlanta, GA 30318, USA, nachfolgend nur „The Rocket Science Group“ genannt, ein.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Durch die Zertifizierung nach dem EU-US-Datenschutzschild („EU-US Privacy Shield“)
+    
+              <a href="https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active" target="_blank">https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active</a>
+    
+              garantiert The Rocket Science Group, dass die Datenschutzvorgaben der EU auch bei der Verarbeitung von Daten in den USA eingehalten werden. Zudem bietet The Rocket Science Group unter
+    
+              <a href="http://mailchimp.com/legal/privacy/" target="_blank">http://mailchimp.com/legal/privacy/</a>
+    
+              weitergehende Datenschutzinformationen an.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Falls Sie sich zu unserem Newsletter-Versand anmelden, werden die während des Anmeldevorgangs abgefragten Daten, wie Ihre E-Mail-Adresse sowie, optional, Ihr Name nebst Anschrift, durch The Rocket Science Group verarbeitet. Zudem werden Ihre IP-Adresse sowie das Datum Ihrer Anmeldung nebst Uhrzeit gespeichert. Im Rahmen des weiteren Anmeldevorgangs wird Ihre Einwilligung in die Übersendung des Newsletters eingeholt, der Inhalt konkret beschreiben und auf diese Datenschutzerklärung verwiesen.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Der anschließend über The Rocket Science Group versandte Newsletter enthält zudem einen sog. Zählpixel, auch Web Beacon genannt“. Mit Hilfe dieses Zählpixels können wir auswerten, ob und wann Sie unseren Newsletter gelesen haben und ob Sie den in dem Newsletter etwaig enthaltenen weiterführenden Links gefolgt sind. Neben weiteren technischen Daten, wie bspw. die Daten Ihres EDV-Systems und Ihre IP-Adresse, werden die dabei verarbeiteten Daten gespeichert, damit wir unser Newsletter-Angebot optimieren und auf die Wünsche der Leser eingehen können. Die Daten werden also zur Steigerung der Qualität und Attraktivität unseres Newsletter-Angebots zu steigern.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Rechtsgrundlage für den Versand des Newsletters und die Analyse ist Art. 6 Abs. 1 lit. a.) DSGVO.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Die Einwilligung in den Newsletter-Versand können Sie gemäß Art. 7 Abs. 3 DSGVO jederzeit mit Wirkung für die Zukunft widerrufen. Hierzu müssen Sie uns lediglich über Ihren Widerruf in Kenntnis setzen oder den in jedem Newsletter enthaltenen Abmeldelink betätigen.</span></p>
+            </div>
+          </div>
+        </article>     
+          	
+         <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> Jetpack – WordPress Stats</h5>
+            </div>
+          </div>
+        </article>      
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+              In unserem Internetauftritt setzen wir Jetpack mit der Erweiterung „WordPress Stats“ ein. Hierbei handelt es sich um einen Webanalysedienst der Automattic Inc., 132 Hawthorne Street, San Francisco, CA 94107, USA, nachfolgend nur „Automattic“ genannt.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Durch die Zertifizierung nach dem EU-US-Datenschutzschild („EU-US Privacy Shield“)
+    
+              <a href="https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active" target="_blank">https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active</a>
+    
+              garantiert Automattic, dass die Datenschutzvorgaben der EU auch bei der Verarbeitung von Daten in den USA eingehalten werden.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Der Dienst Jetpack – WordPress Stats dient zur Analyse des Nutzungsverhaltens unseres Internetauftritts. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Analyse, Optimierung und dem wirtschaftlichen Betrieb unseres Internetauftritts.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Zur Analyse des Nutzungsverhaltens speichert Jetpack – WordPress Stats Cookies über Ihren Internet-Browser auf Ihrem Endgerät.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Bei der Verarbeitung werden Ihre IP-Adresse, die Website(s) unseres Internetauftritts, die Sie besuchen, die Website, von der aus Sie auf unseren Internetauftritt gewechselt haben (Referrer URL), Ihre Verweildauer auf unserem Internetauftritt sowie die Häufigkeit des Aufrufs einer unserer Websites erfasst. Die dabei erhobenen Daten werden auf einem Server von Automattic in den USA gespeichert. Ihre IP-Adresse wird allerdings unverzüglich nach der Verarbeitung und noch vor ihrer Speicherung anonymisiert.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Falls Sie mit dieser Verarbeitung nicht einverstanden sind, haben Sie die Möglichkeit, die Speicherung des Cookies durch eine Einstellung in Ihrem Internet-Browsers zu verhindern. Nähere Informationen hierzu finden Sie vorstehend unter „Cookies“.</span></p>
+            </div>
+          </div>
+        </article>     
+          	
+         <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> Google AdWords mit Conversion-Tracking</h5>
+            </div>
+          </div>
+        </article>    
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+              In unserem Internetauftritt setzen wir die Werbe-Komponente Google AdWords und dabei das sog. Conversion-Tracking ein. Es handelt sich hierbei um einen Dienst der Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043 USA, nachfolgend nur „Google“ genannt.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Durch die Zertifizierung nach dem EU-US-Datenschutzschild („EU-US Privacy Shield“)
+    
+              <a href="https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active" target="_blank">https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active</a>
+    
+              garantiert Google, dass die Datenschutzvorgaben der EU auch bei der Verarbeitung von Daten in den USA eingehalten werden.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Wir nutzen das Conversion-Tracking zur zielgerichteten Bewerbung unseres Angebots. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Analyse, Optimierung und dem wirtschaftlichen Betrieb unseres Internetauftritts.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Falls Sie auf eine von Google geschaltete Anzeige klicken, speichert das von uns eingesetzte Conversion-Tracking ein Cookie auf Ihrem Endgerät. Diese sog. Conversion-Cookies verlieren mit Ablauf von 30 Tagen ihre Gültigkeit und dienen im Übrigen nicht Ihrer persönlichen Identifikation.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Sofern das Cookie noch gültig ist und Sie eine bestimmte Seite unseres Internetauftritts besuchen, können sowohl wir als auch Google auswerten, dass Sie auf eine unserer bei Google platzierten Anzeigen geklickt haben und dass Sie anschließend auf unseren Internetauftritt weitergeleitet worden sind.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Durch die so eingeholten Informationen erstellt Google uns eine Statistik über den Besuch unseres Internetauftritts. Zudem erhalten wir hierdurch Informationen über die Anzahl der Nutzer, die auf unsere Anzeige(n) geklickt haben sowie über die anschließend aufgerufenen Seiten unseres Internetauftritts. Weder wir noch Dritte, die ebenfalls Google-AdWords einsetzten, werden hierdurch allerdings in die Lage versetzt, Sie auf diesem Wege zu identifizieren.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Durch die entsprechenden Einstellungen Ihres Internet-Browsers können Sie zudem die Installation der Cookies verhindern oder einschränken. Gleichzeitig können Sie bereits gespeicherte Cookies jederzeit löschen. Die hierfür erforderlichen Schritte und Maßnahmen hängen jedoch von Ihrem konkret genutzten Internet-Browser ab. Bei Fragen benutzen Sie daher bitte die Hilfefunktion oder Dokumentation Ihres Internet-Browsers oder wenden sich an dessen Hersteller bzw. Support.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Ferner bietet auch Google unter
+                </span>
+                <br>
+                <span class="keep">
+    
+              <a href="https://services.google.com/sitestats/de.html" target="_blank">https://services.google.com/sitestats/de.html</a>
+                </span>
+                <br>
+                <span class="keep">
+    
+              <a href="http://www.google.com/policies/technologies/ads/" target="_blank">http://www.google.com/policies/technologies/ads/</a>
+                </span>
+                <br>
+                <span class="keep">
+    
+              <a href="http://www.google.de/policies/privacy/" target="_blank">http://www.google.de/policies/privacy/</a>
+                </span>
+                <br>
+                <span class="keep">
+    
+              weitergehende Informationen zu diesem Thema und dabei insbesondere zu den Möglichkeiten der Unterbindung der Datennutzung an.</span></p>
+            </div>
+          </div>
+        </article>    
+           
+         <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> Google AdSense</h5>
+            </div>
+          </div>
+        </article>       
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+        			In unserem Internetauftritt setzen wir zur Einbindung von Werbeanzeigen Google AdSense ein. Es handelt sich hierbei um einen Dienst der Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043 USA, nachfolgend nur „Google“ genannt.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Durch die Zertifizierung nach dem EU-US-Datenschutzschild („EU-US Privacy Shield“)
+    
+              <a href="https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active" target="_blank">https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active</a>
+    
+              garantiert Google, dass die Datenschutzvorgaben der EU auch bei der Verarbeitung von Daten in den USA eingehalten werden.
+            </span>
+            <br>
+            <span class="keep">
+              Durch Google AdSense werden Cookies sowie sog. Web Beacons über Ihren Internet-Browser auf Ihrem Endgerät gespeichert. Hierdurch ermöglicht uns Google die Analyse der Nutzung unseres Internetauftritts durch Sie. Die so erfassten Informationen werden neben Ihrer IP-Adresse und der Ihnen angezeigten Werbeformate an Google in die USA übertragen und dort gespeichert. Ferner kann Google diese Informationen an Vertragspartner weitergeben. Google erklärt allerdings, dass Ihre IP-Adresse nicht mit anderen Daten von Ihnen zusammengeführt würden.
+            </span>
+            <br>
+            <span class="keep">
+              Rechtsgrundlage ist Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Analyse, Optimierung und dem wirtschaftlichen Betrieb unseres Internetauftritts.
+            </span>
+            <br>
+            <span class="keep">
+              Sofern Sie mit dieser Verarbeitung nicht einverstanden sind, haben Sie die Möglichkeit, die Installation der Cookies durch die entsprechenden Einstellungen in Ihrem Internet-Browser zu verhindern. Einzelheiten hierzu finden Sie vorstehend unter dem Punkt „Cookies“.
+            </span>
+            <br>
+            <span class="keep">
+              Zudem bietet Google unter
+            </span>
+            <br>
+            <span class="keep">
+              <a href="http://www.google.de/policies/privacy/" target="_blank">http://www.google.de/policies/privacy/</a>
+            </span>
+            <br>
+            <span class="keep">
+              <a href="http://www.google.de/policies/privacy/" target="_blank">https://adssettings.google.com/authenticated</a>
+            </span>
+            <br>
+            <span class="keep">
+              weitere Informationen an und zwar insbesondere zu den Möglichkeiten der Unterbindung der Datennutzung.</span></p>
+            </div>
+          </div>
+        </article>       
+        
+         <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> Google Remarketing oder „Ähnliche Zielgruppen“-Komponente von Google</h5>
+            </div>
+          </div>
+        </article>      
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+              In unserem Internetauftritt setzen wir die Remarketing- oder „Ähnliche Zielgruppen“-Funktion ein. Es handelt sich hierbei um einen Dienst der Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043 USA, nachfolgend nur „Google“ genannt.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Durch die Zertifizierung nach dem EU-US-Datenschutzschild („EU-US Privacy Shield“)
+    
+              <a href="https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active" target="_blank">https://www.privacyshield.gov/participant?id=a2zt0000000GnywAAC&status=Active</a>
+    
+              garantiert Google, dass die Datenschutzvorgaben der EU auch bei der Verarbeitung von Daten in den USA eingehalten werden.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Wir nutzen diese Funktion, um interessenbezogene, personalisierte Werbung auf Internetseiten Dritter, die ebenfalls an dem Werbe-Netzwerk von Google teilnehmen, zu schalten.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Rechtsgrundlage ist Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Analyse, Optimierung und dem wirtschaftlichen Betrieb unseres Internetauftritts.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Damit dieser Werbe-Dienst ermöglicht werden kann, speichert Google während Ihres Besuchs unseres Internetauftritts über Ihren Internet-Browser ein Cookie mit einer Zahlenfolge auf Ihrem Endgerät. Dieses Cookie erfasst in anonymisierter Form sowohl Ihren Besuch als auch die Nutzung unseres Internetauftritts. Personenbezogene Daten wird dabei allerdings nicht weitergegeben. Sofern Sie anschließend den Internetauftritt eines Dritten besuchen, der seinerseits ebenfalls das Werbe-Netzwerk von Google nutzt, werden womöglich Werbeeinblendungen erscheinen, die einen Bezug zu unserem Internetauftritt bzw. zu unseren dortigen Angeboten aufweisen.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Zur dauerhaften Deaktivierung dieser Funktion bietet Google für die gängigsten Internet-Browser über
+    
+              <a href="https://www.google.com/settings/ads/plugin" target="_blank">https://www.google.com/settings/ads/plugin</a>
+    
+              ein Browser-Plugin an.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Ebenfalls kann die Verwendung von Cookies bestimmter Anbieter bspw. über
+    
+              <a href="http://www.youronlinechoices.com/uk/your-ad-choices" target="_blank">http://www.youronlinechoices.com/uk/your-ad-choices</a>
+    
+              oder
+    
+              <a href="http://www.networkadvertising.org/choices/" target="_blank">http://www.networkadvertising.org/choices/</a>
+    
+              per Opt-out deaktiviert werden.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Durch das sog. Cross-Device-Marketing kann Google Ihr Nutzungsverhalten unter Umständen auch über mehrere Endgeräte hinweg verfolgen, sodass Ihnen womöglich selbst dann interessenbezogene, personalisierte Werbung angezeigt wird, wenn Sie das Endgerät wechseln. Dies setzt allerdings voraus, dass Sie der Verknüpfung Ihrer Browserverläufe mit Ihrem bestehenden Google-Konto zugestimmt haben.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Google bietet weitergehende Informationen zu Google Remarketing unter
+    
+              <a href="http://www.google.com/privacy/ads/" target="_blank">http://www.google.com/privacy/ads/</a>
+    
+              an.</span></p>
+            </div>
+          </div>
+        </article>      
+         	
+         <!-- Abstand -->
+          <div style="height: var(--px-80)">&nbsp;</div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> Gewinnspiel</h5>
+            </div>
+          </div>
+        </article>       	
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p>
+              <span class="keep">
+                Sofern Sie Beiträge auf unseren Internetseiten veröffentlichen, bieten wir Ihnen zusätzlich an, etwaige Folgebeiträge Dritter zu abonnieren. Um Sie über diese Folgebeiträge per E-Mail informieren zu können, verarbeiten wir Ihre E-Mail-Adresse.
+              </span>
+              <br>
+              <span class="keep">
+                Rechtsgrundlage hierbei ist Art. 6 Abs. 1 lit. a) DSGVO. Die Einwilligung in dieses Abonnement können Sie gemäß Art. 7 Abs. 3 DSGVO jederzeit mit Wirkung für die Zukunft widerrufen. Hierzu müssen Sie uns lediglich über Ihren Widerruf in Kenntnis setzen oder den in der jeweiligen E-Mail enthaltenen Abmeldelink betätigen.</span>
+              </p>
+            </div>
+          </div>
+        </article>       	
+        
+         <!-- Abstand -->
+          <div style="height: 2rem"></div>
+    		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <h5> Cookies</h5>
+            </div>
+          </div>
+        </article>    
+            		
+        <article class="headline-left-wrapper">
+          <div class="healine-left-container">
+            <div class="headline-left-inner">
+            <p><span class="keep">
+              Über unseren Internetauftritt bieten wir Ihnen die Teilnahme an Gewinnspielen an. Sofern Sie an einem unserer Gewinnspiele teilnehmen, werden die von Ihnen anlässlich der Teilnahme eingegebenen Daten ohne Ihre weitergehende Einwilligung, aber natürlich ausschließlich nur zur Durchführung und Abwicklung des jeweiligen Gewinnspiels, verarbeitet.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Im Rahmen der Abwicklung des Gewinnspiels geben wir Ihre Daten an das mit der Warenlieferung beauftragte Transportunternehmen oder an einen Finanzdienstleister weiter, soweit die Weitergabe zur Lieferung bzw. Auszahlung Ihres Gewinns erforderlich ist. Sofern Ihre Daten im Falle eines Gewinns veröffentlicht werden, werden Sie hierauf im Rahmen der Einwilligungserklärung hingewiesen.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Rechtsgrundlage für die Weitergabe der Daten ist dann Art. 6 Abs. 1 lit. b) DSGVO.
+                </span>
+                <br>
+                <span class="keep">
+    
+              Ihre Einwilligung in die Verarbeitung der Daten zur Teilnahme an unseren Gewinnspielen können Sie gemäß Art. 7 Abs. 3 DSGVO jederzeit mit Wirkung für die Zukunft widerrufen. Hierzu müssen Sie uns lediglich über Ihren Widerruf in Kenntnis setzen.
+                </span>
+                <br>
+                <span class="keep">
+    
+              <span style="font-style: italic;">Muster-Datenschutzerklärung der Anwaltskanzlei Weiß & Partner
+                </span>
+                <br>
+                <span class="keep">
+            </span></p>
+            </div>
+          </div>
+        </article>   
+             
+        <div style="height: var(--px-160)">&nbsp;</div>
+      </center>
+
+
+    </div>
+
+
+    <div style="height: var(--px-160)">&nbsp;</div>
+
+</main>
+
+
+<div id="footer-placeholder"></div>
+<script src="ocoso-app-functions.js" defer></script>
+<script src="js/wallet.js" defer></script>
+<script src="js/3d-Navigation.js" defer></script>
+<script src="js/cardTilt.js" defer></script>
+<script src="js/waitlist-overlay.js" defer></script>
+<script src="js/css-reload.js" defer></script>
+
+</body>
+</html>

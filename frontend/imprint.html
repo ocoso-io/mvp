@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>OCOSO MVP - Full Layout</title>
+  <link rel="stylesheet" href="css/main.css">
+
+  <style>
+    /* Base paragraph without columns – clean & accessible */
+    p{
+      margin-top: var(--px-20);
+      hyphens: auto;
+    }
+
+    a{ color:#fffe00; }
+
+    /* Two-column container – apply only where needed */
+    .two-col{
+      column-count: 2;
+      column-gap: 1.5rem;
+      column-rule: 1px solid #333; /* optional */
+    }
+    /* Keep paragraphs intact across columns */
+    .two-col p{
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+      margin-top: var(--px-20);
+    }
+    .two-col p:first-child { margin-top: 0; }
+
+    /* Blocks that must not split (addresses, grouped items, etc.) */
+    .keep-block{
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .headline-left-wrapper { margin-bottom: var(--px-20); }
+    h4 { margin-bottom: var(--px-20); }
+
+    /* Mobile: single column */
+    @media (max-width: 760px){
+      .two-col{
+        column-count: 1;
+        column-rule: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Overlay for activating new members -->
+<div id="app-overlay" class="overlay-backdrop" hidden aria-hidden="true">
+  <div class="overlay-modal" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
+    <button class="overlay-close" type="button" aria-label="Schließen">×</button>
+    <header class="overlay-header">
+      <h2 id="overlay-title" style="color: black">Waitlist Registration</h2>
+    </header>
+    <section class="overlay-body"><!-- Content set via JS --></section>
+    <!-- optional: footer
+    <footer class="overlay-footer"></footer> -->
+  </div>
+</div>
+
+<div id="navigation-placeholder"></div>
+<div id="overlay-menu-placeholder"></div>
+
+<section class="hero" style="min-height: var(--px-600)">
+  <div class="hero-container" style="min-height: var(--px-600);background-image:
+                  linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+                  linear-gradient(to right, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+                  linear-gradient(to left, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+                  radial-gradient(circle at 50% 50%,
+                                   rgba(0, 0, 0, 0)  60%,
+                                   rgba(0, 0, 0, 1)  100%),
+                  url('img/header-start2_color.jpg');
+                  background-position: center;">
+
+    <div style="display:flex; flex-direction:column; width:80%;">
+      <div class="hero-content-wrapper" style="flex-direction:flex-start; justify-content:top;">
+        <div class="main-heading">
+          <h1 class="text-box-wide">Imprint</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <div class="button-group">
+        <div class="button-wrapper">
+          <button class="action-button" aria-label="Login">
+            <span class="button-text">Login</span>
+          </button>
+          <button class="action-button" aria-label="Register">
+            <span class="button-text">Register</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="card-stack-wrapper">
+  <nav class="card-stack" id="stack">
+    <div class="card">
+      <div class="wrapper">
+        <div class="responsive-narrow" data-link="content-creator.html">
+          <div class="content-block-narrow"
+               style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/Zielgruppe-Creator_nav_color.jpg');">
+            <div class="content-text">
+              <h2 class="title">Creator</h2>
+              <p class="description">
+                Track performance. Compare verticals. Make informed moves in the IP economy.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img src="img/Arrow.png" alt="" class="button-icon" aria-hidden="true" />
+              <span class="button-text">Enter the Market</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="responsive-narrow" data-link="investor.html">
+          <div class="content-block-narrow"
+               style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/invest-trends_color.jpg');">
+            <div class="content-text">
+              <h2 class="title">Investor</h2>
+              <p class="description">
+                From creator tokens to content DAOs — discover where capital meets culture
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img src="img/Arrow.png" alt="" class="button-icon" aria-hidden="true" />
+              <span class="button-text">Follow the Signal</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="responsive-narrow" data-link="advertiser.html">
+          <div class="content-block-narrow"
+               style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/advertiser_color.jpg');">
+            <div class="content-text">
+              <h2 class="title">Advertiser</h2>
+              <p class="description">
+                Votes shape strategy. Ideas drive innovation. Get a real stake in the system you fund.
+              </p>
+            </div>
+            <button class="action-button" aria-label="Stake Your Claim">
+              <img src="img/Arrow.png" alt="" class="button-icon" aria-hidden="true" />
+              <span class="button-text">Join the Table</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<main class="main">
+  <div class="page-wrapper">
+    <div style="height: var(--px-80)">&nbsp;</div>
+
+    <center class="content-frame">
+
+      <!-- ===================================================== -->
+      <!-- NEW: Legal Notice (Imprint) and Liability sections    -->
+      <!-- integrated per your template and content (EN version) -->
+      <!-- ===================================================== -->
+
+      <!-- Spacing -->
+      <div style="height: var(--px-80)">&nbsp;</div>
+
+      <div><h4>Legal Notice (Imprint) – § 5 TMG</h4></div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <div class="keep-block">
+                <p><strong>OCOSO.io</strong></p>
+                <p>represented by: Torsten Gebert, Sebastian Rohleder</p>
+                <p>Rosa-Luxemburg-Str. 12</p>
+                <p>18055 Rostock</p>
+                <p>Germany</p>
+                <p><a href="mailto:kontakt@ocoso.io">kontakt@ocoso.io</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-40)">&nbsp;</div>
+
+      <div><h4>Liability for Content</h4></div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>The contents of our pages were created with the greatest care. However, we cannot guarantee the accuracy, completeness or currentness of the contents. As a service provider we are responsible for our own content on these pages according to the general laws pursuant to § 7(1) TMG.</p>
+              <p>According to §§ 8 to 10 TMG, as a service provider we are not obliged to monitor transmitted or stored third-party information or to investigate circumstances indicating unlawful activity. Obligations to remove or block the use of information under the general laws remain unaffected. Any liability in this respect is, however, only possible from the time we become aware of a specific infringement. Upon becoming aware of such infringements, we will remove the content immediately.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-40)">&nbsp;</div>
+
+      <div><h4>Liability for Links</h4></div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>Our offering contains links to external third-party websites whose content we cannot influence. Therefore, we cannot accept any liability for such third-party content. The respective provider or operator of the pages is always responsible for the content of the linked pages.</p>
+              <p>The linked pages were checked for possible legal violations at the time of linking. Unlawful content was not recognisable at the time the links were created. However, permanent monitoring of the content of linked pages is unreasonable without concrete evidence of an infringement. Upon becoming aware of legal violations, we will remove such links immediately.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacing -->
+      <div style="height: var(--px-40)">&nbsp;</div>
+
+      <div><h4>Copyright</h4></div>
+
+      <article class="headline-left-wrapper">
+        <div class="healine-left-container">
+          <div class="headline-left-inner">
+            <div class="two-col">
+              <p>Content and works created by the site operators on these pages are subject to German copyright law. Reproduction, editing, distribution and any kind of exploitation beyond the limits of copyright require the prior written consent of the respective author or creator.</p>
+              <p>Downloads and copies of this site are permitted only for private, non-commercial use. Where the content on this site was not created by the operator, the copyrights of third parties are respected; such content is marked as third-party content wherever appropriate. Should you nevertheless become aware of a copyright infringement, please inform us accordingly. Upon becoming aware of any infringements, we will remove such content immediately.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- End NEW sections -->
+
+      <div style="height: var(--px-160)">&nbsp;</div>
+    </center>
+  </div>
+
+  <div style="height: var(--px-160)">&nbsp;</div>
+</main>
+
+<div id="footer-placeholder"></div>
+<script src="ocoso-app-functions.js" defer></script>
+<script src="js/wallet.js" defer></script>
+<script src="js/3d-Navigation.js" defer></script>
+script src="js/cardTilt.js" defer></script>
+<script src="js/waitlist-overlay.js" defer></script>
+<script src="js/css-reload.js" defer></script>
+
+</body>
+</html>
