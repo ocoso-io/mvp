@@ -12,8 +12,8 @@
         .parent-80 {
             display: flex;
             flex-direction: column;
-            width: 80%;
-            margin: auto;
+            width: 100%;
+            margin: 0;
         }
 
         .rotator-parent-80 {
@@ -33,9 +33,9 @@
         .rotator {
             position: relative;
             width: 100%;
-            min-height: var(--px-360);
+            min-height: var(--px-180);
             perspective: 2000px;
-            overflow: hidden;
+            overflow: visible;
             box-sizing: border-box;
         }
 
@@ -46,12 +46,13 @@
             left: 0;
             width: 100%; /* ganz wichtig! */
             box-sizing: border-box;
-            padding: 1rem; /* optionaler Innenabstand */
+            padding: 0rem; /* optionaler Innenabstand */
             backface-visibility: hidden;
             transform-style: preserve-3d;
             transform-origin: center center;
             transition: transform 1s ease;
             display: none; /* Startzustand */
+            margin-top: 0;
         }
 
         .rotator .index-panel.active {
@@ -72,6 +73,96 @@
             z-index: 1;
         }
 
+
+
+
+
+
+
+
+.hero-container{
+  position: relative;
+  isolation: isolate;          /* eigener Stacking-Context – verhindert Z-Index-Merkwürdigkeiten */
+  overflow: hidden;
+}
+
+/* Video legt sich flächig unter alles */
+.hero-video{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;               /* wie background-size: cover */
+  pointer-events: none;            /* klicks gehen an Content */
+  z-index: 0;
+}
+
+/* OVERLAY liegt ÜBER dem Video, UNTER dem Content */
+.hero-gradient{
+  position: absolute;
+  inset: 0;
+  z-index: 1;                  /* > video (0), < content (3) */
+  pointer-events: none;
+  /* Nicht-zentrale, elliptische Vignette + deine Kanten-Gradienten */
+  background:
+    radial-gradient(140% 95% at 65% 35%, rgba(0,0,0,0) 40%, rgba(0,0,0,.85) 80%, rgba(0,255,0,1) 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0) 55%, rgba(0,0,0,.6) 100%),
+    linear-gradient(to right,  rgba(0,0,0,0) 60%, rgba(0,255,0,1) 100%),
+    linear-gradient(to left,   rgba(0,0,0,0) 60%, rgba(0,255,0,1) 100%);
+  background-repeat: no-repeat;
+  /* Für Gradients ist size meist egal; falls gewünscht: */
+  background-size: cover, cover, cover, cover;
+}
+
+.hero-overlay{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1;               /* über dem Video */
+  pointer-events: none;
+  /* optional: Layering stabilisieren */
+  will-change: opacity, transform;
+}
+
+/* Content über Overlay 
+.hero-container > *:not(.hero-video):not(.hero-gradient){
+  position: relative;
+  z-index: 2;
+}*/
+
+.box{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;            /* klicks gehen an Content */
+  z-index: 2;
+}
+
+/* WICHTIG: SVG auf volle Fläche ziehen */
+.hero-overlay__svg{
+  width: 100%;
+  height: 100%;
+  display: block;            /* iOS/Safari: keine zusätzlichen Gaps */
+}
+
+/* Optional: Rücksicht auf reduzierte Bewegung & Fallback-Bild */
+@media (prefers-reduced-motion: reduce){
+  .hero-video{ display:none; }
+  .hero-gradient{
+    /* Du kannst hier zusätzlich dein Bild wieder einblenden, falls gewünscht: */
+    background-image:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+      linear-gradient(to right,  rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+      linear-gradient(to left,   rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+      radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 60%, rgba(0,0,0,1) 100%),
+      url('img/header-start2_color.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+}
     </style>
 </head>
 <body>
@@ -95,40 +186,85 @@
 <div id="overlay-menu-placeholder"></div>
 
 
-<section class="hero" style="min-height: var(--px-600)">
-    <div class="hero-container" style="min-height: var(--px-600);background-image:  
-                  linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
-                  linear-gradient(to right, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
-                  linear-gradient(to left, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
-									radial-gradient(circle at 50% 50%, 
-                                     rgba(0, 0, 0, 0)  60%,    
-                                     rgba(0, 0, 0, 1)  100%), 
-									url('img/header-start2_color.jpg'); 
-									 background-position: center;">
+<section class="hero" style="min-height: var(--px-400)">
+
+  <div class="hero-container">
+
+  <!-- Hintergrundvideo -->
+  <video
+    class="hero-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    poster="img/header-start2_color.jpg"
+    aria-hidden="true"
+  >
+    <!-- Nimm deine Pfade/Namen -->
+    <source src="video/startpage2_1.mp4" type="video/mp4">
+  </video>
+
+
+
+  <!-- Gradient-Overlay als eigenes Objekt -->
+<div class="box">
+  <svg class="hero-overlay__svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <!-- nicht-zentrale, elliptische Vignette -->
+      <radialGradient id="vg" cx="65%" cy="35%" r="85%">
+        <stop offset="40%" stop-color="#000" stop-opacity="0"/>
+        <stop offset="80%" stop-color="#000" stop-opacity=".4"/>
+        <stop offset="100%" stop-color="#000" stop-opacity="0.7"/>
+      </radialGradient>
+
+      <!-- Kanten-Verläufe -->
+      <linearGradient id="fade-bottom" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#000" stop-opacity=".3"/>
+      </linearGradient>
+      <linearGradient id="fade-right" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="60%" stop-color="#000" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#000" stop-opacity="0.4"/>
+      </linearGradient>
+      <linearGradient id="fade-left" x1="1" y1="0" x2="0" y2="0">
+        <stop offset="60%" stop-color="#000" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#000" stop-opacity="0.4"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Die vier Layer übereinanderlegen -->
+    <rect width="100%" height="100%" fill="url(#vg)"/>
+    <rect width="100%" height="100%" fill="url(#fade-bottom)"/>
+    <rect width="100%" height="100%" fill="url(#fade-right)"/>
+    <rect width="100%" height="100%" fill="url(#fade-left)"/>
+  </svg>
+</div>
+
+
+
+
 
         <div class="parent-80">
             <div class="hero-content-wrapper"
-                 style="flex-direction: flex-start; justify-content: top; min-height: var(--px-600);">
+                 style="flex-direction: flex-start; justify-content: top; min-height: var(--px-400); z-index:100;">
                 <div class="main-heading">
-                    <h1 class="text-box-wide">Turn content into capital</h1>
-                    <div class="hero-description" style=" margin-left: 15%"><h3 class="text-box-wide">Content is Fuel. Creation rules. ATTENTION IS CURRENCY.</h3></div>
+                    <h1 class="text-box-wide">OC Network <br>next gen web economy</h1>
+                    <!-- <div class="hero-description" style=" margin-left: 15%"><h3 class="text-box-wide">Where cherished content stays protected, 
+                    </h3></div>
+                    <div class="hero-description" style=" margin-left: 15%"><h3 class="text-box-wide">standout ads reach real audiences, 
+                    </h3></div>
+                    <div class="hero-description" style=" margin-left: 15%"><h3 class="text-box-wide">and investments accelerate in an economy in hyperdrive.</h3></div> -->
                 </div>
+                <div style="height: var(--px-80)">&nbsp;</div>
                 <div class="rotator-parent-80">
                     <div class="rotator">
 
-                        <div id="head-row-1" class="index-panel active"><h3 class="text-box-wide">Not just storage. Not
-                            just social. Web3 frees the voice.</h3></div>
+                        <div id="head-row-1" class="index-panel active"><h3 class="text-box-wide">Creators: Be safe. Be seen. Get paid.</h3></div>
 
-                        <div id="head-row-2" class="index-panel hide-left"><h3 class="text-box-wide">Own your audience
-                            and SAY WHAT YOU MEAN. NO FILTER. NO bias. </h3></div>
+                        <div id="head-row-2" class="index-panel hide-left"><h3 class="text-box-wide">Advertisers: fraud free. real people. unlimited reach.</h3></div>
 
-                        <div id="head-row-3" class="index-panel hide-left"><h3 class="text-box-wide">You create value.
-                            Trackable and Ownable. Your content is the new asset. START EARNING FOR REAL.</h3></div>
-
-                        <div id="head-row-4" class="index-panel hide-left"><h3 class="text-box-wide">No more fake reach.
-                            No more polished noise. Work with creators who care. Reach real people — in real
-                            spaces.</h3></div>
-
+                        <div id="head-row-3" class="index-panel hide-left"><h3 class="text-box-wide">Investors: Access the monetization layer of the AI internet.</h3></div>
                     </div>
                 </div>
             </div>
@@ -230,8 +366,112 @@
 
         <div style="height: var(--px-80)">&nbsp;</div>
 
-
         <section class="content-submission">
+            <h1 class="submission-title">Let the open internet honors its makers.</h1>
+                       <div style="height: var(--px-10)">&nbsp;</div>
+            <h4 class="submission-subtitle">OC Network turns relevance into momentum and ignites the independent creator economy.<br>Not only a platform — A monetization layer.</h4>
+            <div style="height: var(--px-40)">&nbsp;</div>
+            <p style="width: 50%"> We connect creators, brands, and capital — securely and transparently. Reach becomes revenue. Investment rides an economy on steroids.</p>
+        </section>
+
+        <div style="height: var(--px-60)">&nbsp;</div>
+
+
+        <center class="content-frame">
+
+
+            <div style="height:var(--px-40)">&nbsp;</div>
+            
+            <h1>How It Works</h1>
+            <div style="height: var(--px-40)">&nbsp;</div>
+
+            <section class="starttext-row">
+                <div class="starttext-block">
+                    <h2>Creators</h2>
+                    <h6 class="submission-subtitle">Create. Proof. Earn. Repeat.</h6>
+                    <!--<p>What you publish is finally yours. OC Network registers your work as a digital asset. It signals rights to AI and real audiences. Revenue flows back to you by design. What you create, you own. What you own, you earn.</p>-->
+                    <p>Claim your creation. Grow your reach and influence. Get paid automatically. Create more. Earn more.</p>
+                    <div style="height: var(--px-40)">&nbsp;</div>
+                </div>
+                <div class="starttext-block">
+                    <h2>Advertisers</h2>
+                    <h6 class="submission-subtitle">Future Ad-Tech starts now.</h6>
+                    <!--<p>Future Ad-Tech starts now. Verified inventory. Fraud-free delivery. Instant setup. Transparent results. Just performance you can prove.</p>-->
+                    <p>Access blockchain-approved inventory. Authentic contexts, human audiences, and verifiable proof for every ad impression.</p>
+                </div>
+                <div class="starttext-block">
+                    <h2>Investors</h2>
+                    <h6 class="submission-subtitle">From Content to Capital.</h6>
+                    <!--<p>From Content to Capital. A new asset class: verifiable reach. Fractional tokens create tradable value. Invest transparently. Share the upside.</p>-->
+                    <p>Back creators. Earn from real demand. Invest in diversified content cashflows, transparently.</p>
+                    <div style="height: var(--px-40)">&nbsp;</div>
+                </div>                
+            </section>
+
+            <div style="height: var(--px-40)">&nbsp;</div>
+
+
+            <section class="content-submission">
+                <div class="comic-row-wide">
+                    <div class="comic-block-wide">
+                        <div class="comic-image-wide"
+                             style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/Zielgruppe-Creator_color.jpg');">
+                            <div style="height:460px;">&nbsp;</div>
+                        </div>
+                        <h3><span class="text-box-wide" style="margin-left: var(--px-40)">Creators: Protect. Engage. Profit.</span></h3>
+                        <p>Install our WordPress Plugin and become part of the OC Network. Every post is automatically minted as a digital asset, enriched with AI-readable markup, and linked into our promotion network. Revenue from ads, referrals, and AI queries flows directly into your wallet.</p>
+                    </div>
+                    <div class="comic-block-wide">
+                        <div class="comic-image-wide"
+                             style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/Zielgruppe_Advertiser_color.jpg');">
+                            <div style="height:460px;">&nbsp;</div>
+                        </div>
+                        <h3><span class="text-box-wide" style="margin-left: var(--px-40)">Advertisers: Scale into safe Longtail Inventory.</span></h3>
+                        <p>Place campaigns directly inside our promotion containers. Each impression is verified on-chain, matched by topic and audience context, and fraud-checked before settlement. Budgets are deposited upfront; delivery and reporting happen in real time.</p>
+                    </div>
+                    <div class="comic-block-wide">
+                        <div class="comic-image-wide"
+                             style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/Zielgruppe_Investor_color.jpg');">
+                            <div style="height:460px;">&nbsp;</div>
+                        </div>
+                        <h3><span class="text-box-wide" style="margin-left: var(--px-40)">Investors: Access the most creative assets.</span></h3>
+                        <p>Buy fractional tokens linked to individual posts or content ETFs. These tokens represent verifiable revenue shares from ads, subscriptions, and licensing. All payouts are automated via smart contracts. Transparent, tamper-proof, and tradable.</p>
+                    </div>
+                    <div class="comic-block-wide">
+                        <div class="comic-image-wide"
+                             style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/Zielgruppe_User_color.jpg');">
+                            <div style="height:460px;">&nbsp;</div>
+                        </div>
+                        <h3><span class="text-box-wide" style="margin-left: var(--px-40)">Users: Find the Best in class content.</span></h3>
+                        <p>Discover content through AI-enhanced feeds and cross-site recommendations. Articles are attributed to their rightful authors, free from manipulation by opaque algorithms. By reading and subscribing, you directly support the sources you value.</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <div style="height: var(--px-160)">&nbsp;</div> 
+            
+            <section class="content-submission">
+                <h2 class="submission-title">The OC Network</h2>
+                <h6 class="submission-subtitle">
+                    It is built for everyone who creates, invests, advertises, or consumes content
+                </h6>
+                <div style="height: var(--px-20)">&nbsp;</div>
+                <p>The open web works best when all players are aligned. Creators need protection and fair income. Advertisers need transparent reach. Investors seek real-world assets with growth potential. Users want trusted diversity and freedom of choice.<br>
+                <br>
+                OCOSO brings these interests together in one system: content secured as digital assets, discoverable by AI, promoted across the long tail, and monetized with full transparency. Different roles but only one ecosystem.</p>
+                <div style="height: var(--px-80)">&nbsp;</div>
+            </section>           
+
+
+
+
+            <div style="height: var(--px-160)">&nbsp;</div>
+            
+            
+            
+        <section class="content-submission">
+            <h1 class="submission-title">It's made for Creator</h1>
             <h2 class="submission-title">You create. You own. You earn.</h2>
             <h6 class="submission-subtitle">It should be that simple — and that powerful.</h6>
             <div style="height: 20px">&nbsp;</div>
@@ -251,44 +491,74 @@
             <div class="starttext-row">
                 <div class="starttext-block" style="gap: var(--px-10)">
                     <h4>The Problem</h4>
-                    <p>Today, creators are trapped in algorithm prisons.
-You post. You may get likes. But no real income.
-AI extracts your work without credit — and pulls visitors away before they ever reach your site.
-Your rights? Undefined.</p>
+                    <p>Today, creators are trapped in algorithm prisons. You post. You may get likes. But no real income. AI extracts your work without credit — and pulls visitors away before they ever reach your site. Your rights? Undefined.</p>
                 </div>            
                 <div class="starttext-block" style="gap: var(--px-10)">
                     <h4>Protect and Defend</h4>
-                    <p>Your content meeds safety before it can flourish. If your work is not secured, AI and platforms will use it without credit and without reward. With protection in place, you can finally grow and earn fairly.
-That is the strategy: protect first, then expand. We give you simple tools, so you can stay focused on creating.</p>
+                    <p>Your content meeds safety before it can flourish. If your work is not secured, AI and platforms will use it without credit and without reward. With protection in place, you can finally grow and earn fairly. That is the strategy: protect first, then expand. We give you simple tools, so you can stay focused on creating.</p>
                 </div>
                 <div class="starttext-block" style="gap: var(--px-10)">
                     <h4>The Solution</h4>
-                    <p>We built the tech that protects your posts, proves your authorship, and utilizes AI for more reach.
-From there, our OC-Network promotes you work across other member pages, delivers verified ad revenue, and opens new income streams like subscriptions and licensing.
-Simple tools. No extra effort. Real protection, real reach, real income.</p>
+                    <p>We built the tech that protects your posts, proves your authorship, and utilizes AI for more reach. From there, our OC Network promotes you work across other member pages, delivers verified ad revenue, and opens new income streams like subscriptions and licensing. Simple tools. No extra effort. Real protection, real reach, real income.</p>
                 </div>
             </div>
 
         </section>
 
-        <div style="height:40px">&nbsp;</div>
-
-
-        <center class="content-frame">
-
-
-            <div style="height:40px">&nbsp;</div>
-
+            <div style="height: var(--px-160)">&nbsp;</div>
 
             <section class="content-submission">
-                <h2 class="submission-title">We believe creators deserve freedom, visibility, and fair reward.</h2>
-                <h6 class="submission-subtitle"> Independent voices are the gold of the internet. It fuels freedom, gives people the knowledge to grow, and opens doors to discovery and progress.</h6>
-                <p>OCOSO transforms these contributions into protected, verifiable assets. Authors, bloggers, and publishers gain ownership and fair rewards. Investors participate in the growth of a new, transparent digital economy. Together, we strengthen diversity online – giving people the freedom to choose, to learn, and to explore without gatekeepers.</p>
+                <h2 class="submission-title">The OC Network Toolkit</h2>
+                <h6 class="submission-subtitle">Built for creators. Solutions that work with zero friction.</h6>
+                <p>With the OCOSO Plugin you mint your post as a C-NFT right inside your editor. Your authorship is written on-chain: proof that can’t be lost.<br>
+                Next, simply add the Promotion Container — just like any other block in Gutenberg. From there, your work is automatically recommended across the OC Network and shown to real, interested audiences.<br>
+                Our plugin also prepares your post for AI discovery, adding the metadata that makes agents understand, credit, and spread your content.</p>
             </section>
-            
+          
             <div style="height: 60px">&nbsp;</div>
             
-            <section class="content-submission">
+            <div style="height: var(--px-80)">&nbsp;</div> 
+
+            <section class="comic-row-wide">
+                <div class="comic-block-wide">
+                    <div class="comic-image-wide"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/How_Tokenize_color.jpg');">
+                        <div style="height:400px;">&nbsp;</div>
+                    </div>
+                    <h3><span class="text-box-wide" style="margin-left: var(--px-40)">Tokenize & Protect</span></h3>
+                    <p>Instantly secure your posts as a unique digital certificate – proof that it’s yours. This turns your work into assets: no one can copy, alter, or exploit them without charge. A digital seal of authorship. Your work is protected, and ready to earn.</p>
+                </div>
+                <div class="comic-block-wide">
+                    <div class="comic-image-wide"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/How_Reach_color.jpg');">
+                        <div style="height:400px;">&nbsp;</div>
+                    </div>
+                    <h3><span class="text-box-wide" style="margin-left: var(--px-40)">Boost Reach Instantly</span></h3>
+                    <p>Powered by our WordPress Plugin, your posts become AI-ready feeds that search, chat, and voice agents can discover and quote. At the same time, our network effect drives traffic across thousands of member sites — no code, no extra effort.</p>
+                </div>
+                <div class="comic-block-wide">
+                    <div class="comic-image-wide"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/How_Monetize_color.jpg');">
+                        <div style="height:400px;">&nbsp;</div>
+                    </div>
+                    <h3><span class="text-box-wide" style="margin-left: var(--px-40)">Monetize Your Way</span></h3>
+                    <p>Revenue flows in by ad placements inside our OC Network, direct subscriptions, or licensing from AI systems. Everything automated by smart contracts: no middlemen, no waiting months, no hidden cuts. You choose the mix that fits your audience.</p>
+                </div>
+                <div class="comic-block-wide">
+                    <div class="comic-image-wide"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/How_Invest_color.jpg');">
+                        <div style="height:400px;">&nbsp;</div>
+                    </div>
+                    <h3><span class="text-box-wide" style="margin-left: var(--px-40)">COntent Attracts Investment</span></h3>
+                    <p>OCOSO transforms digital content into an investable asset class. Fractionalized, revenue-linked, and secured on blockchain. Investors gain exposure to the fast-growing AI content economy, positioned as one of the most scalable Real World Asset opportunities of the decade.</p></div>
+            </section>            
+            
+
+            <div style="height: var(--px-160)">&nbsp;</div>
+
+   <!--         
+            
+           <section class="content-submission">
                 <h2 class="submission-title">How we make it real</h2>
                 <h6 class="submission-subtitle">The vision of a free and fair internet needs proof, markets, and shared ownership.</h6>
                 <p></p>
@@ -297,7 +567,7 @@ Simple tools. No extra effort. Real protection, real reach, real income.</p>
             <div style="height: 60px">&nbsp;</div>
             
             <section class="comic-row">
-                <!-- <div class="comic-block">
+                <div class="comic-block">
                     <div class="comic-image"
                          style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/Comic_Tabel01_color.jpg');">
                         <div style="height:300px;">&nbsp;</div>
@@ -310,22 +580,22 @@ Simple tools. No extra effort. Real protection, real reach, real income.</p>
                         <div style="height:300px;">&nbsp;</div>
                     </div>
                     <h5><span class="text-box">POSTED. STOLEN. FORGOTTEN.</span></h5>
-                    <p>A screenshot is all it takes to lose control. Without rights you depend on goodwill.</p></div>-->
-                <div class="comic-block" style="width: 250: height: auto">
+                    <p>A screenshot is all it takes to lose control. Without rights you depend on goodwill.</p></div>
+               <div class="comic-block" style="width: 250: height: auto">
                     <div class="comic-image"
                          style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/Comic_Tabel03_color.jpg');">
                         <div style="height:300px;">&nbsp;</div>
                     </div>
                     <h5><span class="text-box">BLOCKCHAIN gives PROOF.</span></h5>
                     <p>Ownership has a protocol and the real power lies in the hands of the many.</p></div>
-                <!--<div class="comic-block" style="width: 250: height: auto">
+                <div class="comic-block" style="width: 250: height: auto">
                     <div class="comic-image"
                          style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/Comic_Tabel04_color.jpg');">
                         <div style="height:300px;">&nbsp;</div>
                     </div>
                     <h5><span class="text-box">MINT IT. CLAIM IT. RULE IT.</span></h5>
-                    <p>Your work deserves more than applause — it deserves rights and new opportunities.</p></div>-->
-                <div class="comic-block" style="width: 250: height: auto">
+                    <p>Your work deserves more than applause — it deserves rights and new opportunities.</p></div>
+               <div class="comic-block" style="width: 250: height: auto">
                     <div class="comic-image"
                          style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/Comic_Tabel05_color.jpg');">
                         <div style="height:300px;">&nbsp;</div>
@@ -341,115 +611,10 @@ Simple tools. No extra effort. Real protection, real reach, real income.</p>
                     <p>Creators. Investors. Builders. All connected through code and unlimited to strive.</p></div>
             </section>
 
-            <div style="height:160px">&nbsp;</div>
-
-
-            <h2>How It Works</h2>
-            <div style="height: var(--px-40)">&nbsp;</div>
-
-            <section class="starttext-row">
-                <div class="starttext-block">
-                    <h4>Creators</h4>
-                    <h6 class="submission-subtitle">Content. Proof. Revenue. Invest. Repeat</h6>
-                    <p>What you publish is finally yours. OCOSO secures your work as a digital asset, connects it to AI and audiences, and routes revenue directly back to you. What you create, you own. What you own, you earn.</p>
-                    <div style="height: var(--px-40)">&nbsp;</div>
-                </div>
-                <div class="starttext-block">
-                    <h4>Investors</h4>
-                    <h6 class="submission-subtitle">From Content to Capital.</h6>
-                    <p>Every blog post, article, or niche website becomes part of a new asset class. Fractional tokens turn online reach into tradable value. Discover opportunities, invest transparently, and share in the growth of a verifiable, scarce, and unique market.</p>
-                    <div style="height: var(--px-40)">&nbsp;</div>
-                </div>
-                <div class="starttext-block">
-                    <h4>advertisers</h4>
-                    <h6 class="submission-subtitle">Future Ad-Tech starts now.</h6>
-                    <p>Advertisers reach the long tail with precision and trust. Transparent, fraud-free placements, instant campaign execution, and verifiable results. Just performance you can prove. Precision targeting meets trusted provenance, unlocking performance.</p>
-                </div>
-            </section>
-
-            <div style="height: var(--px-40)">&nbsp;</div>
-
-            <section class="comic-row-wide">
-                <div class="comic-block-wide">
-                    <div class="comic-image-wide"
-                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/How_Reach_color.jpg');">
-                        <div style="height:400px;">&nbsp;</div>
-                    </div>
-                    <h3><span class="text-box-wide">Boost Reach Instantly</span></h3>
-                    <p>Powered by our WordPress Plugin, your posts become AI-ready feeds that search, chat, and voice agents can discover and quote. At the same time, our network effect drives traffic across thousands of member sites — no code, no extra effort.</p></div>
-                <div class="comic-block-wide">
-                    <div class="comic-image-wide"
-                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/How_Tokenize_color.jpg');">
-                        <div style="height:400px;">&nbsp;</div>
-                    </div>
-                    <h3><span class="text-box-wide">Tokenize & Protect</span></h3>
-                    <p>Instantly secure your posts as a unique digital certificate – proof that it’s yours. This turns your work into assets: no one can copy, alter, or exploit them without charge. A digital seal of authorship. Your work is protected, and ready to earn.</p>
-                </div>
-                <div class="comic-block-wide">
-                    <div class="comic-image-wide"
-                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/How_Monetize_color.jpg');">
-                        <div style="height:400px;">&nbsp;</div>
-                    </div>
-                    <h3><span class="text-box-wide">Monetize Your Way</span></h3>
-                    <p>Revenue flows in by ad placements inside our OC-Network, direct subscriptions, or licensing from AI systems. Everything automated by smart contracts: no middlemen, no waiting months, no hidden cuts. You choose the mix that fits your audience.</p>
-                </div>
-                <div class="comic-block-wide">
-                    <div class="comic-image-wide"
-                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/How_Invest_color.jpg');">
-                        <div style="height:400px;">&nbsp;</div>
-                    </div>
-                    <h3><span class="text-box-wide">COntent Attracts Investment</span></h3>
-                    <p>OCOSO transforms digital content into an investable asset class. Fractionalized, revenue-linked, and secured on blockchain. Investors gain exposure to the fast-growing AI content economy, positioned as one of the most scalable Real World Asset opportunities of the decade.</p></div>
-            </section>
-
-
             <div style="height: var(--px-160)">&nbsp;</div>
 
-            <section class="content-submission">
-                <h2 class="submission-title">The OC-Network</h2>
-                <h6 class="submission-subtitle">
-                    It is built for everyone who creates, invests, advertises, or consumes content
-                </h6>
-                <div style="height: var(--px-20)">&nbsp;</div>
-                <p>The open web works best when all players are aligned. Creators need protection and fair income. Advertisers need transparent reach. Investors seek real-world assets with growth potential. Users want trusted diversity and freedom of choice.<br>
-                <br>
-                OCOSO brings these interests together in one system: content secured as digital assets, discoverable by AI, promoted across the long tail, and monetized with full transparency. Different roles but only one ecosystem.</p>
-                <div style="height: var(--px-80)">&nbsp;</div>
+-->
 
-                <div class="comic-row-wide">
-                    <div class="comic-block-wide">
-                        <div class="comic-image-wide"
-                             style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/Zielgruppe-Creator_color.jpg');">
-                            <div style="height:460px;">&nbsp;</div>
-                        </div>
-                        <h3><span class="text-box-wide">Creators: Protect. Engage. Profit.</span></h3>
-                        <p>Install our WordPress Plugin and become part of the OC-Network. Every post is automatically minted as a digital asset, enriched with AI-readable markup, and linked into our promotion network. Revenue from ads, referrals, and AI queries flows directly into your wallet.</p></div>
-                    <div class="comic-block-wide" style="width: 250: height: auto">
-                        <div class="comic-image-wide"
-                             style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/Zielgruppe_Investor_color.jpg');">
-                            <div style="height:460px;">&nbsp;</div>
-                        </div>
-                        <h3><span class="text-box-wide">Investors: Access the most creative assets.</span></h3>
-                        <p>Buy fractional tokens linked to individual posts or content ETFs. These tokens represent verifiable revenue shares from ads, subscriptions, and licensing. All payouts are automated via smart contracts. Transparent, tamper-proof, and tradable.</p></div>
-                    <div class="comic-block-wide" style="width: 250: height: auto">
-                        <div class="comic-image-wide"
-                             style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/Zielgruppe_Advertiser_color.jpg');">
-                            <div style="height:460px;">&nbsp;</div>
-                        </div>
-                        <h3><span class="text-box-wide">Advertisers: Scale into safe Longtail Inventory.</span></h3>
-                        <p>Place campaigns directly inside our promotion containers. Each impression is verified on-chain, matched by topic and audience context, and fraud-checked before settlement. Budgets are deposited upfront; delivery and reporting happen in real time.</p></div>
-                    <div class="comic-block-wide" style="width: 250: height: auto">
-                        <div class="comic-image-wide"
-                             style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/Zielgruppe_User_color.jpg');">
-                            <div style="height:460px;">&nbsp;</div>
-                        </div>
-                        <h3><span class="text-box-wide">Users: Find the Best in class content.</span></h3>
-                        <p>Discover content through AI-enhanced feeds and cross-site recommendations. Articles are attributed to their rightful authors, free from manipulation by opaque algorithms. By reading and subscribing, you directly support the sources you value.</p></div>
-
-                </div>
-            </section>
-
-            <div style="height: var(--px-160)">&nbsp;</div>
 
 
             <section class="content-submission">
@@ -471,10 +636,9 @@ Simple tools. No extra effort. Real protection, real reach, real income.</p>
                     </div>
                     <div class="text-box-extrawide">
                         <h2>Openness over Control</h2>
-                        <h6>OCOSO is built on trust in creativity — not constraints.</h6>
+                        <h6>The OC Network trusts creativity, not committees.</h6>
                         <div style="height: var(--px-20)">&nbsp;</div>
-                        <p>No filters. No manipulation. No invisible hand. Just your work. In your words. On your
-                            terms.</p></div>
+                        <p>No filters. No manipulation. Your work. Your words. Your terms.</p></div>
                 </div>
 
                 <div class="comic-block-extrawide">
@@ -484,9 +648,9 @@ Simple tools. No extra effort. Real protection, real reach, real income.</p>
                     </div>
                     <div class="text-box-extrawide">
                         <h2>Self-Organization over Centralization</h2>
-                        <h6>We empower. We suggest. We never dictate.</h6>
+                        <h6>Creators organize at the edge. The protocol stays neutral.</h6>
                         <div style="height: var(--px-20)">&nbsp;</div>
-                        <p>Not run by ideology. OCOSO is guided by contribution — to prevent domination.</p>
+                        <p>Not run by ideology. No gatekeepers. Outcome follows contribution and relevance.</p>
                     </div>
                 </div>
 
@@ -499,7 +663,7 @@ Simple tools. No extra effort. Real protection, real reach, real income.</p>
                         <h2>Structure that Serves</h2>
                         <h6>Flexible. Transparent. Built to evolve.</h6>
                         <div style="height: var(--px-20)">&nbsp;</div>
-                        <p>Governance isn’t a buzzword. It’s a framework. A system that grows with its people.</p></div>
+                        <p>Upgrades by an accountable core. It’s a framework. A system that grows with its people.</p></div>
                 </div>
 
                 <div class="comic-block-extrawide">
@@ -508,11 +672,10 @@ Simple tools. No extra effort. Real protection, real reach, real income.</p>
                         <div style="height:300px;">&nbsp;</div>
                     </div>
                     <div class="text-box-extrawide">
-                        <h2>We Belief in Emergence</h2>
-                        <h6>Tools that empower to strive.</h6>
+                        <h2>Participation Token</h2>
+                        <h6>Aligned with creator and network outcomes.</h6>
                         <div style="height: var(--px-20)">&nbsp;</div>
-                        <p>We believe the best version of a future society will emerge — when people are free to build
-                            it. OCOSO is a space where that can be reflected in unrestricted ways.</p></div>
+                        <p>You earn POCOs for contribution. Your work becomes countable. Converted to Participation Tokens, they raise your share of returns.</p></div>
                 </div>
 
             </section>
@@ -537,21 +700,21 @@ Simple tools. No extra effort. Real protection, real reach, real income.</p>
             <section class="content-submission">
                 <h2 class="submission-title">JOIN THE FUTURE OF CONTENT</h2>
                 <h6 class="submission-subtitle">
-                    Not just another platform. A system. A movement. A chance.
+                    Not just another platform. A system. A movement.
                 </h6>
             </section>
 
-            <p>OCOSO is where ideas take shape, value is recognized, and ownership finally belongs to the creators.
+            <p>OC Network is where ideas take shape, value is recognized, and participation finally belongs to the creators.
                 No more middlemen. No more closed doors. Just the tools, the network, and the freedom you need to
                 thrive.</p>
-            <div style="height: var(--px-80)">&nbsp;</div>
-            <h3><span class="text-box-wide" style="margin-left: var(--px-50)">Start Creating</span></h3>
             <div style="height: var(--px-20)">&nbsp;</div>
-            <h3><span class="text-box-wide" style="margin-left: var(--px-100)">Claim Your Content</span></h3>
+            <h3><span class="text-box-wide" style="margin-left: var(--px-100)">Get Early Access</span></h3>
             <div style="height: var(--px-20)">&nbsp;</div>
             <h3><span class="text-box-wide" style="margin-left: var(--px-150)">Enter the Network</span></h3>
             <div style="height: var(--px-20)">&nbsp;</div>
-            <h3><span class="text-box-wide" style="margin-left: var(--px-200)">Get Early Access</span></h3>
+            <h3><span class="text-box-wide" style="margin-left: var(--px-200)">Claim Your Content</span></h3>
+            <div style="height: var(--px-20)">&nbsp;</div>
+            <h3><span class="text-box-wide" style="margin-left: var(--px-250)">Start pushing the boundaries</span></h3>
 
             <div style="height: var(--px-160)">&nbsp;</div>
             <h1>Ready to grow your audience?<br>       
@@ -586,14 +749,14 @@ Simple tools. No extra effort. Real protection, real reach, real income.</p>
 <script src="js/wallet.js" defer></script>
 <script src="js/3d-Navigation.js" defer></script>
 <script src="js/cardTilt.js" defer></script>
-<script src="js/whitelist-overlay.js" defer></script>
-
+<script src="js/waitlist-overlay.js" defer></script>
+<script src="js/css-reload.js" defer></script>
 
 <script>
     const panels = Array.from(document.querySelectorAll('.rotator .index-panel'));
     let current = 0;
     const duration = 500; // Dauer der Rotation in ms
-    const dwell = 5000; // Verweildauer in ms
+    const dwell = 8000; // Verweildauer in ms
 
     // Nur das erste Panel anzeigen
     panels.forEach((p, i) => {

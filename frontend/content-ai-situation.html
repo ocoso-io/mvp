@@ -9,47 +9,21 @@
   <link href="css/main.css" rel="stylesheet">
   
   <style>
-    /* Grundlayout: Mobile / ≤ 991 px */
-    .block-tools{
-      display:flex;
-      flex-direction:column;      /* Bild oben */
-      gap:var(--px-30);
-    }
-    
-    .tools-img{
-      width:100%;
-      height:auto;
-      object-fit:cover;
-      border-radius: var(--px-20);          /* optisch */
-      border: var(--px-5) solid black;
-    }
-    
-    .media-img{
-      flex:0 0 100%;             /* 30 % Breite  */
-      max-width:100%;
-      object-fit:cover;
-      border-radius: var(--px-20);          /* optisch */
-      border: var(--px-5) solid black;
-    }
-    
-    /* Desktop / > 991 px */
-    @media (min-width:992px){
-      .block-tools{
-        flex-direction:row;       /* Bild links  */
-        align-items:flex-start;
-      }
-    
-      .tools-img{
-        flex:0 0 30%;             /* 30 % Breite  */
-        max-width:30%;
-        margin-right:var(--px-40);
-      }
+
       
-      .content-submission{
-        flex:1;                   /* Restbreite   */
+    @media (min-width:765px) {
+      .comic-row-wide {
+          grid-template-columns: repeat(auto-fit, minmax(var(--px-200), 1fr));
       }
     }
-  </style>
+    
+    @media (max-width: 765px) {
+      .comic-row-wide {
+          grid-template-columns: repeat(auto-fit, minmax(var(--px-410), 1fr));
+      }
+    }
+  </style>  
+  
 </head>
 <body>
 
@@ -67,22 +41,7 @@
   </div>
 </div>
 
-
-
-<!-- Overlay zum Aktivieren neuer Member -->
-<div id="app-overlay" class="overlay-backdrop" hidden aria-hidden="true">
-  <div class="overlay-modal" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
-    <button class="overlay-close" type="button" aria-label="Schließen">×</button>
-    <header class="overlay-header">
-      <h2 id="overlay-title" style="color: black">Waitlist Registration</h2>
-    </header>
-    <section class="overlay-body"><!-- Inhalt wird per JS gesetzt --></section>
-    <!-- optional: Fußbereich
-    <footer class="overlay-footer"></footer> -->
-  </div>
-</div>
-
-<div id="navigation-placeholder"></div>
+<div id="navigation-placeholder" style="max-width: 100%"></div>
 <div id="overlay-menu-placeholder"></div>
 
 <section class="hero">
@@ -195,7 +154,7 @@
         <div class="card">
         
             <div class="wrapper">
-                <div class="responsive" data-link="content-how-to-join.html">
+                <div class="responsive" data-link="content-ai-situation.html">
                     <div class="image-container" style="background-image: url('img/creator-ai-situation.jpg');">
                     </div>
                     <div class="content-block">
@@ -257,7 +216,27 @@
                         </div>
                     </div>
                 </div>        
-
+             
+                <div class="wrapper">
+                    <div class="responsive-reduced" data-link="ip-lookup-tool.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">IP Lookup</h2>
+                            </div>
+                            <button class="action-button" aria-label="Network">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">How to Protect</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>  
+    
+<!--
                 <div class="wrapper">
                     <div class="responsive-reduced" data-link="content-mint.html">
                         <div class="content-block-reduced">
@@ -314,7 +293,7 @@
                         </div>
                     </div>
                 </div>
-
+-->
             </div>
             
         </div>
@@ -330,9 +309,9 @@
         <div class="healine-left-container">
           <div class="headline-left-inner">
             <header>
-              <h2>Artificial Intelligence feels like the end?</h2>
+              <h1>Artificial Intelligence feels like the end?</h1>
               <div style="height: var(--px-5)">&nbsp;</div>  
-              <h4>Of your work... Your voice... Your income.</h4>
+              <h2>Of your work... Your voice... Your income.</h2>
             </header>
           </div>
         </div>
@@ -372,29 +351,29 @@
           
           <div style="height: var(--px-40)">&nbsp;</div>      
           
-          <div class="comic-row-wide">
-            <div class="comic-block-wide" style="width: var(--px-360); height: auto">
+          <div class="comic-row-wide" style="gap:0;">
+            <div class="comic-block-wide" style="width: 100%;">
               <div class="comic-image-wide" 
-                style="width: var(--px-360); background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-ai-guard.jpg');">
+                style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-ai-guard.jpg'); margin: 0 0 var(--px-7) 0">
                 <div style="height:460px;">&nbsp;</div>
               </div>
-              <h3><span class="text-box-wide" style="margin-left: var(--px-30)">Guard your Content</span></h3>
+              <h3><span class="text-box-wide">Guard your Content</span></h3>
               <p>Stop feeding AI for free. Protect your content by claiming it on the Blockchain. Mint it as a NFT.</p>
             </div>
-            <div class="comic-block-wide" style="width: var(--px-360); height: auto">
+            <div class="comic-block-wide" style="width: 100%;">
               <div class="comic-image-wide"
-                style="width: var(--px-360); background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-ai-guide.jpg');">
+                style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-ai-guide.jpg'); margin: 0 0 var(--px-7) 0;">
                 <div style="height:460px;">&nbsp;</div>
               </div>
-              <h3><span class="text-box-wide" style="margin-left: var(--px-20)">Guide the Machine</span></h3>
+              <h3><span class="text-box-wide">Guide the Machine</span></h3>
               <p>Keep in control by shaping what’s shown. Your post stays untouched — but add an information layer only AI sees. It tells what your content offers, who it’s for, and why it matters.</p>
             </div>
-            <div class="comic-block-wide" style="width: var(--px-360); height: auto">
+            <div class="comic-block-wide" style="width: 100%;">
               <div class="comic-image-wide"
-                style="width: var(--px-360); background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-ai-earn.jpg');">
+                style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-ai-earn.jpg'); margin: 0 0 var(--px-7) 0;">
                 <div style="height:460px;">&nbsp;</div>
               </div>
-              <h3><span class="text-box-wide" style="margin-left: var(--px-40)">Get paid for training the models.</span></h3>
+              <h3><span class="text-box-wide">Get paid for training the models.</span></h3>
               <p>Each AI call to your post becomes a revenue event. Crawl-fees flow back to you – tracked, verified, unstoppable. Turn AI bot-traffic into your income stream. </p>
             </div>
           </div>
@@ -465,17 +444,20 @@
         <div style="height: var(--px-60)">&nbsp;</div>
 
         <section class="block-tools">
-          <img src="img/creator-activate.jpg" alt="Visual Tools"
-               class="tools-img">
-        
-          <div class="content-submission">
+
+
+            <div class="comic-image-wide" 
+                style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-activate.jpg'); margin: 0 0 var(--px-7) 0">
+                <div style="height:460px;">&nbsp;</div>
+            </div>
+                      <div class="content-submission">
             <h5 class="submission-subtitle">Step 1</h5>
             <h2 class="submission-title">Install our WordPress Plugin</h2>
             <div style="height: var(--px-20)">&nbsp;</div>
             <p>
-              ✔ You prove your authorship.<br>
-            	✔ Your content is time-stamped and protected.<br>
-            	✔ You stay in control — even when AI reads your post.
+              <strong style="color: #00ff22">✔</strong> You prove your authorship.<br>
+            	<strong style="color: #00ff22">✔</strong> Your content is time-stamped and protected.<br>
+            	<strong style="color: #00ff22">✔</strong> You stay in control — even when AI reads your post.
             </p>                       
             <div style="height: var(--px-20)">&nbsp;</div>    
             <h5>
@@ -512,17 +494,19 @@
         <div style="height: var(--px-60)">&nbsp;</div>
 
         <section class="block-tools">
-          <img src="img/creator-signin.jpg" alt="Visual Tools"
-               class="tools-img">
-        
+          <div class="comic-image-wide" 
+              style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-signin.jpg');; margin: 0 0 var(--px-7) 0">
+              <div style="height:460px;">&nbsp;</div>
+          </div>
+          
           <div class="content-submission">
             <h5 class="submission-subtitle">Step 2</h5>
             <h2 class="submission-title">Join the OC Network of OCOSO</h2>      
             <div style="height: var(--px-20)">&nbsp;</div>    
             <p>
-              ✔ Your content gets picked up by AI channels.<br>
-            	✔ Promotion happens automatically, with full attribution.<br>
-            	✔ More reach, better audience, growing value over time.
+              <strong style="color: #00ff22">✔</strong> Your content gets picked up by AI channels.<br>
+            	<strong style="color: #00ff22">✔</strong> Promotion happens automatically, with full attribution.<br>
+            	<strong style="color: #00ff22">✔</strong> More reach, better audience, growing value over time.
             </p>                        
             <div style="height: var(--px-20)">&nbsp;</div>    
             <h5>
@@ -562,17 +546,19 @@
         <div style="height: var(--px-60)">&nbsp;</div>
            
         <section class="block-tools">
-          <img src="img/creator-step4.jpg" alt="Visual Tools"
-               class="tools-img">
-        
+          <div class="comic-image-wide" 
+              style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-step4.jpg');; margin: 0 0 var(--px-7) 0">
+              <div style="height:460px;">&nbsp;</div>
+          </div>
+                  
           <div class="content-submission">
             <h5 class="submission-subtitle">Step 3</h5>
             <h2 class="submission-title">Start Earning</h2>
             <div style="height: var(--px-20)">&nbsp;</div>          
             <p>
-              ✔ Get paid for visibility and quality<br>
-            	✔ Monetize traffic, AI, and your audience<br>
-            	✔ All tracked, verified, and under your control
+              <strong style="color: #00ff22">✔</strong> Get paid for visibility and quality<br>
+            	<strong style="color: #00ff22">✔</strong> Monetize traffic, AI, and your audience<br>
+            	<strong style="color: #00ff22">✔</strong> All tracked, verified, and under your control
             </p>              
             <div style="height: var(--px-20)">&nbsp;</div>    
             <h5>Income by AI, Ads, Subscriptions, Investors.</h5>
@@ -690,6 +676,7 @@
 <script defer src="js/3d-Navigation.js"></script>
 <script src="js/cardTilt.js" defer></script>
 <script src="js/waitlist-overlay.js" defer></script>
+<script src="js/css-reload.js" defer></script>
 
 
 </body>

@@ -7,49 +7,22 @@
 
   <title>OCOSO MVP - Full Layout</title>
   <link href="css/main.css" rel="stylesheet">
-  
   <style>
-    /* Grundlayout: Mobile / ≤ 991 px */
-    .block-tools{
-      display:flex;
-      flex-direction:column;      /* Bild oben */
-      gap:var(--px-30);
-    }
-    
-    .tools-img{
-      width:100%;
-      height:auto;
-      object-fit:cover;
-      border-radius: var(--px-20);          /* optisch */
-      border: var(--px-5) solid black;
-    }
-    
-    .media-img{
-      flex:0 0 100%;             /* 30 % Breite  */
-      max-width:100%;
-      object-fit:cover;
-      border-radius: var(--px-20);          /* optisch */
-      border: var(--px-5) solid black;
-    }
-    
-    /* Desktop / > 991 px */
-    @media (min-width:992px){
-      .block-tools{
-        flex-direction:row;       /* Bild links  */
-        align-items:flex-start;
-      }
-    
-      .tools-img{
-        flex:0 0 30%;             /* 30 % Breite  */
-        max-width:30%;
-        margin-right:var(--px-40);
-      }
+
       
-      .content-submission{
-        flex:1;                   /* Restbreite   */
+    @media (min-width:765px) {
+      .comic-row-wide {
+          grid-template-columns: repeat(auto-fit, minmax(var(--px-200), 1fr));
+      }
+    }
+    
+    @media (max-width: 765px) {
+      .comic-row-wide {
+          grid-template-columns: repeat(auto-fit, minmax(var(--px-410), 1fr));
       }
     }
   </style>
+
 </head>
 <body>
 
@@ -243,8 +216,28 @@
                         </div>
                     </div>
                 </div>  
-
+             
                 <div class="wrapper">
+                    <div class="responsive-reduced" data-link="ip-lookup-tool.html">
+                        <div class="content-block-reduced">
+                            <div class="content-text-reduced">
+                                <h2 class="title">IP Lookup</h2>
+                            </div>
+                            <button class="action-button" aria-label="Network">
+                                <img
+                                        src="img/Arrow.png"
+                                        alt=""
+                                        class="button-icon"
+                                        aria-hidden="true"
+                                />
+                                <span class="button-text">How to Protect</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>  
+  
+
+             <!--   <div class="wrapper">
                     <div class="responsive-reduced" data-link="content-mint.html">
                         <div class="content-block-reduced">
                             <div class="content-text-reduced">
@@ -300,6 +293,7 @@
                         </div>
                     </div>
                 </div>
+-->
 
             </div>
             
@@ -351,9 +345,10 @@
         <div style="height: var(--px-40)">&nbsp;</div>      
         
         <section class="block-tools">
-          <img src="img/creator-activate.jpg" alt="Visual Tools"
-               class="tools-img">
-        
+          <div class="comic-image-wide" 
+              style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-activate.jpg'); margin: 0 0 var(--px-7) 0">
+              <div style="height:460px;">&nbsp;</div>
+          </div>
           <div class="content-submission">
             <h4 class="submission-subtitle">Step 1</h4>
             <h1 class="submission-title">Install Plugin</h1>
@@ -365,9 +360,10 @@
         <div style="height: var(--px-60)">&nbsp;</div>
                    
         <section class="block-tools">
-          <img src="img/creator-signin.jpg" alt="Visual Tools"
-               class="tools-img">
-        
+          <div class="comic-image-wide" 
+              style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-signin.jpg'); margin: 0 0 var(--px-7) 0">
+              <div style="height:460px;">&nbsp;</div>
+          </div>
           <div class="content-submission">
             <h4 class="submission-subtitle">Step 2</h4>
             <h1 class="submission-title">Create Account</h1>
@@ -379,9 +375,10 @@
         <div style="height: var(--px-60)">&nbsp;</div>
                           
         <section class="block-tools">
-          <img src="img/creator-step3.jpg" alt="Visual Tools"
-               class="tools-img">
-        
+          <div class="comic-image-wide" 
+              style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-step3.jpg'); margin: 0 0 var(--px-7) 0">
+              <div style="height:460px;">&nbsp;</div>
+          </div>
           <div class="content-submission">
             <h4 class="submission-subtitle">Step 3</h4>
             <h1 class="submission-title">Place Container</h1>
@@ -432,26 +429,26 @@
                  
         <section>
 
-          <div class="comic-row-wide">
-            <div class="comic-block-wide" style="width: var(--px-360);">
+          <div class="comic-row-wide"  style="gap:0;">
+            <div class="comic-block-wide" style="width: 100%;">
                 <div class="comic-image-wide"
-                     style="width: var(--px-360); background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-darts2.jpg');">
+                     style="width: 100%; background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-darts2.jpg');">
                     <div style="height:460px;">&nbsp;</div>
                 </div>
                 <h3><span class="text-box-wide">Targeted Exposure</span></h3>
                 <p>Your content gets actively promoted across the network – gets discovered by the right audience.</p>
             </div>
-            <div class="comic-block-wide" style="width: var(--px-360);">
+            <div class="comic-block-wide" style="width: 100%;">
                 <div class="comic-image-wide"
-                     style="width: var(--px-360); background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-eye.jpg');">
+                     style="width: 100%; background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-eye.jpg');">
                     <div style="height:460px;">&nbsp;</div>
                 </div>
                 <h3><span class="text-box-wide">More Eyeballs</span></h3>
                 <p>Tap into thousands of visitors across the network.</p>
             </div>
-            <div class="comic-block-wide" style="width: var(--px-360);">
+            <div class="comic-block-wide" style="width: 100%;">
                 <div class="comic-image-wide"
-                     style="width: var(--px-360); background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-web.jpg');">
+                     style="width: 100%; background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-web.jpg');">
                     <div style="height:460px;">&nbsp;</div>
                 </div>
                 <h3><span class="text-box-wide">Network Effect</span></h3>
@@ -491,6 +488,7 @@
 <script defer src="js/3d-Navigation.js"></script>
 <script src="js/cardTilt.js" defer></script>
 <script src="js/waitlist-overlay.js" defer></script>
+<script src="js/css-reload.js" defer></script>
 
 
 
