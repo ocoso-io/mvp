@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+		:root{
+      --oc-border-color: #aaaaaa;
+      --oc-headbar-bg:   #aaaaaa;
+      --oc-headbar-fg:   #ffffff;
+      --oc-radius:       6px;
+    }
+
+		.outer-container {
+            width: 100%;
+            /*height: 100%;*/
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            border: 0px solid #ccc; /* Optional für die Sichtbarkeit des div */
+            background-color: #000;
+            padding: 0;
+      			overflow: visible; /*hidden;*/
+        }
+        
+        .responsive-border-div {
+            width: 100%;
+            height: 100%;
+            max-width: 3000px; /* Maximalbreite */
+            max-height: 3000px; /* Maximalhöhe (6*210px) */
+            display: flex;
+            flex-wrap: wrap; /* Flexbox: ermöglicht Zeilenumbruch */
+            justify-content: flex-start; /* Elemente von links nach rechts ausrichten */
+            align-items: flex-start; /* Elemente von oben nach unten ausrichten */
+            background-color: #aaaaaa;
+            overflow: hidden; /* Verhindert, dass Inhalt überläuft */
+            box-sizing: border-box;
+            margin: auto;
+            border-radius: 2px 2px 2px 2px;
+            padding: 0;
+      			box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .responsive-div {
+            width: 100%;
+            height: 100%;
+            max-width: 3000px; /* Maximalbreite */
+            max-height: 3000px; /* Maximalhöhe (6*210px) */
+            display: flex;
+            flex-wrap: wrap; /* Flexbox: ermöglicht Zeilenumbruch */
+            justify-content: flex-start; /* Elemente von links nach rechts ausrichten */
+            align-items: flex-start; /* Elemente von oben nach unten ausrichten */
+            gap: 0;
+            background-color: white;
+            overflow: hidden; /* Verhindert, dass Inhalt überläuft */
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0;
+        }
+
+        .box {
+            width: 300px;
+            height: 250px;
+            margin: 0; /* Abstand zwischen den DIVs */
+            background-color: white; /* Beispielhintergrundfarbe */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            font-size: 20px;
+            color: #333;
+            box-sizing: border-box;
+            border: 1px solid #aaaaaa; /* Optional für die Sichtbarkeit der DIVs */
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        p {
+            font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: white;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            align-items: center;
+        }
+
+        .left {
+            width: 10%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .middle {
+            display: flex;
+            flex-grow: 1;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .text-container {
+            margin-right: 7px; /* Abstand zwischen Text und Bild */
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .image-container img {
+            height: 16px;
+            width: auto;
+			padding-top: 2px;
+        }       
+		
+        .hidden {
+            visibility: hidden;
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }    
+	
+ 		body {
+            margin: 0;
+            padding: 0;
+        }
+		
+		
+
+/* der sichtbare Rahmen */
+.responsive-border-div{
+  /* vorher: background-color: #aaaaaa; border: 2px solid ... */
+  background-color: var(--oc-border-color);
+  border-radius: var(--oc-radius);
+  overflow: hidden;           /* Innenleben an runden Ecken clippen */
+}
+
+
+/* Innenflächen */
+#headbar{
+  background-color: var(--oc-headbar-bg);
+  color: var(--oc-headbar-fg);
+}
+
+/* optional: innere Ecken leicht kleiner */
+#headbar,
+.responsive-div{
+  /* verhindert leichte Überstände an großen Radien */
+  border-radius: calc(max(0px, var(--oc-radius) - var(--oc-border-size)));
+}
+
+		
+		
+		</style>
+	
+	</head>
+<body>
+	
+	
+
+	<div id="container"></div>	<!-- Dieser Container dient nur der Ermittlung der Ausmaße der .box Klasse -->
+	
+
+      <div class="outer-container" id="outer-container">
+          <div class="responsive-border-div" id="responsive-border-div">
+              <div style="display: flex; flex-direction: row; width: 100%; height: 20px; " id="headbar">
+                <div style="width: 10px"></div>
+                <div class="container"  >
+                    <div class="left"><p></p></div>
+                    <div class="middle" >
+                        <div class="text-container">
+                            <p id="head-title" style="mix-blend-mode: difference; color: white; ">presented by</p>
+                        </div>
+                        <a href="https://app.ocoso.io" target="_blank">
+                          <div class="image-container">
+                            <img src="images/Logo-Ocoso_White.svg" alt="OCOSO.io" style="mix-blend-mode: difference; color: white; ">
+                          </div>
+            						</a>
+                    </div>
+                </div>
+                <div style="width: 10px"></div>
+              </div>
+              <div class="responsive-div" id="responsive-div"></div>
+          </div>
+      </div>
+
+<script>
+/* ===== 1) robuste Box-Messung (auch wenn noch keine Box existiert) ===== */
+function getTotalWidth(el){
+  if (!(el instanceof Element)) return 0;
+  const st = getComputedStyle(el);
+  const w  = el.getBoundingClientRect().width;
+  const ml = parseFloat(st.marginLeft)  || 0;
+  const mr = parseFloat(st.marginRight) || 0;
+  return w + ml + mr;
+}
+function getTotalHeight(el){
+  if (!(el instanceof Element)) return 0;
+  const st = getComputedStyle(el);
+  const h  = el.getBoundingClientRect().height;
+  const mt = parseFloat(st.marginTop)    || 0;
+  const mb = parseFloat(st.marginBottom) || 0;
+  return h + mt + mb;
+}
+
+function getBoxMetrics(){
+  const grid = document.getElementById('responsive-div');
+  if (!grid) return { boxW:300, boxH:250 };
+  let el = grid.querySelector('.box');
+  let temp = false;
+  if (!el) {
+    el = document.createElement('div');
+    el.className = 'box';
+    el.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;';
+    grid.appendChild(el);
+    temp = true;
+  }
+  const boxW = getTotalWidth(el)  || 300;
+  const boxH = getTotalHeight(el) || 250;
+  if (temp) grid.removeChild(el);
+  return { boxW, boxH };
+}
+
+/* ===== 2) Layout aus Parent-Höhe und Box-Maßen ableiten ===== */
+function getLayout(){
+  const border  = document.getElementById('responsive-border-div');
+  const grid    = document.getElementById('responsive-div');
+  const headBar = document.getElementById('headbar');
+  if (!border || !grid) return null;
+
+  const { boxW, boxH } = getBoxMetrics();
+  const parentW = border.parentElement.clientWidth;
+  const parentH = border.parentElement.clientHeight;
+
+  // Titelzeile: 20px (laut Vorgabe)
+  let headH = 20;
+
+  // Spalten nach Breite
+  const perRow = Math.max(1, Math.floor(parentW / boxW));
+
+  // maximale Reihen, die in die Parent-Höhe passen
+  let maxRowsByParent = Math.floor((parentH - headH) / boxH);
+
+  // Falls extrem wenig Höhe: Titelzeile ausblenden und 1 Reihe erzwingen
+  if (maxRowsByParent < 1) {
+    headH = 0;
+    maxRowsByParent = Math.max(1, Math.floor(parentH / boxH));
+    if (headBar){
+      headBar.style.visibility = 'hidden';
+      headBar.style.height = '0px';
+    }
+  } else {
+    if (headBar){
+      headBar.style.visibility = 'visible';
+      headBar.style.height = '20px';
+    }
+  }
+
+  return { boxW, boxH, headH, perRow, maxRowsByParent };
+}
+
+/* ===== 3) Grid auf Kapazität auffüllen/trimmen ===== */
+function ensureCapacity(){
+  const grid = document.getElementById('responsive-div');
+  const L = getLayout();
+  if (!grid || !L) return;
+
+  const capacity = L.perRow * L.maxRowsByParent; // genau so viele Slots passen rein
+  const cur = grid.children.length;
+
+  // iFrame-Template
+  const iframeCode = `
+    <iframe id='a46d90c7' name='a46d90c7'
+      src='https://campaign.ocoso.io/www/delivery/afr.php?zoneid=50&amp;cb=INSERT_RANDOM_NUMBER_HERE'
+      frameborder='0' scrolling='no' width='300' height='250' allow='autoplay'></iframe>`;
+
+  if (cur < capacity){
+    const frag = document.createDocumentFragment();
+    for (let i = cur; i < capacity; i++){
+      const box = document.createElement('div');
+      box.className = 'box';
+      box.id = 'box' + i;
+      box.innerHTML = iframeCode;
+      frag.appendChild(box);
+    }
+    grid.appendChild(frag);
+  } else if (cur > capacity){
+    // Überschuss entfernen (optional – wenn du NIE trimmen willst, weglassen)
+    for (let i = cur - 1; i >= capacity; i--){
+      grid.removeChild(grid.children[i]);
+    }
+  }
+}
+
+/* ===== 4) Container & Grid exakt setzen (Höhe = volle Reihen * BoxH + 20) ===== */
+function applySizes(){
+  const border = document.getElementById('responsive-border-div');
+  const grid   = document.getElementById('responsive-div');
+  const L = getLayout();
+  if (!border || !grid || !L) return;
+
+  const allBoxes   = grid.children.length;
+  const rowsNeeded = Math.min(L.maxRowsByParent, Math.max(1, Math.ceil(allBoxes / L.perRow)));
+
+  const finalW  = L.perRow * L.boxW;
+  const finalH  = rowsNeeded * L.boxH + L.headH; // ► nie höher als Netto-Boxen + 20px
+
+  border.style.width  = finalW + 'px';
+  border.style.height = finalH + 'px';
+
+  grid.style.width  = finalW + 'px';
+  grid.style.height = (rowsNeeded * L.boxH) + 'px';
+}
+
+/* ===== 5) Orchestrierung ===== */
+function relayout(){
+  // 1) Kapazität anhand Parent-Höhe/Boxmaß sicherstellen
+  ensureCapacity();
+  // 2) Größen anwenden – garantiert ≤ (volle Reihen * BoxH + 20)
+  applySizes();
+}
+
+/* ===== 6) outer-container-Höhe auf Viewport setzen (wie bisher) ===== */
+function setOuterContainerHeight() {
+  const outer = document.getElementById('outer-container');
+  if (!outer) return;
+  outer.style.height = window.innerHeight + 'px';
+}
+
+/* ===== 7) Events ===== */
+window.addEventListener('resize', () => {
+  setOuterContainerHeight();
+  relayout();
+});
+
+window.addEventListener('load', () => {
+  setOuterContainerHeight();
+  // Einmal initial: Kapazität auffüllen + Größen anwenden
+  relayout();
+  // zweite Runde nach Layout-Settle (Fonts/Bilder)
+  requestAnimationFrame(relayout);
+});
+</script>
+
+<script>
+(function(){
+  const root    = document.documentElement;
+  const headbar = document.getElementById('headbar');
+
+  function applyTheme({ frameBg, headBg, headFg, radius } = {}){
+    if (headBg)  root.style.setProperty('--oc-headbar-bg', headBg);
+    if (headFg)  root.style.setProperty('--oc-headbar-fg', headFg);
+    if (radius!=null){
+      const v = String(radius).trim();
+      root.style.setProperty('--oc-radius', /^\d+$/.test(v) ? v+'px' : v);
+    }
+  }
+
+  window.addEventListener('message', (e) => {
+    if (e.origin !== location.origin) return;        // same-origin
+    const msg = e.data;
+    if (!msg || msg.type !== 'OCOSO_THEME') return;
+    applyTheme(msg.payload || {});
+  });
+
+  // optional öffentlich:
+  window.applyOCOSOTheme = applyTheme;
+})();
+</script>
+
+
+</body>
+</html>
