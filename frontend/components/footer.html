@@ -2,20 +2,19 @@
   <div class="footer-container">
 
     <!-- Left: Logo -->
-    <div class="footer-column footer-logo" style="border-right: var(--px-1) solid #333;">
-      <img src="img/Logo-Ocoso_White_250321.svg" alt="Ocoso Logo" />
+    <div class="footer-column footer-logo">
+      <img src="img/Logo-Ocoso_White.png" alt="Ocoso Logo" />
     </div>
 
     <!-- Center: Navigation -->
-    <div class="footer-column" style="border-right: var(--px-1) solid #333;">
+    <div class="footer-column">
       <nav>
         <ul class="footer-links">
           <li><a href="content-creator.html"><p>For Creators</p></a></li>
           <li><a href="investor.html"><p>For Investors</p></a></li>
           <li><a href="advertiser.html"><p>For Advertisers</p></a></li>
           <li><a href="user.html"><p>For Users</p></a></li>
-			<li>&nbsp;<br><br></li>
-			<li><p >© 2025 ocoso.io</p></li>
+    			<li>&nbsp;<br><br></li>
         </ul>
       </nav>
     </div>
@@ -26,12 +25,53 @@
         <a href="#"><p>Login</p></a>
         <a href="#"><p>Register</p></a>
       </div>
-		<p>&nbsp;</p>
+  		<p>&nbsp;</p>
       <div class="legal-links">
         <a href="imprint.html"><p>Imprint</p></a>
         <a href="privacy.html"><p>Privacy Policy</p></a>
       </div>
     </div>
-
   </div>
+  
+  <div class="footer-container">
+    <div class="footer-column footer-logo" style="border-left: none">
+      <p>&nbsp;</p>
+      <div class="iframe-scale" style="margin-left: -0.5rem">
+        <iframe
+          id="footerEmbed"
+          src="subline/OCOSO-Schriftanimation_250907.html"
+          title="Footer include"
+          loading="lazy">
+        </iframe>
+      </div>
+      <div class="footer-container" style="margin: 0">
+        <div class="footer-column" style="border-left: none; padding: 0">
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>© 2025 ocoso.io</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  
 </footer>
+
+<script>
+// Auto-Height nur möglich, wenn gleiche Domain (Same-Origin)
+document.getElementById('footerEmbed')?.addEventListener('load', function(){
+  try {
+    const h = this.contentDocument.documentElement.scrollHeight;
+    this.style.height = h + 'px';
+  } catch (e) {
+    // Cross-Origin: kein Zugriff — dann feste Höhe lassen oder CSS anpassen
+  }
+});
+</script>
