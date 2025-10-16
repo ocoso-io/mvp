@@ -3,57 +3,107 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1">
+      content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
   <!-- unbedingt VOR dem ersten Stylesheet -->
   <title>OCOSO MVP - Full Layout</title>
   <link href="css/main.css" rel="stylesheet">
   
   <style>
-    /* Grundlayout: Mobile / ≤ 991 px */
-    .block-tools{
-      display:flex;
-      flex-direction:column;      /* Bild oben */
-      gap:var(--px-30);
+  
+    html {
+      -webkit-text-size-adjust: 100%;   /* 100 % = keinerlei Auto-Zoom      */
+          text-size-adjust: 100%;
+    }   
+
+    /* Section – per Drag in der Höhe verstellbar */
+    #promotion-container{
+      width: min(100%, 1100px);     /* Startbreite, aber nie > Viewport */
+      min-width: 320px;             /* Untergrenze Breite */
+      max-width: 100%;              /* nie über den Container/Viewport hinaus */
+      height: 800px;
+      min-height: 250px;
+      max-height: 1100px;
+      background: #000;
+      resize: both;                 /* ← Höhe + Breite */
+      overflow: auto;               /* Pflicht für resize-Griff */
+      box-sizing: border-box;
+      position: relative;
+      border: solid 2px #fff;
     }
     
-    .tools-img{
-      width:100%;
-      height:auto;
-      object-fit:cover;
-      border-radius: var(--px-20);          /* optisch */
-      border: var(--px-5) solid black;
+    /* sichtbarer Griff unten rechts */
+    #promotion-container .resize-grip{
+      position: absolute;
+      right: 0; bottom: 0;
+      width: 28px; height: 28px;
+      cursor: nwse-resize;
+      z-index: 5;
+      /* Optik vom Griff */
+      background:
+        linear-gradient(135deg, transparent 50%, rgba(255,255,255,.45) 50%) no-repeat 0 0 / 100% 100%,
+        repeating-linear-gradient(135deg, rgba(255,255,255,.4) 0 2px, rgba(255,255,255,0) 2px 4px);
+      border-top-left-radius: 6px;
+      /* wichtig für Touch: Browser-Gesten nicht abfangen */
+      touch-action: none;
     }
     
-    .media-img{
-      flex:0 0 100%;             /* 30 % Breite  */
-      max-width:100%;
-      object-fit:cover;
-      border-radius: var(--px-20);          /* optisch */
-      border: var(--px-5) solid black;
+    #promotion-container.resizing{
+      cursor: nwse-resize;
     }
     
-    /* Desktop / > 991 px */
-    @media (min-width:992px){
-      .block-tools{
-        flex-direction:row;       /* Bild links  */
-        align-items:flex-start;
+    /* Inhalt füllt die Section */
+    #promotion-container .promo-inner,
+    #promotion-container iframe{
+      width: 100%;
+      height: 100%;
+      display: block;
+      box-sizing: border-box;
+      background: #000;
+    }
+    
+    /* bottom-right hint */
+    #promotion-container::after{
+      content: "Resize here →";
+      position: absolute;
+      right: .75rem;
+      bottom: 0rem;                 /* a touch above the native resize grip */
+      padding: .25rem .5rem;
+      font: 600 12px/1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: #fff;
+      background: rgba(0,0,0,.55);
+      border-radius: 999px;
+      pointer-events: none;          /* never blocks dragging/clicks */
+      user-select: none;
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+      opacity: .9;
+      transition: opacity .2s ease;
+      z-index: 99998;            /* <-- neu: über dem iFrame */
+    }
+    
+    /* optional: fade the hint on hover */
+    #promotion-container:hover::after{
+      opacity: 1;
+    }
+    
+    /* optional: hide the hint after first resize */
+    #promotion-container.hint-hide::after{
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    
+    @media (min-width:765px) {
+      .comic-row-wide {
+          grid-template-columns: repeat(auto-fit, minmax(var(--px-200), 1fr));
       }
-    
-      .tools-img{
-        flex:0 0 30%;             /* 30 % Breite  */
-        max-width:30%;
-        margin-right:var(--px-40);
-      }
-      
-      .content-submission{
-        flex:1;                   /* Restbreite   */
-      }
     }
     
-html {
-  -webkit-text-size-adjust: 100%;   /* 100 % = keinerlei Auto-Zoom      */
-      text-size-adjust: 100%;
-}    
+    @media (max-width: 765px) {
+      .comic-row-wide {
+          grid-template-columns: repeat(auto-fit, minmax(var(--px-410), 1fr));
+      }
+    }  
   </style>
 </head>
 <body>
@@ -254,7 +304,31 @@ html {
                     </div>
                 </div>
             </div>
-
+            
+            <div class="wrapper">
+                <div class="responsive-narrow" data-link="ip-lookup-tool.html">
+                    <div class="content-block-narrow"
+                         style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%), url('img/thumbnail-ip-situation.jpg');">
+                        <div class="content-text">
+                            <h2 class="title">IP Lookup Tool</h2>
+                            <p class="description">
+                                Check the legal status of IP and rights protection in your country.
+                            </p>
+                        </div>
+                        <button aria-label="Stake Your Claim" class="action-button">
+                            <img
+                                    alt=""
+                                    aria-hidden="true"
+                                    class="button-icon"
+                                    src="img/Arrow.png"
+                            />
+                            <span class="button-text">How to Protect</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+<!--
             <div class="wrapper">
                 <div class="responsive-narrow" data-link="content-mint.html">
                     <div class="content-block-narrow"
@@ -324,6 +398,8 @@ html {
                     </div>
                 </div>
             </div>
+-->
+            
         </div>
     </nav>
 </div>
@@ -349,26 +425,26 @@ html {
       <center class="content-frame">
             
         <section>
-          <div class="comic-row-wide">
-            <div class="comic-block-wide" style="width: var(--px-360);">
+          <div class="comic-row-wide" style="gap:0;">
+            <div class="comic-block-wide" style="width: 100%;">
                 <div class="comic-image-wide"
-                     style="width: var(--px-360); background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-protection.jpg');">
+                     style="width: 100%; background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-protection.jpg');">
                     <div style="height:460px;">&nbsp;</div>
                 </div>
                 <h3><span class="text-box-wide">Real Protection</span></h3>
                 <p>Rights protection you can trust will claim your work globaly in the Blockchain. </p>
             </div>
-           <div class="comic-block-wide" style="width: var(--px-360);">
+           <div class="comic-block-wide" style="width: 100%;">
                 <div class="comic-image-wide"
-                     style="width: var(--px-360); background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-reach.jpg');">
+                     style="width: 100%; background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-reach.jpg');">
                     <div style="height:460px;">&nbsp;</div>
                 </div>
                 <h3><span class="text-box-wide">More Reach</span></h3>
                 <p>Cross-promotion between member websites plus AI search optimization<!-- makes you independent from Pattforms and Aggregators-->.</p>
             </div>
-            <div class="comic-block-wide" style="width: var(--px-360);">
+            <div class="comic-block-wide" style="width: 100%;">
                 <div class="comic-image-wide"
-                     style="width: var(--px-360); background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-revenue.jpg');">
+                     style="width: 100%; background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-revenue.jpg');">
                     <div style="height:460px;">&nbsp;</div>
                 </div>
                 <h3><span class="text-box-wide">Stable Income</span></h3>
@@ -409,15 +485,31 @@ html {
           </div>
         </section>   
         
-              <div style="height: var(--px-40)">&nbsp;</div>     
+        <div style="height: var(--px-80)">&nbsp;</div>     
         
         <section class="block-tools">
           <div class="content-submission">
-            <h2 class="submission-title">Your voice, amplified by the OC Network that pays you back.</h2>
+            <h2 class="submission-title">Your creation, amplified by the OC Network that pays you back.</h2>
+            <h4>Simple, effective to the point.</h4>
+                    <div style="height: var(--px-20)">&nbsp;</div>   
+            <p>Adjustable design - matching your layout. No disturbance but enhancing overall user experience and best in class integration.</p>
           </div>
         </section>  
       
+        <div style="height: var(--px-60)">&nbsp;</div>   
       
+        <section id="promotion-container" class="block-tools">
+          <div class="promo-inner">
+            <iframe id='04' name='04' src='Promo-Container/OCOSO-Dynamic-Container.html' frameborder='0' scrolling='no' width='100%' height='100%' allow='autoplay'></iframe>	
+          </div>
+            <div class="resize-grip" aria-hidden="true"></div>
+        </section>  
+        
+        
+				<section class="oc-theme-toolbar" style="margin: 1rem 0; display:flex; flex-wrap:wrap; gap:.75rem; align-items:center;">
+				  <label class="text-body">Title-Bar: <input type="color" id="oc-headbg" value="#aaaaaa"></label>
+				  <label class="text-body">Radius: <input type="number" id="oc-radius" min="0" max="32" step="1" value="6" style="width:5rem"></label>
+				</section>        
         
         <div style="height: var(--px-250)">&nbsp;</div>     
         
@@ -431,41 +523,161 @@ html {
         <div style="height: var(--px-80)">&nbsp;</div>    
                  
         <section class="block-tools">
-          <img src="img/creator-activate.jpg" alt="Visual Tools"
-               class="tools-img">
-        
-          <div class="content-submission">
-            <h4 class="submission-title">Step 1</h4>
-            <h2 class="submission-subtitle">Install Plugin</h2>
-            <p>Download and install the OCOSO WordPress plugin. Takes 2 minutes.</p>
+
+
+            <div class="comic-image-wide" 
+                style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-activate.jpg'); margin: 0 0 var(--px-7) 0">
+                <div style="height:460px;">&nbsp;</div>
+            </div>
+                      <div class="content-submission">
+            <h5 class="submission-subtitle">Step 1</h5>
+            <h2 class="submission-title">Install our WordPress Plugin</h2>
+            <div style="height: var(--px-20)">&nbsp;</div>
+            <p>
+              <strong style="color: #00ff22">✔</strong> You prove your authorship.<br>
+            	<strong style="color: #00ff22">✔</strong> Your content is time-stamped and protected.<br>
+            	<strong style="color: #00ff22">✔</strong> You stay in control — even when AI reads your post.
+            </p>                       
+            <div style="height: var(--px-20)">&nbsp;</div>    
+            <h5>
+              Own your content. Claim your posts.
+            </h5>
+                        
+            <div style="height: var(--px-20)">&nbsp;</div>
+
+            <div class="addition-information">
+              <p>Learn more ...</p>
+              <div class="tooltip">
+                  <!-- Die Sprechblase -->
+                  <div class="speech-container-wide">
+                      <div class="speech-bubble-warning-wide">
+                        <p>
+                          When you publish a post, the plugin creates <strong>a unique digital fingerprint of your content</strong> — and stores it securely on the blockchain.<br>
+                          <br>
+                          <strong>You can prove it’s yours</strong> at any time.	No one can copy or use your content without trace. If AI tools access it, that access is recorded — and triggers payment.<br>
+                          <br>
+                          This claim doesn’t change your post.<br>
+                          It just adds a secure layer that protects it — and <strong>helps you earn from it.</strong>
+                        </p>
+                      </div>
+                      <!-- <div class="speech-icon">
+                          <img src="img/Sprechblase-Haken.png" alt="Haken"
+                               style="width: var(--px-80); height: var(--px-80)"/>
+                      </div> -->
+                  </div>
+              </div>    
+            </div>
           </div>
         </section>
 
         <div style="height: var(--px-60)">&nbsp;</div>
-                 
+
         <section class="block-tools">
-          <img src="img/creator-signin.jpg" alt="Visual Tools"
-               class="tools-img">
-        
+          <div class="comic-image-wide" 
+              style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-signin.jpg');; margin: 0 0 var(--px-7) 0">
+              <div style="height:460px;">&nbsp;</div>
+          </div>
+          
           <div class="content-submission">
-            <h4 class="submission-title">Step 2</h4>
-            <h2 class="submission-subtitle">Create Account</h2>
-            <p>Register with your email and join the promotion network instantly.</p>
+            <h5 class="submission-subtitle">Step 2</h5>
+            <h2 class="submission-title">Join the OC Network of OCOSO</h2>      
+            <div style="height: var(--px-20)">&nbsp;</div>    
+            <p>
+              <strong style="color: #00ff22">✔</strong> Your content gets picked up by AI channels.<br>
+            	<strong style="color: #00ff22">✔</strong> Promotion happens automatically, with full attribution.<br>
+            	<strong style="color: #00ff22">✔</strong> More reach, better audience, growing value over time.
+            </p>                        
+            <div style="height: var(--px-20)">&nbsp;</div>    
+            <h5>
+              Get promoted. Build substantial traffic.
+            </h5>
+                        
+            <div style="height: var(--px-20)">&nbsp;</div>
+
+            <div class="addition-information">
+              <p>Learn more ...</p>
+              <div class="tooltip">
+                  <!-- Die Sprechblase -->
+                  <div class="speech-container-wide">
+                      <div class="speech-bubble-warning-wide">
+                        <p>
+                          Once your content is protected, it becomes part of the OCOSO network —
+                          <strong>a trusted layer</strong> that AI Agents scan, understand, and promote.<br>
+                          <br>
+                          You get indexed directly by AI-powered systems (search, chat, recommendations).
+                          <strong>Your content shows up in the right places</strong> — with your signal attached.
+                          You don’t just publish — you <strong>get strategically promoted.</strong>
+                          And as traffic grows, you stay visible — and in control.<br>
+                          <br>
+                          You keep your style. You keep your platform.<br>
+                        </p>
+                      </div>
+                      <!-- <div class="speech-icon">
+                          <img src="img/Sprechblase-Haken.png" alt="Haken"
+                               style="width: var(--px-80); height: var(--px-80)"/>
+                      </div> -->
+                  </div>
+              </div>    
+            </div>
           </div>
         </section>
-
-        <div style="height: var(--px-60)">&nbsp;</div>
-                     
-        <section class="block-tools">
-          <img src="img/creator-step3.jpg" alt="Visual Tools"
-               class="tools-img">
         
-          <div class="content-submission">
-            <h4 class="submission-title">Step 3</h4>
-            <h2 class="submission-subtitle">Place Container</h2>
-            <p>Choose auto-placement or manually insert containers wherever you want.</p>
+        
+        <div style="height: var(--px-60)">&nbsp;</div>
+           
+        <section class="block-tools">
+          <div class="comic-image-wide" 
+              style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%), url('img/creator-step4.jpg');; margin: 0 0 var(--px-7) 0">
+              <div style="height:460px;">&nbsp;</div>
           </div>
-        </section>   
+                  
+          <div class="content-submission">
+            <h5 class="submission-subtitle">Step 3</h5>
+            <h2 class="submission-title">Start Earning</h2>
+            <div style="height: var(--px-20)">&nbsp;</div>          
+            <p>
+              <strong style="color: #00ff22">✔</strong> Get paid for visibility and quality<br>
+            	<strong style="color: #00ff22">✔</strong> Monetize traffic, AI, and your audience<br>
+            	<strong style="color: #00ff22">✔</strong> All tracked, verified, and under your control
+            </p>              
+            <div style="height: var(--px-20)">&nbsp;</div>    
+            <h5>Income by AI, Ads, Subscriptions, Investors.</h5>
+                        
+            <div style="height: var(--px-20)">&nbsp;</div>
+
+            <div class="addition-information">
+              <p>Learn more ...</p>
+              <div class="tooltip">
+                  <!-- Die Sprechblase -->
+                  <div class="speech-container-wide">
+                      <div class="speech-bubble-warning-wide">
+                        <p>
+                          Now that your content is claimed and connected, it becomes an <strong>active source of income.</strong><br>
+                          <br>
+                          OCOSO makes sure that <strong>every access can create value</strong> when your posts are read — by people or by AI.<br>
+                          <br></p>
+                        <p>That means you can earn through:</p>
+                        <ul>
+                          <li><strong>AI access payments</strong> when models <strong>read or learn</strong> from your content</li>
+                          <li><strong>Ad revenue</strong> from high-quality partners</li>
+                          <li><strong>Subscriptions</strong> from loyal followers</li>
+                          <li>Token-based <strong>invest by supporters</strong></li>
+                        </ul>
+                        <p>
+                          <br><strong>No extra work.</strong> No hidden steps.<br>
+                          Your content earns — <strong>while you keep creating.</strong>
+                        </p>
+                      </div>
+                      <!-- <div class="speech-icon">
+                          <img src="img/Sprechblase-Haken.png" alt="Haken"
+                               style="width: var(--px-80); height: var(--px-80)"/>
+                      </div> -->
+                  </div>
+              </div>    
+            </div>
+            <div style="height: var(--px-20)">&nbsp;</div>
+          </div>
+        </section>  
 
         <div style="height: var(--px-80)">&nbsp;</div>
                 
@@ -514,7 +726,7 @@ html {
                             
         <section class="content-submission">
           <h2 class="submission-title">THE TRUST GAP</h2>
-          <h1 style="line-height: 1">74 % don’t trust traditional media anymore.</h1>
+          <h1 style="line-height: 1">50% don’t trust traditional media anymore.</h1>
           <h5 class="submission-subtitle">
               It’s not a crisis of attention, but people reject manipulation. Authority is no longer owned — it’s
               earned.
@@ -534,8 +746,14 @@ html {
         <div style="height: var(--px-80)">&nbsp;</div>
 
         <section class="block-tools">
-          <img src="img/creator-reactance_color.jpg" alt="Visual Tools"
-               class="tools-img">
+          <figure class="tools-media">
+            <img
+              src="img/creator-reactance_color.jpg"
+              alt="Visual Tools"
+              class="tools-img"
+              style="width:100%"
+            >
+          </figure>
         
           <div class="content-submission">
             <h2 class="submission-title">People don’t want polish. </h2>
@@ -548,8 +766,14 @@ html {
         <div style="height: var(--px-60)">&nbsp;</div>
                     
         <section class="block-tools">
-          <img src="img/creator-movement_color.jpg" alt="Visual Tools"
-               class="tools-img">
+          <figure class="tools-media">
+            <img
+              src="img/creator-movement_color.jpg"
+              alt="Visual Tools"
+              class="tools-img"
+              style="width:100%"
+            >
+          </figure>
         
           <div class="content-submission">
             <h2 class="submission-title">This is your audience. </h2>
@@ -561,9 +785,15 @@ html {
         <div style="height: var(--px-60)">&nbsp;</div>  
                     
         <section class="block-tools">
-          <img src="img/creator-join-movement_color.jpg" alt="Visual Tools"
-               class="tools-img">
-        
+          <figure class="tools-media">
+            <img
+              src="img/creator-join-movement_color.jpg"
+              alt="Visual Tools"
+              class="tools-img"
+              style="width:100%"
+            >
+          </figure>
+                
           <div class="content-submission">
             <h2 class="submission-title">Go beond publishing. </h2>
             <h4 class="submission-subtitle">Join the movement.</h4>
@@ -576,8 +806,14 @@ html {
         <div style="height: var(--px-60)">&nbsp;</div>
                      
         <section class="block-tools">
-          <img src="img/creator-surfer_color.jpg" alt="Visual Tools"
-               class="tools-img">
+          <figure class="tools-media">
+            <img
+              src="img/creator-surfer_color.jpg"
+              alt="Visual Tools"
+              class="tools-img"
+              style="width:100%"
+            >
+          </figure>
         
           <div class="content-submission">
             <h2 class="submission-title">Time to ride the wave.</h2>
@@ -592,7 +828,6 @@ html {
         </section>     
        
         <div style="height: var(--px-160)">&nbsp;</div>   
-        
         
         <section class="content-submission" style="display: flex; flex-direction: row; gap: var(--px-50);">
           <div>
@@ -621,6 +856,214 @@ html {
 <script defer src="js/3d-Navigation.js"></script>
 <script defer src="js/cardTilt.js"></script>
 <script src="js/waitlist-overlay.js" defer></script>
+<script src="js/css-reload.js" defer></script>
+
+
+
+<script>
+(function () {
+  const box    = document.getElementById('promotion-container');
+  const grip   = box?.querySelector('.resize-grip');
+  const iframe = box?.querySelector('iframe');
+  if (!box || !grip) return;
+
+  const clamp = (v, min, max) => Math.max(min, Math.min(v, max));
+
+function readLimits() {
+  const cs = getComputedStyle(box);
+  const parent = box.parentElement;
+
+  const parentW = (parent ? parent.getBoundingClientRect().width  : window.innerWidth)  || 0;
+  const parentH = (parent ? parent.getBoundingClientRect().height : window.innerHeight) || 0;
+
+  const toPx = (val, axis, kind) => {
+    // kind: 'min' | 'max'  -> Default bei unauflösbar
+    if (!val || val === 'auto' || val === 'none') return (kind === 'max') ? Infinity : 0;
+
+    // reine px
+    if (val.endsWith('px')) return parseFloat(val) || 0;
+
+    // Prozent relativ zum Containing Block
+    if (val.endsWith('%')) {
+      const base = axis === 'x' ? parentW : parentH;
+      return base * ((parseFloat(val) || 0) / 100);
+    }
+
+    // Viewport-Einheiten
+    if (val.endsWith('vw')) return window.innerWidth  * ((parseFloat(val) || 0) / 100);
+    if (val.endsWith('vh')) return window.innerHeight * ((parseFloat(val) || 0) / 100);
+
+    // Keywords wie max-content/min-content/clamp()/calc() usw.
+    // konservativ behandeln:
+    // - max -> unendlich groß erlauben
+    // - min -> 0
+    return (kind === 'max') ? Infinity : 0;
+  };
+
+  return {
+    minW: toPx(cs.minWidth,  'x', 'min'),
+    maxW: toPx(cs.maxWidth,  'x', 'max'),
+    minH: toPx(cs.minHeight, 'y', 'min'),
+    maxH: toPx(cs.maxHeight, 'y', 'max'),
+  };
+}
+
+  let lim = readLimits();
+  const refreshLimits = () => { lim = readLimits(); };
+
+  function ensureIframeFills() {
+    if (!iframe) return;
+    iframe.style.display = 'block';
+    iframe.style.width   = '100%';
+    iframe.style.height  = '100%';
+    iframe.style.border  = '0';
+    try { iframe.contentWindow?.dispatchEvent(new Event('resize')); } catch {}
+  }
+
+  function applyWithinLimitsHeightOnly() {
+    refreshLimits();
+    const curH = box.getBoundingClientRect().height;
+    const newH = clamp(curH, lim.minH, lim.maxH);
+    if (Math.abs(newH - curH) > 0.5) box.style.height = newH + 'px';
+    ensureIframeFills();
+  }
+
+  function kickInitialResize() {
+    applyWithinLimitsHeightOnly();
+    requestAnimationFrame(() => {
+      applyWithinLimitsHeightOnly();
+      requestAnimationFrame(applyWithinLimitsHeightOnly);
+    });
+    setTimeout(applyWithinLimitsHeightOnly, 120);
+  }
+
+  kickInitialResize();
+  window.addEventListener('load',              kickInitialResize, { once:true });
+  window.addEventListener('pageshow',          kickInitialResize);
+  window.addEventListener('resize',            () => { refreshLimits(); applyWithinLimitsHeightOnly(); });
+  window.addEventListener('orientationchange', () => setTimeout(kickInitialResize, 60));
+  document.fonts?.ready?.then(kickInitialResize);
+  iframe?.addEventListener('load',             kickInitialResize);
+
+  /* -------- Drag-Resize (W + H) -------- */
+  let startX = 0, startY = 0, startW = 0, startH = 0;
+
+  // Merker für temporäre Styles
+  let prevFlex = '';
+  let prevGridColumn = '';
+
+  function lockWidthPx() {
+    // harte px-Breite verhindert „Zusammenschnurren“ beim Klick
+    const w = Math.round(box.getBoundingClientRect().width);
+    box.style.width = w + 'px';
+  }
+
+  function onDown(e) {
+    e.preventDefault();
+    refreshLimits();
+
+    // 1) Breite hart einfrieren (sofort!)
+    lockWidthPx();
+
+    // 2) Flex/Grid-Schrumfen temporär deaktivieren
+    prevFlex = box.style.flex;
+    prevGridColumn = box.style.gridColumn;
+    box.style.flex = '0 0 auto';
+    box.style.gridColumn = 'auto';
+
+    const r = box.getBoundingClientRect();
+    startX = e.clientX;  startW = r.width;
+    startY = e.clientY;  startH = r.height;
+
+    box.classList.add('resizing');
+    try { e.currentTarget?.setPointerCapture?.(e.pointerId); } catch {}
+    document.documentElement.style.userSelect = 'none';
+    document.body.style.cursor = 'nwse-resize';
+
+    // an window binden, nicht implizit global
+    window.addEventListener('pointermove', onMove, { passive:false });
+    window.addEventListener('pointerup', onUp, { once:true });
+    window.addEventListener('pointercancel', onUp, { once:true });
+  }
+
+  function onMove(e) {
+    e.preventDefault();
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+
+    const w = clamp(startW + dx, lim.minW, lim.maxW);
+    const h = clamp(startH + dy, lim.minH, lim.maxH);
+
+    box.style.width  = w + 'px';
+    box.style.height = h + 'px';
+    ensureIframeFills();
+  }
+
+  function onUp() {
+    window.removeEventListener('pointermove', onMove);
+    box.classList.remove('resizing');
+    document.documentElement.style.userSelect = '';
+    document.body.style.cursor = '';
+
+    // temporäre Layout-Flags zurücksetzen
+    box.style.flex = prevFlex || '';
+    box.style.gridColumn = prevGridColumn || '';
+
+    // nur Höhe final klemmen
+    applyWithinLimitsHeightOnly();
+  }
+
+  grip.addEventListener('pointerdown', onDown, { passive:false });
+  grip.style.pointerEvents = 'auto';
+  grip.style.touchAction   = 'none';
+  grip.style.cursor        = 'nwse-resize';
+
+  // Doppelklick zum Zurücksetzen (optional)
+  grip.addEventListener('dblclick', () => {
+    box.style.width = ''; // zurück zu CSS
+    applyWithinLimitsHeightOnly();
+  });
+})();
+</script>
+
+
+
+<script>
+(function(){
+  const frame = document.querySelector('#promotion-container iframe');
+  if (!frame) return;
+
+  // letzte Auswahl für Re-Apply nach iFrame-Reload
+  let lastTheme = {};
+
+  function postTheme(payload){
+    lastTheme = { ...lastTheme, ...payload };
+    if (frame.contentWindow) {
+      frame.contentWindow.postMessage({ type: 'OCOSO_THEME', payload: lastTheme }, location.origin);
+    }
+  }
+
+  // Controls
+  const $ = (id) => document.getElementById(id);
+  const inputs = {
+    headbg:  $('oc-headbg'),
+    radius:  $('oc-radius'),
+  };
+
+  // Live-Events
+  inputs.headbg?.addEventListener('input',  e => postTheme({ headBg:  e.target.value }));
+  inputs.radius?.addEventListener('input',  e => postTheme({ radius:  e.target.value }));
+
+  // Beim ersten Load anwenden
+  frame.addEventListener('load', () => {
+    // Initial aus Inputs übernehmen
+    postTheme({
+      headBg: inputs.headbg?.value,
+      radius: inputs.radius?.value,
+    });
+  });
+})();
+</script>
 
 
 </body>
