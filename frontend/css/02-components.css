@@ -89,7 +89,7 @@ main-navigation.comic-row {
 
   /* beliebig viele 360 px-Karten in einer Zeile;
      bei Platzmangel umbrechen  */
-  grid-template-columns: repeat(auto-fit, minmax(var(--px-360), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(var(--px-240), 1fr));
 
   gap: var(--px-20);
   justify-items:center;          /* mittig im Grid-Slot */
@@ -101,11 +101,8 @@ main-navigation.comic-row {
   grid-auto-rows:1fr;
 }
 .comic-block-wide {
-  width:100%;          /* darf die ganze Spalte nutzen           */
-  /* KEINE fixe Höhe mehr → die Karte wächst mit dem höchsten     */
-  /* Element der Zeile, weil grid-auto-rows:1fr sie streckt       */
+  width:100%;         
   height:auto;
-
   border-radius:var(--px-20);
   padding:0; /* var(--px-20) var(--px-20);*/
   box-sizing:border-box;
@@ -118,13 +115,15 @@ main-navigation.comic-row {
   width: 100%; /*var(--px-460);*/
   height: auto; /*var(--px-460);*/
   border-radius: var(--px-20) var(--px-20) 0 0;
-  margin: 0 0 var(--px-7) 0px; /* Negative value kept */
+  margin: 0 0 var(--px-7) 0; /* Negative value kept */
   border: black var(--px-5) solid;
   box-sizing: border-box;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
+
+
 .comic-row-extrawide {
   display: flex;
   flex-direction: row;
@@ -138,7 +137,7 @@ main-navigation.comic-row {
 }
 .comic-block-extrawide {
   width: 100%;
-  height: var(--px-350);
+  min-height: var(--px-350);
   border-radius: var(--px-20);
   padding: 0;
   box-sizing: border-box;
@@ -151,15 +150,16 @@ main-navigation.comic-row {
 }
 .comic-image-extrawide {
   width: 50%;
-  height: var(--px-350);
+  height: 100%;
   border-radius: var(--px-20) 0 0 var(--px-20);
-  margin: 0 var(--px-10) 0 0;
+  margin: 0 var(--px-20) 0 0;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   border: black var(--px-5) solid;
   box-sizing: border-box;
   background-color: black;
+  min-height: var(--px-350);
 }
 .starttext-row {
   display: flex;
@@ -190,7 +190,7 @@ body {
 .site-footer {
   background-color: #000000;
   color: #fff;
-  padding: 2rem 1rem; /* Kept as rem */
+  padding: 2rem 2.5rem; /* Kept as rem */
   border-top: var(--px-1) solid #333;
   font-size: 0.9rem; /* Kept as rem */
 }
@@ -199,31 +199,78 @@ body {
   margin: 0 auto;
   display: flex;
   gap: 2rem; /* Kept as rem */
-  justify-content: space-between;
+  /*justify-content: space-between;
   align-items: flex-start;
-  flex-wrap: wrap;
+  flex-wrap: wrap;*/
 }
 .footer-column {
   flex: 1;
-  padding: 0 1rem; /* Kept as rem */
-  border-right: var(--px-1) solid #333;
+  padding: 0 var(--px-20); /* Kept as rem */
+  border-left:var(--px-1) solid #333;
 }
 .footer-logo {
-  display: flex;
-  justify-content: center;
+  display: block;
+  justify-content: left;
+  border-left: none;
 }
 .footer-column:last-child {
-  border-right: none;
+    border-left:var(--px-1) solid #333;
 }
 .footer-logo img {
-  max-width: var(--px-240);
-  height: var(--px-200);
+  max-width: var(--px-250);
+  height: auto;
 }
 .footer-links, .auth-links, .legal-links {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+/* linke Spalte: Elemente untereinander stapeln */
+.footer-column.footer-logo{
+  display: flex;
+  flex-direction: column;   /* ← vertikal statt horizontal */
+  align-items: flex-start;      /* oder flex-start, wenn linksbündig */
+  gap: var(--px-20);                /* Abstand zwischen Bild und iFrame */
+}
+
+/* saubere Block-Darstellung .footer-column.footer-logo img
+{ 
+  display:block; 
+
+  max-width:100%; 
+  height:auto; 
+}*/
+
+/*.footer-column.footer-logo iframe
+{ 
+  display:block; 
+  width:100%; 
+  height:45px; 
+  border:0; 
+  display:block;
+}*/
+
+/* Wrapper hat die *sichtbare* (skaliert) Größe – bei Animate z.B. 450×44 → 225×22  */
+.iframe-scale {
+  width: 100%;     
+  height: 44px;    
+  position: relative;
+  overflow: hidden; /* wichtig, sonst ragt der unskalierte iFrame raus */
+  backgrund: blue;
+}
+
+/* iFrame rendert in Originalgröße und wird dann halb skaliert */
+.iframe-scale > iframe {
+  width: 541px;
+  height: 44px;
+  transform: scale(1);
+  transform-origin: 0 0;  /* oben/links anheften */
+  border: 0; display: block;
+  border:0; 
+  display:block;
+}
+
+
 .auth-links {
   margin-bottom: 1rem; /* Kept as rem */
 }
@@ -261,13 +308,14 @@ body {
   background-color: white;
   display: flex;
   flex-direction: row;
-  justify-content: start;
-  width: 100vw; /* Use variable */
+  justify-content: flex-start;
+  width: 100%; /* Use variable */
   gap: var(--px-20);
   min-height: var(--px-100);
   align-self: flex-start;
   padding: 0 var(--px-50);
   flex-shrink: 2;
+  box-sizing: border-box;
   /*flex-wrap: wrap;*/
 }
 .site-logo {
@@ -1233,19 +1281,12 @@ color: black !important;
 }
 
 
-/* Basis – gilt immer 
-.data-table{
-  table-layout: fixed;        
-  width: 100%;
-}*/
 
-/*.data-table th,
-.data-table td{
-  overflow: hidden;
-  font-size: var(--px-14);
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}*/
+
+
+
+
+
 
 
 .data-table {
@@ -1255,18 +1296,45 @@ color: black !important;
   border-spacing: 0;
   font-family: var(--main-font-family), sans-serif;
   color: #fff;
-  font-size: var(--px-18);
+  font-size: var(--px-15);
   font-weight: 400;
   line-height: 1.2;
   width: 100%;
   table-layout:auto;          /* Inhalt bestimmt Breite */
   border-collapse:collapse;   /* opt. engeres Layout      */
+  display: table;
+  overflow-x: auto;
 }
 
 /* Header und Zellen: kein Umbruch, kleineres Padding */
 .data-table th,
 .data-table td{
+  padding: var(--px-10) var(--px-14);
+  vertical-align:top;
+  white-space:normal;          /* ← war nowrap */
+  word-break:normal;
+  overflow:visible;
+  text-overflow:clip;
+  min-width:0;                 /* wichtig gegen min-content-Fallen */
+}
+
+th[data-sort-key="Asset_ID"],
+td:nth-child(1),               /* C-NFT # */
+th[data-sort-key="Type"],
+td:nth-child(2),
+th[data-sort-key="Start_Date"],
+td:nth-child(5),
+th[data-sort-key="Volume"],
+td:nth-child(6),
+td:nth-child(7) {              /* Tools */
   white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+th[data-sort-key="Topics"], td:nth-child(3),
+th[data-sort-key="Monetization"], td:nth-child(4){
+  white-space:normal;
+  word-break:break-word;
 }
 
 .data-table td.wrap{
@@ -1274,90 +1342,86 @@ color: black !important;
   word-break:break-all;
 }
 
+
+
+
+
+/* HEADER-OPTIK bleibt */
 .header-row {
   background:
-      linear-gradient(
-          180deg,
-          rgba(56,64,72,0.5) 0%,
-          rgba(56,64,72,1)    100%
-      ),
+      linear-gradient(180deg, rgba(56,64,72,0.5) 0%, rgba(56,64,72,1) 100%),
       #202224;
 }
 
 .header-cell {
-    margin: var(--px-5);
-    padding: var(--px-10) var(--px-10) var(--px-10) var(--px-10);
-    font-size: var(--px-15);
-    border-bottom: var(--px-2) solid #222;
-    background: 
-      linear-gradient(
-          90deg,
-          rgba(28,32,36,0.3) 0%,
-          rgba(28,32,36,0)    50%
-      );
+  margin: var(--px-5);
+  padding: var(--px-10);
+  border-bottom: var(--px-2) solid #222;
+  background: linear-gradient(90deg, rgba(28,32,36,0.3) 0%, rgba(28,32,36,0) 50%);
+  min-width: 0;                  /* <— schützt vor Aufspreizen */
 }
 
-.tr-data{
-  background:
-      linear-gradient(
-          0deg,
-          rgba(255,22,24,0) 0%,
-          rgba(20,22,24,0.5)    100%
-      ),
-      #283236;
+/* Falls Header-Inhalt Flex hat: Schrumpfung erlauben */
+.header-cell > span{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+.header-cell > span label,
+.header-cell > span span{
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
+/* Selects sollen die Spaltenbreite nutzen */
+.selector{
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
 
 .td-data {
   vertical-align: middle; 
   padding: var(--px-5) var(--px-10) var(--px-3) var(--px-20);
-  font-size: var(--px-15);
   border-bottom: var(--px-2) solid #222;
   background: 
-    linear-gradient(
-        120deg,
-        rgba(20,22,24,0.7) 0%,
-        rgba(20,22,24,0)    15%
-    ),
-    linear-gradient(
-          180deg,
-          rgba(56,64,72,0.2) 0%,
-          rgba(56,64,72,0.4)    100%
-      ),
-      #202224;
+    linear-gradient(120deg, rgba(20,22,24,0.7) 0%, rgba(20,22,24,0) 15%),
+    linear-gradient(180deg, rgba(56,64,72,0.2) 0%, rgba(56,64,72,0.4) 100%),
+    #202224;
 }
 
-.table-footer{
-  background: 
-      linear-gradient(
-          180deg,
-          rgba(56,64,72,0.2) 0%,
-          rgba(56,64,72,0.4)    100%
-      ),
-      #202224;
-  height: var(--px-10);
-}
+.table-footer,
 .table-footer td,
-.table-footer tr {
-  background:
-      linear-gradient(
-          180deg,
-          rgba(56,64,72,.2) 0%,
-          rgba(56,64,72,.4) 100%
-      ),
-      #202224;
+.table-footer tr{
+  background: linear-gradient(180deg, rgba(56,64,72,.2) 0%, rgba(56,64,72,.4) 100%), #202224;
   height: var(--px-10);
 }
+
+/* Optional: für kleine Screens horizontales Scrollen im Wrapper */
+.table-host{                     /* gib dem umgebenden DIV diese Klasse */
+  width: 100%;
+  min-width: 0;                  /* <— extrem wichtig in Flex/Grid-Layouts */
+}
+
+
+
+
 
 
 .pager, .diagram-header {
   font: var(--main-font-family), sans-serif;
   display:flex; 
-  gap:var(--px-20); 
+  gap:var(--px-10); 
   align-items:center;
   justify-content:flex-start; 
   color:#fff; 
-  margin-top:var(--px-20);
+  margin-top: 0;
 }
 
 .pager button, .diagram-header button, .tr-prev, .tr-next {
@@ -1796,10 +1860,11 @@ canvas {
   inset-block-start:0;
   inset-inline:0;
   width: 100%;
-  height:var(--px-120);
+  height: auto;
   z-index:2;
   box-sizing: border-box;
-  padding: var(--px-30) var(--px-30);
+  padding: var(--px-20) var(--px-20);
+  overflow: hidden;
 }
 
 .chart-frame, .chart-frame-text {
@@ -1810,11 +1875,7 @@ canvas {
   flex: 1 1 auto;
   box-sizing: border-box;
   overflow:hidden;     /* optional: nichts ragt heraus */
-  padding: var(--px-10) var(--px-20) 0 var(--px-20);
-}
-
-.chart-frame-text {
-  padding: var(--px-10) var(--px-30) var(--px-10) var(--px-30);
+  padding: var(--px-10) var(--px-20) 0 var(--px-10);
 }
 
 .chart-frame canvas{
@@ -1935,7 +1996,36 @@ canvas {
   margin-top: -10px; /* Negative value kept */
 }
 
+/* Grundlayout: Mobile / < 720 px */
+.block-tools{
+  display:flex;
+  flex-direction:column;      /* Bild oben */
+  gap:var(--px-30);
+  width: 100%;
+}
 
+.tools-media{
+  border-radius:var(--px-20);
+  overflow:hidden;          /* iOS: Rundung wirklich schneiden */
+  margin:0;                 /* figure-Default deaktivieren */
+  width:100%;               /* mobil: volle Breite */
+  max-width:100%;
+}
+
+/* Bild füllt den figure-Bereich */
+.tools-img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+.media-img{
+  flex:0 0 100%;             /* 30 % Breite  */
+  max-width:100%;
+  object-fit:cover;
+  border-radius: var(--px-20);          /* optisch */
+  border: var(--px-5) solid black;
+}
 
 /* Tooltip: standardmäßig unsichtbar */
 .gallery-item-caroussel .tooltip {
@@ -2262,7 +2352,6 @@ canvas.three-canvas {
 .dashboard-header {
   margin-bottom: var(--space-l);
   padding-bottom: var(--space-m);
-  border-bottom: var(--px-1) solid var(--color-border-light);
 }
 .dashboard-header .submission-title {
   margin-bottom: var(--space-xs);
