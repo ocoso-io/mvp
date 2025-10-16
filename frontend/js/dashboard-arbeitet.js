@@ -9,7 +9,7 @@ window.addEventListener('load', () => {
     
    	/* ------ Chart.js-Palette (Dark UI) ------ */
     Chart.defaults.font.family     = "'Avenir Next', -apple-system, Roboto, Helvetica, sans-serif";
-    Chart.defaults.font.size       = 12;
+    Chart.defaults.font.size       = 16;
     Chart.defaults.font.weight     = 400;
     Chart.defaults.font.lineHeight = 1.2;
     
@@ -45,9 +45,6 @@ window.addEventListener('load', () => {
       from: ['--Rot', '--Gelb', '--Gruen', '--Tuerkis', '--Cyan', '--Blau', '--Violett', '--Pink', '--Rot', '--Gelb', '--Gruen', '--Tuerkis', '--Cyan', '--Blau', '--Violett', '--Pink'],
       to  : ['--Gelb','--Gruen','--Tuerkis','--Cyan', '--Blau', '--Violett', '--Pink', '--Rot', '--Gelb', '--Gruen', '--Tuerkis', '--Cyan', '--Blau', '--Violett', '--Pink']
     };
-    
-
-    
     
     const nodeLevel = new Map();
     rows.forEach(r => {
@@ -261,13 +258,6 @@ window.addEventListener('load', () => {
       return nodes;
     }
 		
-		
-
-
-
-		
-		
-		
     const chart = new Chart(
       document.getElementById('sankeyChart'),
       {
@@ -299,28 +289,23 @@ window.addEventListener('load', () => {
             colorMode      : 'gradient',
             
             hoverColorFrom : ctx => {
-															  const flow = ctx.raw ?? ctx.dataset.data?.[ctx.dataIndex];
-															  // wenn nicht klickbar → Basisfarbe zurückgeben (kein Highlight)
-															  if (!isClickableFlow(flow)) {
-															    const level = (flow?.from && nodeLevel.get(flow.from)) || 1;
-															    const rel   = Math.max(0, Math.min(level - currTier, tierColors.from.length-1));
-															    return cssVar(tierColors.from[rel]);     // = normale Farbe
-															  }
-															  const level = (flow?.from && nodeLevel.get(flow.from)) || 1;
-															  const rel   = Math.max(0, Math.min(level - currTier, tierActiveColors.from.length-1));
-															  return cssVar(tierActiveColors.from[rel]);
+                                const flow = ctx.raw ?? ctx.dataset.data[ctx.dataIndex];
+                                if (flow && flow.from) {
+                                  const rel = (nodeLevel.get(flow.from) || 1) - currTier;
+                                  const idx = Math.max(0, Math.min(rel, tierActiveColors.from.length-1));
+                                  return cssVar(tierActiveColors.from[idx]);
+                                }
+                                return cssVar('--Blau-Dunkel');  
                               },
             
             hoverColorTo   : ctx => {
-															  const flow = ctx.raw ?? ctx.dataset.data?.[ctx.dataIndex];
-															  if (!isClickableFlow(flow)) {
-															    const level = (flow?.from && nodeLevel.get(flow.from)) || 1;
-															    const rel   = Math.max(0, Math.min(level - currTier, tierColors.to.length-1));
-															    return cssVar(tierColors.to[rel]);       // = normale Farbe
-															  }
-															  const level = (flow?.from && nodeLevel.get(flow.from)) || 1;
-															  const rel   = Math.max(0, Math.min(level - currTier, tierActiveColors.to.length-1));
-															  return cssVar(tierActiveColors.to[rel]);
+                                const flow = ctx.raw ?? ctx.dataset.data[ctx.dataIndex];
+                                if (flow && flow.from) {
+                                  const rel = (nodeLevel.get(flow.from) || 1) - currTier;
+                                  const idx = Math.max(0, Math.min(rel, tierActiveColors.to.length-1));
+                                  return cssVar(tierActiveColors.to[idx]);
+                                }
+                                return cssVar('--Gruen-Dunkel');
                               },
                         
             alpha          : 1,
@@ -354,115 +339,36 @@ window.addEventListener('load', () => {
     renderChart(currTier, currParent);     // zeigt OCOSO → Tier-2
 
 
-// Hat der Knoten (auf Ebene tierOfNode) mindestens ein Kind?
-function hasChildrenAt(tierOfNode, nodeName){
-  if (!nodeName) return false;
-  if (tierOfNode >= maxTier) return false;                 // letzte Ebene hat keine Kinder
-  if (typeof nodeName === 'string' && nodeName.startsWith('Own reach ')) return false;
-
-  const map = childMap[tierOfNode - 1];                    // Kanten: Tier k → k+1
-  if (!map) return false;
-
-  const kids = map.get(nodeName);
-  return !!(kids && kids.size > 0);
-}
-function isClickableFlow(flow){
-  if (!flow || !flow.to) return false;
-  const levelOfTo = nodeLevel.get(flow.to);
-  if (!levelOfTo) return false;
-  return hasChildrenAt(levelOfTo, flow.to);
-}
-
-// Hover-Stabilisierung
-let __lastActiveKey = null;
-let __pendingActive = null;     // {datasetIndex, index} oder null
-let __raf = 0;
-let __lastCursor = 'default';
-
-chart.options.onHover = (evt, els) => {
-  const canvas = evt.chart.canvas;
-
-  // Hilfsfunktionen
-  const setCursor = (v) => {
-    if (__lastCursor !== v) { canvas.style.cursor = v; __lastCursor = v; }
-  };
-  const schedule = (nextActive) => {
-    __pendingActive = nextActive;               // merken
-    if (__raf) return;                          // bereits geplant
-    __raf = requestAnimationFrame(() => {
-      __raf = 0;
-      const key = __pendingActive
-        ? `${__pendingActive.datasetIndex}:${__pendingActive.index}`
-        : '';
-      if (key === __lastActiveKey) return;      // keine Änderung → kein Update
-      __lastActiveKey = key;
-
-      // Active-Elements setzen (oder löschen)
-      chart.setActiveElements(__pendingActive ? [__pendingActive] : []);
-      chart.update('none');                     // ohne Animation
-    });
-  };
-
-  if (!els.length) {
-    setCursor('default');
-    schedule(null);                             // Hover löschen, aber nur wenn nötig
-    return;
-  }
-
-  const e = els[0];
-  const flow = e.element?.$context?.raw;
-  const levelOfTo = flow?.to ? (nodeLevel.get(flow.to) || null) : null;
-  const clickable = !!(flow && flow.to && levelOfTo && hasChildrenAt(levelOfTo, flow.to));
-
-  if (!clickable) {
-    setCursor('default');
-    schedule(null);                             // nicht highlighten
-    return;
-  }
-
-  setCursor('pointer');
-  schedule({ datasetIndex: e.datasetIndex, index: e.index });
-};
-
-chart.canvas.addEventListener('mouseleave', () => {
-  __pendingActive = null;
-  __lastActiveKey = null;
-  chart.setActiveElements([]);
-  chart.update('none');
-  chart.canvas.style.cursor = 'default';
-  __lastCursor = 'default';
-});
-
      /* ░░░ UI-/Drill-Down-Navigator ░░░ */
+    const sel   = document.getElementById('tierSel');
+    const backSankey  = document.getElementById('backSankey');
+    const home  = document.getElementById('homeBtn');
     const ctx   = document.getElementById('sankeyChart').getContext('2d');
-const sel        = document.getElementById('tierSel');
-const backSankey = document.getElementById('backSankey');
-const home       = document.getElementById('homeBtn');
-const addHint    = document.getElementById('append'); // "... or click within chart"updateChart        
-    
-    
-    
-    
   
     /* ------- 3) Helfer --------------------------------------- */
     function childrenOf(parentTier, parent){
-  // Root: alle Tier-1 Kandidaten, die selbst Kinder (→ Tier-2) haben
-  if (parent === null){
-    const map = childMap[parentTier-1];
-    if (!map) return [];
-    return [...map.keys()]
-      .filter(name => hasChildrenAt(parentTier, name))   // hat Kinder auf parentTier+1
-      .sort((a,b)=>a.localeCompare(b));
-  }
-
-  // Normal: direkte Kinder des Parents, aber nur solche mit weiteren Kindern
-  const nextTier = parentTier + 1;
-  if (nextTier > maxTier) return [];
-  const map = childMap[parentTier-1].get(parent) || new Map();
-
-  return [...map.keys()]
-    .filter(name => hasChildrenAt(nextTier, name))       // hat Kinder auf nextTier+1
-    .sort((a,b)=>a.localeCompare(b));
+      /* gibt ein sortiertes Array ALLER direkten Children zurück */
+    
+      /* ---------- Root-Fall ---------- */
+      if (parent === null){
+        return [...childMap[parentTier-1].keys()]
+               .sort((a,b)=>a.localeCompare(b));
+      }
+    
+      /* ---------- innerhalb eines Parents ---------- */
+      const map = childMap[parentTier-1].get(parent) || new Map();
+      const nextTier = parentTier + 1;
+    
+      /* Wenn wir schon auf der letzten Ebene sind, NICHT mehr filtern */
+      if (nextTier >= maxTier){
+        return [...map.keys()].sort((a,b)=>a.localeCompare(b));
+      }
+    
+      /* sonst: nur Children anzeigen, die selbst weitere Kinder haben */
+      return [...map.keys()].filter(name => {
+               const kids = childMap[nextTier-1]?.get(name);
+               return kids && kids.size > 0;
+             }).sort((a,b)=>a.localeCompare(b));
     }
   
     function fillSelect(options, preSelect = null){
@@ -484,35 +390,29 @@ const addHint    = document.getElementById('append'); // "... or click within ch
       }
     }
     
-    
-function setVisible(el, on){
-  if (!el) return;
-  el.style.display = on ? '' : 'none';
-  el.setAttribute('aria-hidden', on ? 'false' : 'true');
-}    
-    
-function updateChartAndUI(){
-  renderChart(currTier, currParent);
-
-  const list = childrenOf(currTier, currParent);
-  const hasOptions = list.length > 0;
-
-  if (sel){
-    if (!hasOptions){
-      setVisible(sel, false);
-      sel.disabled = true;
-    } else {
-      setVisible(sel, true);
-      sel.disabled = false;
-      fillSelect(list);
+    function updateChartAndUI(){
+      /* --- Chart -------------------------------------------- */
+      renderChart(currTier, currParent);
+        
+      /* --- Dropdown -----------------------------------------*/
+         const list = childrenOf(currTier, currParent);
+      
+      /* Dropdown ausblenden, wenn maxTier erreicht */
+      if (currTier === maxTier) {
+        sel.style.display = 'none';
+      } else {
+        sel.style.display = '';
+        if (list.length === 0) {
+          sel.style.display = 'none';       // kein weiteres Tier → Menü aus
+        } else {
+          sel.style.display = '';           // sonst einblenden
+          fillSelect(list);
+        }
+      }
+      
+      /* --- Buttons ------------------------------------------ */
+      backSankey.disabled = (currTier === 1 && currParent === null);
     }
-  }
-
-  // Hinweis immer zusammen mit dem Dropdown behandeln
-  setVisible(addHint, hasOptions);
-
-  if (backSankey) backSankey.disabled = (history.length === 0);
-}
         
     /* ------- 4) Initiales Rendering -------------------------- */
     fillSelect(childrenOf(currTier, currParent), null);
@@ -520,23 +420,30 @@ function updateChartAndUI(){
   
     /* ------- 5) Dropdown-Auswahl (drill-down) ---------------- */
     sel.addEventListener('change', () => {
-  if (!sel.value) return;
-  const chosen = sel.value;
-
-  // Bestimme Ziel-Ebene des gewählten Knotens
-  const targetTier = (currParent === null) ? currTier : (currTier + 1);
-
-  // Nur wenn chosen Kinder hat, drillen
-  if (!hasChildrenAt(targetTier, chosen)) { sel.selectedIndex = 0; return; }
-
-  history.push({ tier: currTier, parent: currParent });
-  if (currParent === null){
-    currParent = chosen;         // Root → Tier-1 Parent setzen; Ebene bleibt
-  } else {
-    currTier++;
-    currParent = chosen;         // echter Drilldown
-  }
-  updateChartAndUI();
+      if (!sel.value) return;
+      const chosen = sel.value;
+    
+      /* aktuellen Zustand sichern */
+      history.push({ tier: currTier, parent: currParent });
+    
+      if (currParent === null) {
+        /* Root → konkretes Tier-1 */
+        currParent = chosen;
+      	console.log('Parent auf Null', currParent);
+      } else if (currTier < maxTier-1 ) {
+        /* echter Drill-down (1→2 … 5→6) */
+        currTier++;
+        currParent = chosen;
+      	console.log('Parent bei kleiner als maxTier-1', currParent);
+      } else {
+        /* wir sind bereits im letzten Paar (5→6)        */
+        /* Tier-6 hat keine Kinder → nur Parent wechseln */
+        currTier++;
+        currParent = chosen;                // <<< NEU
+        console.log('Parent bei maxTier-1', currParent);
+      }
+      console.log('Ermittletes Parent vor Update', currParent);
+      updateChartAndUI();    updateChartAndUI(); // Doppelter Aufruf, damit Sankey die Balken korrekt einfärbt.
     });
         
     /* ------- 6) Zurück-Button ------------------------------- */
@@ -557,23 +464,27 @@ function updateChartAndUI(){
     });
   
     function handleClick(evt, _activeEls){
-  const els = chart.getElementsAtEventForMode(evt, 'nearest', {intersect:true}, true);
-  if (!els.length) return;
-
-  const flow = els[0].element?.$context?.raw;
-  if (!(flow && flow.from && flow.to)) return;
-
-  // Echte Ebene des Zielknotens (unabhängig von currTier/currDepth)
-  const levelOfTo = nodeLevel.get(flow.to);
-  if (!levelOfTo) return;                 // sollte nicht passieren
-
-  // Nur drillen, wenn dieser Knoten Kinder hat
-  if (!hasChildrenAt(levelOfTo, flow.to)) return;
-
-  history.push({ tier: currTier, parent: currParent });
-  currTier   = levelOfTo;                  // ← echte Ebene setzen
-  currParent = flow.to;                    // ← angeklickter Knoten
-  updateChartAndUI();
+      // genau EIN Sankey-Element unter dem Mauszeiger holen
+      const els = chart.getElementsAtEventForMode(
+                    evt, 'nearest', { intersect:true }, true);
+      if (!els.length) return;
+    
+      const flow = els[0].element.$context.raw;   // {from, to, flow}
+    
+      /* Beispiel-Logik:
+         - Wenn das geklickte Element in der aktuellen Ebene liegt,
+           wähle das Child (= flow.to) als neuen Parent
+         - sonst nichts tun                              */
+      if (flow.to && flow.from){
+        history.push({ tier: currTier, parent: currParent });
+    
+        // steckt flow.to ein Tier tiefer?
+        if (currTier < maxTier && childMap[currTier-1].get(flow.from)?.has(flow.to)){
+          currTier++;                  // eine Ebene tiefer
+          currParent = flow.to;        // neues Parent-Element
+          updateChartAndUI();        updateChartAndUI();      // UI wie beim Dropdown aktualisieren / Doppelter Aufruf, damit Sankey die Balken korrekt einfärbt.
+        }
+      }
     
       const box = document.querySelector('.dashboard-element-one-two');
       const ro  = new ResizeObserver(() => chart.resize());
