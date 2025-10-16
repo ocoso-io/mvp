@@ -1,0 +1,96 @@
+{
+  "kpiData": {
+    "ocReaders": { "value": 45200, "change": 15 },
+    "aiTraffic": { "value": 12800, "change": 8 },
+    "followers": { "value": 112000, "change": 1200 },
+    "revenue": { "value": 2800, "change": 12 },
+    "subscriptions": { "value": 22, "change": 5 },
+    "poolShare": { "value": 0.21, "change": 0.03 }
+  },
+  "chartData": {
+    "viewsChart": {
+      "labels": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      "datasets": [
+        { "label": "OC Network (Current)", "data": [800, 1200, 2000, 3500, 1500, 2100, 2800], "borderColor": "#3b82f6", "backgroundColor": "rgba(59, 130, 246, 0.2)", "tension": 0.4, "fill": true },
+        { "label": "OC Network (Previous)", "data": [700, 1100, 1800, 3200, 1300, 1900, 2600], "borderColor": "#3b82f6", "backgroundColor": "transparent", "tension": 0.4, "borderDash": [5, 5], "fill": false },
+        { "label": "AI GEO (Current)", "data": [400, 700, 1000, 1500, 800, 1000, 1200], "borderColor": "#22c55e", "backgroundColor": "rgba(34, 197, 94, 0.2)", "tension": 0.4, "fill": true },
+        { "label": "AI GEO (Previous)", "data": [350, 600, 900, 1300, 700, 900, 1100], "borderColor": "#22c55e", "backgroundColor": "transparent", "tension": 0.4, "borderDash": [5, 5], "fill": false }
+      ]
+    },
+    "revenueSourcesChart": {
+      "labels": ["Ads", "Subscriptions", "Licensing", "AI-Usage"],
+      "datasets": [{ "label": "Revenue Source", "data": [1250, 800, 450, 300], "backgroundColor": ["#22c55e", "#3b82f6", "#eab308", "#8b5cf6"], "borderColor": "#1f2937", "borderWidth": 2 }]
+    },
+    "advertiserQualityChart": {
+      "labels": ["Premium", "Standard", "Low-Tier"],
+      "datasets": [{ "label": "Revenue by Advertiser Quality", "data": [1500, 900, 400], "backgroundColor": ["#22c55e", "#eab308", "#ef4444"], "borderColor": "#1f2937", "borderWidth": 2 }]
+    },
+    "creatorPoolChart": {
+      "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      "datasets": [
+        { "label": "Pool Share %", "data": [0.1, 0.12, 0.11, 0.15, 0.18, 0.21], "borderColor": "#8b5cf6", "backgroundColor": "rgba(139, 92, 246, 0.2)", "tension": 0.3, "fill": true },
+        { "label": "Trend", "data": [0.1, 0.122, 0.144, 0.166, 0.188, 0.21], "borderColor": "rgba(139, 92, 246, 0.5)", "backgroundColor": "transparent", "tension": 0.3, "borderDash": [5, 5], "fill": false }
+      ]
+    },
+    "subscriptionTrendChart": {
+      "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      "datasets": [
+        { "label": "Total Subscriptions", "data": [105, 113, 125, 135, 150, 172], "borderColor": "#3b82f6", "backgroundColor": "rgba(59, 130, 246, 0.2)", "tension": 0.3, "fill": true },
+        { "label": "New Subscriptions", "data": [5, 8, 12, 10, 15, 22], "borderColor": "#22c55e", "backgroundColor": "transparent", "tension": 0.3, "borderDash": [5, 5], "fill": false }
+      ]
+    }
+  },
+  "topPosts": [
+    { "name": "AI in Modern Art", "ratio": "$0.85", "licensed": true },
+    { "name": "Startup Funding Guide", "ratio": "$1.20", "licensed": false },
+    { "name": "Future of Web Dev", "ratio": "$0.95", "licensed": true }
+  ],
+  "distributionRankingData": [
+    { "rank": 1, "name": "CreatorWeekly", "shares": 128 },
+    { "rank": 2, "name": "AI Today", "shares": 95 },
+    { "rank": 3, "name": "Tech Insider", "shares": 72 }
+  ],
+  "topAiTopics": ["Generative AI", "Machine Learning", "Data Science"],
+  "underrepresentedCategories": [
+    { "name": "Quantum Computing", "factor": 4.5 },
+    { "name": "Bio-Tech Ethics", "factor": 3.2 },
+    { "name": "Sustainable Finance", "factor": 2.8 }
+  ],
+  "creatorMatchmaking": [
+    { "topic": "IAB19-18 (Health & Fitness)", "creator": "FitLifePro" },
+    { "topic": "IAB3-1 (Business)", "creator": "BizWiz" },
+    { "topic": "IAB1-5 (Books and Literature)", "creator": "PageTurner" }
+  ],
+  "creatorRankingData": [
+    {"id":1,"name":"Alex Pro","isCurrentUser":false,"metrics":{"Klickrate":98,"Visits":25000,"Recurring":12000,"Verweildauer":350}},
+    {"id":2,"name":"Digital Guru","isCurrentUser":false,"metrics":{"Klickrate":97,"Visits":22000,"Recurring":15000,"Verweildauer":320}},
+    {"id":3,"name":"Market Master","isCurrentUser":false,"metrics":{"Klickrate":96,"Visits":28000,"Recurring":11000,"Verweildauer":400}},
+    {"id":4,"name":"Content King","isCurrentUser":false,"metrics":{"Klickrate":95,"Visits":26000,"Recurring":13000,"Verweildauer":380}},
+    {"id":5,"name":"SEO Wizard","isCurrentUser":false,"metrics":{"Klickrate":94,"Visits":30000,"Recurring":10000,"Verweildauer":360}},
+    {"id":6,"name":"Growth Hacker","isCurrentUser":false,"metrics":{"Klickrate":93,"Visits":24000,"Recurring":14000,"Verweildauer":390}},
+    {"id":7,"name":"Social Star","isCurrentUser":false,"metrics":{"Klickrate":92,"Visits":29000,"Recurring":12500,"Verweildauer":370}},
+    {"id":8,"name":"Engage Expert","isCurrentUser":false,"metrics":{"Klickrate":91,"Visits":27000,"Recurring":11500,"Verweildauer":410}},
+    {"id":9,"name":"Data Driven","isCurrentUser":false,"metrics":{"Klickrate":90,"Visits":32000,"Recurring":9000,"Verweildauer":330}},
+    {"id":10,"name":"Viral Vibe","isCurrentUser":false,"metrics":{"Klickrate":89,"Visits":23000,"Recurring":16000,"Verweildauer":420}},
+    {"id":11,"name":"Niche Navigator","isCurrentUser":false,"metrics":{"Klickrate":88,"Visits":18000,"Recurring":18000,"Verweildauer":280}},
+    {"id":12,"name":"Adonis","isCurrentUser":false,"metrics":{"Klickrate":87,"Visits":15000,"Recurring":8000,"Verweildauer":480}},
+    {"id":13,"name":"You","isCurrentUser":true,"metrics":{"Klickrate":86,"Visits":21000,"Recurring":12000,"Verweildauer":450}},
+    {"id":14,"name":"Peter","isCurrentUser":false,"metrics":{"Klickrate":85,"Visits":19000,"Recurring":11000,"Verweildauer":300}},
+    {"id":15,"name":"Mandy","isCurrentUser":false,"metrics":{"Klickrate":84,"Visits":20000,"Recurring":10000,"Verweildauer":310}},
+    {"id":16,"name":"Sandy","isCurrentUser":false,"metrics":{"Klickrate":83,"Visits":17000,"Recurring":13000,"Verweildauer":290}},
+    {"id":17,"name":"John","isCurrentUser":false,"metrics":{"Klickrate":82,"Visits":16000,"Recurring":14000,"Verweildauer":270}},
+    {"id":18,"name":"Doe","isCurrentUser":false,"metrics":{"Klickrate":81,"Visits":14000,"Recurring":15000,"Verweildauer":260}},
+    {"id":19,"name":"Creator X","isCurrentUser":false,"metrics":{"Klickrate":80,"Visits":13000,"Recurring":17000,"Verweildauer":250}},
+    {"id":20,"name":"Creator Y","isCurrentUser":false,"metrics":{"Klickrate":79,"Visits":12000,"Recurring":19000,"Verweildauer":240}},
+    {"id":21,"name":"Creator Z","isCurrentUser":false,"metrics":{"Klickrate":78,"Visits":11000,"Recurring":20000,"Verweildauer":230}},
+    {"id":22,"name":"Another One","isCurrentUser":false,"metrics":{"Klickrate":77,"Visits":10000,"Recurring":21000,"Verweildauer":220}},
+    {"id":23,"name":"Last One","isCurrentUser":false,"metrics":{"Klickrate":76,"Visits":9000,"Recurring":22000,"Verweildauer":210}},
+    {"id":24,"name":"Final Creator","isCurrentUser":false,"metrics":{"Klickrate":75,"Visits":8000,"Recurring":23000,"Verweildauer":200}},
+    {"id":25,"name":"One More","isCurrentUser":false,"metrics":{"Klickrate":74,"Visits":7000,"Recurring":24000,"Verweildauer":190}},
+    {"id":26,"name":"Almost Done","isCurrentUser":false,"metrics":{"Klickrate":73,"Visits":6000,"Recurring":25000,"Verweildauer":180}},
+    {"id":27,"name":"Penultimate","isCurrentUser":false,"metrics":{"Klickrate":72,"Visits":5000,"Recurring":26000,"Verweildauer":170}},
+    {"id":28,"name":"Runner Up","isCurrentUser":false,"metrics":{"Klickrate":71,"Visits":4000,"Recurring":27000,"Verweildauer":160}},
+    {"id":29,"name":"The Follower","isCurrentUser":false,"metrics":{"Klickrate":70,"Visits":3000,"Recurring":28000,"Verweildauer":150}},
+    {"id":30,"name":"The Very Last","isCurrentUser":false,"metrics":{"Klickrate":69,"Visits":2000,"Recurring":29000,"Verweildauer":140}}
+  ]
+}

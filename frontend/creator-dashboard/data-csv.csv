@@ -1,0 +1,797 @@
+siteName;pageName;date;currency;generatedAt;revenueDisplay;revenuePerformance;revenueSubscriptions;revenueLicencing;revenueAIUsage;revenue;visits;impressions;clicksOCNetwork;clicksAd;ecpm;cpc;pageCtr;premiumQuality;standardQuality;lowQuality;Licenced;usageAI;earningsCNFTlicence;newSubscriptions;topics;promotionsCount;OCNetworkImpressions;OCNetworkClicks;OCNetworkRevenueDisplay;OCNetworkRevenuePerformance;OCNetworkRevenueSubscriptions;OCNetworkRevenueLicencing;OCNetworkRevenueAIUsage;;;VisitsUntergrenze;Visits Obergrenze;CPM;CPC;LicenceFee;AIUsageFee
+;;;;;sum;sum;sum;sum;sum;sum;sum;sum;sum;sum;avg;avg;avg;avg;avg;avg;sum;sum;sum;sum;list;sum;sum;sum;sum;sum;sum;sum;sum;;;helper;helper;helper;helper;helper;helper
+herold.biz;How to get started;01.01.25;CUSD;01.01.25;0,018;10,5;4;0;0,04;14,558;60;60;6;5;0,87348;2,1;8%;0,124%;27,751%;72%;0;2;0;1;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1381;26858;26858;26,858;37601,2;20000;2000;1000;;;20;100;0,3;2,1;10;0,02
+herold.biz;How to get started;02.01.25;CUSD;01.01.25;0,144;8;12;0;0,02;20,164;32;96;77;10;1,935744;0,8;10%;0,714%;59,611%;40%;0;1;0;3;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";781;29433;88299;264,897;20603,1;20400;2020;1010;;;20,2;102;1,5;0,8;10;0,02
+herold.biz;How to get started;03.01.25;CUSD;01.01.25;0,0516;25;20;0;0,02;45,0716;86;86;52;10;3,8761576;2,5;12%;0,114%;44,418%;55%;0;1;0;5;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1738;20972;62916;188,748;6291,6;20808;2040,2;1020,1;;;20,402;104,04;0,6;2,5;10;0,02
+herold.biz;How to get started;04.01.25;CUSD;01.01.25;0,0273;4;8;0;0,02;12,0473;91;91;55;2;1,0963043;2;2%;0,227%;66,571%;33%;0;1;0;2;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1419;25323;101292;202,584;30387,6;21224,16;2060,602;1030,301;;;20,60602;106,1208;0,3;2;10;0,02
+herold.biz;How to get started;05.01.25;CUSD;01.01.25;0,204;37,4;20;0;0;57,604;51;204;41;17;11,751216;2,2;8%;0,354%;34,720%;65%;0;0;0;5;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1173;26587;106348;106,348;13293,5;21648,6432;2081,20802;1040,60401;;;20,8120802;108,243216;1;2,2;10;0,02
+herold.biz;How to get started;06.01.25;CUSD;01.01.25;0,0928;46,2;8;0;0,02;54,3128;58;232;232;22;12,6005696;2,1;9%;0,171%;14,766%;85%;0;1;0;2;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";199;22732;45464;136,392;6819,6;22081,61606;2102,0201;1051,01005;;;21,020201;110,4080803;0,4;2,1;10;0,02
+herold.biz;How to get started;07.01.25;CUSD;01.01.25;0,1716;1,6;16;0;0,02;17,7916;33;132;13;2;2,3484912;0,8;2%;0,965%;90,042%;9%;0;1;0;4;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";840;29182;87546;175,092;40854,8;22523,24839;2123,040301;1061,520151;;;21,23040301;112,6162419;1,3;0,8;10;0,02
+herold.biz;How to get started;08.01.25;CUSD;01.01.25;0,0648;26,4;16;0;0,02;42,4848;54;108;97;11;4,5883584;2,4;10%;0,153%;37,708%;62%;0;1;0;4;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1583;25920;77760;77,76;18144;22973,71335;2144,270704;1072,135352;;;21,44270704;114,8685668;0,6;2,4;10;0,02
+herold.biz;How to get started;09.01.25;CUSD;01.01.25;0,046;14;16;0;0;30,046;115;115;12;7;3,45529;2;6%;0,153%;53,252%;47%;0;0;0;4;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1192;23343;93372;93,372;32680,2;23433,18762;2165,713411;1082,856706;;;21,65713411;117,1659381;0,4;2;10;0,02
+herold.biz;How to get started;10.01.25;CUSD;01.01.25;0,078;16,2;20;0;0,02;36,298;78;78;16;9;2,831244;1,8;12%;0,215%;55,155%;45%;0;1;0;5;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";200;25483;50966;50,966;17838,1;23901,85137;2187,370545;1093,685273;;;21,87370545;119,5092569;1;1,8;10;0,02
+herold.biz;How to get started;11.01.25;CUSD;01.01.25;0,2136;92,5;20;0;0,02;112,7336;89;356;356;37;40,1331616;2,5;10%;0,189%;17,759%;82%;0;1;0;5;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";747;22377;89508;179,016;13426,2;24379,8884;2209,244251;1104,622125;;;22,09244251;121,899442;0,6;2,5;10;0,02
+herold.biz;How to get started;12.01.25;CUSD;01.01.25;0,154;11,7;16;0;0;27,854;55;110;22;9;3,06394;1,3;8%;0,553%;57,442%;42%;0;0;0;4;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1133;23221;23221;69,663;16254,7;24867,48617;2231,336693;1115,668347;;;22,31336693;124,3374308;1,4;1,3;10;0,02
+herold.biz;How to get started;13.01.25;CUSD;01.01.25;0,0715;6,4;20;0;0,02;26,4915;55;55;50;4;1,4570325;1,6;7%;0,270%;75,571%;24%;0;1;0;5;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";571;28374;85122;85,122;8512,2;25364,83589;2253,65006;1126,82503;;;22,5365006;126,8241795;1,3;1,6;10;0,02
+herold.biz;How to get started;14.01.25;CUSD;01.01.25;0,1652;19,2;20;0;0;39,3652;59;118;106;8;4,6450936;2,4;7%;0,420%;50,806%;49%;0;0;0;5;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";546;24773;74319;148,638;37159,5;25872,13261;2276,186561;1138,09328;;;22,76186561;129,360663;1,4;2,4;10;0,02
+herold.biz;How to get started;15.01.25;CUSD;01.01.25;0,0248;8;20;0;0,02;28,0448;31;31;22;4;0,8693888;2;13%;0,088%;71,386%;29%;0;1;0;5;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";851;20746;82984;82,984;29044,4;26389,57526;2298,948426;1149,474213;;;22,98948426;131,9478763;0,8;2;10;0,02
+herold.biz;How to get started;16.01.25;CUSD;01.01.25;0,4356;13,5;4;0;0,02;17,9556;99;396;198;5;7,1104176;2,7;1%;2,426%;22,389%;75%;0;1;0;1;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";933;20199;60597;121,194;22218,9;26917,36677;2321,937911;1160,968955;;;23,21937911;134,5868338;1,1;2,7;10;0,02
+herold.biz;How to get started;17.01.25;CUSD;01.01.25;0,1022;23,2;16;0;0,02;39,3222;73;73;22;8;2,8705206;2,9;11%;0,260%;40,740%;59%;0;1;0;4;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1566;29913;119652;239,304;23930,4;27455,7141;2345,15729;1172,578645;;;23,4515729;137,2785705;1,4;2,9;10;0,02
+herold.biz;How to get started;18.01.25;CUSD;01.01.25;0,3696;28,8;8;0;0,02;37,1896;77;308;31;32;11,4543968;0,9;10%;0,994%;21,565%;77%;0;1;0;2;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1081;28783;28783;28,783;20148,1;28004,82838;2368,608863;1184,304431;;;23,68608863;140,0241419;1,2;0,9;10;0,02
+herold.biz;How to get started;19.01.25;CUSD;01.01.25;0,2808;16,2;20;0;0;36,4808;72;216;151;18;7,8798528;0,9;8%;0,770%;54,823%;44%;0;0;0;5;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1400;27868;83604;250,812;33441,6;28564,92495;2392,294951;1196,147476;;;23,92294951;142,8246248;1,3;0,9;10;0,02
+herold.biz;How to get started;20.01.25;CUSD;01.01.25;0,153;49,4;8;0;0,02;57,573;102;306;92;19;17,617338;2,6;6%;0,266%;13,930%;86%;0;1;0;2;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1734;29811;59622;59,622;20867,7;29136,22345;2416,217901;1208,10895;;;24,16217901;145,6811173;0,5;2,6;10;0,02
+herold.biz;How to get started;21.01.25;CUSD;01.01.25;0,1296;12,6;8;0;0,02;20,7496;144;144;101;7;2,9879424;1,8;5%;0,625%;38,651%;61%;0;1;0;2;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1455;23769;47538;47,538;30899,7;29718,94792;2440,38008;1220,19004;;;24,4038008;148,5947396;0,9;1,8;10;0,02
+herold.biz;How to get started;22.01.25;CUSD;01.01.25;0,0742;28,6;4;0;0,02;32,6942;106;106;21;11;3,4655852;2,6;10%;0,227%;12,296%;87%;0;1;0;1;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1583;24199;96796;290,388;14519,4;30313,32688;2464,783881;1232,39194;;;24,64783881;151,5666344;0,7;2,6;10;0,02
+herold.biz;How to get started;23.01.25;CUSD;01.01.25;0,1456;5,4;12;0;0,02;17,5656;104;208;42;3;3,6536448;1,8;1%;0,829%;68,429%;31%;0;1;0;3;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1545;22850;91400;91,4;22850;30919,59342;2489,43172;1244,71586;;;24,8943172;154,5979671;0,7;1,8;10;0,02
+herold.biz;How to get started;24.01.25;CUSD;01.01.25;0,36;20,8;16;10;0,02;47,18;80;240;168;8;11,3232;2,6;3%;0,763%;55,150%;44%;1;1;10;4;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1118;26241;26241;78,723;7872,3;31537,98528;2514,326037;1257,163018;;;25,14326037;157,6899264;1,5;2,6;10;0,02
+herold.biz;How to get started;25.01.25;CUSD;01.01.25;0,0648;14,4;8;10;0;32,4648;81;81;49;9;2,6296488;1,6;11%;0,200%;55,445%;44%;1;0;10;2;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1652;25936;25936;77,808;20748,8;32168,74499;2539,469297;1269,734649;;;25,39469297;160,8437249;0,8;1,6;10;0,02
+herold.biz;How to get started;26.01.25;CUSD;01.01.25;0,3312;56;4;10;0;70,3312;138;276;221;20;19,4114112;2,8;7%;0,471%;19,906%;80%;1;0;10;1;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";400;21485;21485;42,97;23633,5;32812,11989;2564,86399;1282,431995;;;25,6486399;164,0605994;1,2;2,8;10;0,02
+herold.biz;How to get started;27.01.25;CUSD;01.01.25;0,2475;20,4;12;10;0;42,6475;75;225;203;12;9,5956875;1,7;5%;0,580%;51,586%;48%;1;0;10;3;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1944;23546;94184;282,552;7063,8;33468,36229;2590,51263;1295,256315;;;25,9051263;167,3418114;1,1;1,7;10;0,02
+herold.biz;How to get started;28.01.25;CUSD;01.01.25;0,0855;8,8;8;10;0,02;26,9055;57;171;137;11;4,6008405;0,8;6%;0,318%;66,975%;33%;1;1;10;2;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1351;28403;56806;170,418;25562,7;34137,72953;2616,417756;1308,208878;;;26,16417756;170,6886477;0,5;0,8;10;0,02
+herold.biz;How to get started;29.01.25;CUSD;01.01.25;0,06;16,2;4;10;0,02;30,28;30;60;36;6;1,8168;2,7;10%;0,198%;46,301%;54%;1;1;10;1;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";542;27494;109976;329,928;30243,4;34820,48412;2642,581934;1321,290967;;;26,42581934;174,1024206;1;2,7;10;0,02
+herold.biz;How to get started;30.01.25;CUSD;01.01.25;0,0975;7,2;4;10;0,02;21,3175;65;65;7;6;1,3856375;1,2;9%;0,457%;65,768%;34%;1;1;10;1;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1653;28626;28626;57,252;17175,6;35516,89381;2669,007753;1334,503877;;;26,69007753;177,584469;1,5;1,2;10;0,02
+herold.biz;How to get started;31.01.25;CUSD;01.01.25;0,552;88,2;8;10;0,02;106,772;115;460;460;42;49,11512;2,1;9%;0,517%;16,877%;83%;1;1;10;2;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";889;24239;72717;72,717;16967,3;36227,23168;2695,697831;1347,848915;;;26,95697831;181,1361584;1,2;2,1;10;0,02
+herold.biz;How to get started;01.02.25;CUSD;01.01.25;0,1656;33,8;16;10;0,02;59,9856;138;276;193;26;16,5560256;1,3;9%;0,276%;43,377%;56%;1;1;10;4;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";566;25441;101764;305,292;12720,5;36951,77632;2722,654809;1361,327404;;;27,22654809;184,7588816;0,6;1,3;10;0,02
+herold.biz;How to get started;02.02.25;CUSD;01.01.25;0,4224;59,4;4;10;0,02;73,8424;88;352;176;22;25,9925248;2,7;6%;0,572%;18,986%;80%;1;1;10;1;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";888;25089;100356;200,712;10035,6;37690,81184;2749,881357;1374,940679;;;27,49881357;188,4540592;1,2;2,7;10;0,02
+herold.biz;How to get started;03.02.25;CUSD;01.01.25;0,481;4;16;10;0,02;30,501;185;370;148;5;11,28537;0,8;1%;1,577%;85,309%;13%;1;1;10;4;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1092;26944;107776;107,776;13472;38444,62808;2777,380171;1388,690085;;;27,77380171;192,2231404;1,3;0,8;10;0,02
+herold.biz;How to get started;04.02.25;CUSD;01.01.25;0,1152;48,6;16;10;0,02;74,7352;64;192;96;18;14,3491584;2,7;9%;0,154%;34,816%;65%;1;1;10;4;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";832;23129;23129;69,387;30067,7;39213,52064;2805,153972;1402,576986;;;28,05153972;196,0676032;0,6;2,7;10;0,02
+herold.biz;How to get started;05.02.25;CUSD;01.01.25;0,4788;35,1;12;10;0;57,5788;133;399;319;13;22,9739412;2,7;3%;0,832%;38,209%;61%;1;0;10;3;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1987;26237;78711;78,711;15742,2;39997,79105;2833,205512;1416,602756;;;28,33205512;199,9889553;1,2;2,7;10;0,02
+herold.biz;How to get started;06.02.25;CUSD;01.01.25;0,336;36;16;10;0,02;62,356;120;480;384;15;29,93088;2,4;3%;0,539%;41,728%;58%;1;1;10;4;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1834;28845;57690;173,07;8653,5;40797,74687;2861,537567;1430,768784;;;28,61537567;203,9887344;0,7;2,4;10;0,02
+herold.biz;How to get started;07.02.25;CUSD;01.01.25;0,2976;18,4;8;10;0,02;36,7176;124;248;198;8;9,1059648;2,3;3%;0,811%;49,077%;50%;1;1;10;2;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1943;27992;55984;55,984;36389,6;41613,70181;2890,152943;1445,076471;;;28,90152943;208,0685091;1,2;2,3;10;0,02
+herold.biz;How to get started;08.02.25;CUSD;01.01.25;0,1568;21;8;10;0,02;39,1768;56;112;67;7;4,3878016;3;6%;0,400%;45,997%;54%;1;1;10;2;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";288;20067;60201;180,603;12040,2;42445,97585;2919,054472;1459,527236;;;29,19054472;212,2298792;1,4;3;10;0,02
+herold.biz;How to get started;09.02.25;CUSD;01.01.25;1,0248;119,6;16;10;0;146,6248;183;732;220;52;107,3293536;2,3;7%;0,699%;17,732%;82%;1;0;10;4;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";385;21279;42558;42,558;25534,8;43294,89536;2948,245017;1474,122509;;;29,48245017;216,4744768;1,4;2,3;10;0,02
+herold.biz;How to get started;10.02.25;CUSD;01.01.25;0,486;92,4;8;10;0;110,886;135;405;243;42;44,90883;2,2;10%;0,438%;16,233%;83%;1;0;10;2;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";1178;27541;110164;220,328;38557,4;44160,79327;2977,727467;1488,863734;;;29,77727467;220,8039664;1,2;2,2;10;0,02
+herold.biz;How to get started;11.02.25;CUSD;01.01.25;0,1568;10,5;12;10;0,02;32,6768;56;112;45;5;3,6598016;2,1;4%;0,480%;67,387%;32%;1;1;10;3;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";330;22792;68376;205,128;15954,4;45044,00914;3007,504742;1503,752371;;;30,07504742;225,2200457;1,4;2,1;10;0,02
+herold.biz;How to get started;12.02.25;CUSD;01.01.25;0,1764;19,8;20;10;0,02;49,9964;98;196;118;9;9,7992944;2,2;5%;0,353%;60,044%;40%;1;1;10;5;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";704;25944;25944;25,944;31132,8;45944,88932;3037,579789;1518,789895;;;30,37579789;229,7244466;0,9;2,2;10;0,02
+herold.biz;How to get started;13.02.25;CUSD;01.01.25;0,086;20;20;10;0;50,086;215;215;194;10;10,76849;2;5%;0,172%;59,897%;40%;1;0;10;5;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";694;22498;44996;44,996;20248,2;46863,78711;3067,955587;1533,977794;;;30,67955587;234,3189355;0,4;2;10;0,02
+herold.biz;How to get started;14.02.25;CUSD;01.01.25;0,1224;25,2;12;10;0,02;47,3424;102;204;82;21;9,6578496;1,2;10%;0,259%;46,512%;53%;1;1;10;3;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";262;27582;55164;165,492;19307,4;47801,06285;3098,635143;1549,317572;;;30,98635143;239,0053142;0,6;1,2;10;0,02
+herold.biz;How to get started;15.02.25;CUSD;01.01.25;0,105;8;20;10;0;38,105;105;105;84;4;4,001025;2;4%;0,276%;78,730%;21%;1;0;10;5;"IAB1-6 – Technology & Computing, Artificial Intelligence (AI);
+IAB3-2 – Automotive, Electric Vehicles;
+IAB9-7 – Health & Fitness , Nutrition;
+IAB11-5 – Law, Gov’t & Politics, Privacy & Data Protection;
+IAB19-3 – Personal Finance, Cryptocurrency & Blockchain;";400;24896;49792;49,792;32364,8;48757,08411;3129,621494;1564,810747;;;31,29621494;243,7854205;1;2;10;0,02
+herold.biz;The AI role in Publishing;04.01.25;CUSD;04.01.25;0,1128;19;12;0;0;31,1128;94;188;75;10;5,8492064;1,9;5%;0,363%;38,569%;61%;0;0;0;3;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1923;26858;26858;26,858;37601,2;20000;2000;1000;;;20;100;0,6;1,9;10;0,02
+herold.biz;The AI role in Publishing;05.01.25;CUSD;04.01.25;0,2952;33,8;8;0;0,02;42,1152;82;246;98;26;10,3603392;1,3;11%;0,701%;19,043%;80%;0;1;0;2;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";638;29433;88299;264,897;20603,1;20400;2020;1010;;;20,2;102;1,2;1,3;10;0,02
+herold.biz;The AI role in Publishing;06.01.25;CUSD;04.01.25;0,1488;13,5;4;0;0,02;17,6688;93;186;19;5;3,2863968;2,7;3%;0,842%;22,752%;76%;0;1;0;1;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1276;20972;62916;188,748;6291,6;20808;2040,2;1020,1;;;20,402;104,04;0,8;2,7;10;0,02
+herold.biz;The AI role in Publishing;07.01.25;CUSD;04.01.25;0,182;25,5;4;0;0;29,682;65;260;26;17;7,71732;1,5;7%;0,613%;13,476%;86%;0;0;0;1;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";705;25323;101292;202,584;30387,6;21224,16;2060,602;1030,301;;;20,60602;106,1208;0,7;1,5;10;0,02
+herold.biz;The AI role in Publishing;08.01.25;CUSD;04.01.25;0,066;7;8;0;0;15,066;44;44;31;5;0,662904;1,4;11%;0,438%;53,100%;46%;0;0;0;2;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1296;26587;106348;106,348;13293,5;21648,6432;2081,20802;1040,60401;;;20,8120802;108,243216;1,5;1,4;10;0,02
+herold.biz;The AI role in Publishing;09.01.25;CUSD;04.01.25;0,2884;9,1;8;0;0,02;17,4084;103;206;41;7;3,5861304;1,3;3%;1,657%;46,070%;52%;0;1;0;2;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";923;22732;45464;136,392;6819,6;22081,61606;2102,0201;1051,01005;;;21,020201;110,4080803;1,4;1,3;10;0,02
+herold.biz;The AI role in Publishing;10.01.25;CUSD;04.01.25;0,2296;5,4;8;0;0,02;13,6496;82;164;49;3;2,2385344;1,8;2%;1,682%;58,756%;40%;0;1;0;2;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";927;29182;87546;175,092;40854,8;22523,24839;2123,040301;1061,520151;;;21,23040301;112,6162419;1,4;1,8;10;0,02
+herold.biz;The AI role in Publishing;11.01.25;CUSD;04.01.25;0,2112;10,5;16;0;0,02;26,7312;96;192;192;5;5,1323904;2,1;3%;0,790%;59,930%;39%;0;1;0;4;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";863;25920;77760;77,76;18144;22973,71335;2144,270704;1072,135352;;;21,44270704;114,8685668;1,1;2,1;10;0,02
+herold.biz;The AI role in Publishing;12.01.25;CUSD;04.01.25;0,0484;4,5;16;0;0,02;20,5684;44;44;35;5;0,9050096;0,9;11%;0,235%;77,886%;22%;0;1;0;4;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1137;23343;93372;93,372;32680,2;23433,18762;2165,713411;1082,856706;;;21,65713411;117,1659381;1,1;0,9;10;0,02
+herold.biz;The AI role in Publishing;13.01.25;CUSD;04.01.25;0,116;7,7;16;0;0,02;23,836;29;116;46;7;2,764976;1,1;6%;0,487%;67,209%;32%;0;1;0;4;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1002;25483;50966;50,966;17838,1;23901,85137;2187,370545;1093,685273;;;21,87370545;119,5092569;1;1,1;10;0,02
+herold.biz;The AI role in Publishing;14.01.25;CUSD;04.01.25;0,0306;12;12;0;0,02;24,0506;51;51;36;5;1,2265806;2,4;10%;0,127%;49,978%;50%;0;1;0;3;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";334;22377;89508;179,016;13426,2;24379,8884;2209,244251;1104,622125;;;22,09244251;121,899442;0,6;2,4;10;0,02
+herold.biz;The AI role in Publishing;15.01.25;CUSD;04.01.25;0,0588;3,9;16;0;0,02;19,9788;49;49;25;3;0,9789612;1,3;6%;0,294%;80,185%;20%;0;1;0;4;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1446;23221;23221;69,663;16254,7;24867,48617;2231,336693;1115,668347;;;22,31336693;124,3374308;1,2;1,3;10;0,02
+herold.biz;The AI role in Publishing;16.01.25;CUSD;04.01.25;0,0693;3;16;0;0;19,0693;99;99;50;3;1,8878607;1;3%;0,363%;83,904%;16%;0;0;0;4;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";377;28374;85122;85,122;8512,2;25364,83589;2253,65006;1126,82503;;;22,5365006;126,8241795;0,7;1;10;0,02
+herold.biz;The AI role in Publishing;17.01.25;CUSD;04.01.25;0,0285;6;12;0;0,02;18,0485;57;57;46;4;1,0287645;1,5;7%;0,158%;66,598%;33%;0;1;0;3;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1472;24773;74319;148,638;37159,5;25872,13261;2276,186561;1138,09328;;;22,76186561;129,360663;0,5;1,5;10;0,02
+herold.biz;The AI role in Publishing;18.01.25;CUSD;04.01.25;0,1696;10,5;4;0;0;14,6696;106;212;106;5;3,1099552;2,1;2%;1,156%;27,267%;72%;0;0;0;1;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1904;20746;82984;82,984;29044,4;26389,57526;2298,948426;1149,474213;;;22,98948426;131,9478763;0,8;2,1;10;0,02
+herold.biz;The AI role in Publishing;19.01.25;CUSD;04.01.25;0,237;12;12;0;0;24,237;79;237;71;8;5,744169;1,5;3%;0,978%;49,511%;50%;0;0;0;3;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";853;20199;60597;121,194;22218,9;26917,36677;2321,937911;1160,968955;;;23,21937911;134,5868338;1;1,5;10;0,02
+herold.biz;The AI role in Publishing;20.01.25;CUSD;04.01.25;0,088;13,6;20;0;0,04;33,728;88;88;62;8;2,968064;1,7;9%;0,261%;59,417%;40%;0;2;0;5;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1605;29913;119652;239,304;23930,4;27455,7141;2345,15729;1172,578645;;;23,4515729;137,2785705;1;1,7;10;0,02
+herold.biz;The AI role in Publishing;21.01.25;CUSD;04.01.25;0,3;35,2;20;0;0;55,5;125;375;38;16;20,8125;2,2;4%;0,541%;36,036%;63%;0;0;0;5;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1944;28783;28783;28,783;20148,1;28004,82838;2368,608863;1184,304431;;;23,68608863;140,0241419;0,8;2,2;10;0,02
+herold.biz;The AI role in Publishing;22.01.25;CUSD;04.01.25;0,3159;49,5;20;0;0,02;69,8359;117;351;105;33;24,5124009;1,5;9%;0,452%;28,667%;71%;0;1;0;5;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1451;27868;83604;250,812;33441,6;28564,92495;2392,294951;1196,147476;;;23,92294951;142,8246248;0,9;1,5;10;0,02
+herold.biz;The AI role in Publishing;23.01.25;CUSD;04.01.25;0,564;9;4;0;0,02;13,584;94;376;263;5;5,107584;1,8;1%;4,152%;29,594%;66%;0;1;0;1;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";211;29811;59622;59,622;20867,7;29136,22345;2416,217901;1208,10895;;;24,16217901;145,6811173;1,5;1,8;10;0,02
+herold.biz;The AI role in Publishing;24.01.25;CUSD;04.01.25;0,84;35;8;0;0,02;43,86;140;560;392;35;24,5616;1;6%;1,915%;18,285%;80%;0;1;0;2;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";479;23769;47538;47,538;30899,7;29718,94792;2440,38008;1220,19004;;;24,4038008;148,5947396;1,5;1;10;0,02
+herold.biz;The AI role in Publishing;25.01.25;CUSD;04.01.25;0,2058;22,1;4;0;0;26,3058;147;147;29;13;3,8669526;1,7;9%;0,782%;15,206%;84%;0;0;0;1;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";346;24199;96796;290,388;14519,4;30313,32688;2464,783881;1232,39194;;;24,64783881;151,5666344;1,4;1,7;10;0,02
+herold.biz;The AI role in Publishing;26.01.25;CUSD;04.01.25;0,2048;21,6;16;0;0;37,8048;64;256;179;27;9,6780288;0,8;11%;0,542%;42,323%;57%;0;0;0;4;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";456;22850;91400;91,4;22850;30919,59342;2489,43172;1244,71586;;;24,8943172;154,5979671;0,8;0,8;10;0,02
+herold.biz;The AI role in Publishing;27.01.25;CUSD;04.01.25;0,068;16;4;10;0;30,068;68;136;14;8;4,089248;2;6%;0,226%;46,561%;53%;1;0;10;1;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";361;26241;26241;78,723;7872,3;31537,98528;2514,326037;1257,163018;;;25,14326037;157,6899264;0,5;2;10;0,02
+herold.biz;The AI role in Publishing;28.01.25;CUSD;04.01.25;0,5148;55,9;16;10;0;82,4148;117;468;187;43;38,5701264;1,3;9%;0,625%;31,548%;68%;1;0;10;4;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1867;25936;25936;77,808;20748,8;32168,74499;2539,469297;1269,734649;;;25,39469297;160,8437249;1,1;1,3;10;0,02
+herold.biz;The AI role in Publishing;29.01.25;CUSD;04.01.25;0,248;8;12;10;0,02;30,268;124;248;198;8;7,506464;1;3%;0,819%;72,750%;26%;1;1;10;3;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1534;21485;21485;42,97;23633,5;32812,11989;2564,86399;1282,431995;;;25,6486399;164,0605994;1;1;10;0,02
+herold.biz;The AI role in Publishing;30.01.25;CUSD;04.01.25;0,0636;52;4;10;0,02;66,0836;53;212;148;20;14,0097232;2,6;9%;0,096%;21,216%;79%;1;1;10;1;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1490;23546;94184;282,552;7063,8;33468,36229;2590,51263;1295,256315;;;25,9051263;167,3418114;0,3;2,6;10;0,02
+herold.biz;The AI role in Publishing;31.01.25;CUSD;04.01.25;0,1404;8,4;20;10;0,02;38,5604;156;156;62;4;6,0154224;2,1;3%;0,364%;77,852%;22%;1;1;10;5;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1231;28403;56806;170,418;25562,7;34137,72953;2616,417756;1308,208878;;;26,16417756;170,6886477;0,9;2,1;10;0,02
+herold.biz;The AI role in Publishing;01.02.25;CUSD;04.01.25;0,1188;34,2;8;10;0,02;52,3388;99;297;238;19;15,5446236;1,8;6%;0,227%;34,430%;65%;1;1;10;2;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";236;27494;109976;329,928;30243,4;34820,48412;2642,581934;1321,290967;;;26,42581934;174,1024206;0,4;1,8;10;0,02
+herold.biz;The AI role in Publishing;02.02.25;CUSD;04.01.25;0,3384;78,2;16;10;0,02;104,5584;141;564;226;46;58,9709376;1,7;8%;0,324%;24,886%;75%;1;1;10;4;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1174;28626;28626;57,252;17175,6;35516,89381;2669,007753;1334,503877;;;26,69007753;177,584469;0,6;1,7;10;0,02
+herold.biz;The AI role in Publishing;03.02.25;CUSD;04.01.25;0,1512;12;12;10;0,02;34,1712;42;126;13;12;4,3055712;1;10%;0,442%;64,440%;35%;1;1;10;3;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1955;24239;72717;72,717;16967,3;36227,23168;2695,697831;1347,848915;;;26,95697831;181,1361584;1,2;1;10;0,02
+herold.biz;The AI role in Publishing;04.02.25;CUSD;04.01.25;0,1548;55,1;4;10;0;69,2548;129;258;181;19;17,8677384;2,9;7%;0,224%;20,215%;80%;1;0;10;1;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1763;25441;101764;305,292;12720,5;36951,77632;2722,654809;1361,327404;;;27,22654809;184,7588816;0,6;2,9;10;0,02
+herold.biz;The AI role in Publishing;05.02.25;CUSD;04.01.25;0,8496;108;12;10;0,02;130,8696;177;708;71;36;92,6556768;3;5%;0,649%;16,826%;83%;1;1;10;3;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";399;25089;100356;200,712;10035,6;37690,81184;2749,881357;1374,940679;;;27,49881357;188,4540592;1,2;3;10;0,02
+herold.biz;The AI role in Publishing;06.02.25;CUSD;04.01.25;0,594;18,7;12;10;0,02;41,314;165;495;248;11;20,45043;1,7;2%;1,438%;53,299%;45%;1;1;10;3;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1846;26944;107776;107,776;13472;38444,62808;2777,380171;1388,690085;;;27,77380171;192,2231404;1,2;1,7;10;0,02
+herold.biz;The AI role in Publishing;07.02.25;CUSD;04.01.25;0,1032;43,2;8;10;0;61,3032;129;258;77;24;15,8162256;1,8;9%;0,168%;29,362%;70%;1;0;10;2;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1478;23129;23129;69,387;30067,7;39213,52064;2805,153972;1402,576986;;;28,05153972;196,0676032;0,4;1,8;10;0,02
+herold.biz;The AI role in Publishing;08.02.25;CUSD;04.01.25;0,16;15,6;12;10;0,02;37,78;160;160;48;6;6,0448;2,6;4%;0,424%;58,285%;41%;1;1;10;3;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1428;26237;78711;78,711;15742,2;39997,79105;2833,205512;1416,602756;;;28,33205512;199,9889553;1;2,6;10;0,02
+herold.biz;The AI role in Publishing;09.02.25;CUSD;04.01.25;0,0546;9,5;8;10;0,02;27,5746;39;39;4;5;1,0754094;1,9;13%;0,198%;65,350%;34%;1;1;10;2;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1692;28845;57690;173,07;8653,5;40797,74687;2861,537567;1430,768784;;;28,61537567;203,9887344;1,4;1,9;10;0,02
+herold.biz;The AI role in Publishing;10.02.25;CUSD;04.01.25;0,882;48;8;10;0;66,882;147;588;470;48;39,326616;1;8%;1,319%;26,913%;72%;1;0;10;2;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";398;27992;55984;55,984;36389,6;41613,70181;2890,152943;1445,076471;;;28,90152943;208,0685091;1,5;1;10;0,02
+herold.biz;The AI role in Publishing;11.02.25;CUSD;04.01.25;0,2145;44;20;10;0,02;74,2345;143;429;172;44;31,8466005;1;10%;0,289%;40,439%;59%;1;1;10;5;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1083;20067;60201;180,603;12040,2;42445,97585;2919,054472;1459,527236;;;29,19054472;212,2298792;0,5;1;10;0,02
+herold.biz;The AI role in Publishing;12.02.25;CUSD;04.01.25;0,3304;19,5;8;10;0;37,8304;59;236;94;15;8,9279744;1,3;6%;0,873%;47,581%;52%;1;0;10;2;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";298;21279;42558;42,558;25534,8;43294,89536;2948,245017;1474,122509;;;29,48245017;216,4744768;1,4;1,3;10;0,02
+herold.biz;The AI role in Publishing;13.02.25;CUSD;04.01.25;0,1421;11,2;16;10;0,02;37,3621;203;203;81;7;7,5845063;1,6;3%;0,380%;69,643%;30%;1;1;10;4;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";375;27541;110164;220,328;38557,4;44160,79327;2977,727467;1488,863734;;;29,77727467;220,8039664;0,7;1,6;10;0,02
+herold.biz;The AI role in Publishing;14.02.25;CUSD;04.01.25;0,1209;8;12;10;0,02;30,1409;31;93;28;4;2,8031037;2;4%;0,401%;73,057%;27%;1;1;10;3;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1039;22792;68376;205,128;15954,4;45044,00914;3007,504742;1503,752371;;;30,07504742;225,2200457;1,3;2;10;0,02
+herold.biz;The AI role in Publishing;15.02.25;CUSD;04.01.25;0,174;52,2;16;10;0,02;78,394;58;174;122;18;13,640556;2,9;10%;0,222%;33,191%;67%;1;1;10;4;"IAB8-11 – Food & Drink, Coffee & Tea;
+IAB17-4 – News, Science News;
+IAB6-2 – Education, Online Education;
+IAB18-3 – Parenting, Teen Parenting;
+IAB14-7 – Real Estate, Home Improvement;";1701;25944;25944;25,944;31132,8;45944,88932;3037,579789;1518,789895;;;30,37579789;229,7244466;1;2,9;10;0,02
+ocoso.io;Your network for publishing;08.01.25;CUSD;08.01.25;0,1232;36,4;12;0;0,02;48,5432;77;154;123;13;7,4756528;2,8;8%;0,254%;24,761%;75%;0;1;0;3;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1638;26858;26858;26,858;37601,2;20000;2000;1000;;;20;100;0,8;2,8;10;0,02
+ocoso.io;Your network for publishing;09.01.25;CUSD;08.01.25;0,24;48;8;0;0,02;56,26;100;300;150;16;16,878;3;5%;0,427%;14,255%;85%;0;1;0;2;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1606;29433;88299;264,897;20603,1;20400;2020;1010;;;20,2;102;0,8;3;10;0,02
+ocoso.io;Your network for publishing;10.01.25;CUSD;08.01.25;0,072;4,8;20;0;0,02;24,892;48;48;43;4;1,194816;1,2;8%;0,289%;80,427%;19%;0;1;0;5;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1679;20972;62916;188,748;6291,6;20808;2040,2;1020,1;;;20,402;104,04;1,5;1,2;10;0,02
+ocoso.io;Your network for publishing;11.01.25;CUSD;08.01.25;0,2163;43,5;8;0;0,04;51,7563;103;309;185;29;15,9926967;1,5;9%;0,418%;15,534%;84%;0;2;0;2;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1516;25323;101292;202,584;30387,6;21224,16;2060,602;1030,301;;;20,60602;106,1208;0,7;1,5;10;0,02
+ocoso.io;Your network for publishing;12.01.25;CUSD;08.01.25;0,186;29;20;0;0,02;49,206;62;124;124;10;6,101544;2,9;8%;0,378%;40,686%;59%;0;1;0;5;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1647;26587;106348;106,348;13293,5;21648,6432;2081,20802;1040,60401;;;20,8120802;108,243216;1,5;2,9;10;0,02
+ocoso.io;Your network for publishing;13.01.25;CUSD;08.01.25;0,2376;46,5;8;0;0;54,7376;99;297;178;31;16,2570672;1,5;10%;0,434%;14,615%;85%;0;0;0;2;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1576;22732;45464;136,392;6819,6;22081,61606;2102,0201;1051,01005;;;21,020201;110,4080803;0,8;1,5;10;0,02
+ocoso.io;Your network for publishing;14.01.25;CUSD;08.01.25;0,1128;6,4;4;0;0,02;10,5328;47;141;127;4;1,4851248;1,6;3%;1,071%;38,166%;61%;0;1;0;1;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1288;29182;87546;175,092;40854,8;22523,24839;2123,040301;1061,520151;;;21,23040301;112,6162419;0,8;1,6;10;0,02
+ocoso.io;Your network for publishing;15.01.25;CUSD;08.01.25;0,2376;7,7;16;0;0;23,9376;54;216;108;7;5,1705216;1,1;3%;0,993%;66,840%;32%;0;0;0;4;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";739;25920;77760;77,76;18144;22973,71335;2144,270704;1072,135352;;;21,44270704;114,8685668;1,1;1,1;10;0,02
+ocoso.io;Your network for publishing;16.01.25;CUSD;08.01.25;0,384;25,3;20;0;0;45,684;64;256;128;11;11,695104;2,3;4%;0,841%;43,779%;55%;0;0;0;5;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1067;23343;93372;93,372;32680,2;23433,18762;2165,713411;1082,856706;;;21,65713411;117,1659381;1,5;2,3;10;0,02
+ocoso.io;Your network for publishing;17.01.25;CUSD;08.01.25;0,096;35;16;0;0;51,096;48;192;58;14;9,810432;2,5;7%;0,188%;31,314%;68%;0;0;0;4;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1900;25483;50966;50,966;17838,1;23901,85137;2187,370545;1093,685273;;;21,87370545;119,5092569;0,5;2,5;10;0,02
+ocoso.io;Your network for publishing;18.01.25;CUSD;08.01.25;0,0432;28;16;0;0;44,0432;36;144;101;14;6,3422208;2;10%;0,098%;36,328%;64%;0;0;0;4;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1688;22377;89508;179,016;13426,2;24379,8884;2209,244251;1104,622125;;;22,09244251;121,899442;0,3;2;10;0,02
+ocoso.io;Your network for publishing;19.01.25;CUSD;08.01.25;0,0327;6;20;0;0,02;26,0527;109;109;44;3;2,8397443;2;3%;0,126%;76,844%;23%;0;1;0;5;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1361;23221;23221;69,663;16254,7;24867,48617;2231,336693;1115,668347;;;22,31336693;124,3374308;0,3;2;10;0,02
+ocoso.io;Your network for publishing;20.01.25;CUSD;08.01.25;0,3392;117;8;0;0,04;125,3792;106;424;382;39;53,1607808;3;9%;0,271%;6,413%;93%;0;2;0;2;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";366;28374;85122;85,122;8512,2;25364,83589;2253,65006;1126,82503;;;22,5365006;126,8241795;0,8;3;10;0,02
+ocoso.io;Your network for publishing;21.01.25;CUSD;08.01.25;0,3648;55,8;16;0;0,02;72,1848;76;304;91;31;21,9441792;1,8;10%;0,505%;22,193%;77%;0;1;0;4;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1368;24773;74319;148,638;37159,5;25872,13261;2276,186561;1138,09328;;;22,76186561;129,360663;1,2;1,8;10;0,02
+ocoso.io;Your network for publishing;22.01.25;CUSD;08.01.25;0,6496;39,6;8;0;0,02;48,2696;116;464;232;33;22,3970944;1,2;7%;1,346%;16,615%;82%;0;1;0;2;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";983;20746;82984;82,984;29044,4;26389,57526;2298,948426;1149,474213;;;22,98948426;131,9478763;1,4;1,2;10;0,02
+ocoso.io;Your network for publishing;23.01.25;CUSD;08.01.25;0,035;15,6;8;0;0;23,635;35;70;14;6;1,65445;2,6;9%;0,148%;33,848%;66%;0;0;0;2;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";120;20199;60597;121,194;22218,9;26917,36677;2321,937911;1160,968955;;;23,21937911;134,5868338;0,5;2,6;10;0,02
+ocoso.io;Your network for publishing;24.01.25;CUSD;08.01.25;0,0416;6,3;12;0;0,02;18,3616;26;52;31;3;0,9548032;2,1;6%;0,227%;65,463%;34%;0;1;0;3;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1027;29913;119652;239,304;23930,4;27455,7141;2345,15729;1172,578645;;;23,4515729;137,2785705;0,8;2,1;10;0,02
+ocoso.io;Your network for publishing;25.01.25;CUSD;08.01.25;0,0972;17,6;8;0;0,02;25,7172;36;108;11;11;2,7774576;1,6;10%;0,378%;31,185%;68%;0;1;0;2;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1991;28783;28783;28,783;20148,1;28004,82838;2368,608863;1184,304431;;;23,68608863;140,0241419;0,9;1,6;10;0,02
+ocoso.io;Your network for publishing;26.01.25;CUSD;08.01.25;0,0252;10,5;20;0;0,02;30,5452;63;63;32;7;1,9243476;1,5;11%;0,083%;65,542%;34%;0;1;0;5;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";655;27868;83604;250,812;33441,6;28564,92495;2392,294951;1196,147476;;;23,92294951;142,8246248;0,4;1,5;10;0,02
+ocoso.io;Your network for publishing;27.01.25;CUSD;08.01.25;0,0645;8,4;8;0;0;16,4645;43;43;30;4;0,7079735;2,1;9%;0,392%;48,589%;51%;0;0;0;2;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1663;29811;59622;59,622;20867,7;29136,22345;2416,217901;1208,10895;;;24,16217901;145,6811173;1,5;2,1;10;0,02
+ocoso.io;Your network for publishing;28.01.25;CUSD;08.01.25;0,07;11,2;16;0;0,02;27,29;25;50;50;4;1,3645;2,8;8%;0,257%;58,703%;41%;0;1;0;4;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1430;23769;47538;47,538;30899,7;29718,94792;2440,38008;1220,19004;;;24,4038008;148,5947396;1,4;2,8;10;0,02
+ocoso.io;Your network for publishing;29.01.25;CUSD;08.01.25;0,0516;7;20;0;0,02;27,0716;86;86;17;7;2,3281576;1;8%;0,191%;73,952%;26%;0;1;0;5;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";687;24199;96796;290,388;14519,4;30313,32688;2464,783881;1232,39194;;;24,64783881;151,5666344;0,6;1;10;0,02
+ocoso.io;Your network for publishing;30.01.25;CUSD;08.01.25;0,1632;9;12;0;0,02;21,1832;102;204;20;5;4,3213728;1,8;2%;0,770%;56,743%;42%;0;1;0;3;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1077;22850;91400;91,4;22850;30919,59342;2489,43172;1244,71586;;;24,8943172;154,5979671;0,8;1,8;10;0,02
+ocoso.io;Your network for publishing;31.01.25;CUSD;08.01.25;0,3069;10,8;20;10;0;41,1069;93;279;251;12;11,4688251;0,9;4%;0,747%;72,980%;26%;1;0;10;5;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1345;26241;26241;78,723;7872,3;31537,98528;2514,326037;1257,163018;;;25,14326037;157,6899264;1,1;0,9;10;0,02
+ocoso.io;Your network for publishing;01.02.25;CUSD;08.01.25;0,0882;12,5;4;10;0;26,5882;98;98;98;5;2,6056436;2,5;5%;0,332%;52,655%;47%;1;0;10;1;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";139;25936;25936;77,808;20748,8;32168,74499;2539,469297;1269,734649;;;25,39469297;160,8437249;0,9;2,5;10;0,02
+ocoso.io;Your network for publishing;02.02.25;CUSD;08.01.25;0,104;22,1;12;10;0,02;44,224;130;260;26;17;11,49824;1,3;7%;0,235%;49,792%;50%;1;1;10;3;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1539;21485;21485;42,97;23633,5;32812,11989;2564,86399;1282,431995;;;25,6486399;164,0605994;0,4;1,3;10;0,02
+ocoso.io;Your network for publishing;03.02.25;CUSD;08.01.25;0,0736;14,7;8;10;0;32,7736;46;184;147;7;6,0303424;2,1;4%;0,225%;54,922%;45%;1;0;10;2;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1409;23546;94184;282,552;7063,8;33468,36229;2590,51263;1295,256315;;;25,9051263;167,3418114;0,4;2,1;10;0,02
+ocoso.io;Your network for publishing;04.02.25;CUSD;08.01.25;0,0406;18,9;16;10;0,02;44,9606;58;58;23;7;2,6077148;2,7;12%;0,090%;57,873%;42%;1;1;10;4;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";127;28403;56806;170,418;25562,7;34137,72953;2616,417756;1308,208878;;;26,16417756;170,6886477;0,7;2,7;10;0,02
+ocoso.io;Your network for publishing;05.02.25;CUSD;08.01.25;0,3332;12,1;12;10;0;34,4332;119;476;476;11;16,3902032;1,1;2%;0,968%;63,892%;35%;1;0;10;3;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";413;27494;109976;329,928;30243,4;34820,48412;2642,581934;1321,290967;;;26,42581934;174,1024206;0,7;1,1;10;0,02
+ocoso.io;Your network for publishing;06.02.25;CUSD;08.01.25;0,0728;13,6;12;10;0,04;35,7128;91;182;55;8;6,4997296;1,7;4%;0,204%;61,715%;38%;1;2;10;3;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";293;28626;28626;57,252;17175,6;35516,89381;2669,007753;1334,503877;;;26,69007753;177,584469;0,4;1,7;10;0,02
+ocoso.io;Your network for publishing;07.02.25;CUSD;08.01.25;0,141;37,7;12;10;0,02;59,861;94;282;56;29;16,880802;1,3;10%;0,236%;36,785%;63%;1;1;10;3;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";1081;24239;72717;72,717;16967,3;36227,23168;2695,697831;1347,848915;;;26,95697831;181,1361584;0,5;1,3;10;0,02
+ocoso.io;Your network for publishing;08.02.25;CUSD;08.01.25;0,0552;3;12;10;0;25,0552;69;69;28;2;1,7288088;1,5;3%;0,220%;87,806%;12%;1;0;10;3;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";813;25441;101764;305,292;12720,5;36951,77632;2722,654809;1361,327404;;;27,22654809;184,7588816;0,8;1,5;10;0,02
+ocoso.io;Your network for publishing;09.02.25;CUSD;08.01.25;0,163;25,3;4;10;0,02;39,483;163;163;130;11;6,435729;2,3;7%;0,413%;35,509%;64%;1;1;10;1;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";632;25089;100356;200,712;10035,6;37690,81184;2749,881357;1374,940679;;;27,49881357;188,4540592;1;2,3;10;0,02
+ocoso.io;Your network for publishing;10.02.25;CUSD;08.01.25;0,1898;13,3;12;10;0,02;35,5098;146;146;102;7;5,1844308;1,9;5%;0,535%;62,011%;37%;1;1;10;3;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";161;26944;107776;107,776;13472;38444,62808;2777,380171;1388,690085;;;27,77380171;192,2231404;1,3;1,9;10;0,02
+ocoso.io;Your network for publishing;11.02.25;CUSD;08.01.25;0,438;27;16;10;0,02;53,458;73;292;88;27;15,609736;1;9%;0,819%;48,674%;51%;1;1;10;4;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";280;23129;23129;69,387;30067,7;39213,52064;2805,153972;1402,576986;;;28,05153972;196,0676032;1,5;1;10;0,02
+ocoso.io;Your network for publishing;12.02.25;CUSD;08.01.25;0,1335;22,1;8;10;0;40,2335;89;267;80;17;10,7423445;1,3;6%;0,332%;44,739%;55%;1;0;10;2;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";567;26237;78711;78,711;15742,2;39997,79105;2833,205512;1416,602756;;;28,33205512;199,9889553;0,5;1,3;10;0,02
+ocoso.io;Your network for publishing;13.02.25;CUSD;08.01.25;0,404;79,2;4;10;0,02;93,624;202;808;404;33;75,648192;2,4;4%;0,432%;14,975%;85%;1;1;10;1;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";985;28845;57690;173,07;8653,5;40797,74687;2861,537567;1430,768784;;;28,61537567;203,9887344;0,5;2,4;10;0,02
+ocoso.io;Your network for publishing;14.02.25;CUSD;08.01.25;0,5684;98,4;16;10;0;124,9684;203;812;731;82;101,4743408;1,2;10%;0,455%;20,805%;79%;1;0;10;4;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";189;27992;55984;55,984;36389,6;41613,70181;2890,152943;1445,076471;;;28,90152943;208,0685091;0,7;1,2;10;0,02
+ocoso.io;Your network for publishing;15.02.25;CUSD;08.01.25;0,228;7,8;16;10;0,02;34,048;114;456;228;6;15,525888;1,3;1%;0,670%;76,422%;23%;1;1;10;4;"IAB1-3 – Technology & Computing , Gadgets;
+IAB2-8 – Arts & Entertainment, Music;
+IAB3-5 – Automotive, Motorsports;
+IAB4-2 – Business, Entrepreneurship;
+IAB6-7 – Education, Special Education;";378;20067;60201;180,603;12040,2;42445,97585;2919,054472;1459,527236;;;29,19054472;212,2298792;0,5;1,3;10;0,02
+ocoso.io;More benefits - less risc;16.01.25;CUSD;16.01.25;0,0522;13,5;8;0;0,02;21,5722;87;87;61;5;1,8767814;2,7;6%;0,242%;37,177%;63%;0;1;0;2;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";757;26858;26858;26,858;37601,2;20000;2000;1000;;;20;100;0,6;2,7;10;0,02
+ocoso.io;More benefits - less risc;17.01.25;CUSD;16.01.25;0,058;37,7;20;0;0,02;57,778;58;116;70;13;6,702248;2,9;11%;0,100%;34,650%;65%;0;1;0;5;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";332;29433;88299;264,897;20603,1;20400;2020;1010;;;20,2;102;0,5;2,9;10;0,02
+ocoso.io;More benefits - less risc;18.01.25;CUSD;16.01.25;0,047;11;16;0;0,02;27,067;47;94;85;10;2,544298;1,1;11%;0,174%;59,186%;41%;0;1;0;4;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";301;20972;62916;188,748;6291,6;20808;2040,2;1020,1;;;20,402;104,04;0,5;1,1;10;0,02
+ocoso.io;More benefits - less risc;19.01.25;CUSD;16.01.25;0,0245;3;20;0;0;23,0245;35;35;28;2;0,8058575;1,5;6%;0,106%;86,864%;13%;0;0;0;5;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";101;25323;101292;202,584;30387,6;21224,16;2060,602;1030,301;;;20,60602;106,1208;0,7;1,5;10;0,02
+ocoso.io;More benefits - less risc;20.01.25;CUSD;16.01.25;0,152;12,6;20;0;0,02;32,772;38;152;61;7;4,981344;1,8;5%;0,464%;61,089%;38%;0;1;0;5;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";481;26587;106348;106,348;13293,5;21648,6432;2081,20802;1040,60401;;;20,8120802;108,243216;1;1,8;10;0,02
+ocoso.io;More benefits - less risc;21.01.25;CUSD;16.01.25;0,0636;24;8;0;0,02;32,0836;53;212;148;12;6,8017232;2;6%;0,198%;24,997%;75%;0;1;0;2;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";1597;22732;45464;136,392;6819,6;22081,61606;2102,0201;1051,01005;;;21,020201;110,4080803;0,3;2;10;0,02
+ocoso.io;More benefits - less risc;22.01.25;CUSD;16.01.25;0,1617;12;8;0;0,02;20,1817;77;231;116;6;4,6619727;2;3%;0,801%;39,739%;59%;0;1;0;2;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";1065;29182;87546;175,092;40854,8;22523,24839;2123,040301;1061,520151;;;21,23040301;112,6162419;0,7;2;10;0,02
+ocoso.io;More benefits - less risc;23.01.25;CUSD;16.01.25;0,286;16,8;8;0;0,02;25,106;65;260;182;14;6,52756;1,2;5%;1,139%;31,945%;67%;0;1;0;2;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";829;25920;77760;77,76;18144;22973,71335;2144,270704;1072,135352;;;21,44270704;114,8685668;1,1;1,2;10;0,02
+ocoso.io;More benefits - less risc;24.01.25;CUSD;16.01.25;0,1176;20,3;16;0;0,02;36,4376;98;294;29;7;10,7126544;2,9;2%;0,323%;43,966%;56%;0;1;0;4;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";1156;23343;93372;93,372;32680,2;23433,18762;2165,713411;1082,856706;;;21,65713411;117,1659381;0,4;2,9;10;0,02
+ocoso.io;More benefits - less risc;25.01.25;CUSD;16.01.25;0,1638;36;16;0;0,02;52,1838;117;117;12;12;6,1055046;3;10%;0,314%;30,699%;69%;0;1;0;4;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";876;25483;50966;50,966;17838,1;23901,85137;2187,370545;1093,685273;;;21,87370545;119,5092569;1,4;3;10;0,02
+ocoso.io;More benefits - less risc;26.01.25;CUSD;16.01.25;0,056;3;12;0;0,02;15,076;40;80;72;2;1,20608;1,5;3%;0,371%;79,729%;20%;0;1;0;3;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";522;22377;89508;179,016;13426,2;24379,8884;2209,244251;1104,622125;;;22,09244251;121,899442;0,7;1,5;10;0,02
+ocoso.io;More benefits - less risc;27.01.25;CUSD;16.01.25;0,0876;6,6;12;0;0,04;18,7276;73;73;7;3;1,3671148;2,2;4%;0,468%;64,290%;35%;0;2;0;3;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";844;23221;23221;69,663;16254,7;24867,48617;2231,336693;1115,668347;;;22,31336693;124,3374308;1,2;2,2;10;0,02
+ocoso.io;More benefits - less risc;28.01.25;CUSD;16.01.25;0,118;22;20;0;0,02;42,138;118;236;118;20;9,944568;1,1;8%;0,280%;47,511%;52%;0;1;0;5;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";1537;28374;85122;85,122;8512,2;25364,83589;2253,65006;1126,82503;;;22,5365006;126,8241795;0,5;1,1;10;0,02
+ocoso.io;More benefits - less risc;29.01.25;CUSD;16.01.25;0,135;25,2;8;0;0,02;33,355;45;135;95;9;4,502925;2,8;7%;0,405%;24,044%;76%;0;1;0;2;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";757;24773;74319;148,638;37159,5;25872,13261;2276,186561;1138,09328;;;22,76186561;129,360663;1;2,8;10;0,02
+ocoso.io;More benefits - less risc;30.01.25;CUSD;16.01.25;0,093;38;4;0;0,02;42,113;62;186;19;20;7,833018;1,9;11%;0,221%;9,546%;90%;0;1;0;1;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";1481;20746;82984;82,984;29044,4;26389,57526;2298,948426;1149,474213;;;22,98948426;131,9478763;0,5;1,9;10;0,02
+ocoso.io;More benefits - less risc;31.01.25;CUSD;16.01.25;0,3;39,2;16;0;0,02;55,52;75;300;240;28;16,656;1,4;9%;0,540%;28,854%;71%;0;1;0;4;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";1890;20199;60597;121,194;22218,9;26917,36677;2321,937911;1160,968955;;;23,21937911;134,5868338;1;1,4;10;0,02
+ocoso.io;More benefits - less risc;01.02.25;CUSD;16.01.25;0,153;25,2;4;0;0,02;29,373;51;153;31;9;4,494069;2,8;6%;0,521%;13,686%;86%;0;1;0;1;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";1692;29913;119652;239,304;23930,4;27455,7141;2345,15729;1172,578645;;;23,4515729;137,2785705;1;2,8;10;0,02
+ocoso.io;More benefits - less risc;02.02.25;CUSD;16.01.25;0,228;47,6;8;0;0,02;55,848;95;380;266;28;21,22224;1,7;7%;0,408%;14,360%;85%;0;1;0;2;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";819;28783;28783;28,783;20148,1;28004,82838;2368,608863;1184,304431;;;23,68608863;140,0241419;0,6;1,7;10;0,02
+ocoso.io;More benefits - less risc;03.02.25;CUSD;16.01.25;0,0588;5,6;4;0;0;9,6588;84;84;8;4;0,8113392;1,4;5%;0,609%;41,413%;58%;0;0;0;1;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";863;27868;83604;250,812;33441,6;28564,92495;2392,294951;1196,147476;;;23,92294951;142,8246248;0,7;1,4;10;0,02
+ocoso.io;More benefits - less risc;04.02.25;CUSD;16.01.25;0,207;13,5;20;0;0,02;33,727;69;207;104;15;6,981489;0,9;7%;0,614%;59,359%;40%;0;1;0;5;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";239;29811;59622;59,622;20867,7;29136,22345;2416,217901;1208,10895;;;24,16217901;145,6811173;1;0,9;10;0,02
+ocoso.io;More benefits - less risc;05.02.25;CUSD;16.01.25;0,1232;13,2;12;0;0,02;25,3432;88;88;35;6;2,2302016;2,2;7%;0,486%;47,429%;52%;0;1;0;3;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";403;23769;47538;47,538;30899,7;29718,94792;2440,38008;1220,19004;;;24,4038008;148,5947396;1,4;2,2;10;0,02
+ocoso.io;More benefits - less risc;06.02.25;CUSD;16.01.25;0,204;39;20;0;0,02;59,224;85;340;238;15;20,13616;2,6;4%;0,344%;33,804%;66%;0;1;0;5;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";211;24199;96796;290,388;14519,4;30313,32688;2464,783881;1232,39194;;;24,64783881;151,5666344;0,6;2,6;10;0,02
+ocoso.io;More benefits - less risc;07.02.25;CUSD;16.01.25;0,1144;42;16;0;0;58,1144;143;286;257;21;16,6207184;2;7%;0,197%;27,532%;72%;0;0;0;4;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";589;22850;91400;91,4;22850;30919,59342;2489,43172;1244,71586;;;24,8943172;154,5979671;0,4;2;10;0,02
+ocoso.io;More benefits - less risc;08.02.25;CUSD;16.01.25;0,049;3,6;16;10;0;29,649;35;35;21;4;1,037715;0,9;11%;0,165%;87,693%;12%;1;0;10;4;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";1687;26241;26241;78,723;7872,3;31537,98528;2514,326037;1257,163018;;;25,14326037;157,6899264;1,4;0,9;10;0,02
+ocoso.io;More benefits - less risc;09.02.25;CUSD;16.01.25;0,6032;66,7;8;10;0,02;85,3232;116;464;232;29;39,5899648;2,3;6%;0,707%;21,120%;78%;1;1;10;2;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";1246;25936;25936;77,808;20748,8;32168,74499;2539,469297;1269,734649;;;25,39469297;160,8437249;1,3;2,3;10;0,02
+ocoso.io;More benefits - less risc;10.02.25;CUSD;16.01.25;0,0374;7,2;20;10;0;37,2374;34;34;27;3;1,2660716;2,4;9%;0,100%;80,564%;19%;1;0;10;5;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";1681;21485;21485;42,97;23633,5;32812,11989;2564,86399;1282,431995;;;25,6486399;164,0605994;1,1;2,4;10;0,02
+ocoso.io;More benefits - less risc;11.02.25;CUSD;16.01.25;0,2212;7;20;10;0;37,2212;158;316;158;7;11,7618992;1;2%;0,594%;80,599%;19%;1;0;10;5;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";1123;23546;94184;282,552;7063,8;33468,36229;2590,51263;1295,256315;;;25,9051263;167,3418114;0,7;1;10;0,02
+ocoso.io;More benefits - less risc;12.02.25;CUSD;16.01.25;0,63;14;12;10;0;36,63;105;420;378;5;15,3846;2,8;1%;1,720%;60,060%;38%;1;0;10;3;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";1048;28403;56806;170,418;25562,7;34137,72953;2616,417756;1308,208878;;;26,16417756;170,6886477;1,5;2,8;10;0,02
+ocoso.io;More benefits - less risc;13.02.25;CUSD;16.01.25;0,568;33,6;4;10;0,02;48,188;142;568;454;12;27,370784;2,8;2%;1,179%;29,094%;70%;1;1;10;1;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";356;27494;109976;329,928;30243,4;34820,48412;2642,581934;1321,290967;;;26,42581934;174,1024206;1;2,8;10;0,02
+ocoso.io;More benefits - less risc;14.02.25;CUSD;16.01.25;0,4082;92,8;4;10;0,02;107,2282;157;314;31;32;33,6696548;2,9;10%;0,381%;13,075%;87%;1;1;10;1;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";1640;28626;28626;57,252;17175,6;35516,89381;2669,007753;1334,503877;;;26,69007753;177,584469;1,3;2,9;10;0,02
+ocoso.io;More benefits - less risc;15.02.25;CUSD;16.01.25;0,1078;14,4;4;10;0,02;28,5278;77;154;62;6;4,3932812;2,4;4%;0,378%;49,145%;50%;1;1;10;1;"IAB9-2 – Health & Fitness, Mental Health;
+IAB10-4 – Hobbies & Interests, Photography;
+IAB11-6 – Law, Gov’t & Politics, International Relations;
+IAB16-3 – News & Current Events, Environmental News;
+IAB19-4 – Personal Finance, Insurance;";355;24239;72717;72,717;16967,3;36227,23168;2695,697831;1347,848915;;;26,95697831;181,1361584;0,7;2,4;10;0,02

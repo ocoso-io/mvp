@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCOSO Creator Dashboard</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/creator-dashboard.css">
+<style>
+
+</style>
+
+<script type="importmap">
+{
+  "imports": {
+    "chart.js": "https://aistudiocdn.com/chart.js@^4.5.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.20.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "chart.js/": "https://aistudiocdn.com/chart.js@^4.5.0/",
+    "date-fns": "https://aistudiocdn.com/date-fns@^4.1.0"
+  }
+}
+</script>
+  <script type="module" crossorigin src="assets/index-dynamic.js" data-json="data-performance.json"></script>
+</head>
+
+<body>
+<button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle Menu">
+  ☰
+</button>
+    <div class="dashboard-container">
+		    <aside id="sidebar-root" class="dashboard-sidebar"></aside>
+
+        <main class="dashboard-main">
+
+				    <section class="detail-performance-section" style="   grid-row: 1 / 1;
+																															    grid-column: 1 / 2;
+																															    height: max-content;
+																															    background: black;
+																															    padding: 0">
+							<div class="dashboard-main" style="grid-template-columns: repeat(1, 1fr); padding: var(--px-25) 0 0 0; gap: 0;">
+								<h1 id="page-headline"></h1>
+							</div>
+		          <select id="geo-metric-filter" class="dashboard-filter">
+		            <option value="revenue">Revenue</option>
+		            <option value="visits">Visits</option>
+		            <option value="impressions">Impressions</option>
+		          </select>
+		        </section>
+
+            <!-- Row 1: Revenue -->
+						<div class="dashboard-card hero-revenue-card">
+						  <h2 data-oc="total-revenue" style="font-size: var(--px-60) !important;">$0.00</h2>
+						  <h5>Total Revenue</h5>
+						</div>
+						
+						<div class="kpi-grid-wrapper">
+						  <div class="kpi-grid">
+						    <div class="dashboard-card kpi-card">
+						      <h5>Yesterday</h5>
+						      <p data-oc="rev-1d">$0.00</p>
+						    </div>
+						    <div class="dashboard-card kpi-card">
+						      <h5>Last 7 Days</h5>
+						      <p data-oc="rev-7d">$0.00</p>
+						    </div>
+						    <div class="dashboard-card kpi-card">
+						      <h5>This Month</h5>
+						      <p data-oc="rev-this-month">$0.00</p>
+						    </div>
+						    <div class="dashboard-card kpi-card">
+						      <h5>Last 30 Days</h5>
+						      <p data-oc="rev-30d">$0.00</p>
+						    </div>
+						  </div>
+						</div>
+            
+            <!-- Combined Detail Performance Section -->
+            <section class="detail-performance-section">
+                                <div class="dashboard-card nested page-table-card">
+                         <table class="data-table">
+                                <thead class="table-header">
+                                    <tr class="header-row">
+                                        <th class="header-cell">Page Title</th>
+                                        <th class="header-cell">C-NFT Minted</th>
+                                        <th class="header-cell">Visitors</th>
+                                        <th class="header-cell">Ad Impressions</th>
+                                        <th class="header-cell">Revenue</th>
+                                        <th class="header-cell">OC-Network CTR</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="page-table-body">
+                                    <tr class="tr-data">
+	                                    <td class="td-data">My Awesome Blog Post</td>
+	                                    <td class="td-data">✓</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+                                    </tr>
+                                    <tr class="tr-data">
+	                                    <td class="td-data">Another Great Article</td>
+	                                    <td class="td-data">✓</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+                                    </tr>
+                                    <tr class="tr-data">
+	                                    <td class="td-data">Top 10 List for 2024</td>
+	                                    <td class="td-data">—</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+                                    </tr>
+                                    <tr class="tr-data">
+	                                    <td class="td-data">A Deep Dive into Web3</td>
+	                                    <td class="td-data">✓</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+                                    </tr>
+                                    <tr class="tr-data">
+	                                    <td class="td-data">How To Get Started</td>
+	                                    <td class="td-data">—</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+                                    </tr>
+                                    <tr class="tr-data">
+	                                    <td class="td-data">The Future of Media</td>
+	                                    <td class="td-data">✓</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+	                                    <td class="td-data">0</td>
+                                    </tr>
+                                </tbody>
+                	              <tfoot class="table-footer">
+									                <tr>
+									                    <td colspan="7" class="footer-cell"></td>
+									                </tr>
+									              </tfoot>
+                            </table>
+                    </div>
+            
+                <div class="detail-performance-header">
+                    <div class="header-title-group">
+                         <h3>Detail Performance</h3>
+                    </div>
+                    <div class="date-filter-group">
+		                    <div class="dashboard-date-filter" style="padding: 0;">
+			                    <select id="timeframe-filter" class="dashboard-filter">
+                            <option value="custom">Custom Range</option>
+                            <option value="7d">Last 7 Days</option>
+                            <option value="1d">Yesterday</option>
+                            <option value="this_month">This Month</option>
+                            <option value="30d">Last 30 Days</option>
+	                        </select>
+                        </div>
+		                    <div class="dashboard-date-wrapper" style="padding: 0;">
+		                        <input type="date" id="start-date-filter" class="dashboard-date-filter">
+		                        <input type="date" id="end-date-filter" class="dashboard-date-filter">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-performance-content">
+                    <div class="dashboard-card nested performance-card">
+                        <div class="performance-grid">
+                            <div class="performance-item">
+                                <h5>Page Views</h5>
+                                <div class="chart-wrapper"><canvas id="pageViewsChart" class="performance-chart"></canvas></div>
+                            </div>
+                            <div class="performance-item">
+                                <h5>Impressions</h5>
+                                <div class="chart-wrapper"><canvas id="impressionsChart" class="performance-chart"></canvas></div>
+                            </div>
+                            <div class="performance-item">
+                                <h5>RPM</h5>
+                                <div class="chart-wrapper"><canvas id="rpmChart" class="performance-chart"></canvas></div>
+                            </div>
+                            <div class="performance-item">
+                                <h5>eCPM</h5>
+                                <div class="chart-wrapper"><canvas id="ecpmChart" class="performance-chart"></canvas></div>
+                            </div>
+                            <div class="performance-item">
+                                <h5>CPC</h5>
+                                <div class="chart-wrapper"><canvas id="cpcChart" class="performance-chart"></canvas></div>
+                            </div>
+                            <div class="performance-item">
+                                <h5>Page CTR</h5>
+                                <div class="chart-wrapper"><canvas id="pageCtrChart" class="performance-chart"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card nested geo-card">
+                        <div class="card-header">
+                             <div><h5>Geo Breakdown</h5><h3 id="geo-card-title">Revenue</h3></div>
+                             <!-- <select id="geo-metric-filter" class="dashboard-filter">
+                                <option value="revenue">Revenue</option>
+                                <option value="visits">Visits</option>
+                                <option value="impressions">Impressions</option>
+                             </select> -->
+                        </div>
+                        <div class="geo-content">
+                            <div class="geo-chart-container">
+                                <canvas id="geoChart"></canvas>
+                            </div>
+                            <table class="data-table" style="display: table;">
+                                <thead>
+                                    <tr><th  style="text-align: left;">Country</th><th id="geo-table-metric-header" style="text-align: center;">Revenue</th><th style="text-align: right;">Change</th></tr>
+                                </thead>
+                                <tbody id="geo-table-body">
+                                    <tr><td>USA</td><td>$1,478</td><td class="change-indicator change-positive">▲ 5%</td></tr>
+                                    <tr><td>Germany</td><td>$985</td><td class="change-indicator change-negative">▼ 2%</td></tr>
+                                    <tr><td>UK</td><td>$654</td><td class="change-indicator change-positive">▲ 8%</td></tr>
+                                    <tr><td>Canada</td><td>$412</td><td class="change-indicator change-positive">▲ 3%</td></tr>
+                                    <tr><td>Australia</td><td>$234</td><td class="change-indicator change-negative">▼ 1%</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </section>
+        </main>
+    </div>
+    
+    
+<script>
+(function () {
+  const btn     = document.getElementById('sidebar-toggle');
+  const sidebar = document.getElementById('sidebar-root');
+  if (!btn || !sidebar) return;
+
+  // 1) Einziger Ort, der die Button-Optik setzt
+  function paintButton(isOpen){
+    // Inline-Styles übersteuern alle Hover/Focus/Struktur-Selektoren
+    btn.style.background = isOpen ? 'var(--blue-grey-75)' : 'var(--Gelb)';
+    btn.style.color      = isOpen ? '#fff'               : '#000';
+    btn.setAttribute('aria-expanded', String(isOpen));
+  }
+
+  // 2) Quelle der Wahrheit
+  function setSidebar(isOpen){
+    sidebar.classList.toggle('open', isOpen);
+    paintButton(isOpen);
+  }
+
+  // 3) Toggle per Button
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const willOpen = !sidebar.classList.contains('open');
+    setSidebar(willOpen);
+    btn.blur(); // Focus-Optik sofort lösen
+  }, { passive:true });
+
+  // 4) Klicks innerhalb der Sidebar: Zustand fixieren (kein „Zurückspringen“)
+  sidebar.addEventListener('click', () => {
+    if (sidebar.classList.contains('open')) paintButton(true);
+  });
+
+  // 5) Outside-Klick schließt (Button wird automatisch „hell“ gemalt)
+  document.addEventListener('click', (e) => {
+    if (!sidebar.classList.contains('open')) return;
+    if (e.target.closest('#sidebar-root') || e.target.closest('#sidebar-toggle')) return;
+    setSidebar(false);
+  });
+
+  // 6) ESC schließt
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sidebar.classList.contains('open')) setSidebar(false);
+  });
+
+  // 7) Falls andere Scripts .open ändern → Button sofort nachziehen
+  const mo = new MutationObserver(() => paintButton(sidebar.classList.contains('open')));
+  mo.observe(sidebar, { attributes:true, attributeFilter:['class'] });
+
+  // 8) Initial
+  paintButton(sidebar.classList.contains('open'));
+
+  // 9) Sidebar-HTML injizieren (dein Code, unverändert), danach syncen
+  (async function injectSidebar({root='#sidebar-root', src='components/navigation-creator-dashboard.html'} = {}) {
+    const el = document.querySelector(root);
+    if (!el) return;
+    el.innerHTML = '<div class="sidebar-loading">Loading…</div>';
+    try {
+      const res = await fetch(src, {credentials:'omit', cache:'no-cache'});
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const html = await res.text();
+      const tpl = document.createElement('template');
+      tpl.innerHTML = html.trim();
+      el.replaceChildren(...tpl.content.childNodes);
+      // nach dem Inject erneut Button korrekt „dunkel/hell“ malen
+      paintButton(sidebar.classList.contains('open'));
+    } catch (err) {
+      console.error('Sidebar load failed:', err);
+      el.innerHTML = '<div class="sidebar-error">Sidebar unavailable.</div>';
+    }
+  })();
+})();
+</script>
+</body>
+</html>

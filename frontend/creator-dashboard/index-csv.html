@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Dashboard</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/creator-dashboard.css">
+    <link rel="stylesheet" href="index-csv.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-trendline"></script>
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle Menu">
+      ☰
+    </button>
+    <div class="dashboard-container">
+		    <aside id="sidebar-root" class="dashboard-sidebar"></aside>
+        <main class="dashboard-main">
+
+          <header class="dashboard-header">
+              <h1>Creator Dashboard</h1>
+              <div class="time-selector" id="global-time-selector">
+                  <button data-days="1">Gestern</button>
+                  <button data-days="7">7-Tage</button>
+                  <button data-days="30" class="active">30-Tage</button>
+                  <button data-days="90">90-Tage</button>
+              </div>
+          </header>
+  
+          <div class="card-creator full-width">
+              <h3>Content Performance</h3>
+              <div class="table-wrapper">
+                  <table class="data-table" id="page-overview-table">
+                      <thead class="table-header">
+                        <tr  class="header-row">
+                          <th class="header-cell">Page Title</th>
+                        </tr>
+                          <!-- Header will be populated by JavaScript -->
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <td class="td-data"></td>
+                      </tr>
+                          <!-- Rows will be populated by JavaScript -->
+                      </tbody>
+      	              <tfoot class="table-footer">
+                        <tr>
+                            <td colspan="8" class="footer-cell"></td>
+                        </tr>
+  			              </tfoot>
+                  </table>
+              </div>
+          </div>
+
+          <div class="sidebar-column">
+              <div class="card-creator">
+                  <h3>Quick Actions</h3>
+                  <div class="quick-actions-list">
+                      <button>Promote Post</button>
+                      <button>AI Optimization Preview</button>
+                      <button>Start New Content Mission</button>
+                  </div>
+              </div>
+  
+              <div class="card-creator">
+                  <h3>Participation</h3>
+                  <div class="stat-item">
+                      <div class="stat-item-label">C-NFT Earnings (Vault)</div>
+                      <div class="stat-item-value">$125.40</div>
+                  </div>
+                   <div class="stat-item">
+                      <div class="stat-item-label">Participation Status</div>
+                      <div class="stat-item-value">Gold Tier</div>
+                  </div>
+                   <div class="trust-meter">
+                      <div class="trust-meter-label">Trust Meter</div>
+                      <div class="trust-meter-bar">
+                          <div class="trust-meter-fill" style="width: 85%;"></div>
+                      </div>
+                   </div>
+              </div>
+          </div>
+
+
+          <div class="card-creator reach-card">
+              <h3>Reach & Performance</h3>
+               <div class="stat-grid">
+                  <div class="stat-item">
+                      <div class="stat-item-label">OC Network Readers</div>
+                      <div class="stat-item-value"><span id="kpi-oc-readers-value">--</span></div>
+                      <div class="stat-item-change"><span id="kpi-oc-readers-change">--</span></div>
+                  </div>
+                  <div class="stat-item">
+                      <div class="stat-item-label">AI GEO Traffic</div>
+                      <div class="stat-item-value"><span id="kpi-ai-traffic-value">--</span></div>
+                      <div class="stat-item-change"><span id="kpi-ai-traffic-change">--</span></div>
+                  </div>
+                   <div class="stat-item">
+                      <div class="stat-item-label">Subscribers</div>
+                      <div class="stat-item-value"><span id="kpi-subs-value">--</span></div>
+                      <div class="stat-item-change"><span id="kpi-subs-change">--</span></div>
+                  </div>
+               </div>
+              <div class="chart-wrapper"><canvas id="viewsChart"></canvas></div>
+              <div class="detail-grid">
+                  <div>
+                      <h4>Distribution Ranking</h4>
+                      <ul id="distributionRankingList" class="ranking-list">
+                          <!-- Populated by JS -->
+                      </ul>
+                  </div>
+                   <div>
+                      <h4>Top Topics (AI GEO)</h4>
+                      <ul id="topAiTopicsList" class="ranking-list">
+                      </ul>
+                  </div>
+              </div>
+          </div>
+        
+
+        
+          <div class="card-creator full-width">
+               <div class="card-header">
+                  <h3>Monetization & Revenue</h3>
+              </div>
+               <div class="stat-grid">
+                  <div class="stat-item">
+                      <div class="stat-item-label" id="revenue-kpi-label">Revenue (Last 30 Days)</div>
+                      <div class="stat-item-value"><span id="kpi-revenue-value">--</span></div>
+                      <div class="stat-item-change"><span id="kpi-revenue-change">--</span></div>
+                  </div>
+                  <div class="stat-item">
+                      <div class="stat-item-label">Total OC Impressions</div>
+                      <div class="stat-item-value"><span id="kpi-pool-share-value">--</span></div>
+                      <div class="stat-item-change"><span id="kpi-pool-share-change">--</span></div>
+                  </div>
+               </div>
+               <div class="chart-grid">
+                  <div>
+                      <h4>Revenue Sources</h4>
+                      <div class="chart-wrapper"><canvas id="revenueSourcesChart"></canvas></div>
+                  </div>
+                  <div>
+                      <h4>By Advertiser Quality</h4>
+                      <div class="chart-wrapper"><canvas id="advertiserQualityChart"></canvas></div>
+                  </div>
+                   <div>
+                      <h4>Subscription Trend</h4>
+                      <div class="chart-wrapper"><canvas id="subscriptionTrendChart"></canvas></div>
+                  </div>
+                  <div>
+                      <h4>OC Network Impressions Trend</h4>
+                      <div class="chart-wrapper"><canvas id="poolShareTrendChart"></canvas></div>
+                  </div>
+               </div>
+          </div>
+
+          <div class="card-creator full-width">
+              <h3>Content Strategy & Community</h3>
+              <div class="detail-grid">
+                  <div>
+                      <h4>Top Performing Posts</h4>
+                       <table class="data-table">
+                          <thead class="table-header">
+                              <tr class="header-row">
+                                <th class="header-cell">Page Title</th>
+                                <th class="header-cell">Revenue/Reader Ratio</th>
+                                <th class="header-cell">Category</th>
+                              </tr>
+                          </thead>
+                          <tbody id="topPostsTableBody">
+                          <tr>
+                            <td class="td-data"></td>
+                          </tr>
+                              <!-- Populated by JS -->
+                          </tbody>
+          	              <tfoot class="table-footer">
+                            <tr>
+                                <td colspan="3" class="footer-cell"></td>
+                            </tr>
+      			              </tfoot>
+                      </table>
+                  </div>
+                   <div>
+                      <div class="ranking-header">
+                          <h4>Creator Ranking</h4>
+                          <select id="rankingSelect" class="ranking-select">
+                              <option value="Klickrate">Klickrate</option>
+                              <option value="Visits">Visits</option>
+                              <option value="Recurring">Recurring</option>
+                              <option value="Verweildauer">Verweildauer</option>
+                          </select>
+                      </div>
+                       <ul id="creatorRankingList" class="ranking-list">
+                          <!-- Populated by JS -->
+                      </ul>
+                  </div>
+                  <div>
+                      <h4>Top Network Categories</h4>
+                       <ul class="category-list">
+                          <li><span>Technology</span></li>
+                          <li><span>Business</span></li>
+                          <li><span>Startups</span></li>
+                          <li><span>Fintech</span></li>
+                          <li><span>Health & Wellness</span></li>
+                      </ul>
+                  </div>
+                   <div>
+                      <h4>Underrepresented Categories</h4>
+                       <ul id="underrepresentedCategoriesList" class="matchmaking-list">
+                          <!-- Populated by JS -->
+                      </ul>
+                  </div>
+                   <div>
+                      <h4>Creator Matchmaking</h4>
+                      <ul id="creatorMatchmakingList" class="matchmaking-list">
+                         <!-- Populated by JS -->
+                      </ul>
+                  </div>
+              </div>
+          </div>
+					<div style="height: var(--px-300)"></div>
+        </main>
+      </div>
+      
+    <script type="module" src="assets/index-csv.js"></script>
+
+    
+<script>
+(function () {
+  const btn     = document.getElementById('sidebar-toggle');
+  const sidebar = document.getElementById('sidebar-root');
+  if (!btn || !sidebar) return;
+
+  // 1) Einziger Ort, der die Button-Optik setzt
+  function paintButton(isOpen){
+    // Inline-Styles übersteuern alle Hover/Focus/Struktur-Selektoren
+    btn.style.background = isOpen ? 'var(--blue-grey-75)' : 'var(--Gelb)';
+    btn.style.color      = isOpen ? '#fff'               : '#000';
+    btn.setAttribute('aria-expanded', String(isOpen));
+  }
+
+  // 2) Quelle der Wahrheit
+  function setSidebar(isOpen){
+    sidebar.classList.toggle('open', isOpen);
+    paintButton(isOpen);
+  }
+
+  // 3) Toggle per Button
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const willOpen = !sidebar.classList.contains('open');
+    setSidebar(willOpen);
+    btn.blur(); // Focus-Optik sofort lösen
+  }, { passive:true });
+
+  // 4) Klicks innerhalb der Sidebar: Zustand fixieren (kein „Zurückspringen“)
+  sidebar.addEventListener('click', () => {
+    if (sidebar.classList.contains('open')) paintButton(true);
+  });
+
+  // 5) Outside-Klick schließt (Button wird automatisch „hell“ gemalt)
+  document.addEventListener('click', (e) => {
+    if (!sidebar.classList.contains('open')) return;
+    if (e.target.closest('#sidebar-root') || e.target.closest('#sidebar-toggle')) return;
+    setSidebar(false);
+  });
+
+  // 6) ESC schließt
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sidebar.classList.contains('open')) setSidebar(false);
+  });
+
+  // 7) Falls andere Scripts .open ändern → Button sofort nachziehen
+  const mo = new MutationObserver(() => paintButton(sidebar.classList.contains('open')));
+  mo.observe(sidebar, { attributes:true, attributeFilter:['class'] });
+
+  // 8) Initial
+  paintButton(sidebar.classList.contains('open'));
+
+  // 9) Sidebar-HTML injizieren (dein Code, unverändert), danach syncen
+  (async function injectSidebar({root='#sidebar-root', src='components/navigation-creator-start.html'} = {}) {
+    const el = document.querySelector(root);
+    if (!el) return;
+    el.innerHTML = '<div class="sidebar-loading">Loading…</div>';
+    try {
+      const res = await fetch(src, {credentials:'omit', cache:'no-cache'});
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const html = await res.text();
+      const tpl = document.createElement('template');
+      tpl.innerHTML = html.trim();
+      el.replaceChildren(...tpl.content.childNodes);
+      // nach dem Inject erneut Button korrekt „dunkel/hell“ malen
+      paintButton(sidebar.classList.contains('open'));
+    } catch (err) {
+      console.error('Sidebar load failed:', err);
+      el.innerHTML = '<div class="sidebar-error">Sidebar unavailable.</div>';
+    }
+  })();
+})();
+</script>
+</body>
+</html>
